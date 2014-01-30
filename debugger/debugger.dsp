@@ -115,7 +115,7 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\blitzbasic\bin\debugger.dll"
 # SUBTRACT BASE LINK32 /pdb:none /force
-# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\release\blitz3drelease\bin\debugger.dll"
+# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"../_release/bin/debugger.dll"
 # SUBTRACT LINK32 /pdb:none /force
 
 !ELSEIF  "$(CFG)" == "debugger - Win32 Blitz2DRelease"

@@ -24,7 +24,7 @@
 #include <dinput.h>
 #include <d3d.h>
 
-#include "../../fmodsrc375win/src/fmod.h"
+#include "../../fmod375/fmod.h"
 
 using namespace std;
 

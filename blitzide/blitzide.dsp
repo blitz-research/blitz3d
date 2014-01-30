@@ -115,7 +115,7 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 winmm.lib /nologo /subsystem:windows /machine:I386 /force /out:"..\blitzbasic\bin\ide.exe"
 # SUBTRACT BASE LINK32 /debug /nodefaultlib
-# ADD LINK32 winmm.lib /nologo /subsystem:windows /machine:I386 /force /out:"..\..\release\blitz3drelease\bin\ide.exe"
+# ADD LINK32 winmm.lib /nologo /subsystem:windows /machine:I386 /force /out:"../_release/bin/ide.exe"
 # SUBTRACT LINK32 /debug /nodefaultlib
 
 !ELSEIF  "$(CFG)" == "blitzide - Win32 Blitz2DRelease"
