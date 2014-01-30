@@ -1,0 +1,9 @@
+*.sbl
+*.plg
+*.aps
+*.ncb
+*.opt
+Debug
+Release
+*__Win32_*
+

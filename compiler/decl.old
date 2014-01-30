@@ -1,0 +1,16 @@
+
+#ifndef DECL_H
+#define DECL_H
+
+#include "type.h"
+
+const int OFFSET_GLOBAL=0x80000000;
+
+struct Decl{
+	int offset;
+	Type *type;
+	Decl( int n,Type *t ):offset(n),type(t){}
+	virtual Decl *Decl(){ return 0; }
+};
+
+#endif

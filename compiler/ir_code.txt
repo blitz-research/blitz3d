@@ -1,0 +1,38 @@
+
+Intermediate representation of program:
+
+Data...
+
+LABEL( sconst )			;insert an ASM label
+INT( iconst )			;insert int constant
+FLOAT( fconst )			;insert float constant
+STRING( sconst )		;insert string constant
+
+Code...
+
+Statements only:
+
+ENTER( iconst )			;enter func with iconst locals
+LEAVE( iconst )			;leave func with iconst locals
+JUMP( sconst )			;jump to label sconst
+JUMPT( l,sconst )		;eval expr-l, if !=0 jump to label sconst
+JUMPF( r,sconst )		;eval expr-r, if ==0 jump to label sconst
+RETURN( l,sconst )		;eval expr-l into return reg and jump to label sconst
+STORE( l,r )			;eval expr-r and store it in expr-l
+
+Stmts or expressions:
+
+CALL( l,r )				;eval expr-r, push it and call expr-l
+ARGS( l,r )				;eval expr-r, push it, eval expr-l
+FRAME()					;copy of frame pointer
+GLOBAL( sconst )		;address of label sconst
+LOAD( l )				;integer load
+NEG( l ),NOT( l )..		;integer uniops
+ADD( l,r ),SUB( l,r )..	;integer binops
+CONST( iconst )			;integer constant
+CAST( l )				;cast float expr-l to int
+FLOAD( l )				;float load
+FNEG( l ),FNOT( l )..	;float uniops
+FADD( l,r ),FSUB( l,r ).;float binops
+FCONST( fconst )		;float constant
+FCAST( l )				;cast int expr-l to float

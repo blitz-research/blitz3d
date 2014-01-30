@@ -1,0 +1,29 @@
+
+/*
+
+  A block represents a function - code & data.
+
+  */
+
+#ifndef BLOCK_H
+#define BLOCK_H
+
+struct Block{
+
+	Block( Block *parent );
+	~Block();
+
+	void genCode( TNode *t ){ code.push_back( t ); }
+	void genData( TNode *t ){ data.push_back( t ); }
+
+	void generate( Codegen *gen );
+
+private:
+	Block *parent;
+	vector<Block*> children;
+
+	vector<TNode*> code;
+	vector<TNode*> data;
+};
+
+#endif

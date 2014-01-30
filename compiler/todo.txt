@@ -1,0 +1,12 @@
+
+* Better source code pos tracker
+
+	All Decls and Stmts should have a 'pos' field.
+
+* Fix label names - eg: edx no currently allowed as var.
+
+* Replace Var with Global/Local/Field?
+
+* No auto-decl of vars on rhs of assignment?
+
+

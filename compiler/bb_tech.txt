@@ -1,0 +1,44 @@
+
+Blitz Basic internals.
+
+* Language
+
+Declarations:
+
+4 types: Newtype, Function, Var, Array
+
+Forward referencing for NewTypes and Functions is allowed.
+
+Array declarations are through Dim statement.
+
+Var declarations are through Var statement or params.
+
+Only Var declarations may appear in functions.
+
+
+* Runtime
+
+Newtype objects in BB look like this:
+
+struct BBObj{
+	BBObj *curr;
+	int ref_cnt;
+	BBObj *next,BBObj *prev;
+};
+
+When an object is 'used' (for field access or in an expression), it's
+curr field should be fetched.
+
+When an object is assigned, prev obj refcnt is decremented, new refcnt
+is incremented.
+
+The curr field is 0 if the object has been deleted.
+
+All objects exist in a type list:
+
+struct BBType{
+	int obj_size
+	BBObj usedList,freeList;
+};
+
+An object stays in it's type list as long as it's ref_cnt is >0.

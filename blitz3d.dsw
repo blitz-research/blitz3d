@@ -1,0 +1,263 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "asm_makeinsts"=.\asm_makeinsts\asm_makeinsts.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "bblaunch"=.\bblaunch\bblaunch.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name blitzide
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name compiler
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name config
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name linker_dll
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name stdutil
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name linker
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name bbruntime
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name bbruntime_dll
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name gxruntime
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name debugger
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name blitz
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "bbruntime"=.\bbruntime\bbruntime.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "bbruntime_dll"=.\bbruntime_dll\bbruntime_dll.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name bbruntime
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name gxruntime
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name stdutil
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name blitz3d
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "blitz"=.\blitz\blitz.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name compiler
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name stdutil
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "blitz3d"=.\blitz3d\blitz3d.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "blitzide"=.\blitzide\blitzide.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name config
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "compiler"=.\compiler\compiler.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name config
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name stdutil
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "config"=.\config\config.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "debugger"=.\debugger\debugger.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "gxruntime"=.\gxruntime\gxruntime.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "linker"=.\linker\linker.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name config
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name stdutil
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "linker_dll"=.\linker_dll\linker_dll.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name linker
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name stdutil
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name config
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "stdutil"=.\stdutil\stdutil.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name config
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

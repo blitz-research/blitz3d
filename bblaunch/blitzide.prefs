@@ -1,0 +1,17 @@
+prg_debug	1
+prg_windowed	0
+win_maximized	0
+win_notoolbar	0
+win_rect	0 0 691 542
+font_editor	blitz 12
+font_tabs	verdana 8
+rgb_bkgrnd	206060
+rgb_string	ff00
+rgb_ident	ffffff
+rgb_keyword	ffe75f
+rgb_comment	ffff
+rgb_digit	c8f0ff
+rgb_default	fff0c8
+edit_tabs	4
+edit_blkcursor	0
+img_toolbar	toolbar.bmp

@@ -1,0 +1,53 @@
+
+#include "parser.h"
+
+void ExprSeqNode::semant( Scope *s ){
+
+	for( int k=0;k<exprs.size();++k ) exprs[k]->semant( s );
+	type=Type::int_type;
+}
+
+void SimpleVarNode::semant( Scope *s ){
+
+	if( type=s->findIdent( ident ) ) return;
+	s->insertIdent( ident,Type::int_type );
+}
+
+void LabelNode::semant( Scope *s ){
+
+	Type *t=s->findIdent( label );
+	if( !t ){
+		s->insertIdent( label,new LabelType( this ) );
+		return;
+	}
+	if( t->labelType() && !t->labelType()->defn ){
+		t->labelType()->defn=this;
+		return;
+	}
+	semantEx( "Duplicate identifier" );
+}
+
+void GotoNode::semant( Scope *s ){
+
+	Type *t=s->findIdent( label );
+	if( !t ){
+		s->insertIdent( label,new LabelType(0) );
+		return;
+	}
+	if( t->labelType() ) return;
+	semantEx( "Duplicate Identifier" );
+}
+
+void ProgNode::semant( Scope *s ){
+
+	StmtSeqNode::semant( s );
+	map<string,Type*>::iterator it;
+	for( it=s->idents.begin();it!=s->idents.end();++it ){
+		if( LabelType *l=it->second->labelType() ){
+			if( !l->defn ){
+				semantEx( "Undefined Label" );
+			}
+		}
+	}
+}
+

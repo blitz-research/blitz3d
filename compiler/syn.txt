@@ -1,0 +1,65 @@
+
+struct Node{
+};
+
+struct VarNode : public Node{
+	public Type *semant( Environ *e )=0;
+	public TNode *translate( Environ *e )=0;
+	public TNode *evaluate( Environ *e )=0;
+};
+
+struct ExprNode : public Node{
+	public Type *semant( Environ *e )=0;
+	public TNode *translate( Environ *e )=0;
+};
+
+struct ExprSeqNode : public Node{
+	vector<ExprNode*> exprs;
+	public Type *semant( Environ *e );
+	public TNode *translate( Environ *e );
+	public void push_back( ExprNode *s );
+	public int size();
+};
+
+struct StmtNode : public Node{
+	public void semant( Environ *e )=0;
+	public void translate( vector<TNode*> &prog,Environ *e )=0;
+};
+
+struct StmtSeqNode : public Node{
+	vector<StmtNode*> stmts;
+	public void semant( Environ *e );
+	public void translate( vector<TNode*> &prog,Environ *e );
+	public void push_back( StmtNode *s );
+	public int size();
+};
+
+struct DeclNode : public Node{
+	public void proto( Environ *e )=0;
+	public void semant( Environ *e )=0;
+	public void translate( vector<TNode*> &prog,Environ *e )=0;
+};
+
+struct DeclSeqNode : public Node{
+	vector<DeclNode*> decls;
+	public void proto( Environ *e );
+	public void semant( Environ *e );
+	public void translate( vector<TNode*> &prog,Environ *e );
+	public void push_back( DeclNode *d );
+	public int size();
+};
+
+struct BlockNode : public Node{
+	DeclSeqNode *decls;
+	StmtSeqNode *stmts;
+	public void proto( Environ *e );
+	public void semant( Environ *e );
+	public void translate( vector<TNode*> &prog,Environ *e );
+};
+
+struct ProgNode : public Node{
+	BlockNode *block;
+	public void proto( Environ *e );
+	public void semant( Environ *e );
+	public void translate( Environ *e,Codegen &codegen );
+};

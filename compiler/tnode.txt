@@ -1,0 +1,81 @@
+
+Notes:
+
+lexpr is LHS sub-expression.
+rexpr is RHS sub-expression.
+iconst is generic int value.
+sconst is generic string value
+
+LABEL(sconst)
+	generate code label
+
+JUMP(sconst)
+	jump to global sconst
+
+JUMPT(lexpr,sconst)
+	jump to sconst if INT lexpr<>0
+
+JUMPF(lexpr,sconst)
+	jump to sconst if INT lexpr==0
+
+JUMPGE(lexpr,rexpr,sconst)
+	jump to sconst if INT lexpr>=INT rexpr
+
+SEQ(lexpr,rexpr)
+	execute lexpr, rexpr in any order. results not used.
+
+MOVE(lexpr,rexpr)
+	move lexpr to rexpr. rexpr always a MEM.
+
+MEM(lexpr)
+	contents of mem in lexpr - except for RHS of MOVE.
+
+LOCAL(iconst)
+	address of local var at offset iconst
+
+GLOBAL(sconst)
+	address of global var at sconst
+
+ARG(iconst)
+	address of argument var at offset iconst
+
+CONST(iconst)
+	constant
+
+CALL(lexpr,rexpr,iconst)
+	create argframe of size iconst. eval rexpr and discard result.
+	call address in lexpr. destroy argframe.
+
+RETURN(lexpr,sconst)
+	eval INT lexpr into int return reg and jump to sconst
+
+CAST(lexpr)
+	convert FP lexpr to INT.
+
+NEG,NOT,
+	INT unary expressions. lexpr always int. result int.
+
+AND,OR,EOR,SHL,SHR,ASR,ADD,SUB,MUL,DIV
+	INT binary expressions. lexpr and rexpr always int. result int.
+
+SETEQ,SETNE,SETLT,SETGT,SETLE,SETGE
+	INT releational expressions. result '1' if INT lexpr,rexpr comparison
+	true else '0'.
+
+FCALL
+	like CALL but result is in FP return reg.
+
+FRETURN(lexpr)
+	like RETURN, but put result into FP return reg. lexpr always FP.
+
+FCAST(lexpr)
+	convert INT lexpr to FP.
+
+FNEG
+	FP unary operators. lexpr always FP, result FP.
+
+FADD,FSUB,FMUL,FDIV,
+	FP binary operators. lexpr, rexpr always FP, result FP
+
+FSETEQ,FSETNE,FSETLT,FSETGT,FSETLE,FSETGE,
+	FP relational operators. lexpr, rexpr always FP. result INT!

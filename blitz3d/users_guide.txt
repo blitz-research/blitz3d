@@ -1,0 +1,32 @@
+
+Blitz 3D User Guide.
+
+Welcome to the wonder world of 3D!
+
+Entities
+********
+
+At the heart of Blitz3D lies the concept of an 'Entity'.
+
+An Entity is a 'thing' in the 3D world that has a position and an orientation.
+
+Blitz3D supports many kinds of entities:
+
+* Camera
+* Light
+* Pivot
+* Mesh
+* Sprite
+* Plane
+* Mirror
+* Terrain
+
+
+
+
+
+
+
+
+
+
