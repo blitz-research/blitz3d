@@ -1,0 +1,10 @@
+<html><head><title>Command: GetJoy </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;GetJoy ([port])&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Checks to see if a joystick button has been pressed - returns the number of the button or 0 if no button is pressed.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>port = optional joystick port to read</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Unlike the other similar commands (<a href='JoyDown.htm'>JoyDown</a> and <a href='JoyHit.htm'>JoyHit</a>), this command doesn't need to know which button you are trying to test for.  It looks for any joystick button, then returns the number the user pressed.  Since you are polling all the buttons instead of just a specific one, this may be a tad less efficient than using JoyDown or JoyHit.  Use this command in conjunction with <a href='Select.htm'>Select</a>/<a href='Case.htm'>Case</a> for maximum efficiency!</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; GetJoy Example<br>
+<br>
+While Not KeyHit(1)<br>
+button=GetJoy()<br>
+If button <> 0 Then<br>
+Print "You pressed joystick button #" + button<br>
+End If<br>
+Wend<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

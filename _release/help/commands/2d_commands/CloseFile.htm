@@ -1,0 +1,51 @@
+<html><head><title>Command: CloseFile </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;CloseFile filehandle&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Closes a file previously opened with a file operations command.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>filehandle = variable defined with the WriteFile or OpenFile command</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Use this command to close a file previously opened.   You should always close a file as soon as you have finished reading or writing to it.<br>
+<br>
+See also:<br>
+<a href='ReadByte.htm'>ReadByte</a>, <a href='ReadShort.htm'>ReadShort</a>, <a href='ReadInt.htm'>ReadInt</a>, <a href='ReadFloat.htm'>ReadFloat</a>, <a href='ReadString$.htm'>ReadString$</a>, <a href='ReadLine$.htm'>ReadLine$</a>, <a href='WriteByte.htm'>WriteByte</a>, <a href='WriteShort.htm'>WriteShort</a>, <a href='WriteInt.htm'>WriteInt</a>, <a href='WriteFloat.htm'>WriteFloat</a>, <a href='WriteShort.htm'>WriteShort</a>, <a href='WriteString.htm'>WriteString</a>, <a href='WriteLine.htm'>WriteLine</a>, <a href='ReadFile.htm'>ReadFile</a>, <a href='WriteFile.htm'>WriteFile</a>, <a href='OpenFile.htm'>OpenFile</a>, <a href='CloseFile.htm'>CloseFile</a>, <a href='Eof.htm'>Eof</a>, <a href='FileType.htm'>FileType</a>, <a href='FilePos.htm'>FilePos</a>, <a href='SeekFile.htm'>SeekFile</a></td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Reading and writing custom types to files using ReadFile, WriteFile and CloseFile<br>
+<br>
+; Initialise some variables for the example<br>
+Type HighScore<br>
+	Field Name$<br>
+	Field Score%<br>
+	Field Level%<br>
+End Type<br>
+<br>
+Best.HighScore  = New HighScore<br>
+Best\Name = "Mark"<br>
+Best\Score = 11657<br>
+Best\Level = 34<br>
+<br>
+; Open a file to write to<br>
+fileout = WriteFile("mydata.dat")<br>
+<br>
+; Write the information to the file<br>
+WriteString( fileout, Best\Name )<br>
+WriteInt( fileout, Best\Score )<br>
+WriteByte( fileout, Best\Level )<br>
+<br>
+; Close the file<br>
+CloseFile( fileout )<br>
+<br>
+; Open the file to Read<br>
+filein = ReadFile("mydata.dat")<br>
+<br>
+; Lets read the Greatest score from the file<br>
+Greatest.HighScore = New HighScore<br>
+Greatest\Name$ = ReadString$( filein )<br>
+Greatest\Score = ReadInt( filein )<br>
+Greatest\Level = ReadByte( filein )<br>
+<br>
+; Close the file once reading is finished<br>
+CloseFile( fileout )<br>
+<br>
+Print "High score record read from - mydata.dat "<br>
+Print<br>
+Write "Name = "<br>
+Print Greatest\Name<br>
+Write "Score = "<br>
+Print Greatest\Score<br>
+Write "Level = "<br>
+Print Greatest\Level<br>
+<br>
+WaitKey()<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

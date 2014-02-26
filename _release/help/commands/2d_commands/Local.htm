@@ -1,0 +1,18 @@
+<html><head><title>Command: Local </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Local variable&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Declares a variable as local.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>variable = any valid variable name<br>
+</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command is probably just here for compatibility with other BASIC languages. LOCAL will let you specify that the variable you are defining is available ONLY to the program or <a href='Function.htm'>Function</a> you are assigning it in.  In order to get a variable to be accessible anywhere in your program, you need to make it <a href='GLOBAL.htm'>GLOBAL</a>.  I say it is only here for compatibility because whenever you assign a variable that isn't Global, it is automatically assigned as a LOCAL variable.  You can optionally assign a value to the variable at the time of declaration.  See example.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Local example<br>
+<br>
+; set lives to 5 for the main program loop<br>
+Local lives=5<br>
+<br>
+; Call a function<br>
+while not keyhit(1)<br>
+showlives()<br>
+Wend<br>
+<br>
+Function showlives()<br>
+; For this function, lives will be 10!<br>
+Local lives=10<br>
+Print lives<br>
+End Function<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

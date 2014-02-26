@@ -1,0 +1,17 @@
+<html><head><title>Command: LoopSound </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;LoopSound sound_variable&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Sets up a previously loaded sound to play in a constant loop once the sound is played.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>sound_variable = variable previously assigned with a LoadSound command.<br>
+</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command sets up play back a sound file (.WAV or .MP3) in an endless loop (like for background music).  You must load a variable with a sound file using the <a href='LoadSound.htm'>LoadSound</a> command. Use a Global variable to ensure your sound loop can be played from anywhere in your program.
+
+Note: This command doesn't actually PLAY the sound loop, just sets it up for looping.  You still need to execute the <a href='PlaySound.htm'>PlaySound</a> command to hear the sound.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Assign a global variable for the sound loop<br>
+Global sndMusicLoop<br>
+<br>
+; Load the sound loop file into memory<br>
+<br>
+sndMusicLoop=LoadSound("sounds/loop1.wav")<br>
+<br>
+; Set the sound loop<br>
+<br>
+LoopSound sndMusicLoop<br>
+<br>
+PlaySound sndMusicLoop<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

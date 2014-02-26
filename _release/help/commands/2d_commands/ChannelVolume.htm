@@ -1,0 +1,43 @@
+<html><head><title>Command: ChannelVolume </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;ChannelVolume channel_handle, volume#&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Adjusts the volume level of a sound channel.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>channel_handle = variable assigned to the channel when played<br>
+volume# = volume level floating value between 0 and 1<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>While <a href='SoundVolume.htm'>SoundVolume</a> happily changes the volume of the entire program, this command will let you adjust volume rates on a 'per channel' basis.  Extremely useful.<br>
+<br>
+The volume value is a floating point value between 0 and 1 (0 = silence, .5 = half volume, 1= full volume).  You can do other cool stuff like <a href='ChannelPitch.htm'>ChannelPitch</a> and <a href='ChannelPan.htm'>ChannelPan</a> too!</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Channel examples<br>
+<br>
+Print "Loading sound ..."<br>
+; Load the sample - you'll need to point this to a sound on your computer<br>
+; For best results, make it about 5-10 seconds...<br>
+sndWave=LoadSound("level1.wav")<br>
+; Prepare the sound for looping<br>
+LoopSound sndWave<br>
+<br>
+chnWave=PlaySound(sndWave)<br>
+<br>
+Print "Playing sound for 2 seconds ..."<br>
+Delay 2000<br>
+<br>
+Print "Pausing sound for 2 seconds ..."<br>
+PauseChannel chnWave<br>
+Delay 2000<br>
+<br>
+Print "Restarting sound ..."<br>
+ResumeChannel chnWave<br>
+Delay 2000<br>
+<br>
+Print "Changing volume of sound ..."<br>
+ChannelVolume chnWave, .5<br>
+Delay 2000<br>
+<br>
+Print "Playing new half-volume sound ..."<br>
+Delay 2000<br>
+<br>
+Print "Left speaker only"<br>
+ChannelPan chnWave,-1<br>
+Delay 2000<br>
+<br>
+Print "Right speaker only"<br>
+ChannelPan chnWave,1<br>
+Delay 2000<br>
+<br>
+Print "All done!"<br>
+StopChannel chnWave<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

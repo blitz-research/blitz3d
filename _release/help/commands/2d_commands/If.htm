@@ -1,0 +1,18 @@
+<html><head><title>Command: If </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;If  &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Checks a condition and executes code if the condition is met.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Use this to check the value of a variable or to see if a condition is true or false.  The code between IF and END IF (or ENDIF) is executed if the condition is true.  Using NOT, you can also act if the condition is NOT true - or use ELSE to perform a different set of commands than if the condition is met.  Lastly, you can use 'nested' or multiple IFs through the use of ELSE IF (or ELSEIF) to do LOTS of condition checking.  If you get too deep in condition checking, consider using SELECT structures instead.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; IF THEN Example<br>
+<br>
+; Input the user's name<br>
+name$=Input$("What is your name? ")<br>
+<br>
+; Doesn't the person's name equal SHANE?<br>
+If name$ = "Shane" Then<br>
+<br>
+Print "You are recognized, Shane!  Welcome!"<br>
+<br>
+Else<br>
+<br>
+Print "Sorry, you don't belong here!"<br>
+<br>
+; End of the condition checking<br>
+End If<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

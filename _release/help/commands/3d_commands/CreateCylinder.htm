@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>Command: CreateCylinder</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;CreateCylinder ( [segments][,parent][,solid] )&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>segments (optional) - cylinder detail. Defaults to 8.<br>
+    parent (optional) - parent entity of cylinder<br>
+    solid (optional) - true for a cylinder, false for a tube. Defaults to true.</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Creates a cylinder mesh/entity and returns its handle.<p>The cylinder 
+    will be centred 
+    at 0,0,0 and will have a radius of 1.</p>
+    <p>The  segments value must be in the range 3-100 inclusive, although this is 
+    only checked in debug mode. A common mistake 
+    is to leave debug mode off and specify the parent parameter 
+    (usually an eight digit memory address) in the place of the segments value. 
+    As the amount of polygons used to create a cylinder is exponentially 
+    proportional to the segments value, this will result in Blitz trying to create a 
+    cylinder 
+    with unimaginable amounts of polygons! Depending on how unlucky you are, 
+    your computer may then crash.<p>Example segments values (solid=true):<br>
+    3: 8 polygons - a prism<br>
+    8: 28 polygons - bare minimum amount of polygons for a cylinder<br>
+    16: 60 polygons - smooth cylinder at medium-high distances<br>
+    32: 124 polygons - smooth cylinder at close distances<font SIZE="2"><p>The 
+    optional parent parameter allow you to specify a parent entity for the 
+    cylinder so that when the parent is moved the child cylinder will move with 
+    it. However, this relationship is one way; applying movement commands to the 
+    child will not affect the parent.</p>
+    <p>Specifying a parent entity will still result in the cylinder being 
+    created at position 0,0,0 rather than at the parent entity's position.</p>
+    <p>See also:
+    <a href="CreateCube.htm">CreateCube</a>, <a href="CreateSphere.htm">
+    CreateSphere</a>, <a href="CreateCone.htm">CreateCone</a>.</font></td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/CreateCylinder.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; CreateCylinder Example<br>
+    ; ----------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    ; Create cylinder<br>
+    cylinder=CreateCylinder()<br>
+    <br>
+    PositionEntity cylinder,0,0,5<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    RenderWorld<br>
+    Flip<br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

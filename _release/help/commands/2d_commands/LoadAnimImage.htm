@@ -1,0 +1,50 @@
+<html><head><title>Command: LoadAnimImage </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;LoadAnimImage (filename,width,height,first,count)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Loads an 'image strip' for use as an 'animated image' to be drawn later and return a handle.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>filename = string designating full path and filename to image.<br>
+width=width in pixels of each frame in the image.<br>
+height=height in pixels of each frame in the image.<br>
+first=the frame to start with (usually 0)<br>
+count=how many frames you are using of the imagestrip<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>While similar to <a href='LoadImage.htm'>LoadImage</a>, the LoadAnimImage loads a single image that is made up of 'frames' of seperate images (presumably to be used as frames of a graphic animation).<br>
+<br>
+Like the <a href='LoadImage.htm'>LoadImage</a> command, this command returns a file handle - a unique number to denote the graphic.  Use a variable (usually <a href='GLOBAL.htm'>GLOBAL</a>) to contain this number, as you will need it to actually DRAW the image with the <a href='DrawImage.htm'>DrawImage</a> command.  See <a href='LoadImage.htm'>LoadImage</a> command for more details.<br>
+<br>
+The imagestrip itself consists of 2 or more frames, horizontally aligned in a single graphic image.  There is no spaces between the frames, and each frame must be the same width and height.  For examples, look at the file kaboom.bmp or sparks.bmp included in the C:\Program Files\BlitzBasic\samples\graphics folder of your computer.  There are some free utilities floating around to help you do this.<br>
+<br>
+When drawing the image to the screen with the <a href='DrawImage.htm'>DrawImage</a> command, you specify which frame to draw with the frame parameter.<br>
+<br>
+To actually make your image animate, you'll need to cycle through the frames (like a flip book, cartoon, or any other video) quickly to give the illusion of motion.  Our example will show you how to use one of the sample imagestrips and make it animate.  While it may seem confusing, we are going to do some timer work as well as a little weird math.<br>
+<br>
+Please look over the example (if your like me, over and over :).  Note: You may need to change the location of the file to suit your system.<br></td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; LoadAnimImage/MaskImage Example<br>
+; With animation timers<br>
+<br>
+; Even though we don't have any functions, let's do variables global<br>
+; One variable will hold the handle for the graphic, one will hold the<br>
+; current frame we are displaying, and one will hold the milliseconds<br>
+; timer so we can adjust the animation speed.<br>
+Global gfxSparks, frmSparks, tmrSparks<br>
+<br>
+; Standard graphic declaration and double buffering setup<br>
+Graphics 640,480,16<br>
+SetBuffer BackBuffer()<br>
+<br>
+; Load the imagestrip up and denote the frames 32x32 - for a total of 3 frames<br>
+gfxSparks=LoadAnimImage("c:\Program Files\BlitzBasic\samples\Graphics\spark.bmp",32,32,0,3)<br>
+<br>
+; We mask the image's color pink to be the 'transparent' color - look at the<br>
+; image in your favorite editor to see more why we use masking.<br>
+MaskImage gfxSparks,255,0,255<br>
+<br>
+; Loop until ESC<br>
+While Not KeyHit(1)<br>
+Cls ; Standard clear screen<br>
+<br>
+; The next statment checks to see if 100 milliseconds has passes since we<br>
+; last changed frames.  Change the 100 to higher and lower values to <br>
+; make the animation faster or slower.<br>
+If MilliSecs() > tmrSparks + 100 Then<br>
+tmrSparks=MilliSecs() ; 'reset' the timer<br>
+frmSparks=( frmSparks + 1 ) Mod 3 ; increment the frame, flip to 0 if we are out<br>
+End If <br>
+DrawImage gfxSparks,MouseX(),MouseY(),frmSparks ; draw the image<br>
+Flip ; show the buffer<br>
+Wend<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

@@ -1,0 +1,33 @@
+<html><head><title>Command: Read </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Read variable&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Get the next set of values from a Data statement.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>variable = valid variable to match the data type you are reading (integer, string, etc)</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This reads the next value in a set of Data statements.  This allows you to store large blocks of constant information (the structure of tile blocks for a game level for example) into easy to maintain Data statements, then retrieve them for redrawing, etc.<br>
+<br>
+Unlike most BASIC languages, Data statments do not have to be linear and sequential.  Through the use of Labels (aka 'dot variable') you can create 'banks' of Data statments with the unique ability to 'Restore the Data pointer' to any one of these labels.  Each level could have its own label (.level1, .level2, etc).  See the <a href='Data.htm'>Data</a> statement, <a href='Restore.htm'>Restore</a> command, or <a href='.Label.htm'>.Label</a> command for more information.<br>
+<br>
+Note: You can read multiple values at one time;  Read X,Y,Z for example.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Sample of read/restore/data/label commands<br>
+<br>
+; Let's put the data pointer to the second data set<br>
+Restore seconddata<br>
+<br>
+; Let's print them all to the screen<br>
+For t = 1 To 10<br>
+Read num ; Get the next data value in the data stack<br>
+Print num<br>
+Next<br>
+<br>
+; Now for the first set of data<br>
+Restore firstdata<br>
+<br>
+; Let's print them all to the screen<br>
+For t = 1 To 10<br>
+Read num ; Get the next data value in the data stack<br>
+Print num<br>
+Next<br>
+<br>
+; this is the first set of data<br>
+.firstdata<br>
+Data 1,2,3,4,5,6,7,8,9,10<br>
+<br>
+; this is the second set of data<br>
+.seconddata<br>
+Data 11,12,13,14,15,16,17,18,19,20<br>
+</td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

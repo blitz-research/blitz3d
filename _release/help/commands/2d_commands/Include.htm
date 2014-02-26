@@ -1,0 +1,17 @@
+<html><head><title>Command: Include </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Include filename&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Includes more Blitz Basic source code into your code from an external file.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>filename = full path and filename of your .bb include code</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Includes are a cheap substitute for <a href='Function.htm'>Function</a> Folding (grin).  Seriously, Includes offers the programmer a means of keeping distinct code seperate by taking 'working' subroutines, functions, variable assignments - heck, ANY code and placing it into an external .bb file.  This external file can be 'included' into another Blitz program - and when you run the program, Blitz will 'included' that external code just as if it cut and pasted it right into your source code before it runs.  For example, you could create a small Blitz program for displaying your 'intro' screen/effect and save it off as 'intro.bb'.  Then, give it to all your programmers so they can 'include' that source code at the beginning of their game.  Many programmers find it useful to write functions, test them, and once working 100% properly, save them off as their own source code and just include them in their main program.  This keeps code segregated, readable, and modularly changeable.<br>
+<br>
+For debugging purposes, if you run a program with included files, and one of the includes has an error, Blitz will automagically load the include, and display the error/debug information there.  Nice, huh?<br>
+<br>
+Hopefully Function Folding will be supported in future versions of Blitz, since many people use Includes to 'simulate' this feature.<br>
+<br>
+Note: The example only shows you the calling code using the INCLUDE command - it will not run unless you create the included files yourself.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; INCLUDE Example<br>
+<br>
+; Include the source code that has all our variables in it<br>
+Include "myvariables.bb"<br>
+<br>
+; Get the TYPEs from an external source code include<br>
+Include "myTYPES.bb"<br>
+
+
+</td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

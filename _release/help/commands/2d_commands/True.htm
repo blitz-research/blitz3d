@@ -1,0 +1,19 @@
+<html><head><title>Command: True </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;True  &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>A boolean expression used in comparisons.  Actually returns a value of 1.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>TRUE is a keyword to denote a positive result in a conditional statement.  Often times, TRUE is implied and doesn't need to be directly referenced.  TRUE can also be used as a <a href='RETURN.htm'>RETURN</a> value from a <a href='FUNCTION.htm'>FUNCTION</a>.  See the example.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; TRUE example<br>
+<br>
+; Assign test a random number of 0 or 1<br>
+test= Rnd(0,1)<br>
+<br>
+; TRUE is implied; This statement REALLY means: if test=1 is TRUE then proceed<br>
+If test=1 Then<br>
+Print "Test was valued at 1"<br>
+End If<br>
+<br>
+; Let's set test to be true<br>
+test=True<br>
+<br>
+; Pointlessly test it<br>
+If test=True Then<br>
+Print "Test is true"<br>
+End If<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

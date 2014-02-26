@@ -1,0 +1,96 @@
+<html>
+<head>
+<title>Command: PositionEntity</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;PositionEntity entity,x#,y#,z#,[,global]&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>entity - name of entity to be positioned<br>
+x# - x co-ordinate that entity will be positioned at<br>
+y# - y co-ordinate that entity will be positioned at<br>
+z# - z co-ordinate that entity will be positioned at<br>
+global (optional) - true if the position should be relative to 0,0,0 rather than 
+a parent entity's position. False by default.</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Positions an entity at an absolute position in 3D space.<br>
+<br>
+Entities are positioned using an x,y,z coordinate system. x, y and z each have 
+their own axis, and each axis has its own set of values. By specifying a value 
+for each axis, you can position an entity anywhere in 3D space. 0,0,0 is the 
+centre of 3D space, and if the camera is pointing in the default positive z 
+direction, then positioning an entity with a z value of above 0 will make it 
+appear in front of the camera, whereas a negative z value would see it disappear 
+behind the camera. Changing the x value would see it moving sideways, and 
+changing the y value would see it moving up/down.<br>
+<br>
+Of course, the direction in which entities appear to move is relative to the 
+position and orientation of the camera.<p>See also: <a href="MoveEntity.htm">
+    MoveEntity</a>, <a href="TranslateEntity.htm">TranslateEntity</a>.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/PositionEntity.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; PositionEntity Example<br>
+    ; ----------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    light=CreateLight()<br>
+    <br>
+    cone=CreateCone( 32 )<br>
+    <br>
+    ; Set position values so that cone is positioned in front of camera, so we 
+    can see it to begin with<br>
+    x#=0<br>
+    y#=0<br>
+    z#=10<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    ; Change position values depending on key pressed<br>
+    If KeyDown( 203 )=True Then x#=x#-0.1<br>
+    If KeyDown( 205 )=True Then x#=x#+0.1<br>
+    If KeyDown( 208 )=True Then y#=y#-0.1<br>
+    If KeyDown( 200 )=True Then y#=y#+0.1<br>
+    If KeyDown( 44 )=True Then z#=z#-0.1<br>
+    If KeyDown( 30 )=True Then z#=z#+0.1<br>
+    <br>
+    ; Position cone using position values<br>
+    PositionEntity cone,x#,y#,z#<br>
+    <br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Use cursor/A/Z keys to change cone position&quot;<br>
+    Text 0,20,&quot;X Position: &quot;+x#<br>
+    Text 0,40,&quot;Y Position: &quot;+y# <br>
+    Text 0,60,&quot;Z Position: &quot;+z#<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

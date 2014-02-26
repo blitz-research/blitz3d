@@ -1,0 +1,85 @@
+<html>
+<head>
+<title>Command: FreeTexture</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;FreeTexture texture&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>texture -  texture handle</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Frees up a texture. This will allow the memory that it occupied before 
+    to be used for other purposes.<p>Freeing a texture means you will not be 
+    able to use it again; however, entities already textured with it will not 
+    lose the texture.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/FreeTexture.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; FreeTexture Example<br>
+    ; -------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    cube=CreateCube()<br>
+    PositionEntity cube,0,0,5<br>
+    <br>
+    ; Load texture<br>
+    tex=LoadTexture(&quot;../media/b3dlogo.jpg&quot;)<br>
+    <br>
+    ; Texture cube with texture<br>
+    EntityTexture cube,tex<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    ; If spacebar pressed then free texture<br>
+    If KeyHit( 57 )=True Then FreeTexture tex<br>
+    <br>
+    pitch#=0<br>
+    yaw#=0<br>
+    roll#=0<br>
+    <br>
+    If KeyDown( 208 )=True Then pitch#=-1 <br>
+    If KeyDown( 200 )=True Then pitch#=1<br>
+    If KeyDown( 203 )=True Then yaw#=-1<br>
+    If KeyDown( 205 )=True Then yaw#=1<br>
+    If KeyDown( 45 )=True Then roll#=-1<br>
+    If KeyDown( 44 )=True Then roll#=1<br>
+    <br>
+    TurnEntity cube,pitch#,yaw#,roll#<br>
+    <br>
+    RenderWorld<br>
+    Text 0,0,&quot;Press spacebar to free texture&quot; <br>
+    Text 0,20,&quot;As you can see this will not effect already textured entities&quot;<br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>Command: EntityX</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;EntityY# ( entity[,global] )&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>entity - name of entity that will have y-coordinate returned<br>
+global (optional) - true if the y-coordinate returned should be relative to 
+0,0,0 rather than a parent entity's position. False by default.</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Returns the y-coordinate of an entity.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/EntityY.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; EntityY Example<br>
+    ; ---------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    light=CreateLight()<br>
+    <br>
+    cone=CreateCone( 32 )<br>
+    PositionEntity cone,0,0,10<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    x#=0<br>
+    y#=0<br>
+    z#=0<br>
+    <br>
+    If KeyDown(203)=True Then x#=-0.1<br>
+    If KeyDown(205)=True Then x#=0.1<br>
+    If KeyDown(208)=True Then y#=-0.1<br>
+    If KeyDown(200)=True Then y#=0.1<br>
+    If KeyDown(44)=True Then z#=-0.1<br>
+    If KeyDown(30)=True Then z#=0.1<br>
+    <br>
+    MoveEntity cone,x#,y#,z#<br>
+    <br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Use cursor/A/Z keys to move cone&quot;<br>
+    <br>
+    ; Return entity y position of cone<br>
+    Text 0,20,&quot;Y Position: &quot;+EntityY#( cone )<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

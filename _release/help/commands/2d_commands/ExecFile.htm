@@ -1,0 +1,20 @@
+<html><head><title>Command: ExecFile </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;ExecFile (filename$)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Runs an external executable program from within a Blitz program.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>filename$ = any valid variable or path/filename to the executable program</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Use this command to halt execution of your program and run an external program.<br>
+<br>
+The usefulness of this command is really mostly for calling some system level command, launching a browser, etc.  Without the ability to playback a movie (for cutscenes, etc) I would think the most useful part of this is command would be calling a self-contained .exe movie (a la BLINK) to play as an intro, then when its completed, return to your program for continued execution.<br>
+<br>
+Note: This command uses ShellExecute to allow you to 'open' any file (like a .doc or .txt) file with its default associated program.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; ExecFile sample - RUN THIS WINDOWED!<br>
+; Win9x users will need to change location of calc.exe<br>
+ <br>
+filename$="c:\winnt\system32\calc.exe"<br>
+<br>
+Print "Press any key to run CALC.EXE!"<br>
+<br>
+WaitKey()<br>
+<br>
+ExecFile(filename$)<br>
+<br>
+Print "Press any key to quit."<br>
+<br>
+WaitKey()<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

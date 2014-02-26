@@ -1,0 +1,45 @@
+<html><head><title>Command: FreeFont </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;FreeFont fonthandle&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Deletes a previously loaded font and frees its memory.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>fontname = string containing font name<br>
+height = font height desired<br>
+bold = set to TRUE to load font as BOLD<br>
+italic =  set to TRUE to load font as ITALIC<br>
+underlined  set to TRUE to load font as UNDERLINED<br>
+</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This removes a TrueType font previously loaded into memory (though the <a href='LoadFont.htm'>LoadFont</a> command).<br>
+<br>
+Note: Blitz doesn't work with SYMBOL fonts, like Webdings and WingDings.<br>
+</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; LoadFont/SetFont/FreeFont example<br>
+<br>
+; enable graphics mode<br>
+Graphics 800,600,16<br>
+<br>
+; Set global on font variables<br>
+Global fntArial,fntArialB,fntArialI,fntArialU<br>
+<br>
+;Load fonts to a file handle variables<br>
+fntArial=LoadFont("Arial",24,False,False,False)<br>
+fntArialB=LoadFont("Arial",18,True,False,False)<br>
+fntArialI=LoadFont("Arial",32,False,True,False)<br>
+fntArialU=LoadFont("Arial",14,False,False,True)<br>
+<br>
+; set the font and print text<br>
+SetFont fntArial<br>
+Text 400,0,"This is just plain Arial 24 point",True,False<br>
+<br>
+SetFont fntArialB<br>
+Text 400,30,"This is bold Arial 18 point",True,False<br>
+<br>
+SetFont fntArialI<br>
+Text 400,60,"This is italic Arial 32 point",True,False<br>
+<br>
+SetFont fntArialU<br>
+Text 400,90,"This is underlined Arial 14 point",True,False<br>
+<br>
+; Standard 'wait for ESC' from user<br>
+While Not KeyHit(1)<br>
+Wend<br>
+<br>
+; Clear all the fonts from memory!<br>
+FreeFont fntArial<br>
+FreeFont fntArialB<br>
+FreeFont fntArialI<br>
+FreeFont fntArialU<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

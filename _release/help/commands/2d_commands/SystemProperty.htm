@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>Command: SystemProperty</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;SystemProperty&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>property$ - system property information required (valid strings listed below)</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>SystemProperty () returns the location of a standard system folder, which can be different on every computer. Note that it's not a good idea to play around in a user's Windows or System folder!
+<P>
+Valid parameters are:
+<P>
+"tempdir" - Temp folder<BR>
+"systemdir" - System folder<BR>
+"windowsdir" - Windows folder<BR>
+"appdir" - Program Files folder<BR>
+</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/SystemProperty.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>
+Print "System folder location: " + SystemProperty ("systemdir")<BR>
+Print "Windows folder location: " + SystemProperty ("windowsdir")<BR>
+Print "Temp folder: " + SystemProperty ("tempdir")<BR>
+Print "Program was run from " + SystemProperty ("appdir")<BR>
+</td>
+  </tr>
+</table>
+</body>
+</html>

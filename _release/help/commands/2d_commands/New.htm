@@ -1,0 +1,22 @@
+<html><head><title>Command: New </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;New type_variable&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Create a new TYPE object in the Type collection.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>type_variable = the actual Type name, not the custom Type name<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>If you aren't familiar with the TYPE command, please refer to that before reading about this command.<br>
+<br>
+Creates a NEW object in a Type collection.  Each call to this command automatically inserts a new object into the specified Type collection.  Check the example and other Type commands for more information.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Define the CHAIR Type<br>
+<br>
+Type CHAIR<br>
+Field X<br>
+Field Y<br>
+Field HEIGHT<br>
+End Type<br>
+<br>
+; Create 100 new chairs using FOR ... NEXT using the collection name of ROOM<br>
+<br>
+For tempx = 1 to 10<br>
+For tempy = 1 to 10<br>
+room.chair = New Chair<br>
+room\x = tempx<br>
+room\y = tempy<br>
+room\height = Rnd(0,10) ; set a random height 0 to 10<br>
+Next<br>
+Next<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

@@ -1,0 +1,36 @@
+<html><head><title>Command: MouseX() </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;MouseX() &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns the mouse's X screen coordinate.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command returns the mouse's X location on the screen.  Use this with the <a href='DrawImage.htm'>DrawImage</a> command to make a custom mouse pointer, or to control something directly on the screen with the mouse.  Use <a href='MouseY().htm'>MouseY()</a> to get the Y coordinate.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; LoadAnimImage/MaskImage MouseX()/MouseY() Example<br>
+; With animation timers<br>
+<br>
+; Even though we don't have any functions, let's do variables global<br>
+; One variable will hold the handle for the graphic, one will hold the<br>
+; current frame we are displaying, and one will hold the milliseconds<br>
+; timer so we can adjust the animation speed.<br>
+Global gfxSparks, frmSparks, tmrSparks<br>
+<br>
+; Standard graphic declaration and double buffering setup<br>
+Graphics 640,480,16<br>
+SetBuffer BackBuffer()<br>
+<br>
+; Load the imagestrip up and denote the frames 32x32 - for a total of 3 frames<br>
+gfxSparks=LoadAnimImage("c:\Program Files\BlitzBasic\samples\Graphics\spark.bmp",32,32,0,3)<br>
+<br>
+; We mask the image's color pink to be the 'transparent' color - look at the<br>
+; image in your favorite editor to see more why we use masking.<br>
+MaskImage gfxSparks,255,0,255<br>
+<br>
+; Loop until ESC<br>
+While Not KeyHit(1)<br>
+Cls ; Standard clear screen<br>
+<br>
+; The next statment checks to see if 100 milliseconds has passes since we<br>
+; last changed frames. Change the 100 to higher and lower values to <br>
+; make the animation faster or slower.<br>
+If MilliSecs() > tmrSparks + 100 Then<br>
+tmrSparks=MilliSecs() ; 'reset' the timer<br>
+frmSparks=( frmSparks + 1 ) Mod 3 ; increment the frame, flip to 0 if we are out<br>
+End If <br>
+DrawImage gfxSparks,MouseX(),MouseY(),frmSparks ; draw the image at MouseX and Y<br>
+Flip ; show the buffer<br>
+Wend<br>
+</td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

@@ -1,0 +1,9 @@
+<html><head><title>Command: SaveBuffer </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;SaveBuffer (buffer,filename$)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Saves the selected video buffer to a bitmap file.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>buffer = The buffer to save; FrontBuffer() or BackBuffer()<br>
+filename$ = valid Windows path/filename<br>
+</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Typically, this is used to take a screen snapshot.  This will save the screen buffer you specify to a .bmp file you specify.  Remember, use the proper name for the buffer you wish to save;  <i>FrontBuffer()</i> for the current visible screen, and <i>BackBuffer()</i> for the back or invisible drawing buffer.  The filename must be valid Windows filename syntax.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Save the screen when player pushes F10<br>
+<br>
+If KeyHit(10) Then<br>
+SaveBuffer(FrontBuffer(),"screenshot.bmp")<br>
+End If<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

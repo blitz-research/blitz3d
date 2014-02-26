@@ -1,0 +1,61 @@
+<html><head><title>Command: RectsOverlap </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;RectsOverlap (rect1 X,rect1 Y,rect1 Width,rect1 Height,rect2 X,rect2 Y,rect2 Width,rect2 Height)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Tests to see if two rectangular areas are overlapping.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>rect1 X = rectangle 1 x location<br>
+rect1 Y = rectangle 1 y location<br>
+rect1 Width = rectangle 1 width<br>
+rect1 Height = rectangle 1 height<br>
+rect2 X = rectangle 2 x location<br>
+rect2 Y = rectangle 2 y location<br>
+rect2 Width = rectangle 2 width<br>
+rect2 Height = rectangle 2 height<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command will take two rectangular locations on the screen and see if they overlap.  You will need to know the x, y, width, and height of both regions to test.<br>
+<br>
+I'm still trying to find a real good logical use for this command with all the other collision commands available to you like <a href='ImagesOverlap.htm'>ImagesOverlap</a>, <a href='ImagesCollide.htm'>ImagesCollide</a>, <a href='ImageRectOverlap.htm'>ImageRectOverlap</a>, and <a href='ImageRectCollide.htm'>ImageRectCollide</a>.  My guess is that this is the absolute fastest possible collision method available and useful to those wishing to write their own collision routines.<br>
+<br>
+Unlike the other collision commands, there is no image to detect a collision with - simply one rectangular location overlapping another.  You could probably use this command instead of the <a href='ImageRectOverlap.htm'>ImageRectOverlap</a> command, as they are really basically doing the same thing (and I betcha this is faster).<br>
+<br>
+This would be useful for very easy-going 'Monkey Island' games to check the position of your pointer against a screen location (or 'hot spot') when pixel perfect accuracy (heck, image graphics in general) are not really needed.<br></td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; RectsOverlap Example<br>
+; Flashing graphics warning!  Gets hypnotic ...<br>
+<br>
+; Turn on graphics mode<br>
+Graphics 640,480,16<br>
+<br>
+; Double buffering, and randomize the randomizer<br>
+SetBuffer BackBuffer()<br>
+SeedRnd MilliSecs()<br>
+<br>
+; Repeat the loop until ESC pressed<br>
+While Not KeyHit(1)<br>
+<br>
+; Generate a random rectangle<br>
+rect1X=Rnd(50,610)<br>
+rect1Y=Rnd(50,430)<br>
+rect1W=20<br>
+rect1H=20<br>
+<br>
+; And another<br>
+rect2X=Rnd(50,610)<br>
+rect2Y=Rnd(50,430)<br>
+rect2W=20<br>
+rect2H=20<br>
+; Clear the screen standard double buffering<br>
+Cls<br>
+; Draw our rectangle2 in random colors<br>
+Color Rnd(255),Rnd(255),Rnd(255)<br>
+Rect rect1X,rect1Y,rect1W,rect1H,0<br>
+Color Rnd(255),Rnd(255),Rnd(255)<br>
+Rect rect2X,rect2Y,rect2W,rect2H,0<br>
+<br>
+; Did they collide?  If so, print a message and exit the loop!<br>
+If RectsOverlap (rect1X,rect1Y,rect1W,rect1H,rect2X,rect2Y,rect2W,rect2H) Then<br>
+Text 0,0, "Our boxes finally collided!  Press a mouse button..."<br>
+; We do a flip here to ensure the text message gets seen too!<br>
+Flip<br>
+Exit ; exit the While/Wend loop<br>
+End If<br>
+; Flip the rects into view, wait 1/10th of a sec, repeat<br>
+Flip<br>
+Delay 100<br>
+Wend<br>
+; Wait for a mouse click<br>
+WaitMouse()<br>
+; End our graphics mode<br>
+EndGraphics<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

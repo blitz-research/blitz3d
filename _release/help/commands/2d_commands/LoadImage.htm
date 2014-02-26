@@ -1,0 +1,30 @@
+<html><head><title>Command: LoadImage </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;LoadImage (Filename)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Loads an image into memory and assigns it a handle.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>filename = string designating full path and filename to image.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command loads an image from disk and assigns it a file handle.  You will use the <a href='DrawImage.htm'>DrawImage</a> command to display the graphic later.  The demo version of Blitz Basic supports BMP files; the full retail version of Blitz Basic supports JPG and PNG format as well.<br>
+<br>
+Many multimedia loading commands for fonts, graphics, and sounds require the use of FILE HANDLES.  You'll need to have a good understanding of file handles if you are going to successfully use Blitz Basic.<br>
+<br>
+A file handle is a variable (usually <a href='GLOBAL.htm'>GLOBAL</a>) that holds a unique identifier for a loaded item (font, image, sound, music, etc.).  This unique number is used later for subsequent operations to designate the loaded item.  This file handle allocates the memory to hold the item.<br>
+<br>
+You will find file handles used all over Blitz.  See the example for some well-documented code.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; LoadImage and DrawImage example<br>
+<br>
+; Declare a variable to hold the graphic file handle<br>
+Global gfxPlayer<br>
+<br>
+; Set a graphics mode<br>
+Graphics 640,480,16<br>
+<br>
+; Set drawing operations for double buffering<br>
+SetBuffer BackBuffer()<br>
+<br>
+; Load the image and assign its file handle to the variable<br>
+; - This assumes you have a graphic called player.bmp in the<br>
+;   same folder as this source code<br>
+gfxPlayer=LoadImage("player.bmp")<br>
+<br>
+; Let's do a loop where the graphic is drawn wherever the<br>
+; mouse is pointing.  ESC will exit.<br>
+While Not KeyHit(1)<br>
+Cls ; clear the screen<br>
+DrawImage gfxPlayer,MouseX(),MouseY() ; Draw the image!<br>
+Flip ; flip the image into view and clear the back buffer<br>
+Wend<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

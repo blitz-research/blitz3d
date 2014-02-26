@@ -1,0 +1,10 @@
+<html><head><title>Command: Mid$ </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Mid$ (string$, offset, characters)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Retrieves a certain number of characters within a string, from a particular position.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>string$ = any valid string<br>
+offset = location within the string to start reading<br>
+characters = how many characters to read frm the offset point<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Use this command to grab a set of characters from within a string.  You can choose WHERE to start in the string, and how many characters to pick.  You'll probably use this to 'decode' or 'walk through' a string to get each character out of it for conversion or validation.  See the Example.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>name$="Shane Monroe"<br>
+For T = 1 To Len(name$)<br>
+Print Mid$(name$,t,1)<br>
+Next<br>
+<br>
+
+</td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

@@ -1,0 +1,39 @@
+<html><head><title>Command: WritePixelFast </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;WritePixelFast x,y,rgb,[buffer]&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>High speed pixel writing to an image buffer.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>x = x location of the pixel to read<br>
+y = y location of the pixel to read<br>
+rgb = rgb pixel value to write<br>
+buffer = any valid screen/image buffer (optional)<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command will allow you fast access to a specific pixel in the buffer selected.  While the <a href='ReadPixelFast.htm'>ReadPixelFast</a> command reads the pixel quickly (and it is written back quickly with this command, it is still not fast enough for real-time screen effects.<br>
+<br>
+You are required to lock the buffer with <a href='LockBuffer.htm'>LockBuffer</a> and subsequently unlock the buffer with <a href='UnlockBuffer.htm'>UnlockBuffer</a> when the operations are complete before any other graphics commands can be used.<br>
+<br>
+WARNING: You are playing with power.  There is nothing keeping you from writing directly to memory off the screen and TRASHING it.  You can crash Blitz using this command.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; High Speed Graphics Commands<br>
+<br>
+Graphics 640,480,16<br>
+<br>
+; Draw a bunch of crap on the screen<br>
+For t= 1 To 1000<br>
+Color Rnd(255),Rnd(255),Rnd(255)<br>
+Rect Rnd(640),Rnd(480),Rnd(150),Rnd(150),Rnd(1)<br>
+Next<br>
+<br>
+Delay 3000<br>
+<br>
+; Copy the top half of the screen over the bottom half<br>
+; using fast pixels and locked buffers<br>
+LockBuffer FrontBuffer()<br>
+For x = 1 To 640<br>
+For y = 1 To 240<br>
+WritePixelFast x,y+241,ReadPixelFast(x,y)<br>
+Next<br>
+Next<br>
+UnlockBuffer FrontBuffer()<br>
+<br>
+Delay 3000<br>
+<br>
+; Draw the left half of the screen over the right half<br>
+; using the slower direct pixel access<br>
+For x = 1 To 320<br>
+For y = 1 To 480<br>
+WritePixel x+320,y,ReadPixel(x,y)<br>
+Next<br>
+Next<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

@@ -1,0 +1,32 @@
+<html><head><title>Command: CloseDir </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;CloseDir filehandle&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Closes a directory previously opened with the ReadDir command.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>filehandle = valid filehandle assigned from the ReadDir command</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Once you are finished with <a href='NextFile$.htm'>NextFile$</a> on the directory previously opened for read with the <a href='ReadDir.htm'>ReadDir</a> command, use this command to close the directory.  This is good programming practice!
+</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; ReadDir/NextFile$/CloseDir example<br>
+<br>
+; Define what folder to start with ...<br>
+folder$="C:\"<br>
+<br>
+; Open up the directory, and assign the handle to myDir<br>
+myDir=ReadDir(folder$)<br>
+<br>
+; Let's loop forever until we run out of files/folders to list!<br>
+Repeat<br>
+; Assign the next entry in the folder to file$<br>
+file$=NextFile$(myDir)<br>
+<br>
+; If there isn't another one, let's exit this loop<br>
+If file$="" Then Exit<br>
+<br>
+; Use FileType to determine if it is a folder (value 2) or a file and print results<br>
+If FileType(folder$+"\"+file$) = 2 Then<br>
+Print "Folder:" + file$<br>
+Else<br>
+Print "File:" + file$<br>
+End If<br>
+Forever<br>
+<br>
+; Properly close the open folder<br>
+CloseDir myDir<br>
+<br>
+; We're done!<br>
+Print "Done listing files!"<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

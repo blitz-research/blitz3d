@@ -1,0 +1,139 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+
+<title>Language Reference - Expressions and Conversions</title>
+<link rel="stylesheet" href="lang_ref.css" type="text/css">
+</head>
+
+<body><br>
+&nbsp;<span class="Command">&nbsp;Expressions and Conversions&nbsp;</span> 
+<blockquote> 
+  <p> The following operators are supported, listed in order of precedence: </p>
+</blockquote>
+<table width="85%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td width="13%" nowrap> 
+      <p> 
+      <p>New,First,Last</p>
+    </td>
+    <td width="87%">custom type operators (unary) </td>
+  </tr>
+  <tr> 
+    <td width="13%" nowrap> 
+      <p> 
+      <p>Before,After</p>
+    </td>
+    <td width="87%">object operators (unary) </td>
+  </tr>
+  <tr> 
+    <td width="13%" nowrap> 
+      <p> 
+      <p>Int,Float,Str</p>
+    </td>
+    <td width="87%">type conversion operators (unary) </td>
+  </tr>
+  <tr> 
+    <td width="13%" nowrap> 
+      <p> 
+      <p>+,-,~</p>
+    </td>
+    <td width="87%">arithmetic posate(?), negate, bitwise complement (unary) </td>
+  </tr>
+  <tr> 
+    <td width="13%" nowrap>^</td>
+    <td width="87%">arithmetic 'to-the-power-of' (binary) </td>
+  </tr>
+  <tr> 
+    <td width="13%" nowrap>*,/,Mod</td>
+    <td width="87%">arithmetic multiply, divide, remainder (binary) </td>
+  </tr>
+  <tr> 
+    <td width="13%" nowrap> 
+      <p> 
+      <p>Shl,Shr,Sar</p>
+    </td>
+    <td width="87%">bitwise shift operators (binary) </td>
+  </tr>
+  <tr> 
+    <td width="13%" nowrap> 
+      <p> 
+      <p>+,-</p>
+    </td>
+    <td width="87%">arithmetic add, subtract (binary) </td>
+  </tr>
+  <tr> 
+    <td width="13%" nowrap> 
+      <p> 
+      <p><,>,<=,>=,=,<></p>
+    </td>
+    <td width="87%">comparison operators (binary) </td>
+  </tr>
+  <tr> 
+    <td width="13%" nowrap> 
+      <p> 
+      <p>And,Or,Xor</p>
+    </td>
+    <td width="87%">bitwise And, Or and Exclusive Or (binary) </td>
+  </tr>
+  <tr> 
+    <td width="13%" nowrap>Not</td>
+    <td width="87%"> 
+      <p> 
+      <p> logical Not (unary)</p>
+    </td>
+  </tr>
+</table>
+<p>
+<p>
+<blockquote> 
+  <p> Unary operators take one operand, while binary operators take two. </p>
+  <p> Arithmetic operators produce a result of the same type as the operands. 
+    For example, adding two integers produces an integer result. </p>
+  <p> If the operands of a binary arithmetic or comparison operator are not of 
+    the same type, one of the operands is converted using the following rules: 
+  </p>
+  <blockquote> 
+    <p>- If one operand is a custom type object, the other must be an object of 
+      the same type, or 'Null'.<br>
+    </p>
+    <blockquote> 
+      <p>Else if one operand is a string, the other is converted to a string. 
+        <br>
+      </p>
+      <p>Else if one operand is floating point, the other is converted to floating 
+        point. <br>
+      </p>
+      <p>Else both operands must be integers. </p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<blockquote>
+  <p>When floating point values are converted to integer, the value is rounded 
+    to the nearest integer. When integers and floating point values are converted 
+    to strings, an ascii representation of the value is produced. </p>
+  <p>When strings are converted to integer or floating point values, the string 
+    is assumed to contain an ascii representation of a numeric value and converted 
+    accordingly. Conversion stops at the first non-numeric character in the string, 
+    or at the end of the string. </p>
+  <p>The only arithmetic operation allowed on string is '+', which simply concatenates 
+    the two operands.</p>
+  <p> Int, Float and Str can be used to convert values. They may be optionally 
+    followed by the appropriate type tag - ie: 'Int%', 'Str$' and 'Float#'. </p>
+  <p>Comparison operators always produce an integer result: 1 for true, 0 for 
+    false. </p>
+  <p>If one of the operators is a custom type object, the other must be an object 
+    of the same type, or 'Null', and the only comparisons allowed are '=' and 
+    '<>'. </p>
+  <p>Bitwise and logical operators always convert their operands to integers and 
+    produce an integer result. </p>
+  <p>The Not operator returns 0 for a non-zero operand, otherwise 1. When an expression 
+    is used to conditionally execute code - for example, in an 'If' statement 
+    - the result is converted to an integer value. A non-zero result means true, 
+    a zero result means false. </p>
+  <p>&nbsp;</p>
+</blockquote>
+</body>
+</html>

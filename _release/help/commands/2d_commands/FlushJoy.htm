@@ -1,0 +1,10 @@
+<html><head><title>Command: FlushJoy </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;FlushJoy  &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Flushes out all the queued up joystick button presses.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>There are many times when you aren't interested in the dozens of possible joystick button pressed the player might have made before you are checking for one in particular.  Or perhaps you want to pause the game and wait for any joystick button to be hit, but you don't want a 'queued' button press bypassing this.  Use this command before you specifically want to poll a joystick button hit from the user.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; FlushJoy sample<br>
+<br>
+FlushJoy<br>
+<br>
+Print "Press a joystick button to exit!"<br>
+<br>
+WaitJoy()<br>
+<br>
+End<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

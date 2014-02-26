@@ -1,0 +1,83 @@
+<html><head><title>Command: Type </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Type variable&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Define an object with a collection of variables.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>variable = any legal variable name</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>If you know C prgramming, a TYPE is basically a STRUCT in Blitz Basic. If you 
+  don't know C, read on!</p>
+<p>TYPE is your best friend. It is used to create a 'collection' of objects that 
+  share the same parameters and need to be interated through quickly and easily.</p>
+<p>Think about SPACE INVADERS. There are many aliens on the screen at one time. 
+  Each of these aliens have a few variables that they all need: x and y coordinates 
+  plus a variable to control which graphic to display (legs out or legs in). Now, 
+  we could make hundreds of variables like invader1x, invader1y, invader2x, invader2y, 
+  etc. to control all the aliens, but that wouldn't make much sense would it? 
+  You could use an array to track them; invader(number,x,y,graphic), and the loop 
+  through them with a <a href='FOR.htm'>FOR</a> 
+  ... <a href='NEXT.htm'>NEXT</a> 
+  loop but that is a lot of work! The TYPE variable collection was created to 
+  handle just this sort of need.</p>
+<p>TYPE defines an object collection. Each object in that collection inherits 
+  its own copy of the variables defined by the TYPE's <a href='FIELD.htm'>FIELD</a> 
+  command. Each variable of each object in the collection can be read individually 
+  and can be easily iterated through quickly. Use the FIELD command to assign 
+  the variables you want between the TYPE and <a href='END 
+  TYPE.htm'>END 
+  TYPE</a> commands. </p>
+<p>If it helps, think of a TYPE collection as a database. Each object is a record 
+  of the database, and every variable is a field of the record. Using commands 
+  like <a href='BEFORE.htm'>BEFORE</a>, 
+  <a href='AFTER.htm'>AFTER</a>, 
+  and FOR ... <a href='EACH.htm'>EACH</a>, 
+  you can move change the pointer of the 'database' to point to a different record 
+  and retrieve/set the variable 'field' values.</p>
+<p>Not a database guru? Need another example? Okay. Let's say you are setting 
+  up an auditorium for a speech or event and you are putting up hundreds of chairs 
+  for the spectators. The chairs have to be in a certain place on the floor, and 
+  some will need to be raised up a bit higher than others (visiting dignitaries, 
+  the mayor is coming, etc.). So being the computer genius you are, you start 
+  figuring out how you can layout the chairs with the least amount of effort. 
+  You realize that the floor is checkered, so its really a huge grid! This will 
+  make it easy! You just need to number the floor on a piece of graph paper and 
+  put into the grid how high each chair should be, based on where the boss told 
+  you the important people are to sit. So, for each chair, you will have a row 
+  and column on the graph paper (x and y location) and a level to adjust the chair 
+  to (height). Good, we are organized. Now, even though we have it all on paper, 
+  we still have to do the work of placing all the chairs. After you are done, 
+  let's say your boss walks up to you and says "they aren't centered right 
+  .. move'em all over 1 square". Ah crap! You have them all perfect, and 
+  even though it is a simple thing to move a chair one square to the right (after 
+  all, their order and height won't change) - you still have to move each and 
+  every chair! Should would be nice if you could just wave your hand and say "For 
+  each chair in the room, add 1 square to its x location" and have it just 
+  magically happen. Alas, in the real world, get busy - you've got a lot of chairs 
+  to move!</p>
+<p>In Blitz, you could have set up a TYPE called CHAIR, set the TYPE's FIELDS 
+  as X, Y, and HEIGHT. You would then create as many chairs as you need with the 
+  <a href='NEW.htm'>NEW</a> 
+  command (each time you call NEW, it makes a new chair, with its OWN X, Y, and 
+  HEIGHT variables) and assign them the X, Y, and HEIGHT values you decide upon. 
+  In our example above, when the boss told you to move the chairs over 1 box, 
+  you probably groaned inside. That's a lot of work! In Blitz, we could use four 
+  lines of code to adjust all our CHAIR objects to the new position (using FOR 
+  ... EACH commands).</p>
+<p>Still lost? Its okay - TYPEs are hard to get a grasp on. Look at the example 
+  and we'll try to show you how types work in a practical environment. I recommend 
+  looking at other people's code too, to help you get a handle on them. Once you 
+  do, you will know why C people are crazy for STRUCTs and why almost all Blitz 
+  programs use them.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Define the CHAIR Type<br>
+  <br>
+  Type CHAIR<br>
+  Field X<br>
+  Field Y<br>
+  Field HEIGHT<br>
+  End Type</p>
+<p>; Create 100 new chairs using FOR ... NEXT using the collection name of ROOM</p>
+<p>For tempx = 1 to 10<br>
+  For tempy = 1 to 10<br>
+  room.chair = New Chair<br>
+  room\x = tempx<br>
+  room\y = tempy<br>
+  room\height = Rnd(0,10) ; set a random height 0 to 10<br>
+  Next<br>
+  Next</p>
+<p>; Move them all over 1 (like the description example)</p>
+<p>For room.chair = Each chair<br>
+  room\x = room\x + 1<br>
+  Next<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

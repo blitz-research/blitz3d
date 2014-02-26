@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>Command: GfxModeExists</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;GfxModeExists&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>width - the width of the display mode you want to check for<BR>
+		height - the height of the display mode you want to check for<BR>
+		depth - the depth of the display mode you want to check for<BR>
+		gfx3d - optional parameter to check if mode is 3D-capable (defaults to 0 for backwards compatibility)</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>GfxModeExists is a sadly under-used command which will allow you to check if a given display mode exists on your player's graphics card before calling the Graphics or Graphics3D commands. Note that supplying the optional gfx3d parameter will also check if the specified mode is 3D-capable.
+<P>
+GfxModeExists will return True if a display mode fitting the given parameters is available, and False if the specified mode is not available. If it returns False, a game should either use a different mode or exit politely (eg. RuntimeError "I have been lazy and hard-coded my game to use a particular display mode which your system doesn't have. I should really use CountGfxModes and GfxModeWidth/Height/Depth to find out what your system can do. Oh, well, this saved 10 minutes out of my life!"... note subtle sarcastic hint!).
+</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/GfxModeExists.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>If GfxModeExists (2500, 2500, 64)<BR>
+	Graphics 2500, 2500, 64<BR>
+Else<BR>
+	RuntimeError "Domestic PC display hardware isn't yet capable of silly resolutions like 2500 x 2500 x 64-bit!"<BR>
+EndIf</td>
+  </tr>
+</table>
+</body>
+</html>

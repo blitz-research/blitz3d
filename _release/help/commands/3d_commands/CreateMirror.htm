@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>Command: CreateMirror</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;CreateMirror ( [parent] )&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>parent - parent entity of mirror</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Creates a  mirror entity and returns its handle.<p>A mirror entity is 
+    basically a flat, infinite 'ground'. This ground is invisible, except it 
+    reflects anything above it, below it. It is useful for games where you want 
+    have the effect of a shiny floor showing a reflection. For a true shiny 
+    floor efffect, try combining a mirror entity with a textured plane entity 
+    that has an alpha level of 0.5.</p>
+    <p><font SIZE="2">The optional parent parameter allow you to specify a parent entity for 
+    the mirror so that when the parent is moved the child mirror will move 
+    with it. However, this relationship is one way; applying movement commands 
+    to the child will not affect the parent.</font></p>
+    <p>Specifying a parent entity will still result in the mirror being created 
+    at position 0,0,0 rather than at the parent entity's position.</p>
+    <p>See also: <a href="CreatePlane.htm">CreatePlane</a>.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/CreateMirror.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; CreateMirror Example<br>
+    ; --------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    PositionEntity camera,0,1,-5<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    ; Create cone<br>
+    cone=CreateCone(32)<br>
+    PositionEntity cone,0,2,0<br>
+    <br>
+    ; Create plane<br>
+    plane=CreatePlane()<br>
+    grass_tex=LoadTexture( &quot;media/chorme-2.bmp&quot; )<br>
+    EntityTexture plane,grass_tex<br>
+    EntityAlpha plane,0.5<br>
+    <br>
+    ; Create mirror<br>
+    mirror=CreateMirror()<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    If KeyDown( 203 )=True Then MoveEntity cone,-0.1,0,0<br>
+    If KeyDown( 205 )=True Then MoveEntity cone,0.1,0,0<br>
+    If KeyDown( 208 )=True Then MoveEntity cone,0,-0.1,0<br>
+    If KeyDown( 200 )=True Then MoveEntity cone,0,0.1,0<br>
+    If KeyDown( 44 )=True Then MoveEntity cone,0,0,-0.1<br>
+    If KeyDown( 30 )=True Then MoveEntity cone,0,0,0.1<br>
+    <br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Use cursor/A/Z keys to move cone above infinite mirror&quot;<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>Command: ScaleEntity</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;ScaleEntity entity,x_scale#,y_scale#,z_scalel#,[,global]&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>entity - name of the entity to be scaled<br>
+x_scale# - x size of entity<br>
+y_scale# - y size of entity<br>
+z_scale# - z size of entity<br>
+global (optional) -</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Scales an entity so that it is of an absolute size.<br>
+<br>
+Scale values of 1,1,1 are the default size when creating/loading entities.<br>
+<br>
+Scale values of 2,2,2 will double the size of an entity.<br>
+<br>
+Scale values of 0,0,0 will make an entity disappear.<br>
+<br>
+Scale values of less than 0,0,0 will invert an entity and make it bigger.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/ScaleEntity.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; ScaleEntity Example<br>
+    ; -------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    light=CreateLight()<br>
+    <br>
+    cone=CreateCone( 32 )<br>
+    PositionEntity cone,0,0,5<br>
+    <br>
+    ; Set scale values so that cone is default size to begin with<br>
+    x_scale#=1<br>
+    y_scale#=1<br>
+    z_scale#=1<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    ; Change scale values depending on the key pressed<br>
+    If KeyDown( 203 )=True Then x_scale#=x_scale#-0.1<br>
+    If KeyDown( 205 )=True Then x_scale#=x_scale#+0.1<br>
+    If KeyDown( 208 )=True Then y_scale#=y_scale#-0.1<br>
+    If KeyDown( 200 )=True Then y_scale#=y_scale#+0.1<br>
+    If KeyDown( 44 )=True Then z_scale#=z_scale#-0.1<br>
+    If KeyDown( 30 )=True Then z_scale#=z_scale#+0.1<br>
+    <br>
+    ; Scale cone using scale values<br>
+    ScaleEntity cone,x_scale#,y_scale#,z_scale#<br>
+    <br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Use cursor/A/Z keys to scale cone&quot;<br>
+    Text 0,20,&quot;X Scale: &quot;+x_scale#<br>
+    Text 0,40,&quot;Y Scale: &quot;+y_scale#<br>
+    Text 0,60,&quot;Z Scale: &quot;+z_scale#<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>Command: LoadTerrain</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;LoadTerrain ( file$[,parent] )&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>file$ - filename of image file to be used as height map<br>
+    parent (optional) - parent entity of terrain</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Loads a terrain from an image file and returns the terrain's handle. The image's red channel is used to 
+    determine heights. Terrain is initially the same width and depth as the 
+    image, and 1 high.<p>Tips on generating nice terrain:<br>
+    <br>
+    * Smooth or blur the height map<br>
+    * Reduce the y scale of the terrain<br>
+    * Increase the x/z scale of the terrain<br>
+    * Reduce the camera range</p>
+    <p>When texturing an entity, a texture with a scale of 1,1,1 (default) will 
+    be the same size as one of the terrain's grid squares. A texture that is 
+    scaled to the same size as the size of the bitmap used to load it or the no. 
+    of grid square used to create it, will be the same size as the terrain.</p>
+    <p><font SIZE="2">The optional parent parameter allow you to specify a parent entity for 
+    the terrain so that when the parent is moved the child terrain will move 
+    with it. However, this relationship is one way; applying movement commands 
+    to the child will not affect the parent.</font></p>
+    <font SIZE="2">
+    <p>Specifying a parent entity will still result in the terrain being created 
+    at position 0,0,0 rather than at the parent entity's position.</p>
+    </font>
+    <p>See also: <a href="CreateTerrain.htm">CreateTerrain</a>.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/LoadTerrain.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    PositionEntity camera,1,1,1<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    ; Load terrain<br>
+    terrain=LoadTerrain( &quot;media/height_map.bmp&quot; )<br>
+    <br>
+    ; Set terrain detail, enable vertex morphing<br>
+    TerrainDetail terrain,4000,True<br>
+    <br>
+    ; Scale terrain<br>
+    ScaleEntity terrain,1,50,1<br>
+    <br>
+    ; Texture terrain<br>
+    grass_tex=LoadTexture( &quot;media/mossyground.bmp&quot; )<br>
+    EntityTexture terrain,grass_tex,0,1<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    If KeyDown( 203 )=True Then x#=x#-0.1<br>
+    If KeyDown( 205 )=True Then x#=x#+0.1<br>
+    If KeyDown( 208 )=True Then y#=y#-0.1<br>
+    If KeyDown( 200 )=True Then y#=y#+0.1<br>
+    If KeyDown( 44 )=True Then z#=z#-0.1<br>
+    If KeyDown( 30 )=True Then z#=z#+0.1<br>
+    <br>
+    If KeyDown( 205 )=True Then TurnEntity camera,0,-1,0<br>
+    If KeyDown( 203 )=True Then TurnEntity camera,0,1,0<br>
+    If KeyDown( 208 )=True Then MoveEntity camera,0,0,-0.1<br>
+    If KeyDown( 200 )=True Then MoveEntity camera,0,0,0.1<br>
+    <br>
+    x#=EntityX(camera)<br>
+    y#=EntityY(camera)<br>
+    z#=EntityZ(camera)<br>
+    <br>
+    terra_y#=TerrainY(terrain,x#,y#,z#)+5<br>
+    <br>
+    PositionEntity camera,x#,terra_y#,z#<br>
+    <br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Use cursor keys to move about the terrain&quot;<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

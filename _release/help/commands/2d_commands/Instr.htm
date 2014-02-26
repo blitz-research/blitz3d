@@ -1,0 +1,7 @@
+<html><head><title>Command: Instr </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Instr (string1$, string2$, offset)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Finds the position of an occurance of one string within another.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>string1$ = the string you wish to search<br>
+string2$ = the string to find<br>
+offset = valid integer starting position to being search (optional)<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command will allow you to search for an occurance of a string within another string.  The command returns the location (number of characters from the left) of the string you are looking for.  Command returns a Zero if no matches are found.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>name$="Shane R. Monroe"<br>
+location = Instr( name$,"R.",1)<br>
+Print "Your string contains 'R.' at position number " + location + "!"<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

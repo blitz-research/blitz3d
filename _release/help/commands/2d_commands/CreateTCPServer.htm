@@ -1,0 +1,57 @@
+<html><head><title>Command: CreateTCPServer </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;CreateTCPServer (port)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Creates a TCP server on the specified port.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>port = the port to use when creating the server</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Creates a TCP/IP server with the designated port.  Use this for communications between other clients and the local box.  See <a href='OpenTCPStream.htm'>OpenTCPStream</a>, <a href='CloseTCPServer.htm'>CloseTCPServer</a>, and <a href='CloseTCPStream.htm'>CloseTCPStream</a> for more information.<br>
+<br>
+Returns a TCP/IP server handle if successful or 0 if not.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; CreateTCPServer, CloseTCPServer, AcceptTCPStream Example<br>
+; This code is in two parts, and needs to be run seperately on the same machine<br>
+<br>
+; --- Start first code set ---<br>
+; Create a server and listen for push<br>
+<br>
+svrGame=CreateTCPServer(8080)<br>
+<br>
+If svrGame<>0 Then <br>
+Print "Server started successfully."<br>
+Else<br>
+Print "Server failed to start."<br>
+End<br>
+End If<br>
+<br>
+While Not KeyHit(1)<br>
+strStream=AcceptTCPStream(svrGame)<br>
+If strStream Then <br>
+Print ReadString$(strStream)<br>
+Delay 2000<br>
+End<br>
+Else <br>
+Print "No word from Apollo X yet ..."<br>
+Delay 1000<br>
+End If <br>
+Wend<br>
+<br>
+End<br>
+<br>
+; --- End first code set ---<br>
+<br>
+<br>
+; --- Start second code set ---<br>
+; Copy this code to another instance of Blitz Basic<br>
+; Run the above code first, then run this ... they will 'talk'<br>
+<br>
+; Create a Client and push data<br>
+<br>
+strmGame=OpenTCPStream("127.0.0.1",8080)<br>
+<br>
+If strmGame<>0 Then <br>
+Print "Client Connected successfully."<br>
+Else<br>
+Print "Server failed to connect."<br>
+WaitKey <br>
+End<br>
+End If<br>
+<br>
+; write stream to server<br>
+WriteString strmGame,"Mission Control, this is Apollo X ..."<br>
+Print "Completed sending message to Mission control..."<br>
+<br>
+; --- End second code set ---<br>
+</td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

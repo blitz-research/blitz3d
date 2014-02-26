@@ -1,0 +1,27 @@
+<html><head><title>Command: Dim </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Dim variable(elements)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Dimensions an array variable for storage.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>variable = variable of desired type (string, floating, integer)<br>
+elements = number of elements to be created.  Can be multi-dimensional.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Prepares an array using the specified variable type as its type and specified elements for the number of containers it should hold.  You may use as many dimension elements as you like (just watch your memory).  There is no way in Blitz to 'Redimension' arrays, so define them accordingly.  Use the proper notation on the declaration variable to make it a string($), floating(#), or integer type array. Note: Arrays always start at ZERO reference - so variable(0) is always the first element.<br>
+<br>
+To use this command effectively, you must understand arrays.  Think of an array like a variable that has multiple slots to hold many values, all under the same variable name.  Before <a href='TYPE.htm'>TYPE</a>s came around, this was the best way to track repeating elements (say, alien ships) because you can iterate through an array collection easily.<br>
+<br>
+Take for example, you want to track 100 aliens on the screen.  You could have two variables - alienx and alieny.  By making these arrays - alienx() and alieny() and each having 100 elements each, you could easily set or retrieve the first alien's location by using alienx(1), alieny(1).  The next alien's coordinates would be alienx(2), alienx(2) and so on.  This makes it easy to use a <a href='FOR.htm'>FOR</a> ... <a href='NEXT.htm'>NEXT</a> or <a href='EACH.htm'>EACH</a> loop to go through all the elements.<br>
+<br>
+Arrays are also useful for 'multi-dimensional' notation too.  Instead of tracking our 100 aliens in the method mentioned above, you could use a single variable: alien(100,1).  The first element collection are the 100 aliens, the second element is the X and Y location of that alien - the 0 element being the alien's X location, and the 1 element being the alien's Y location.  So to set the position of alien 57 to X=640,Y=480 you could do this:<br>
+<br>
+alien(57,0)=640<br>
+alien(57,1)=480<br>
+DrawImage imgAlien,alien(57,0),alien(57,1)<br>
+<br>
+Of course, TYPEs are a much better way of doing this sort of multiple value sort of routine.<br>
+<br>
+Arrays are great for tracking collections of items with a single, common element - but often times TYPEs will prove to be more useful.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; DIM example<br>
+; Create a collection of 100 random numbers<br>
+<br>
+; Declare our array<br>
+Dim nums(100)<br>
+<br>
+; Fill each element with a random number<br>
+For T = 1 to 100<br>
+nums(t) = Rnd(1,100)<br>
+Next<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

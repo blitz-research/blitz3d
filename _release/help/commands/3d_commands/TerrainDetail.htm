@@ -1,0 +1,119 @@
+<html>
+<head>
+<title>Command: TerrainDetail</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;TerrainDetail 
+terrain,detail_level[,vertex_morph]&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>terrain - terrain handle<br>
+    detail_level - detail level of terrain<br>
+    vertex_morph (optional) - true to enable vertex morphing of terrain. 
+    Defaults to false.</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Sets the detail level for a terrain. This is the number of triangles 
+    used to represent the terrain. A typical value is 2000.<p>The optional 
+    vertex_morph parameter specifies whether to enable vertex morphing. It is 
+    recommended you set this to true, as it will reduce the visibility of LOD 
+    'pop-in'.</p>
+    </td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/TerrainDetail.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; TerrainDetail Example<br>
+    ; ---------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    PositionEntity camera,1,1,1<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    ; Load terrain<br>
+    terrain=LoadTerrain( &quot;media/height_map.bmp&quot; )<br>
+    <br>
+    ; Scale terrain<br>
+    ScaleEntity terrain,1,50,1<br>
+    <br>
+    ; Texture terrain<br>
+    grass_tex=LoadTexture( &quot;media/mossyground.bmp&quot; )<br>
+    EntityTexture terrain,grass_tex,0,1<br>
+    <br>
+    ; Set terrain detail value<br>
+    terra_detail=4000<br>
+    <br>
+    ; Set vertex morph value<br>
+    vertex_morph=True<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    ; Change terrain detail value depending on key pressed<br>
+    If KeyDown(26) Then terra_detail=terra_detail-10<br>
+    If KeyDown(27) Then terra_detail=terra_detail+10<br>
+    <br>
+    ; Toggle vertex morphing on/off when spacebar is pressed<br>
+    If KeyHit(57)=True Then vertex_morph=1-vertex_morph<br>
+    <br>
+    ; Set terrain detail, vertex morphing<br>
+    TerrainDetail terrain,terra_detail,vertex_morph<br>
+    <br>
+    If KeyDown( 203 )=True Then x#=x#-0.1<br>
+    If KeyDown( 205 )=True Then x#=x#+0.1<br>
+    If KeyDown( 208 )=True Then y#=y#-0.1<br>
+    If KeyDown( 200 )=True Then y#=y#+0.1<br>
+    If KeyDown( 44 )=True Then z#=z#-0.1<br>
+    If KeyDown( 30 )=True Then z#=z#+0.1<br>
+    <br>
+    If KeyDown( 205 )=True Then TurnEntity camera,0,-1,0<br>
+    If KeyDown( 203 )=True Then TurnEntity camera,0,1,0<br>
+    If KeyDown( 208 )=True Then MoveEntity camera,0,0,-0.1<br>
+    If KeyDown( 200 )=True Then MoveEntity camera,0,0,0.1<br>
+    <br>
+    x#=EntityX(camera)<br>
+    y#=EntityY(camera)<br>
+    z#=EntityZ(camera)<br>
+    <br>
+    terra_y#=TerrainY(terrain,x#,y#,z#)+5<br>
+    <br>
+    PositionEntity camera,x#,terra_y#,z#<br>
+    <br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Use cursor keys to move about the terrain&quot;<br>
+    Text 0,20,&quot;Use [ and ] keys to change terrain detail level&quot;<br>
+    Text 0,40,&quot;Press spacebar to enable/disable vertex morphing&quot;<br>
+    Text 0,60,&quot;Terrain Detail: &quot;+terra_detail<br>
+    If vertex_morph=True Then Text 0,80,&quot;Vertex Morphing: True&quot; Else Text 
+    0,80,&quot;Vertex Morphing: False&quot;<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

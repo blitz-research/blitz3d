@@ -1,0 +1,44 @@
+<html><head><title>Command: TileImage </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;TileImage handle,[x],[y],[frames]&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Tiles the screen with an image (or its frames) of your choice.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>handle= variable holding the image's handle<br>
+x=starting x location of the tile; assumed 0<br>
+y=starting y location of the tile; assumed 0<br>
+frames=the frame of the image to tile; optional with imagestrip<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>If you want to make a starfield or other easy tiled background, this is YOUR command.  All you have to do is specify the image handle (an image loaded with the <a href='LoadImage.htm'>LoadImage</a> or <a href='LoadAnimImage.htm'>LoadAnimImage</a> command).  Optionally, you can specify a starting x and y location, as well as an optional frame.  You can milk some serious parallax effects with a simple imagestrip with a couple of various starfields and the TileImage command.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; CreateImage/TileImage/ImageBuffer example<br>
+<br>
+; Again, we'll use globals even tho we don't need them here<br>
+; One variable for the graphic we'll create, one for a timer<br>
+Global gfxStarfield, tmrScreen<br>
+<br>
+; Declare graphic mode<br>
+Graphics 640,480,16<br>
+<br>
+; Create a blank image that is 320 pixels wide and 32 high with 10 frames of 32x32<br>
+gfxStarfield=CreateImage(32,32,10)<br>
+<br>
+; loop through each frame of the graphic we just made<br>
+For t = 0 To 9<br>
+; Set the drawing buffer to the graphic frame so we can write on it<br>
+SetBuffer ImageBuffer(gfxStarfield,t)<br>
+; put 50 stars in the frame at random locations<br>
+For y = 1 To 50<br>
+	Plot Rnd(32),Rnd(32)<br>
+Next<br>
+Next<br>
+<br>
+; Double buffer mode for smooth screen drawing<br>
+SetBuffer BackBuffer()<br>
+<br>
+; Loop until ESC is pressed<br>
+While Not KeyHit(1)<br>
+<br>
+; Only update the screen every 300 milliseconds. Change 300 for faster or<br>
+; slower screen updates<br>
+If MilliSecs() > tmrScreen+300 Then <br>
+Cls ; clear the screen<br>
+<br>
+; Tile the screen with a random frame from our new graphic starting at<br>
+; x=0 and y=0 location.<br>
+TileImage gfxStarfield,0,0,Rnd(9)<br>
+Flip ; Flip the screen into view<br>
+tmrScreen=MilliSecs() ; reset the time<br>
+End If<br>
+Wend <br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

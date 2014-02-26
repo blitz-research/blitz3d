@@ -1,0 +1,43 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+
+<title>Language Reference - Arrays</title>
+<link rel="stylesheet" href="lang_ref.css" type="text/css">
+</head>
+
+<body><br>
+&nbsp;<span class="Command">&nbsp;Arrays&nbsp;</span> 
+<blockquote> 
+  <p>Arrays are created using the standard BASIC '<b>Dim</b>' statement, and may 
+    be of any number of dimensions. For example: </p>
+  <blockquote> 
+    <p><i>Dim arr(10)</i></p>
+  </blockquote>
+  <p> Creates a one dimensional array called 'arr' with 11 elements numbered 0...10.<br>
+  </p>
+  <p> Arrays may be of any basic type, or a custom type.<br>
+    <br>
+    The type of an array is specified using a type tag. For example: </p>
+  <blockquote> 
+    <p> <i>Dim Deltas#(100)</i></p>
+  </blockquote>
+  <p> Creates an array called 'Deltas' of 101 floating point elements. </p>
+  <p>If the type tag is omitted, the array defaults to an integer array. </p>
+  <p>An array may be dimensioned at more than one point in a program, each time 
+    an array is dimensioned, it's previous contents are discarded. Arrays may 
+    be dimensioned inside functions, but a corresponding 'Dim' statement of the 
+    same array must also appear somewhere in the main program. For example:</p>
+  <blockquote> 
+    <p> <i> Dim test(0,0) </i></p>
+    <p><i> Function Setup( x,y ) </i></p>
+    <blockquote>
+      <p><i>Dim test(x,y) </i></p>
+    </blockquote>
+    <p><i> End Function</i> </p>
+  </blockquote>
+</blockquote>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<html><head><title>Command: MouseWait() </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;MouseWait()  &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Halts program execution until a mouse button is pressed and returns its button code.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command makes your program halt until a mouse button is pressed on the mouse.  Used alone, it simply halts and waits for a button press.  It can also be used to assign the pressed button's code value to a variable.  See example.<br>
+<br>
+In MOST CASES, you are not going to want to use this command because chances are likely you are going to want things on the screen still happening while awaiting the button press.  In that situation, you'll use a WHILE ... WEND awaiting a <a href='MouseHit.htm'>MouseHit</a> value - refreshing your screen each loop.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; MouseWait Example<br>
+<br>
+Print "Press a mouse button please..."<br>
+mseButton=MouseWait() <br>
+Print "You pressed mouse button #" + mseButton<br>
+</td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

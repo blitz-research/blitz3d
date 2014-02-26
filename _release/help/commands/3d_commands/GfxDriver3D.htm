@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Command: GfxDriver3D</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;GfxDriver3D&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>driver -- display driver number to check, from 1 to CountGfxDrivers ()</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>GfxDriver3D returns True if the specified graphics driver is 3D-capable.
+<P>
+GfxDriver3D is generally used after obtaining a list of available graphics drivers from a user's system via CountGfxDrivers (). You apply this to each driver in turn (or a selected driver) to see if it is 3D-capable. If this returns False, the driver can not perform 3D operations.
+<P>
+On systems with more than one display driver, you can use this to check each for 3D capability before choosing one via the SetGfxDriver command.
+</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/GfxDriver3D.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>For a = 1 To CountGfxDrivers ()<BR>
+	If GfxDriver3D (a)<BR>
+		Print GfxDriverName (a) + " is 3D-capable"<BR>
+	Else<BR>
+		Print GfxDriverName (a) + " is NOT 3D-capable"<BR>
+	EndIf<BR>
+	Delay 100<BR>
+Next</td>
+  </tr>
+</table>
+</body>
+</html>

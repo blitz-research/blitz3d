@@ -1,0 +1,29 @@
+<html><head><title>Command: Restore </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Restore label&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Moves the Data pointer to the selected label.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>label = any valid and exisiting label</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>When using <a href='Data.htm'>Data</a> statements to store large blocks of constants for use with the <a href='Read.htm'>Read</a> command, it is necessary to denote the start of the Data with a <a href='..htm'>.</a>Label.  The Restore command moves the 'pointer' to the first Data statement's value following the designated label.  You MUST use the Restore <i>label</i> command prior to using the Read command.  This method allows you to store groups of Data statements non-sequentially.  Its different (if you are used to other BASIC languages) but you will find it most flexible.  See the example and other commands related to Data command.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Sample of read/restore/data/label commands<br>
+<br>
+; Let's put the data pointer to the second data set<br>
+Restore seconddata<br>
+<br>
+; Let's print them all to the screen<br>
+For t = 1 To 10<br>
+Read num ; Get the next data value in the data stack<br>
+Print num<br>
+Next<br>
+<br>
+; Now for the first set of data<br>
+Restore firstdata<br>
+<br>
+; Let's print them all to the screen<br>
+For t = 1 To 10<br>
+Read num ; Get the next data value in the data stack<br>
+Print num<br>
+Next<br>
+<br>
+; this is the first set of data<br>
+.firstdata<br>
+Data 1,2,3,4,5,6,7,8,9,10<br>
+<br>
+; this is the second set of data<br>
+.seconddata<br>
+Data 11,12,13,14,15,16,17,18,19,20<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

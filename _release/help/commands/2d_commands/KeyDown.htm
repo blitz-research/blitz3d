@@ -1,0 +1,12 @@
+<html><head><title>Command: KeyDown </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;KeyDown (scancode)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns TRUE if the specified key on keyboard is being held down.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>scancode = corresponding key scancode<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command (similar to its counterparts <a href='MouseDown.htm'>MouseDown</a> and <a href='JoyDown.htm'>JoyDown</a>) is used to detect if a key is being held down.  This command returns a 0 if the key is not held down, a 1 if the key is held down.  See <a href='ScanCodes.htm'>ScanCodes</a>.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; KeyDown() example<br>
+<br>
+Print "Hold down ENTER key!"<br>
+Delay 3000<br>
+While Not KeyHit(1)<br>
+If KeyDown(28) Then <br>
+Print "Enter is being pressed!"<br>
+Else<br>
+Print <br>
+End If<br>
+Wend<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

@@ -1,0 +1,41 @@
+<html><head><title>Command: RotateImage </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;RotateImage image,value#&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Rotates the image counter-clockwise a specific angle.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>image = variable containing the image handle<br>
+value# = floating number from 0 to 350 degrees<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>I'm going to start this description off with:<br>
+<br>
+This command is not fast enough to render rotations in real time!<br>
+<br>
+Now, the purpose of this command is to rotate an image a specified number of degrees.  Since it is slow, you will need to pre-calculate rotated images with this command.  This means, before the program actually displays the images you rotate, you will want to rotate them ahead of time.<br>
+<br>
+This command automatically dithers/anti-aliases the rotated graphic image, so it might mess with your transparency.  To avoid this issue, use the <a href='TFormFilter.htm'>TFormFilter</a> command.  This will render the rotated images with bi-linear filtering.<br>
+<br>
+I'm going to end this command with:<br>
+<br>
+This command is not fast enough to render rotations in real time!<br>
+</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; RotateImage/TFormFilter Example<br>
+<br>
+; Turn on graphics mode<br>
+Graphics 640,480,16<br>
+<br>
+; Change the 0 to a 1 to see the difference<br>
+; between filter on and off.<br>
+TFormFilter 0<br>
+<br>
+; Create new empty graphic to store our circle in<br>
+gfxBox=CreateImage(50,50)<br>
+<br>
+; Draw the box image<br>
+; Set drawing operations to point to our new empty graphic<br>
+SetBuffer ImageBuffer(gfxBox)<br>
+Color 255,0,0<br>
+; Note the extra space between the box and the edge of the graphic<br>
+Rect 10,10,30,30,1<br>
+SetBuffer FrontBuffer()<br>
+<br>
+While Not KeyHit(1)<br>
+; Make a copy of the image so we are always using a fresh one each time<br>
+; we rotate it.<br>
+gfxTemp=CopyImage(gfxBox)<br>
+; Rotate it a random value and draw it at a random location<br>
+RotateImage gfxTemp,Rnd(360)<br>
+DrawImage gfxTemp,Rnd(640),Rnd(480)<br>
+Wend<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

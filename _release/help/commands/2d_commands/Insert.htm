@@ -1,0 +1,29 @@
+<html><head><title>Command: Insert </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Insert  &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Insert the current TYPE object into another location in the TYPE collection.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>I'm not sure the practical usage of this command, but basically, you can control where you INSERT the current <a href='TYPE.htm'>TYPE</a> object into the TYPE collection.  When you create a new Type object with the <a href='NEW.htm'>NEW</a> command, it is automatically appended to the END of the collection.  Using INSERT along with <a href='BEFORE.htm'>BEFORE</a> and <a href='AFTER.htm'>AFTER</a> (and electively <a href='FIRST.htm'>FIRST</a> and <a href='LAST.htm'>LAST</a>) to put the Type object exactly where you want it.  Sounds confusing - and chances are likely you'll never need this ability.  But its here if you need it.  Check the example.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; INSERT example<br>
+<br>
+; Define a CHAIR type with a created field to track what order it was created in.<br>
+Type CHAIR<br>
+Field created<br>
+End Type <br>
+<br>
+; Create 10 chairs, setting created field to the order of creation<br>
+For t = 1 To 10<br>
+room.chair= New Chair<br>
+room\created = t<br>
+Next<br>
+<br>
+; Make a NEW chair (the 11th) <br>
+room.chair= New Chair<br>
+<br>
+; Set its created value to 11<br>
+room\created=11<br>
+<br>
+; Now, let's insert this chair BEFORE the first one in the collection<br>
+Insert room Before First Chair<br>
+<br>
+; Let's iterate through all the chairs, and show their creation order<br>
+For room.chair = Each chair<br>
+Print room\created<br>
+Next<br>
+<br>
+</td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

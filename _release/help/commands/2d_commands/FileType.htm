@@ -1,0 +1,18 @@
+<html><head><title>Command: FileType </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;FileType (filename$)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Checks to see if the designated filename exists or is a directory.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>filename$ = any valid variable with path/filename</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command checks the filename you pass and determines if it exists and whether or not it is a valid filename or if it is a directory.  Here are the values it returns:<br>
+<br>
+1 = The filename exists<br>
+0 = The filename doesn't exist<br>
+2 = The filename is not a file - but a directory<br>
+<br>
+Use this to validate that a file exists before you do something to it.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Windows 9x users will need to change location of calc.exe<br>
+ <br>
+filename$="c:\winnt\system32\calc.exe"<br>
+<br>
+if fileType(filename$)=1 then Print "The file exists!"<br>
+if fileType(filename$)=0 then Print "File not found!"<br>
+if fileType(filename$)=2 then Print "This is a directory!"<br>
+<br>
+Print "Press any key to quit."<br>
+<br>
+WaitKey()<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

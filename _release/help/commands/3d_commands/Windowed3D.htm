@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Command: Windowed3D</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;Windowed3D&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>n/a</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Windowed3D () returns True if a graphics card is capable of rendering 3D graphics modes in a window on the desktop.
+<P>
+Certain graphics cards will only allow specific 3D colour depths (eg. Voodoo3 supports only 16-bit 3D modes and Matrox only supports 16 and 32-bit 3D modes but allows 24-bit 2D modes to be set). If the user's desktop is set to a depth unsupported in 3D, Windowed3D will return False.
+</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/Windowed3D.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>If Windowed3D ()<BR>
+	Graphics3D 640, 480, 0, 2<BR>
+	Print "Windowed mode!"<BR>
+Else<BR>
+	Graphics3D 640, 480, 0, 1<BR>
+	Print "Full screen modes only!"<BR>
+EndIf<BR>
+<BR>
+MouseWait<BR>
+End</td>
+  </tr>
+</table>
+</body>
+</html>

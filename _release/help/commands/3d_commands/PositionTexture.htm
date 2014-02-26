@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>Command: PositionTexture</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;PositionTexture texture,u_position#,v_position#&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>texture - texture handle<br>
+    u_position# - u position of texture<br>
+    v_position# - v position of texture</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Positions a texture at an absolute position.<p>This will have an 
+    immediate effect on all instances of the texture being used.</p>
+    <p>Positioning a texture is useful for performing scrolling texture effects, 
+    such as for water etc.</p>
+    </td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/PositionTexture.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; PositionTexture Example<br>
+    ; -----------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    cube=CreateCube()<br>
+    PositionEntity cube,0,0,5<br>
+    <br>
+    ; Load texture<br>
+    tex=LoadTexture( &quot;media/b3dlogo.jpg&quot; )<br>
+    <br>
+    ; Texture cube<br>
+    EntityTexture cube,tex<br>
+    <br>
+    ; Set initial uv position values<br>
+    u_position#=1<br>
+    v_position#=1<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    ; Change uv position values depending on key pressed<br>
+    If KeyDown( 208 )=True Then u_position#=u_position#-0.01 <br>
+    If KeyDown( 200 )=True Then u_position#=u_position#+0.01 <br>
+    If KeyDown( 203 )=True Then v_position#=v_position#-0.01 <br>
+    If KeyDown( 205 )=True Then v_position#=v_position#+0.01 <br>
+    <br>
+    ; Position texture<br>
+    PositionTexture tex,u_position#,v_position# <br>
+    <br>
+    TurnEntity cube,0.1,0.1,0.1<br>
+    <br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Use cursor keys to change uv position values&quot;<br>
+    Text 0,20,&quot;u_position#=&quot;+u_position#<br>
+    Text 0,40,&quot;v_position#=&quot;+v_position#<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

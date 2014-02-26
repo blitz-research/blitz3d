@@ -1,0 +1,14 @@
+<html><head><title>Command: KeyHit </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;KeyHit (scancode)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns the number of times a specified key has been hit.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>scancode = the scancode for the key to test</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command returns the number of times a specified key has been hit since the last time you called the KeyHit() command.  Check the <a href='ScanCodes.htm'>ScanCodes</a> for a complete listing of scancodes.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; KeyHit Example<br>
+<br>
+; Set up the timer<br>
+current=MilliSecs()<br>
+Print "Press ESC a bunch of times for five seconds..."<br>
+<br>
+; Wait 5 seconds<br>
+While MilliSecs() < current+5000<br>
+Wend<br>
+<br>
+; Print the results<br>
+Print "Pressed ESC " + KeyHit(1) + " times."<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

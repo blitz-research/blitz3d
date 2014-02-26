@@ -1,0 +1,64 @@
+<html><head><title>Command: ReadByte </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;ReadByte ( filehandle|stream )&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Reads a single byte of data from an open file (or stream) and returns it as an integer value between 0 and 255.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>filehandle|stream = a valid variable set with the OpenFile, ReadFile command, or OpenTCPStream (v1.52+)</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Once you've opened a disk file (or stream) for reading, use this command to read a single byte at a time from the file/stream.   Note, a byte is an integer that can take the values 0..255 and occupies 8 bits of storage. Since characters are stored as byte values this function can be used to read a file one character at a time.  Reading beyond the end of file does not result in an error, but each value read will be zero.<br>
+<br>
+Advanced notes<br>
+<br>
+The number that is stored by WriteByte is actually the least significant byte of an integer so  negative numbers and numbers above 255 will still have a value between 0..255.  Unless you understand how 32 bit integers are stored in 2's compliment notation this will seem strange but it is NOT a 
+bug.<br>
+<br>
+Streams can only be used in Blitz Basic v1.52 or greater.
+See also:<br>
+<a href='ReadByte.htm'>ReadByte</a>, <a href='ReadShort.htm'>ReadShort</a>, <a href='ReadInt.htm'>ReadInt</a>, <a href='ReadFloat.htm'>ReadFloat</a>, <a href='ReadString$.htm'>ReadString$</a>, <a href='ReadLine$.htm'>ReadLine$</a>, <a href='WriteByte.htm'>WriteByte</a>, <a href='WriteShort.htm'>WriteShort</a>, <a href='WriteInt.htm'>WriteInt</a>, <a href='WriteFloat.htm'>WriteFloat</a>, <a href='WriteShort.htm'>WriteShort</a>, <a href='WriteString.htm'>WriteString</a>, <a href='WriteLine.htm'>WriteLine</a>, <a href='ReadFile.htm'>ReadFile</a>, <a href='WriteFile.htm'>WriteFile</a>, <a href='OpenFile.htm'>OpenFile</a>, <a href='CloseFile.htm'>CloseFile</a>, <a href='Eof.htm'>Eof</a>, <a href='FileType.htm'>FileType</a>, <a href='FilePos.htm'>FilePos</a>, <a href='SeekFile.htm'>SeekFile</a></td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Reading and writing a file using ReadByte and WriteByte functions<br>
+<br>
+; Initialise some variables for the example<br>
+Byte1% = 10	; store 10<br>
+Byte2% = 100 ; store 100<br>
+Byte3% = 255 ; store 255 ( the maximum  value that can be stored in a Byte)<br>
+Byte4% = 256 ; try to store 256 this will end up as 0  ( i.e. 256 - 256 = 0 )<br>
+Byte5% = 257 ; try to store 257 this will end up as 1  ( i.e. 257 - 256 = 1 )<br>
+Byte6% = -1 ; try to store -1 this will end up as 255  ( i.e. 256 -1 = 255 )<br>
+Byte7% = -2	; try to store 256 this will end up as 254 ( i.e. 256 - 2 = 254 )<br>
+Byte8% = Asc("A")	; Store the ASCII value for the Character "A"  ( i.e. 65 )<br>
+<br>
+; Open a file to write to<br>
+fileout = WriteFile("mydata.dat ")<br>
+<br>
+; Write the information to the file<br>
+WriteByte( fileout, Byte1 )<br>
+WriteByte( fileout, Byte2 )<br>
+WriteByte( fileout, Byte3 )<br>
+WriteByte( fileout, Byte4 )<br>
+WriteByte( fileout, Byte5 )<br>
+WriteByte( fileout, Byte6 )<br>
+WriteByte( fileout, Byte7 )<br>
+WriteByte( fileout, Byte8 )<br>
+<br>
+; Close the file<br>
+CloseFile( fileout )<br>
+<br>
+; Open the file to Read<br>
+filein = ReadFile("mydata.dat")<br>
+<br>
+Read1 = ReadByte( filein )<br>
+Read2 = ReadByte( filein )<br>
+Read3 = ReadByte( filein )<br>
+Read4 = ReadByte( filein )<br>
+Read5 = ReadByte( filein )<br>
+Read6 = ReadByte( filein )<br>
+Read7 = ReadByte( filein )<br>
+Read8 = ReadByte( filein )<br>
+<br>
+; Close the file once reading is finished<br>
+CloseFile( fileout )<br>
+<br>
+Print "Written  -  Read"<br>
+Write Byte1 + "    -    "  : Print Read1<br>
+Write Byte2 + "    -    "  : Print Read2<br>
+Write Byte3 + "    -    "  : Print Read3<br>
+Write Byte4 + "    -    "  : Print Read4<br>
+Write Byte5 + "    -    "  : Print Read5<br>
+Write Byte6 + "    -    "  : Print Read6<br>
+Write Byte7 + "    -    "  : Print Read7<br>
+Write Byte8 + "    -    "  : Print Chr$( Read8 )<br>
+<br>
+WaitKey()<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

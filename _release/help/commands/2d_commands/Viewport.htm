@@ -1,0 +1,26 @@
+<html><head><title>Command: Viewport </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Viewport x, y, width, height&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Restricts the drawing commands to a specified area of the screen.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>x = the topmost left corner to start the port x coordinate<br>
+y = the topmost left corner to start the port y coordinate<br>
+width = how wide the port is (in pixels)<br>
+height = how tall the port is (in pixels)
+</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>There are MANY MANY times you want to draw graphics (aliens, ships, etc) ONLY on a certain area of the screen while leaving the other areas alone.  This is often referred to as 'windowing' or 'portaling' or 'clipping' an area.  Usually, you will perform all your drawing operations first (background, controls, etc), then section off the restricted area of the screen with VIEWPORT to do drawing in that area.  There are a million uses for this; overhead map radar screens, Ultima style display windows, onscreen scrollers, etc.  This is a bit more complex than most graphic commands, so be sure you have a good handle on it before trying to use it.  The biggest tip I can give you about this command is: REMEMBER TO CLEAR THE VIEWPORT WHEN YOU ARE DONE!  Do this by setting the viewport to include the whole screen (i.e. Viewport 0,0,640,480 if your game was in 640x480).  Look carefully at the example. Remember, the second set of numbers isn't the ENDING location of the port - rather the SIZE of the port starting at the first coordinates.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; ViewPort Example<br>
+<br>
+; Set Up Graphics Mode<br>
+Graphics 800,600<br>
+<br>
+; Set up Double Buffering<br>
+SetBuffer BackBuffer()<br>
+<br>
+; Set viewport starting at 100,100 and make it 200,200 pixels in size<br>
+Viewport 100,100,200,200<br>
+<br>
+; Infinately draw random rectangles with random colors<br>
+While Not KeyHit(1)<br>
+Cls ; Clear screen in 'blitting' technique<br>
+For t = 1 To 100 ; Do 100 rectangles each time<br>
+Color Rnd(255),Rnd(255),Rnd(255) ; Random color<br>
+Rect Rnd(800),Rnd(600),Rnd(300),Rnd(300),Rnd(0,1) ; Random sized and located box, some filled<br>
+Next ; repeat that drawing loop<br>
+Flip ; Flip to the back buffer<br>
+Wend <br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

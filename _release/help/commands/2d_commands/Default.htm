@@ -1,0 +1,27 @@
+<html><head><title>Command: Default </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Default  &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Specifies the set of commands that executes in a Select structure if none of the CASEs are met.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>In a <a href='SELECT.htm'>SELECT</a> structure, you may wish to execute code if none of the cases you specify are met.  All code after DEFAULT to <a href='END SELECT.htm'>END SELECT</a> will be executed if no case is met.  See <a href='SELECT.htm'>SELECT</a>, <a href='CASE.htm'>CASE</a>, and the example for more.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; SELECT/CASE/DEFAULT/END SELECT Example<br>
+; Assign a random number 1-10<br>
+mission=Rnd(1,10)<br>
+<br>
+; Start the selection process based on the value of 'mission' variable<br>
+Select mission<br>
+<br>
+; Is mission = 1?<br>
+Case 1<br>
+Print "Your mission is to get the plutonium and get out alive!"<br>
+<br>
+; Is mission = 2?<br>
+Case 2<br>
+Print "Your mission is to destroy all enemies!"<br>
+<br>
+; Is mission = 3?<br>
+Case 3 <br>
+Print "Your mission is to steal the enemy building plans!"<br>
+<br>
+; What do do if none of the cases match the value of mission<br>
+Default <br>
+Print "Missions 4-10 are not available yet!"<br>
+<br>
+; End the selection process<br>
+End Select<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

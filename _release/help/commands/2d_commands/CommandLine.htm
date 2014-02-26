@@ -1,0 +1,20 @@
+<html><head><title>Command: CommandLine$() </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;CommandLine$()  &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Reads command line parameters passed at runtime.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>If you are writing an application or game that allows starting with special parameters on the command line, you can use this command to retrieve the parameters.<br>
+<br>
+For example, you might want to start the program with a debug variable set so you can track stuff during execution.  So, you could offer the ability to run the executatble with a /debug parameter.  If they execute the program with the parameter, then you can set a flag inside your game.<br>
+<br>
+To simulate the command line passing in the editor, select PROGRAM->PROGRAM COMMAND LINE from the pulldowns and enter a value to be passed at runtime.  <br>
+<br>
+See the example.<br></td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; CommandLine$() Example<br>
+; Be sure to use PROGRAM->PROGRAM COMMAND LINE from the<br>
+; pull down and put /debug in there to test with.<br>
+<br>
+a$=CommandLine$()<br>
+<br>
+If a$="/debug" Then <br>
+Print "Debug mode is on!"<br>
+debug=1<br>
+Else<br>
+Print "No debugging activated."<br>
+debug=0<br>
+End If<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

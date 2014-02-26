@@ -1,0 +1,12 @@
+<html><head><title>Command: WaitTimer </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;WaitTimer (timer_variable)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Pauses execution until the requested timer meets its value.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>timer = any valid timer variable created with the CreateTimer command.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Use this in conjunction with the <a href='CreateTimer.htm'>CreateTimer</a> command.  This command will halt execution until the timer reaches its value.  This is useful to control the execution speed of your program.  Check out the CreateTime command for more.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Create the timer to track speed<br>
+frameTimer=CreateTimer(60)<br>
+<br>
+; Your main screen draw loop<br>
+While Not KeyHit(1)<br>
+WaitTimer(frameTimer) ; Pause until the timer reaches 60<br>
+Cls<br>
+; Draw your screen stuff<br>
+Flip<br>
+Wend<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

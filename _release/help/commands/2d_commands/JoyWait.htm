@@ -1,0 +1,18 @@
+<html><head><title>Command: JoyWait </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;JoyWait ([port])&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Waits for a joystick button to be pressed, then returns the number.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>port = number of joystick port to check (optional)</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command makes your program halt until a jpystick button is pressed on the joystick. Used alone, it simply halts and waits for a button press. It can also be used to assign the pressed button's code value to a variable. See example.
+
+In MOST CASES, you are not going to want to use this command because chances are likely you are going to want things on the screen still happening while awaiting the button press. In that situation, you'll use a <a href='WHILE.htm'>WHILE</a> ... <a href='WEND.htm'>WEND</a> awaiting a <a href='JoyHit.htm'>JoyHit</a> value - refreshing your screen each loop.
+
+As with any joystick command, you MUST have a DirectX compatible joystick plugged in and properly configured within Windows for it to work. See your joystick documentation for more information.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; JoyWait() example<br>
+<br>
+; Check to see what stick is present - print the proper message<br>
+Print "Press a button on the joystick"<br>
+<br>
+button=JoyWait()<br>
+<br>
+; Wait for user to hit ESC<br>
+Print "You pressed button # " + button + "!  Hit ESC To End"<br>
+<br>
+While Not KeyHit(1)<br>
+Wend<br>
+</td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

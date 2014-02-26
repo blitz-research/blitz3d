@@ -1,0 +1,1 @@
+To change the style of the command docs back to the old style, rename commands.css to something else and rename commands_old.css to commands.css

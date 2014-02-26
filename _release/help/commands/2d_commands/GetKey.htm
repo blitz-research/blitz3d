@@ -1,0 +1,12 @@
+<html><head><title>Command: GetKey() </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;GetKey()  &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Checks for a keypress and returns its ASCII value. </td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command will check to see if a key has been pressed and will return its ASCII value.  Not all keys have ASCII values - if you need to trap SHIFT, ALT, or other non-ASCII compliant key, try <a href='KeyHit.htm'>KeyHit</a> or <a href='KeyDown.htm'>KeyDown</a>.
+
+</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; GetKey Example<br>
+<br>
+Print "Please press any ASCII key ..."<br>
+<br>
+While Not value<br>
+value=GetKey()<br>
+Wend <br>
+<br>
+Print "You pressed key with an ASCII value of:" + value<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

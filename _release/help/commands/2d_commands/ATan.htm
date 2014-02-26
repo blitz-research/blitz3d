@@ -1,0 +1,27 @@
+<html><head><title>Command: ATan </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;ATan (float)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns the angle from the X axis to a point (y,x).</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>float = floating point value (degrees)</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Aside from its basic trig usage, this nifty command will allow you to derive an angle based on the x and y speed of a travelling object. Also see <a href='ATan2.htm'>ATan2</a>.<br>
+</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Set graphics w/double buffering<br>
+Graphics 640,480,16,0<br>
+SetBuffer BackBuffer()<br>
+<br>
+; Starting point for our travelling box<br>
+x=0<br>
+y=0<br>
+<br>
+; random speed values for travelling<br>
+xSpeed#=Rand(5)<br>
+ySpeed#=Rand(5)<br>
+<br>
+; repeat until the ESC or box travels off the screen<br>
+While Not KeyHit(1) Or y > 480 Or x > 640<br>
+Cls<br>
+; Draw our box<br>
+Rect x,y,10,10,1<br>
+; increment the box location based on random speed<br>
+x=x+xSpeed<br>
+y=y+yspeed<br>
+; print the angle of our box travel<br>
+Text 0,0,ATan(yspeed/xspeed)<br>
+Flip<br>
+Wend<br>
+</td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

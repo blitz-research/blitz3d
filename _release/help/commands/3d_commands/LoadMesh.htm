@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Command: LoadMesh</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;LoadMesh ( file$[,parent] )&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>file$ -  filename of mesh<br>
+    parent (optional) - parent entity of mesh</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Loads a mesh from a .x or .3ds file and returns the mesh's handle.<p>Any 
+    hierarchy and animation information in the file will be ignored. Use
+    <a href="LoadAnimMesh.htm">LoadAnimMesh</a> to maintain hierarchy and 
+    animation information.<font SIZE="2"><p>The optional parent parameter allow 
+    you to specify a parent entity for the mesh so that when the parent is moved 
+    the child mesh will move with it. However, this relationship is one way; 
+    applying movement commands to the child will not affect the parent.</p>
+    <p>Specifying a parent entity will still result in the mesh being created at 
+    position 0,0,0 rather than at the parent entity's position.</p>
+    <p>See also: <a href="LoadAnimMesh.htm">LoadAnimMesh</a>.</font></td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/LoadMesh.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; LoadMesh Example<br>
+    ; ----------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    ; Load mesh<br>
+    drum=LoadMesh(&quot;media/oil-drum/oildrum.3ds&quot;)<br>
+    <br>
+    PositionEntity drum,0,0,MeshDepth(drum)*2<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    RenderWorld<br>
+    Flip<br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

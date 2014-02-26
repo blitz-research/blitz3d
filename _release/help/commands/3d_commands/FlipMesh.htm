@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>Command: FlipMesh</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;FlipMesh mesh&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>mesh -  mesh handle</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Flips all the triangles in a mesh.<p>This is useful for a couple of reasons. 
+    Firstly though, it is important to understand a little bit of the theory 
+    behind 3D graphics. A 3D triangle is represented by three points; only when 
+    these points are presented to the viewer in a clockwise-fashion is the 
+    triangle visible. So really, triangles only have one side.</p>
+    <p>Normally, for example in the case of a sphere, a model's triangles face 
+    the inside of the model, so it doesn't matter that you can't see them. 
+    However, what about if you wanted to use the sphere as a huge sky for your 
+    world, i.e. so you only needed to see the inside? In this case you would 
+    just use FlipMesh.<br>
+    <br>
+    Another use for FlipMesh is to make objects two-sided, so you can see them 
+    from the inside and outside if you can't already. In this case, you can copy 
+    the original mesh using <a href="CopyEntity.htm">CopyEntity</a>, specifying 
+    the original mesh as the parent, and flip it using FlipMesh. You will now 
+    have two meshes occupying the same space - this will make it double-sided, 
+    but beware, it will also double the polygon count!</p>
+    <p>The above technique is worth trying when an external modelling program 
+    has exported a model in such a way that some of the triangles appear to be 
+    missing.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/FlipMesh.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; FlipMesh Example<br>
+    ; ----------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    light=CreateLight()<br>
+    <br>
+    ; Create sphere<br>
+    sphere=CreateSphere()<br>
+    <br>
+    ; Scale sphere<br>
+    ScaleEntity sphere,100,100,100<br>
+    <br>
+    ; Texture sphere with sky texture<br>
+    sky_tex=LoadTexture(&quot;../media/sky.bmp&quot;)<br>
+    EntityTexture sphere,sky_tex<br>
+    <br>
+    ; Flip mesh so we can see the inside of it<br>
+    FlipMesh sphere<br>
+    <br>
+    Color 0,0,0<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    RenderWorld<br>
+    Text 0,0,&quot;You are viewing a flipped sphere mesh - makes a great sky!&quot;<br>
+    Flip<br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

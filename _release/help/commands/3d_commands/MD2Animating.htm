@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>Command: MD2Animating</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;MD2Animating ( md2 )&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>md2 - md2 handle</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Returns 1 (true) if md2 is currently animating, 0 (false) if not.<p>See also: <a href="LoadMD2.htm">LoadMD2</a>,
+    <a href="AnimateMD2.htm">AnimateMD2</a>, <a href="MD2AnimTime.htm">
+    MD2AnimTime</a>, <a href="MD2AnimLength.htm">MD2AnimLength</a>.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/MD2Animating.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; MD2Animating Example<br>
+    ; --------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    ; Load md2<br>
+    gargoyle=LoadMD2( &quot;media/gargoyle/gargoyle.md2&quot;)<br>
+    <br>
+    ; Load md2 texture<br>
+    garg_tex=LoadTexture( &quot;media/gargoyle/gargoyle.bmp&quot; )<br>
+    <br>
+    ; Apply md2 texture to md2<br>
+    EntityTexture gargoyle,garg_tex<br>
+    <br>
+    PositionEntity gargoyle,0,-45,100<br>
+    RotateEntity gargoyle,0,180,0<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    ; Toggle animation stop/start when spacebar pressed<br>
+    If KeyHit( 57 )=True start=1-start : AnimateMD2 gargoyle,start,0.1,32,46<br>
+    <br>
+    UpdateWorld<br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Press spacebar to stop/start md2 animation&quot;<br>
+    <br>
+    ; Output current md2 animation status to screen<br>
+    Text 0,20,&quot;MD2Animating: &quot;+MD2Animating( gargoyle )<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

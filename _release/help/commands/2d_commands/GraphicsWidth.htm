@@ -1,0 +1,16 @@
+<html><head><title>Command: GraphicsWidth() </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;GraphicsWidth() &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns the width, in pixels, of the current graphics mode.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command will tell you the width, in pixels, of the current graphics mode.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; GraphicsWidth(), GraphicsHeight(), GraphicsDepth(), GraphicsBuffer() example<br>
+<br>
+; Set a graphics mode and buffer<br>
+Graphics 640,480,16<br>
+SetBuffer FrontBuffer()<br>
+<br>
+; Print the details<br>
+Print "Screen width is: " + GraphicsWidth()<br>
+Print "Screen height is: " + GraphicsHeight()<br>
+Print "Screen color depth is: " + GraphicsDepth()<br>
+Print "Current buffer handle is: " + GraphicsBuffer()<br>
+<br>
+; Wait for ESC before exiting<br>
+While Not KeyHit(1)<br>
+Wend<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

@@ -1,0 +1,17 @@
+<html><head><title>Command: GfxModeExists </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;GfxModeExists (width,height,depth)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Checks to see if the designated graphic mode exists.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>width = width, in pixels (i.e. 640)<br>
+height = height, in pixels (i.e. 480)<br>
+depth = color depth (i.e. 16, 24, 32)<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Use this command to verify whether or not the user's video card can use this graphic mode.  Returns TRUE if the mode exists, FALSE if not.  If you want to know what mode number this mode is, use <a href='FindGFXMode.htm'>FindGFXMode</a>.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; GFXModeExists example<br>
+<br>
+; If there is a mode, tell user<br>
+mode=GfxModeExists(800,800,16)<br>
+<br>
+If mode=1 Then <br>
+Print "The mode you requested exists!"<br>
+Else<br>
+Print "Sorry, that mode doesn't exist." <br>
+End If<br>
+<br>
+; Wait for ESC press from user<br>
+While Not KeyHit(1)<br>
+Wend<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Command: RenderWorld</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;RenderWorld [tween#]&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>tween# - defaults to 1.</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Renders all entities in the world.<p>The optional tween parameter can be used to render 
+    entities at a point somewhere between their captured position and their 
+    current position. A tween value of 0 will render entities at their captured 
+    position, a tween value of 1 will render entities at their current position. 
+    Other values may be used for interpolation. Defaults to 1.<p>Tweening is a 
+    technique used to allow games to have their game logic updated a fixed amount 
+    of times, e.g. 30, while having Blitz3D interpolate between these game logic 
+    updates to render as many frames per second as it can, e.g. 60+, with each 
+    frame different to the last.<p>This results in a game which only has to have 
+    its game logic updated at half the rate of the renders per second, freeing 
+    up CPU time, while at the same time having the game run as smooth as 
+    possible on anybody's machine.<p>Render tweening is quite an 
+    advanced technique, and it is not necessary to use it, so don't worry if you don't quite understand it. See the 
+    castle demo included in the mak (nickname of Mark Sibly, author of Blitz3D) 
+    directory of the Blitz3D samples section for a demonstration of render 
+    tweening. </td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/RenderWorld.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>None.</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

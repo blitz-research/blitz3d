@@ -1,0 +1,14 @@
+<html><head><title>Command: Line </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Line x,y,x1,y1&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Draws a line in the current drawing color from x,y to x1,y1.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>x=starting x location of the line<br>
+y=starting y location of the line<br>
+x1=ending x location of the line<br>
+y1=ending y location of the line<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command draws a line, in the current drawing color, from one point on the screen to another (from the x,y to x1,y1 location).  See example.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Line example<br>
+Graphics 800,600,16<br>
+<br>
+; Wait for ESC to hit<br>
+While Not KeyHit(1)<br>
+; Set a random color<br>
+Color Rnd(255),Rnd(255),Rnd(255)<br>
+; Draw a random line<br>
+Line Rnd(800),Rnd(600),Rnd(800),Rnd(600)<br>
+Wend<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

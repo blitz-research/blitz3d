@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>Command: TFormPoint</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;TFormPoint&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>x# - x co-ordinate on which to perform transformation<BR>
+	y# - y co-ordinate on which to perform transformaion<BR>
+	z# - z co-ordinate on which to perform transformation<BR>
+	src_entity - source entity space from which to transform co-ordinates<BR>
+	dest_entity - destination entity space to transform co-ordinates<BR>
+</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>TFormPoint takes the co-ordinates of the source entity and 'transforms' them into co-ordinates <I>relative</I> to the co-ordinates of the destination entity (taking x, y and z as offsets, usually all set to 0 to use the center of the given entities). The resulting co-ordinates can be retrieved by the use of the TFormedX, TFormedY and TFormedZ functions. Passing 0 as either source or destination entity means that the transformation is performed relative to the global space (ie. the 3D world).
+<P>
+In English, this means that if you supply two entities, you can find the individual x, y and z offset distances of the source entity from the destination entity (providing you pass 0, 0, 0 as the x, y and z parameters). Changing the x, y and z parameters to anything other than zero will perform the transformation with this offset taken into account. For example, you can specify a point 5 units to the left of the given entities (x = 5), and the result will be offset by that x value.
+</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/TFormPoint.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>
+
+Graphics3D 640, 480<BR>
+<BR>
+cam = CreateCamera ()<BR>
+MoveEntity cam, 5, 0, -5<BR>
+<BR>
+box = CreateCube ()<BR>
+MoveEntity box, 5, 0, 0<BR>
+<BR>
+Repeat<BR>
+<BR>
+	If KeyDown (203) TurnEntity cam, 0, 0.5, 0<BR>
+	If KeyDown (205) TurnEntity cam, 0, -0.5, 0<BR>
+	If KeyDown (200) MoveEntity cam, 0, 0, 0.1<BR>
+	If KeyDown (208) MoveEntity cam, 0, 0, -0.1<BR>
+<BR>
+	bx#	= EntityX (box)<BR>
+	by#	= EntityY (box)<BR>
+	bz#	= EntityZ (box)<BR>
+<BR>
+	cx#	= EntityX (cam, 1)<BR>
+	cy#	= EntityY (cam, 1)<BR>
+	cz#	= EntityZ (cam, 1)<BR>
+	<BR>
+	TFormPoint 0, 0, 0, cam, box<BR>
+	xdist# = TFormedX ()<BR>
+	ydist# = TFormedY ()<BR>
+	zdist# = TFormedZ ()<BR>
+		<BR>
+	UpdateWorld<BR>
+	RenderWorld<BR>
+	<BR>
+	Text 0, 20, "Box's global position"<BR>
+	Text 20, 40, "x: " + bx<BR>
+	Text 20, 60, "y: " + by<BR>
+	Text 20, 80, "z: " + bz<BR>
+	<BR>
+	Text 0, 120, "Camera's global position"<BR>
+	Text 20, 140, "x: " + cx<BR>
+	Text 20, 160, "y: " + cy<BR>
+	Text 20, 180, "z: " + cz<BR>
+<BR>
+	Text 0, 220, "Camera position relative to box"<BR>
+	Text 20, 240, "x: " + xdist<BR>
+	Text 20, 260, "y: " + ydist<BR>
+	Text 20, 280, "z: " + zdist<BR>
+	<BR>
+	Flip<BR>
+<BR>
+Until KeyHit (1)<BR>
+<BR>
+End<BR>
+</td>
+  </tr>
+</table>
+</body>
+</html>

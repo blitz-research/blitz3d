@@ -1,0 +1,119 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+
+<title>Language Reference - Program Flow</title>
+<link rel="stylesheet" href="lang_ref.css" type="text/css">
+</head>
+
+<body><br>
+&nbsp;<span class="Command">&nbsp;Program Flow&nbsp;</span> 
+<blockquote> 
+  <p>The following constructs are available for controlling program flow. </p>
+  <p class="header">If ... Then </p>
+  <blockquote> <i>If {expression} Then {statements1} Else {statements2} </i></blockquote>
+</blockquote>
+<p>
+<blockquote> 
+  <p>Evaluates the 'If' expression and, if true, executes the 'Then' statements. 
+    If false, the 'Else' statement are executed, the 'Else' part is optional - 
+    statements are executed until the end of the line.</p>
+  <blockquote> 
+    <p><i>If {expression1}<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{statements1} <br>
+      Else If {expression2}<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{statements2} <br>
+      Else If {expression3}<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{statements3}<br>
+      Else <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{statements4} <br>
+      EndIf </i></p>
+  </blockquote>
+  <p> This form of the If statement allows for more than one line of statements. 
+    The 'Else If' and 'Else' parts are optional. The 'Else' part is executed only 
+    if none of the 'If' or 'Else If' expressions were true. </p>
+  <p class="header">While ... Wend</p>
+</blockquote>
+<p>
+<p align="left">
+<blockquote> 
+  <blockquote> 
+    <p> <i>While {expression} <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{statements} <br>
+      Wend </i></p>
+  </blockquote>
+  <p> A While loop continues executing until {expression} evaluates to false. 
+    {expression} is evaluated at the start of each loop. </p>
+  <p class="header">For ... Next</p>
+  <blockquote> 
+    <p> <i>For {variable}={initalvalue} To {finalvalue} Step {step} <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{statements} <br>
+      Next </i></p>
+  </blockquote>
+  <p> A For/Next loop first assigns {initialvalue} to {variable} and then starts 
+    looping. The loop continues until {variable} reaches {finalvalue} and then 
+    terminates. Each loop, the value {step} is added to {variable}. If a step 
+    value is omitted, a default value of 1 is used. </p>
+  <blockquote> 
+    <p><i> For {variable}=Each {typename} <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{statements} <br>
+      Next </i></p>
+  </blockquote>
+  <p>This form of the For/Next loop allows you to iterate over all objects of 
+    a custom type. </p>
+  <p class="header">Repeat ... Until/Forever</p>
+</blockquote>
+<p align="left"> 
+<blockquote> 
+  <blockquote> 
+    <p><i> Repeat <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{statements} <br>
+      Until {expression} </i></p>
+  </blockquote>
+  <p> A Repeat loop continues executing until {expression} evaluates to true. 
+    {expression} is evaluated at the end of each loop. </p>
+  <blockquote> 
+    <p><i>Repeat <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{statements} <br>
+      Forever</i> </p>
+  </blockquote>
+  <p>A Repeat/Forever loop simply executes {statements} until the program ends, 
+    or an 'Exit' command is executed. </p>
+  <p class="header">Select ... Case</p>
+</blockquote>
+<p>
+<p align="left">
+<blockquote>
+  <blockquote> 
+    <p> <i>Select {expression} <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Case {expressions1}<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{statements1} <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Case {expressions2} <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{statements2}<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{statements3} <br>
+      End Select </i></p>
+  </blockquote>
+  <p> First the 'Select' expression is evaluated. It is then compared with each 
+    of the 'Case' expression lists. If it matches a 'Case', then the statements 
+    in the 'Case' are executed. </p>
+  <p> If the 'Select' expression matches none of the 'Case' expressions, the statements 
+    in the optional 'Default' section are executed. </p>
+  <p class="header">Breaking Out Of A Loop</p>
+  <p> The 'Exit' command may be used to break out of any <b>For...Next</b>, <b>While...Wend</b>, 
+    <b>Repeat...Until</b> or <b>Repeat...Forever</b> loop. </p>
+  <p class="header">Using Includes</p>
+  <p>Blitz also supports the 'Include' command. Include allows source code from 
+    an external file to be compiled as if it were part of the main program. Include 
+    must be followed by a quote enclosed filename. For example... </p>
+</blockquote>
+<p>
+<p align="left">
+<blockquote> Include "anotherfile.bb" 
+  <p> Include allows you to break your program up into smaller, more manageable 
+    chunks. </p>
+</blockquote>
+</body>
+</html>

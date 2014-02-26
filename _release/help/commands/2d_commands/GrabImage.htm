@@ -1,0 +1,47 @@
+<html><head><title>Command: GrabImage </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;GrabImage image,x,y,[frame]&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Grabs a portion of the current drawing buffer and sticks it into an image.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>image = variable of image handle<br>
+x = starting x location to grab<br>
+y = starting y location to grab<br>
+frame = optional frame to insert the grabbed image into<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Quite possibly one of the most useful yet underdocumented, confusing commands in the Blitz Basic language is GrabImage.<br>
+<br>
+This command allows you to grab a portion of the current drawing buffer (this could be an image too if you've set it as an <a href='ImageBuffer.htm'>ImageBuffer</a>) and stick it into an image.<br>
+<br>
+There are a million and one uses for this command, so I'll let you use your imagination.  However, the command doesn't make much sense as it is documented, so let me clarify.<br>
+<br>
+First, you must use <a href='CreateImage.htm'>CreateImage</a> to create a new blank image in which to grab to.  Whatever size you create the image, THAT is how much of the buffer will be grabbed from the x,y location you specify in GrabImage.<br>
+<br>
+For example, you create a new image with a size of 50 pixels by 50 pixels. When you call GrabImage, you choose x=100, y=100.  The area you will grab and put into your new image will be 100,100 to 150,150.  If you attempt to GrabImage into an image variable that hasn't been created yet, you will get an error.<br>
+<br>
+Note: You can REPLACE an existing image with a grabbed one.<br>
+<br>
+See the example for a more practical look.<br></td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; GrabImage example<br>
+<br>
+; Turn on graphics<br>
+Graphics 640,480,16<br>
+<br>
+; We'll be drawing right to the front buffer<br>
+SetBuffer FrontBuffer()<br>
+<br>
+; You must create an empty image to grab from first<br>
+gfxGrab=CreateImage(100,100)<br>
+<br>
+; Draw random rectangles on the screen until the<br>
+; user presses ESC<br>
+While Not KeyHit(1)<br>
+; random color<br>
+Color Rnd(255),Rnd(255),Rnd(255)<br>
+; super random rectangles<br>
+Rect Rnd(640),Rnd(480),Rnd(100),Rnd(100),Rnd(1)<br>
+Delay 50<br>
+Wend<br>
+<br>
+; Now, grab an image, starting at 100,100 and put it in gfxGrab<br>
+GrabImage gfxGrab,100,100<br>
+<br>
+; Clear screen and show user the grabbed image<br>
+Cls<br>
+Text 0,0, "Here is your grabbed image! Press a mouse key ..."<br>
+DrawImage gfxgrab,50,50<br>
+<br>
+; Wait for a mouse press<br>
+WaitMouse()<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

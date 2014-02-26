@@ -1,0 +1,85 @@
+<html>
+<head>
+<title>Command: CreatePlane</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;CreatePlane ( [sub_divs][,parent] )&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>sub_divs - sub divisions of plane<br>
+    parent (optional) - parent entity of plane</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Creates a plane entity and returns its handle.<p>A plane entity is 
+    basically a flat, infinite 'ground'. It is useful for outdoor games where 
+    you never want the player to see/reach the edge of the game world.</p>
+    <p>The optional sub_divs parameter specified how sub divisions of polygons 
+    the plane will have. Although a plane is flat and so adding extra polygons 
+    will not make it smoother, adding more polygons will allow more vertices to 
+    be lit for more detailed lighting effects.</p>
+    <p><font SIZE="2">The optional parent parameter allow you to specify a parent entity for 
+    the plane so that when the parent is moved the child plane will move 
+    with it. However, this relationship is one way; applying movement commands 
+    to the child will not affect the parent.</font></p>
+    <p>Specifying a parent entity will still result in the plane being created 
+    at position 0,0,0 rather than at the parent entity's position.</p>
+    <p>See also: <a href="CreateMirror.htm">CreateMirror</a>.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/CreatePlane.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; CreatePlane Example<br>
+    ; -------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    PositionEntity camera,0,1,0<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    ; Create plane<br>
+    plane=CreatePlane()<br>
+    <br>
+    grass_tex=LoadTexture( &quot;media/mossyground.bmp&quot; )<br>
+    <br>
+    EntityTexture plane,grass_tex<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    If KeyDown( 205 )=True Then TurnEntity camera,0,-1,0<br>
+    If KeyDown( 203 )=True Then TurnEntity camera,0,1,0<br>
+    If KeyDown( 208 )=True Then MoveEntity camera,0,0,-0.05<br>
+    If KeyDown( 200 )=True Then MoveEntity camera,0,0,0.05<br>
+    <br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Use cursor keys to move about the infinite plane&quot;<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<html><head><title>Command: PlaySound </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;PlaySound sound_variable&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Plays a sound previously loaded into memory.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>sound_variable = variable previously assigned with a LoadSound command.<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This plays a sound previously loaded and assigned to a variable using the <a href='LoadSound.htm'>LoadSound</a> command. See example.<br>
+<br>
+You will need to assign a channel variable handle to the sound when you play it.  All subsequent sound handling commands require you use the CHANNEL variable, not the sound variable to control the sound - such as <a href='StopChannel.htm'>StopChannel</a>, <a href='PauseChannel.htm'>PauseChannel</a>, <a href='ResumeChannel.htm'>ResumeChannel</a>, <a href='ChannelPitch.htm'>ChannelPitch</a>, <a href='ChannelVolume.htm'>ChannelVolume</a>, <a href='ChannelPan.htm'>ChannelPan</a>, and <a href='ChannelPlaying.htm'>ChannelPlaying</a>.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Assign a global variable for the sound<br>
+Global sndPlayerDie<br>
+<br>
+; Load the sound file into memory<br>
+<br>
+sndPlayerDie=LoadSound("sounds/die.wav")<br>
+<br>
+; Play the sound<br>
+<br>
+chnDie=PlaySound sndPlayerDie<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

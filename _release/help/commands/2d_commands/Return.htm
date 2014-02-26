@@ -1,0 +1,25 @@
+<html><head><title>Command: Return </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Return value&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Immediately exits a function with an optional return value  or resumes execution from a subroutine called with Gosub.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>value = TRUE or FALSE</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>When called inside a <a href='FUNCTION.htm'>FUNCTION</a> structure, the RETURN command immediately returns from the function back to the calling code.  An optional value may be returned. See  <a href='FUNCTION.htm'>FUNCTION</a> for more information.  Remember, after a Return, the remaining code of the Function is not executed.  See example.
+
+It also returns execution from a subroutine called with the <a href='Gosub.htm'>Gosub</a> command.<br>
+</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; RETURN example<br>
+<br>
+; Set result to the return value of the function 'testme'<br>
+result=testme(Rnd(0,10));<br>
+<br>
+; The program effectively ends here.<br>
+<br>
+; The actual function<br>
+Function testme(test);<br>
+<br>
+; If the random number passed = 0 <br>
+If test=0 Then<br>
+Print "Value was 0"<br>
+Return False ; The Function ends immediately<br>
+Else<br>
+Print "The value was greater than 0"<br>
+Return True ; The Function ends immediately<br>
+End If<br>
+Print "This line never gets printed!"<br>
+End Function<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

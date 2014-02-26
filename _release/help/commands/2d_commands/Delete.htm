@@ -1,0 +1,15 @@
+<html><head><title>Command: Delete </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Delete custom_type_name&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Delete an object from a custom TYPE collection.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>custom_type_name = the custom name of an existing object</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>If you haven't read up on the <a href='TYPE.htm'>TYPE</a> 
+  command, you might want to do so before continuing.</p>
+<p>Use the Delete command to remove an object from the Type collection. Use the 
+  commands FIRST, LAST, BEFORE, and NEXT to move the object pointer to the object 
+  you want to delete, then issue the Delete command with the custom Type name.</p>
+<p>This is often used in a FOR ... EACH loop when a collision happens and you 
+  wish to remove the object (an alien ship object for example) from the collection.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Move them all over 1 (like the description example from TYPE command)<br>
+  ; If the chair isn't on the screen anymore, delete that chair object from the<br>
+  ; collection.</p>
+<p>For room.chair = Each chair<br>
+  room\x = room\x + 1<br>
+  if room\x > 640 then<br>
+  Delete room<br>
+  Next<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

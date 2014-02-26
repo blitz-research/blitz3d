@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>Command: MD2AnimTime</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;MD2AnimTime ( md2 )&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>md2 - md2 handle</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Returns the animation time of an md2 model.<p>The animation time is the 
+    exact moment that the md2 is at with regards its frames of animation. For 
+    example, if the md2 at a certain moment in time is moving between the third 
+    and fourth frames, then MD2AnimTime will return a number in the region 3-4.</p>
+    <p>See also: <a href="LoadMD2.htm">LoadMD2</a>,
+    <a href="AnimateMD2.htm">AnimateMD2</a>, <a href="MD2AnimLength.htm">
+    MD2AnimLength</a>, <a href="MD2Animating.htm">MD2Animating</a>.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/MD2AnimTime.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; MD2AnimTime Example<br>
+    ; -------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    ; Load md2<br>
+    gargoyle=LoadMD2( &quot;media/gargoyle/gargoyle.md2&quot;)<br>
+    <br>
+    ; Load md2 texture<br>
+    garg_tex=LoadTexture( &quot;media/gargoyle/gargoyle.bmp&quot; )<br>
+    <br>
+    ; Apply md2 texture to md2<br>
+    EntityTexture gargoyle,garg_tex<br>
+    <br>
+    ; Animate md2<br>
+    AnimateMD2 gargoyle,1,0.1,32,46<br>
+    <br>
+    PositionEntity gargoyle,0,-45,100<br>
+    RotateEntity gargoyle,0,180,0<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    UpdateWorld<br>
+    RenderWorld<br>
+    <br>
+    ; Output current animation frame to screen<br>
+    Text 0,0,&quot;MD2AnimTime: &quot;+MD2AnimTime( gargoyle )<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

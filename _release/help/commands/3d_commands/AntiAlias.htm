@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>Command: AntiAlias</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;Antialias enable&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>enable - true to enable fullscreen antialiasing, false to disable. Defaults 
+to false.</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Enables or disables fullscreen antialiasing.<br>
+<br>
+Fullscreen antialiasing is a technique used to smooth out the entire screen, so 
+that jagged lines are made  less noticeable.<br>
+<br>
+Some 3D cards have built-in support for fullscreen antialiasing, which should 
+allow you to enable the effect without much slowdown. However, for cards without 
+built-in support for fullscreen antialiasing, enabling the effect may cause 
+severe slowdown.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/AntiAlias.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; AntiAlias Example<br>
+    ; -----------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    sphere=CreateSphere()<br>
+    PositionEntity sphere,0,0,2<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    ; Toggle antialias enable value between true and false when spacebar is 
+    pressed<br>
+    If KeyHit( 57 )=True Then enable=1-enable<br>
+    <br>
+    ; Enable/disable antialiasing<br>
+    AntiAlias enable<br>
+    <br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Press spacebar to toggle between AntiAlias True/False&quot;<br>
+    If enable=False Then Text 0,20,&quot;AntiAlias False&quot; Else Text 0,20,&quot;AntiAlias 
+    True&quot;<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

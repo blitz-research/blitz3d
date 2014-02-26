@@ -1,0 +1,68 @@
+<html><head><title>Command: SeekFile </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;SeekFile (filehandle, offset)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Moves the current pointer inside an open file to a new location.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>filehandle = the variable returned by the Readfile, WriteFile or OpenFile when the file was opened.
+The value returned is the offset from the start of the file.  ( 0 = Start of the file )</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command allows the position in a file to be changed.  This allows random access to data within files and can be used with files opened by ReadFile, WriteFile and OpenFile.  Note, the offset is the number of bytes from the start of the file, where the first byte is at offset 0.  It is 
+important to take account of the size of the data elements in your file.<br>
+<br>
+For instance Integers are 4 bytes long so the first integer in the file is at offset 0 and the second at offset 4.  If you write Custom Data types out then you must work out haw many bytes each takes so that you can move about the file correctly.  Seeking beyond the end of a file does not generate an error but the data is not read or written to the file, and may course unknown side effects.<br>
+<br>
+By using FilePos and SeekFile the position within the file that is being read or written can be determined and also changed.  This allows a file to be read and updated without having to make a new copy of the file or working through the whole file sequentially.  This could be useful if you have 
+created a database file and you want to find and update just a few records within it. It is also possible to create an index file that contains pointers to where each record starts in a data file.<br>
+<br>
+To calculate an offset you need to know how long each data element is; Offset  =  Wanted_Element  *  size_of_element  -  size_of_element<br>
+<br>
+For example a file of integers which are 4 bytes long is calculated by:<br>
+<br>
+The 7th integer is at offset   7 * 4 - 4   i.e.   24<br>
+<br>
+Note, extreme care needs to be exercised when updating files that contain strings since these are not fixed in length.<br>
+<br>
+See also:<br>
+<a href='ReadByte.htm'>ReadByte</a>, <a href='ReadShort.htm'>ReadShort</a>, <a href='ReadInt.htm'>ReadInt</a>, <a href='ReadFloat.htm'>ReadFloat</a>, <a href='ReadString$.htm'>ReadString$</a>, <a href='ReadLine$.htm'>ReadLine$</a>, <a href='WriteByte.htm'>WriteByte</a>, <a href='WriteShort.htm'>WriteShort</a>, <a href='WriteInt.htm'>WriteInt</a>, <a href='WriteFloat.htm'>WriteFloat</a>, <a href='WriteShort.htm'>WriteShort</a>, <a href='WriteString.htm'>WriteString</a>, <a href='WriteLine.htm'>WriteLine</a>, <a href='ReadFile.htm'>ReadFile</a>, <a href='WriteFile.htm'>WriteFile</a>, <a href='OpenFile.htm'>OpenFile</a>, <a href='CloseFile.htm'>CloseFile</a>, <a href='Eof.htm'>Eof</a>, <a href='FileType.htm'>FileType</a>, <a href='FilePos.htm'>FilePos</a>, <a href='SeekFile.htm'>SeekFile</a></td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Changing part of a file using OpenFile, SeekFile, FilePos<br>
+<br>
+; Open/create a file to Write<br>
+fileout = WriteFile("mydata.dat")<br>
+<br>
+; Write the information to the file<br>
+WriteInt( fileout, 100 )<br>
+WriteInt( fileout, 200 )<br>
+WriteInt( fileout, 300 )<br>
+WriteInt( fileout, 400 )<br>
+WriteInt( fileout, 500 )<br>
+<br>
+; Close the file<br>
+CloseFile( fileout )<br>
+<br>
+DisplayFile( "The file as originally written", mydata.dat" )<br>
+<br>
+Print "Data read in random order"<br>
+; Open the file to read just the 4th and 2nd elements from<br>
+<br>
+file = OpenFile("mydata.dat")<br>
+<br>
+; read and print the 4th integer ie 4*4-4 = 12 byte from the start of the file<br>
+SeekFile( file, 12  )	;  Move to the found location<br>
+Number = ReadInt( file )<br>
+Print Number<br>
+<br>
+; read and print the 2th integer ie 2*4-4 = 4 bytes from the start of the file<br>
+SeekFile( file, 4  )	;  Move to the found location<br>
+Number = ReadInt( file )<br>
+Print Number<br>
+<br>
+CloseFile( file )<br>
+<br>
+Waitkey()<br>
+End	; End of program<br>
+<br>
+; ****   Function Definitions follow    ****<br>
+; Read the file and print it<br>
+Function DisplayFile( Tittle$, Filename$ )<br>
+	Print tittle$<br>
+	file = ReadFile( Filename$ )<br>
+	While Not Eof( file )<br>
+		Number = ReadInt( file )<br>
+		Print Number<br>
+	Wend<br>
+	CloseFile( file )<br>
+	Print<br>
+End Function<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

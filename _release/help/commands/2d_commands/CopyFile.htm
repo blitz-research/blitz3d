@@ -1,0 +1,11 @@
+<html><head><title>Command: CopyFile </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;CopyFile from$, to$&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Copies a file on the disk to a new location.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>from$ = valid path/filename to the file to be copied<br>
+to$ = valid path/filename to copy the file to<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Use this command to copy a file from one location to another.  Perhaps you'll write your own installer and need to copy files from the installation folder to the installed location folder.  Make sure you do your own validation to ensure that the files/paths are valid and accurate before executing this command.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>file$="c:\autoexec.bat"<br>
+destination$="a:\autoexec.bat"<br>
+<br>
+Print "Press any key to copy your Autoexec.bat file to floppy"<br>
+<br>
+WaitKey()<br>
+<br>
+CopyFile file$,destination$<br>
+</td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

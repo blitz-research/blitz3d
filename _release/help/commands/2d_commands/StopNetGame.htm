@@ -1,0 +1,15 @@
+<html><head><title>Command: StopNetGame </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;StopNetGame  &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Stops a network game in progress.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Use this command to terminate the network game currently in progress (started with the <a href='StartNetGame().htm'>StartNetGame()</a> command).  If possible, the hosting session will transfer to another machine connected to the network game.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; stopNetGame() example<br>
+<br>
+newGame = StartNetGame()<br>
+; Check the status of the new game.<br>
+If newGame = 0 Then<br>
+print "Could not start or join net game."<br>
+ElseIf newGame = 1<br>
+print "Successfully joined the network game."<br>
+ElseIf newGame = 2<br>
+print "A new network game was started."<br>
+EndIf<br>
+waitkey()<br>
+StopNetGame()<br>
+print "The Network game was stopped."<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

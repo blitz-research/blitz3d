@@ -1,0 +1,88 @@
+<html>
+<head>
+<title>Command: ScaleTexture</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;ScaleTexture texture,u_scale#,v_scale#&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>texture - name of texture<br>
+    u_scale# - u scale<br>
+    v_scale# - v scale</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Scales a texture by an absolute amount.<p>This will have an immediate 
+    effect on all instances of the texture being used.</p>
+    </td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/ScaleTexture.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; ScaleTexture Example<br>
+    ; --------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    cube=CreateCube()<br>
+    PositionEntity cube,0,0,5<br>
+    <br>
+    ; Load texture<br>
+    tex=LoadTexture( &quot;media/b3dlogo.jpg&quot; )<br>
+    <br>
+    ; Texture cube<br>
+    EntityTexture cube,tex<br>
+    <br>
+    ; Set initial uv scale values<br>
+    u_scale#=1<br>
+    v_scale#=1<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    ; Change uv scale values depending on key pressed<br>
+    If KeyDown( 208 )=True Then u_scale#=u_scale#-0.01 <br>
+    If KeyDown( 200 )=True Then u_scale#=u_scale#+0.01 <br>
+    If KeyDown( 203 )=True Then v_scale#=v_scale#-0.01 <br>
+    If KeyDown( 205 )=True Then v_scale#=v_scale#+0.01 <br>
+    <br>
+    ; Scale texture<br>
+    ScaleTexture tex,u_scale#,v_scale# <br>
+    <br>
+    TurnEntity cube,0.1,0.1,0.1<br>
+    <br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Use cursor keys to change uv scale values&quot;<br>
+    Text 0,20,&quot;u_scale#=&quot;+u_scale#<br>
+    Text 0,40,&quot;v_scale#=&quot;+v_scale#<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

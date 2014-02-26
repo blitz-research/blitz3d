@@ -1,0 +1,38 @@
+<html><head><title>Command: ACos </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;ACos (number)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns the smallest angle (in degrees) satisfying the arc cosine (inverse cosine) of the supplied argument.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>number=float or integer representing a ratio of the "X" coordinate to the tangential displacement.<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command is used for translating X/Y coordinate values to angles.  Remember that the computer screen uses an inverted y-axis (values get larger the further down the screen).</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Graphics 640,480<br>
+Repeat<br>
+Cls<br>
+; Determine the positions and the length of the hypotenuse<br>
+x# = MouseX() ; displacement across the screen.<br>
+y# = MouseY() ; displacement down the screen.<br>
+r# = Sqr((x#*x#)+(y#*y#)) ; length of the hypotenuse.<br>
+<br>
+; Draw the axes<br>
+Color 104,104,104<br>
+Line x#,0,x#,y# ; draw a line from the top to the cursor.<br>
+Line 0,y#,x#,y# ; draw a line from the left to the cursor.<br>
+Locate x#+10,y#-10 : Write "X=" : Print x#<br>
+Locate x#-10,y#+10 : Write "Y=" :Print y#<br>
+<br>	
+; reset any drawing to the top right<br>
+Origin 0,0<br>
+<br>
+; Draw the angled line<br>
+Color 255,255,255<br>
+Line 0,0,x#,y# ; draw a line from the top right corner of the screen to the cursor.<br>
+theta# = ACos(x#/r#) ; the angle between the x axis and the y axis.<br>
+Locate 60,10 : Write "Angle:" : Print theta<br>
+<br>	
+; Draws an arc showing the angle.<br>
+For degrees#=0 To theta#; Step though all the degrees in the angle<br>
+; The next line calculates the X and Y coordinates of the point of the circle using the Sin and Cos<br>
+; commands, and multiplies it by 50 (to get a larger radius, try and change it).<br>
+cy=Sin(degrees#)*50<br>
+cx=Cos(degrees#)*50<br>
+Plot cx,cy ; Draw the current point on the circle.<br>
+Next ; Give us another angle<br>
+<br>
+Flip<br>
+; Use the ESCAPE key to quit<br>
+Until KeyDown(1)<br>
+</td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

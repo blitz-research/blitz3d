@@ -1,0 +1,12 @@
+<html><head><title>Command: And </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;And  &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Logical operator comparative command for testing expressions.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>AND is a logical operator for doing conditional checks of multiple values and/or expressions.  Use this to ensure that two or more conditions are true, usually in an <a href='IF.htm'>IF</a> ... <a href='THEN.htm'>THEN</a> conditional.  See example and see <a href='OR.htm'>OR</a>, <a href='NOT.htm'>NOT</a>, and <a href='XOR.htm'>XOR</a>.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; AND example<br>
+<br>
+name$=Input$("Enter your name:")<br>
+pw$=Input$("Password:")<br>
+<br>
+if name$="Shane" and pw$="bluedog" then<br>
+print "Access granted!  Welcome!"<br>
+else<br>
+print "Your name or password was not recogized"<br>
+end if<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

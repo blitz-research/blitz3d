@@ -1,0 +1,47 @@
+<html><head><title>Command: Function </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Function name&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Begins a standalone snippet of code that is callable from your program.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>name = any valid name text that is not a keyword of Blitz.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>A function is a routine of commands you may choose to call frequently within your program.  Functions are considered 'proper' practice in this situation, instead of using <a href='GOSUB.htm'>GOSUB</a> commands.<br>
+<br>
+Functions are independant of your 'main code' and will only execute if they are called.  They have their own namespace, and variables created outside a function are NOT available within the function (this goes for <a href='TYPE.htm'>TYPE</a> structures as well) unless you declare the variable or Type structure as <a href='GLOBAL.htm'>GLOBAL</a>.<br>
+<br>
+You can pass variables into functions, as well as <a href='RETURN.htm'>RETURN</a> boolean values (<a href='True.htm'>True</a>/<a href='False.htm'>False</a>) back to the calling code.<br>
+<br>
+The practical use of functions is to help seperate your code into managable chunks for subsequent perfection of a routine.  You may put all your screen updates into a single function, for example.  Or perhaps your scoring system where you pass it what alien has been destroyed and it updates the player's score. <br>
+<br>
+Once the function reaches the <a href='END FUNCTION.htm'>END FUNCTION</a> command, it returns program execution to the next line following the function call.<br>
+<br> 
+Functions can be a bit daunting until you realize they really are their own little programs within your program.  See the example for more.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Function Example<br>
+<br>
+; Get the user's name<br>
+name$=Input$("Enter Your Name:")<br>
+<br>
+; Call a function to print how many letters the name has<br>
+numletters(name$);<br>
+<br>
+; Let's get something BACK from the function<br>
+thefirst$=firstletter(name$)<br>
+<br>
+; Now print results<br>
+Print "Was the first letter an 'S'? (1=True/0=False)" + thefirst$<br>
+<br>
+;The program basically ends here, because functions don't run unless called.<br>
+<br>
+; The actual function<br>
+Function numletters(passedname$)<br>
+Print "Your name has " + Len(passedname$) + " letters in it."<br>
+End Function<br>
+<br>
+; Function to see if the first letter is S<br>
+Function firstletter(passedname$)<br>
+<br>
+; If the first letter is an 'S' then return from the function a true value<br>
+If Left$(passedname$,1) = "S" Then<br>
+Return True<br>
+<br>
+; Otherwise, return false<br>
+Else<br>
+<br>
+Return False <br>
+<br>
+End If <br>
+End Function<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

@@ -1,0 +1,28 @@
+<html><head><title>Command: Data </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Data list_of_values&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Creates a list of constant values to be parsed through within your program</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>list_of_values = a list of comma delimited values (strings must be inside quotes)</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Data is used to create neat, comma delimited lists of values of a constant nature that you will be reading (and probably reusing) during the execution of your game.  You may store level information (number of enemies, stars, etc) there or just about anything you can think of!  You can easily mix datatypes (strings, integers, floats) in your Data statements, as long as they are read properly with the <a href='Read.htm'>Read</a> command later.  You will need to use the <a href='Restore.htm'>Restore</a> command to point to the <a href='..htm'>.</a>Label that begins your Data statements.  See the related commands for more information and more examples.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Print "Here we go!"<br>
+<br>
+; Restore to the start of the Data statements<br>
+Restore startData<br>
+<br>
+; Get the first number which is the total number of users<br>
+Read Users<br>
+<br>
+; Print them all!<br>
+For T = 1 To Users<br>
+	Read firstname$<br>
+	Read age<br>
+	Read accuracy#<br>
+	Read lastname$<br>
+	Print firstname$ + " " + lastname$ + " is " + age + " years old with " + accuracy# + " accuracy!"<br>
+Next <br>
+<br>
+While Not KeyHit(1)<br>
+Wend<br>
+End<br>
+<br>
+.startData<br>
+Data 3<br>
+Data "Shane", 31, 33.3333, "Monroe"<br>
+Data "Bob", 28, 12.25, "Smith"<br>
+Data "Roger", 54, 66.66, "Rabbit"<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>Command: LoadMatrix</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;LoaderMatrix file_extension$,xx#,xy#,xz#,yx#,yy#,yz#,zx#,zy#,zz#&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>file extension$ - file extension of 3d file, e.g. &quot;.x&quot;,&quot;.3ds&quot;<br>
+    xx# - 1,1 element of 3x3 matrix<br>
+    xy# - 2,1 element of 3x3 matrix<br>
+    xz# - 3,1 element of 3x3 matrix<br>
+    yx# - 1,2 element of 3x3 matrix<br>
+    yy# - 2,2 element of 3x3 matrix<br>
+    yz# - 3,2 element of 3x3 matrix<br>
+    zx# - 1,3 element of 3x3 matrix<br>
+    zy# - 2,3 element of 3x3 matrix<br>
+    zz# - 3,3 element of 3x3 matrix</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Sets a matrix for 3d files loaded with the specified file extension.<p>
+    This can be used to change coordinate systems when loading.</p>
+    <p>By default, the following loader matrices are used:</p>
+    <p>LoaderMatrix &quot;x&quot;,1,0,0,0,1,0,0,0,1 ; no change in coord system<br>
+    LoaderMatrix &quot;3ds&quot;,1,0,0,0,0,1,0,1,0 ; swap y/z axis'</p>
+    <p>You can use LoaderMatrix to flip meshes/animations if necessary, eg:</p>
+    <p>LoaderMatrix &quot;x&quot;,-1,0,0,0,1,0,0,0,1 ; flip x-cords for &quot;.x&quot; files<br>
+    LoaderMatrix &quot;3ds&quot;,-1,0,0,0,0,-1,0,1,0 ; swap y/z, negate x/z for &quot;.3ds&quot; 
+    files</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/LoaderMatrix.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>None.</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

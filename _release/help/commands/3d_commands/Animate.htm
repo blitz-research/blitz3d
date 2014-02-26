@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>Command: Animate</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;Animate entity,[,mode][,speed#][,sequence][,transition#]&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>entity - entity handle<br>
+    <br>
+    mode (optional) - mode of animation.<br>
+    0: stop animation<br>
+    1: loop animation (default)<br>
+    2: ping-pong animation<br>
+    3: one-shot animation<br>
+    <br>
+    speed# (optional) - speed of animation. Defaults to 1.<br>
+    sequence (optional) - specifies which sequence of animation frames to play. 
+    Defaults to 0.<br>
+    transition# (optional) - used to tween between an entities current position 
+    rotation and the first frame of animation. Defaults to 0.</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Animates an entity.<p>More info about the optional parameters:</p>
+    <p>speed# - a negative speed will play the animation backwards.</p>
+    <p>sequence - Initially, an entity loaded with <a href="LoadAnimMesh.htm">
+    LoadAnimMesh</a> will have a single animation sequence. More sequences can 
+    be added using either <a href="LoadAnimSeq.htm">LoadAnimSeq</a> or
+    <a href="AddAnimSeq.htm">AddAnimSeq</a>. Animation sequences are numbered 
+    0,1,2...etc.</p>
+    <p>transition# - A value of 0 will cause an instant 'leap' to the first 
+    frame, while values greater than 0 will cause a smooth transition.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/Animate.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>None.</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

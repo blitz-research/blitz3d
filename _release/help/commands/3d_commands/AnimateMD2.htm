@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>Command: AnimateMD2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;AnimateMD2 md2[,mode][,speed#][,first_frame][,last_frame]&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>md2 - md2 handle<br>
+    <br>
+    mode (optional) - mode of animation<br>
+    0: stop animation<br>
+    1: loop animation (default)<br>
+    2: ping-pong animation<br>
+    3: one-shot animation<p>speed# (optional) - speed of animation. Defaults to 1.<br>
+    first_frame (optional) - first frame of animation. Defaults to 1.<br>
+    last_frame# (optional) - last frame of animation. Defaults to last frame of 
+    all md2 animations.</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Starts an md2 entity animating.<p>The md2 will actually move from one 
+    frame to the next when <a href="UpdateWorld.htm">UpdateWorld</a> is called, 
+    usually once per main loop.</p>
+    <p>See also: <a href="LoadMD2.htm">LoadMD2</a>,
+    <a href="MD2AnimTime.htm">MD2AnimTime</a>, <a href="MD2AnimLength.htm">
+    MD2AnimLength</a>, <a href="MD2Animating.htm">MD2Animating</a>,
+    <a href="UpdateWorld.htm">UpdateWorld</a>.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/AnimateMD2.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; AnimateMD2 Example<br>
+    ; ------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    ; Load md2<br>
+    gargoyle=LoadMD2( &quot;media/gargoyle/gargoyle.md2&quot; )<br>
+    <br>
+    ; Load md2 texture<br>
+    garg_tex=LoadTexture( &quot;media/gargoyle/gargoyle.bmp&quot; )<br>
+    <br>
+    ; Apply md2 texture to md2<br>
+    EntityTexture gargoyle,garg_tex<br>
+    <br>
+    ; Animate md2<br>
+    AnimateMD2 gargoyle,1,0.1,32,46<br>
+    <br>
+    PositionEntity gargoyle,0,-45,100<br>
+    RotateEntity gargoyle,0,180,0<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    UpdateWorld<br>
+    RenderWorld<br>
+    Flip<br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

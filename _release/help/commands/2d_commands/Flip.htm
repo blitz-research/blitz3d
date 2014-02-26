@@ -1,0 +1,21 @@
+<html><head><title>Command: Flip </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Flip [vwait] &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>In a double buffering environment, flips the BackBuffer into view.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>vwait = set to TRUE to wait for vertical blank to finish</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>When you are double buffering (or doing all drawing operations to the <a href='BackBuffer().htm'>BackBuffer()</a>, at some point, after you've drawn all your elements - you will need to 'flip' that Backbuffer into the visible <a href='FrontBuffer().htm'>FrontBuffer()</a> so it can be seen.  This command will perform this function.  This allows you to draw massive amounts of information quickly, then flip it into view.  See BackBuffer() for more info.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Flip/Backbuffer()/Rect Example<br>
+<br>
+; Set Graphics Mode<br>
+Graphics 640,480<br>
+<br>
+; Go double buffering<br>
+SetBuffer BackBuffer()<br>
+<br>
+; Setup initial locations for the box<br>
+box_x = -20 ; negative so it will start OFF screen<br>
+box_y = 100<br>
+<br>
+While Not KeyHit(1)<br>
+Cls ; Always clear screen first<br>
+Rect box_x,box_y,20,20,1 ; Draw the box in the current x,y location<br>
+Flip ; Flip it into view<br>
+box_x = box_x + 1 ; Move the box over one pixel<br>
+If box_x = 640 Then box_x=-20 ; If it leaves the Right edge, reset its x location<br>
+Wend<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

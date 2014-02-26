@@ -1,0 +1,191 @@
+<html>
+<head>
+<title>Command: Collisions</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;Collisions 
+src_type,dest_type,method,response&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>src_type - entity type to be checked for collisions.<br>
+    dest_type - entity type to be collided with.<br>
+    <br>
+    method - collision detection method.<br>
+    1: sphere-to-sphere collisions<br>
+    2: sphere-to-polygon collisions<br>
+    3: sphere-to-box collisions<br>
+    <br>
+    response - what the source entity does when a collision occurs.<br>
+    1: stop<br>
+    2: slide1 - full sliding collision<br>
+    3: slide2 - prevent entities from sliding down slopes</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Enables collisions between two different entity types.<p>Entity types 
+    are just numbers you assign to an entity using <a href="EntityType.htm">
+    EntityType</a>. Blitz uses then uses the entity types to check for 
+    collisions between all the entities that have those entity types.</p>
+    <p>Blitz has many ways of checking for collisions, as denoted by the method 
+    parameter. However, collision checking is always sphere to something. In 
+    order for Blitz to know what size a source entity is, you must first assign 
+    an entity radius to all source entities using <a href="EntityRadius.htm">
+    EntityRadius</a>.</p>
+    <p>In the case of a collision detection method of 1 being selected 
+    (sphere-to-sphere), then the destination entities concerned will need to 
+    have an <a href="EntityRadius.htm">EntityRadius</a> assigned to them too. In 
+    the case of method being 2 being selected (sphere-to-box), then the 
+    destination entities will need to have an <a href="EntityBox.htm">EntityBox</a> 
+    assigned to them. Method No.2 (sphere-to-polygon) requires nothing to be 
+    assigned to the destination entities.</p>
+    <p>Not only does Blitz check for collisions, but it acts upon them when it 
+    detects them too, as denoted by the response parameter. You have three 
+    options in this situation. You can either choose to make the source entity 
+    stop, slide or only slide upwards.</p>
+    <p>All collision checking occurs, and collision responses are acted out, 
+    when <a href="UpdateWorld.htm">UpdateWorld</a> is called.<br>
+    <br>
+    Finally, every time the Collision command is used, collision information is 
+    added to the collision information list. This can be cleared at any time 
+    using the <a href="ClearCollisions.htm">ClearCollisions</a> command.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/Collisions.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; Collisions Example<br>
+    ; ------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    ; Set collision type values<br>
+    type_character=1<br>
+    type_scenery=2<br>
+    <br>
+    camera=CreateCamera()<br>
+    RotateEntity camera,45,0,0<br>
+    PositionEntity camera,0,15,-10<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,45,0,0<br>
+    <br>
+    ; Create sphere 'character'<br>
+    sphere=CreateSphere( 32 )<br>
+    EntityRadius sphere,1<br>
+    EntityType sphere,type_character<br>
+    PositionEntity sphere,0,7,0<br>
+    <br>
+    ; Create cube 'scenery'<br>
+    cube=CreateCube()<br>
+    EntityRadius cube,1<br>
+    EntityType cube,type_scenery<br>
+    PositionEntity cube,0,-5,0<br>
+    EntityColor cube,127,0,0<br>
+    ScaleEntity cube,10,10,10<br>
+    <br>
+    ; Create cylinder 'scenery'<br>
+    cylinder=CreateCylinder( 32 )<br>
+    ScaleEntity cylinder,2,2,2<br>
+    EntityColor cylinder,255,0,0<br>
+    EntityType cylinder,type_scenery<br>
+    PositionEntity cylinder,-4,7,-4<br>
+    <br>
+    ; Create cone 'scenery'<br>
+    cone=CreateCone( 32 )<br>
+    ScaleEntity cone,2,2,2<br>
+    EntityColor cone,255,0,0<br>
+    EntityType cone,type_scenery<br>
+    PositionEntity cone,4,7,-4<br>
+    <br>
+    ; Create prism 'scenery'<br>
+    prism=CreateCylinder( 3 )<br>
+    ScaleEntity prism,2,2,2<br>
+    EntityColor prism,255,0,0<br>
+    EntityType prism,type_scenery<br>
+    PositionEntity prism,-4,7,4<br>
+    RotateEntity prism,0,180,0<br>
+    <br>
+    ; Create pyramid 'scenery'<br>
+    pyramid=CreateCone( 4 )<br>
+    ScaleEntity pyramid,2,2,2<br>
+    EntityColor pyramid,255,0,0<br>
+    EntityType pyramid,type_scenery<br>
+    RotateEntity pyramid,0,45,0<br>
+    PositionEntity pyramid,4,7,4<br>
+    <br>
+    ; Set collision method and response values<br>
+    method=2<br>
+    response=2<br>
+    <br>
+    method_info$=&quot;sphere-to-polygon&quot;<br>
+    response_info$=&quot;slide1&quot;<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    x#=0<br>
+    y#=0<br>
+    z#=0<br>
+    <br>
+    If KeyDown( 203 )=True Then x#=-0.1<br>
+    If KeyDown( 205 )=True Then x#=0.1<br>
+    If KeyDown( 208 )=True Then z#=-0.1<br>
+    If KeyDown( 200 )=True Then z#=0.1<br>
+    <br>
+    MoveEntity sphere,x#,y#,z#<br>
+    MoveEntity sphere,0,-0.02,0 <br>
+    <br>
+    ; Change collision method<br>
+    If KeyHit(50)=True<br>
+    method=method+1<br>
+    If method=4 Then method=1<br>
+    If method=1 Then method_info$=&quot;sphere-to-sphere&quot;<br>
+    If method=2 Then method_info$=&quot;sphere-to-polygon&quot;<br>
+    If method=3 Then method_info$=&quot;sphere-to-box&quot;<br>
+    EndIf<br>
+    <br>
+    ; Change collision response<br>
+    If KeyHit(19)=True<br>
+    response=response+1<br>
+    If response=4 Then response=1<br>
+    If response=1 Then response_info$=&quot;stop&quot;<br>
+    If response=2 Then response_info$=&quot;slide1&quot;<br>
+    If response=3 Then response_info$=&quot;slide2&quot;<br>
+    EndIf<br>
+    <br>
+    ; Enable Collions between type_character and type_scenery<br>
+    Collisions type_character,type_scenery,method,response<br>
+    <br>
+    ; Perform collision checking<br>
+    UpdateWorld<br>
+    <br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Use cursor keys to move sphere&quot;<br>
+    Text 0,20,&quot;Press M to change collision Method (currently: &quot;+method_info$+&quot;)&quot;<br>
+    Text 0,40,&quot;Press R to change collision Response (currently: &quot;+response_info$+&quot;)&quot;<br>
+    Text 0,60,&quot;Collisions type_character,type_scenery,&quot;+method+&quot;,&quot;+response<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

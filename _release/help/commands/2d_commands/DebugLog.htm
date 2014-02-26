@@ -1,0 +1,18 @@
+<html><head><title>Command: DebugLog </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;DebugLog message&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Writes a message to the debug log for debugging purposes.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>message = message text string value<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>You power programmers will just love this.  You have your own debug log to write to!<br>
+<br>
+For those not familiar to this sort of thing, think of the Debug log like your own private 'in program notepad'.  Use this to write messages to yourself during program execution.  For example, you could write the graphic modes that the user has on his system, or just little alerts to let you know your code execution made it to a certain point in the execution without interrupting it.  I'm sure you'll find a lot of uses for this!  See the example if you're still lost.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; DebugLog Example<br>
+<br>
+; Let's start graphics mode<br>
+Graphics 640,480,16<br>
+<br>
+; Now, let's load an image that doesn't exist!<br>
+gfxPlayer=LoadImage("noimagefound.jpg")<br>
+If gfxPlayer=0 Then<br>
+DebugLog "Player's Graphics failed to load!"<br>
+End If<br>
+<br>
+; This is supposed to generate an error.  Press F9 to see the log!<br>
+While Not KeyHit(1)<br>
+DrawImage gfxPlayer,100,100<br>
+Wend<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

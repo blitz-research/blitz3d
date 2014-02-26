@@ -1,0 +1,19 @@
+<html><head><title>Command: EOF </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;EOF (filehandle|stream)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Checks to see if the End Of File (or stream) has been reached.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>filehandle|stream = a valid variable set with the OpenFile, ReadFile command, or OpenTCPStream (v1.52+)</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Checks to see if the End of File of an opened file or stream has been reached.  Use this to determine if you should continue to pull more information from a file/stream or not.  Use this to read a text file of unknown length (say a README.TXT) and display it. See example.<br>
+<br>
+Eof returns 1 if eof has been reached or, in the case of a TCP stream, the stream has been 'nicely' closed.<br>
+<br>
+Eof returns -1 if something has gone wrong during stream processing.<br><br>
+Streams can only be used in Blitz Basic v1.52 or greater.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; EOF sample<br>
+<br>
+file$="c:\autoexec.bat"<br>
+<br>
+filein = ReadFile(file$)<br>
+<br>
+Print "Here is your Autoexec.bat file ..."<br>
+<br>
+; Loop this until we reach the end of file<br>
+While Not Eof(filein)<br>
+Print ReadLine$(filein)<br>
+Wend<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

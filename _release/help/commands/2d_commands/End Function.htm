@@ -1,0 +1,16 @@
+<html><head><title>Command: End Function </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;End Function  &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Denotes the end of a Function structure.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This line terminates a <a href='FUNCTION.htm'>FUNCTION</a> structure.  Upon reaching this line, Blitz will branch program execution to the next command following the original call to the function.  See the <a href='FUNCTION.htm'>FUNCTION</a> command for more information.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; End Function Example<br>
+<br>
+; Get the user's name<br>
+name$=Input$("Enter Your Name:")<br>
+<br>
+; Call a function to print how many letters the name has<br>
+numletters(name$);<br>
+<br>
+;The program basically ends here, because functions don't run unless called.<br>
+<br>
+; The actual function<br>
+Function numletters(passedname$)<br>
+Print "Your name has " + Len(passedname$) + " letters in it."<br>
+End Function<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

@@ -1,0 +1,9 @@
+<html><head><title>Command: JoyZDir </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;JoyZDir ([port])&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns the Z-axis direction of the joystick.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>port = number of joystick port to check (optional)</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command returns the direction of the Z-axis of the joystick being pressed.  The value is -1 (up) or 1 (down).  The value returned is an integer number.  See the example. Perfect for digital joysticks.<br>
+<br>
+As with any joystick command, you MUST have a DirectX compatible joystick plugged in and properly configured within Windows for it to work. See your joystick documentation for more information.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; JoyZDir() example<br>
+<br>
+While Not KeyHit(1)<br>
+Cls<br>
+Text 0,0,"Joy Z Direction: " + JoyZDir()<br>
+Wend<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>Command: AddTriangle</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;AddTriangle ( surface,v0,v1,v2 )&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>surface -  surface handle<br>
+    v0&nbsp; - index number of first vertex of triangle<br>
+    v1 - index number of second vertex of triangle<br>
+    v2 - index number of third vertex of triangle</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Adds a triangle to a surface and returns the triangle's index number, 
+    starting from 0.<p>The v0, v1 and v2 parameters are the index numbers of the 
+    vertices created using <a href="AddVertex.htm">AddVertex</a>.</p>
+    <p>Depending on how the vertices are arranged, then the triangle will only 
+    be visible from a certain side. Imagine that a triangle's vertex points are 
+    like dot-to-dot pattern, each numbered v0, v1, v2. If these dots, starting 
+    from v0, through to V2, form a clockwise pattern relative to the viewer, 
+    then the triangle will be visible. If these dots form an anti-clockwise 
+    pattern relative to the viewer, then the triangle will not be visible.</p>
+    <p>The reason for having one-sided triangles is that it reduces the amount 
+    of triangles that need to be rendered when one side faces the side of an 
+    object which won't be seen (such as the inside of a snooker ball). However, if you wish for a 
+    triangle to be two-sided, then you can either create two triangles, using 
+    the same set of vertex numbers for both but assigning them in opposite 
+    orders, or you can use <a href="CopyEntity.htm">CopyEntity</a> and
+    <a href="FlipMesh.htm">FlipMesh</a> together.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/AddTriangle.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>None.</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

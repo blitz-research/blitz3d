@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>Command: EntityColor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;EntityColor entity,red#,green#,blue#&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>entity - entity handle<br>
+    red# - red value of entity<br>
+    green# - green value of entity<br>
+    blue# - blue value of entity</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Sets the color of an entity.<p>The green, red and blue values should be 
+    in the range 0-255. The default entity color is 255,255,255.</p>
+    </td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/EntityColor.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; EntityColor Example<br>
+    ; -------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    cube=CreateCube()<br>
+    PositionEntity cube,0,0,5<br>
+    <br>
+    ; Set initial entity color values<br>
+    red#=255<br>
+    green#=255<br>
+    blue#=255<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    ; Change red, green, blue values depending on key pressed<br>
+    If KeyDown( 2 )=True And red#&gt;0 Then red#=red#-1<br>
+    If KeyDown( 3 )=True And red#&lt;255 Then red#=red#+1<br>
+    If KeyDown( 4 )=True And green#&gt;0 Then green#=green#-1<br>
+    If KeyDown( 5 )=True And green#&lt;255 Then green#=green#+1<br>
+    If KeyDown( 6 )=True And blue#&gt;0 Then blue#=blue#-1<br>
+    If KeyDown( 7 )=True And blue#&lt;255 Then blue#=blue#+1<br>
+    <br>
+    ; Set entity color using red, green, blue values<br>
+    EntityColor cube,red#,green#,blue#<br>
+    <br>
+    TurnEntity cube,0.1,0.1,0.1<br>
+    <br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Press keys 1-6 to change EntityColor red#,green#,blue# values<br>
+    Text 0,20,&quot;Entity Red: &quot;+red#<br>
+    Text 0,40,&quot;Entity Green: &quot;+green#<br>
+    Text 0,60,&quot;Entity Blue: &quot;+blue#<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<html><head><title>Command: Graphics </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Graphics width, height, color depth,[mode]&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Sets the graphics mode for the screen.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>width = width of screen in pixels (640, 800, etc)<br>
+height = height of screen in pixels (480, 600, etc)<br>
+color depth = depth in bits (16, 24, or 32 bit - use 16 if possible!)<br>
+mode = Video mode (see description); Optional</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command sets Blitz into 'graphics' mode with the specified width, height, and color depth (in bits).  This command must be executed before any graphic related commands can be used.  Color depth is OPTIONAL and should be left blank if possible - Blitz will determine the best color mode automatically for the user's video card.<br>
+<br>
+Valid graphic width and height varies GREATLY from card to card so to be sure your users can display the mode you wish, use the <a href='GfxModeExists.htm'>GfxModeExists</a> command to be sure before you try and set the mode yourself.  Common resolutions that are probably safe are 640x480 and 800x600.  Try to avoid odd screen modes like 640x400 as MANY MANY cards cannot display them.  Chances are if you can set your Windows screen resolution to a particular resolution, then Blitz will behave in that resolution also.<br>
+<br>
+Remember, each step higher in resolution and color depth mark a large jump in system requirements and may be inversely proportionate to system performance.  If you use the lowest resolution and depth possible to meet your desired game parameters, it will allow more people with lesser systems than your own still play and enjoy your game.  This is why many games still support a 640x480 mode :)<br>
+<br>
+An extra parameter is used at the end of the command after the color depth.  Here are the parameters:<br>
+<br>
+0 : auto - windowed in debug, fullscreen in non-debug (this is the default)<br>
+1 : fullscreen mode<br>
+2 : windowed mode<br>
+3 : scaled window mode<br>
+
+</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>;GRAPHICS Example<br>
+<br>
+; Set The Graphic Mode<br>
+Graphics 800,600<br>
+<br>
+; Now print something on the graphic screen<br>
+Text 0,0, "This is some text printed on the graphic screen (and a white box)! Press ESC ..."<br>
+<br>
+; Now for a box<br>
+Rect 100,100,200,200,1<br>
+<br>
+While Not KeyHit(1)<br>
+Wend<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

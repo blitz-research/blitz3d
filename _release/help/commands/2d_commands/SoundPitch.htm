@@ -1,0 +1,18 @@
+<html><head><title>Command: SoundPitch </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;SoundPitch sound_variable, hertz&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Alter the pitch of a sound.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>sound_variable = any valid sound variable previously created with the LoadSound command.<br>
+<br>
+hertz = valid playback hertz speed (up to 44000 hertz).<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Alters the pitch of a sound previously loaded with the <a href='LoadSound.htm'>LoadSound</a> command.  By changing the pitch, you can often reuse sounds for different uses or to simulate a 'counting up/down' sound.  To make the sound 'higher pitched', increase the hertz.  Conversely, decreasing the hertz will 'lower' the pitch.  Note: this is in relation to the original hertz of the sound.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Load the sound (11,000 hertz)<br>
+<br>
+snd1Up = LoadSound("audio\oneup.wav")<br>
+<br>
+; Play the sound normally<br>
+PlaySound snd1Up<br>
+<br>
+; Change the pitch UP and play it<br>
+SoundPitch snd1Up, 22000<br>
+PlaySound snd1Up<br>
+<br>
+; Change the pitch down and play it<br>
+SoundPitch snd1Up, 8000<br>
+PlaySound snd1Up<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

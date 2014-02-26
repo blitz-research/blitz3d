@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>Command: TerrainX</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;TerrainX# (terrain,x#,y#,z# )&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>terrain - terrain handle<br>
+    x# - world x coordinate<br>
+    y# - world y coordinate<br>
+    z# - world z coordinate</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Returns the interpolated x coordinate on a terrain.<p> See also:
+    <a href="TerrainY.htm">TerrainY</a>,
+    <a href="TerrainZ.htm">TerrainZ</a>.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/TerrainX.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; TerrainX Example<br>
+    ; ----------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    PositionEntity camera,1,1,1<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    ; Load terrain<br>
+    terrain=LoadTerrain( &quot;media/height_map.bmp&quot; )<br>
+    <br>
+    ; Scale terrain<br>
+    ScaleEntity terrain,1,50,1<br>
+    <br>
+    ; Texture terrain<br>
+    grass_tex=LoadTexture( &quot;media/mossyground.bmp&quot; )<br>
+    EntityTexture terrain,grass_tex,0,1<br>
+    <br>
+    ; Set terrain detail, enable vertex morphing<br>
+    TerrainDetail terrain,4000,True<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    If KeyDown( 203 )=True Then x#=x#-0.1<br>
+    If KeyDown( 205 )=True Then x#=x#+0.1<br>
+    If KeyDown( 208 )=True Then y#=y#-0.1<br>
+    If KeyDown( 200 )=True Then y#=y#+0.1<br>
+    If KeyDown( 44 )=True Then z#=z#-0.1<br>
+    If KeyDown( 30 )=True Then z#=z#+0.1<br>
+    <br>
+    If KeyDown( 205 )=True Then TurnEntity camera,0,-1,0<br>
+    If KeyDown( 203 )=True Then TurnEntity camera,0,1,0<br>
+    If KeyDown( 208 )=True Then MoveEntity camera,0,0,-0.1<br>
+    If KeyDown( 200 )=True Then MoveEntity camera,0,0,0.1<br>
+    <br>
+    x#=EntityX(camera)<br>
+    y#=EntityY(camera)<br>
+    z#=EntityZ(camera)<br>
+    <br>
+    terra_y#=TerrainY(terrain,x#,y#,z#)+5<br>
+    <br>
+    PositionEntity camera,x#,terra_y#,z#<br>
+    <br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Use cursor keys to move about the terrain&quot;<br>
+    <br>
+    ; Output TerrainX value to screen<br>
+    Text 0,20,&quot;TerrainX: &quot;+TerrainX(terrain,x#,terra_y#,z#)<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

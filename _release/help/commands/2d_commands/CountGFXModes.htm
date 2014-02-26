@@ -1,0 +1,14 @@
+<html><head><title>Command: CountGFXModes() </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;CountGFXModes()  &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns the number of video graphic modes available.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Use this command to return the number of video modes the user's video card can display in.  Use the <a href='GFXModeWidth.htm'>GFXModeWidth</a>, <a href='GFXModeHeight.htm'>GFXModeHeight</a>, and <a href='GFXModeDepth.htm'>GFXModeDepth</a> with each number of video mode to determine the width, height, and color depth capabilities of each mode.  See example.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; CountGFXModes()/GfxModeWidth/GfxModeHeight/GfxModeDepth example<br>
+<br>
+intModes=CountGfxModes()<br>
+<br>
+Print "There are " + intModes + "graphic modes available:"<br>
+<br>
+; Display all modes including width, height, and color depth<br>
+For t = 1 To intModes<br>
+Print "Mode " + t + ":<br>
+Print "Width=" + GfxModeWidth(t)<br>
+Print "Height=" + GfxModeHeight(t)<br>
+Print "Height=" + GfxModeDepth(t)<br>
+Next<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>Command: PaintMesh</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;PaintMesh mesh,brush&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>mesh -  mesh handle<br>
+    brush -  brush handle</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Paints a mesh with a brush.<p>This has the 
+    effect of instantly altering the visible appearance of the mesh, assuming the brush's properties are different 
+    to what was was applied to the surface before.</p>
+    <p>The reason for using PaintMesh to apply 
+    specific properties to a mesh using a brush rather than just using 
+    EntityTexture, EntityColor, EntityShininess etc, is that you can pre-define 
+    one brush, and then paint meshes over and over again using just the one 
+    command rather than lots of separate ones.<p>See also:
+    <a href="PaintEntity.htm">PaintEntity</a>, <a href="PaintSurface.htm">
+    PaintSurface</a>.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/PaintMesh.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; PaintMesh Example<br>
+    ; -----------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    cube=CreateCube()<br>
+    PositionEntity cube,0,0,5<br>
+    <br>
+    ; Load texture<br>
+    tex=LoadTexture(&quot;../media/b3dlogo.jpg&quot;)<br>
+    <br>
+    ; Create brush<br>
+    brush=CreateBrush()<br>
+    <br>
+    ; Apply texture to brush<br>
+    BrushTexture brush,tex<br>
+    <br>
+    ; And some other effects<br>
+    BrushColor brush,0,0,255<br>
+    BrushShininess brush,1 <br>
+    <br>
+    ; Paint mesh with brush<br>
+    PaintMesh cube,brush<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    pitch#=0<br>
+    yaw#=0<br>
+    roll#=0<br>
+    <br>
+    If KeyDown( 208 )=True Then pitch#=-1 <br>
+    If KeyDown( 200 )=True Then pitch#=1<br>
+    If KeyDown( 203 )=True Then yaw#=-1<br>
+    If KeyDown( 205 )=True Then yaw#=1<br>
+    If KeyDown( 45 )=True Then roll#=-1<br>
+    If KeyDown( 44 )=True Then roll#=1<br>
+    <br>
+    TurnEntity cube,pitch#,yaw#,roll#<br>
+    <br>
+    RenderWorld<br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

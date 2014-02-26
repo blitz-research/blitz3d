@@ -1,0 +1,67 @@
+<html><head><title>Command: ImagesOverlap </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;ImagesOverlap (image1,x1,y1,image2,x2,y2)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Checks to see if two graphic images have overlapped.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>image1 = first image to test<br>
+x1 = image1's x location<br>
+y1 = image1's y location<br>
+image2 = second image to test<br>
+x2 = image2's x location<br>
+y2 = image2's y location<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This is a very fast, simple collision type command that will allow you to determine whether or not two images have overlapped each other.  This does not take into account any transparent pixels (see <a href='ImagesCollide.htm'>ImagesCollide</a>).<br>
+<br>
+As with any collision detection system in Blitz, you will need to know the variable names of the two images, and their X and Y locations at the moment collision checking occurs.<br>
+<br>
+In many cases, you might be able to get away with using this more crude, yet quite fast method of collision detection.  For games where your graphics are very squared off and pixel-perfect accuracy isn't a must, you can employ this command to do quick and dirty overlap checking.<br>
+<br>
+The example blatently uses graphics that are much smaller than their container to show you how inaccurate this command can be - if not used wisely.  The <a href='ImagesCollide.htm'>ImagesCollide</a> example is identical to this one - and shows how pixel-perfect collision works.<br>
+<br>
+You might be able to get away with this on some more classical games like Robotron, Defender, Dig Dug, etc.<br></td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; ImagesOverlap Example<br>
+<br>
+; Turn on graphics mode<br>
+Graphics 640,480,16<br>
+<br>
+; Create two new empty graphics to store our circle and box in<br>
+gfxBox=CreateImage(50,50)<br>
+gfxCircle=CreateImage(50,50)<br>
+<br>
+; Draw the box image first<br>
+; Set drawing operations to point to our new empty graphic<br>
+SetBuffer ImageBuffer(gfxBox)<br>
+; Change drawing color to blue<br>
+Color 0,0,255<br>
+;Draw our box (note that it has a 10 pixel space around it)<br>
+Rect 10,10,30,30,1<br>
+<br>
+; Repeat for the circle graphic<br>
+SetBuffer ImageBuffer(gfxCircle)<br>
+Color 255,0,0<br>
+; Note the extra space between the circle and the edge of the graphic<br>
+Oval 10,10,30,30,1<br>
+<br>
+; Let's not forget to put the drawing buffer back!<br>
+SetBuffer BackBuffer()<br>
+<br>
+; Locate our box to a random, visible screen location<br>
+boxX=Rnd(50,610)<br>
+boxY=Rnd(50,430)<br>
+<br>
+; Repeat the loop until we've had a collision<br>
+Repeat <br>
+; Attach our mouse to the circle to move it<br>
+circleX=MouseX()<br>
+circleY=MouseY()<br>
+; Standard double buffer technique; clear screen first<br>
+Cls<br>
+; Draw our objects at the designated location<br>
+DrawImage gfxBox,boxX,boxY<br>
+DrawImage gfxCircle,circleX,circleY<br>
+; Standard double buffer technique; flip after all drawing is done<br>
+Flip<br>
+; We test the locations of our box and circle to see if they have overlapped<br>
+Until ImagesOverlap (gfxBox,boxX,boxY,gfxCircle,circleX,circleY)<br>
+<br>
+; Loop is over, we must've collided!<br>
+Text 0,0, "WE'VE HAD A COLLISION!  PRESS A MOUSE BUTTON"<br>
+; Can't see the text until we flip ..<br>
+Flip<br>
+; Wait for a mouse click<br>
+WaitMouse()<br>
+; End our graphics mode<br>
+EndGraphics<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

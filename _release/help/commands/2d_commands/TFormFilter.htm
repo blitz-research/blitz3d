@@ -1,0 +1,33 @@
+<html><head><title>Command: TFormFilter </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;TFormFilter enable&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Toggles bilinear filtering on convoluted images.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>enable =  0 to turn off filtering; 1 to turn it on</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command will enable or disable bi-linear filtering on images that are convoluted (altered) by commands like <a href='TFormImage.htm'>TFormImage</a> and <a href='RotateImage.htm'>RotateImage</a>.<br>
+<br>
+This filtering allows the convoluted graphics to have smoother, more aliased edges.  This also makes the operations slower.  The bi-linear filtering can also create non-transparent edges what will mess with your transparency.  Experiment for the best results.<br>
+<br>
+Try changing the example to see the difference.<br></td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; RotateImage/TFormFilter Example<br>
+<br>
+; Turn on graphics mode<br>
+Graphics 640,480,16<br>
+<br>
+; Remove the line below to see the difference<br>
+; between filter on and off.<br>
+TFormFilter 0<br>
+<br>
+; Create new empty graphic to store our circle in<br>
+gfxBox=CreateImage(50,50)<br>
+<br>
+; Draw the box image<br>
+; Set drawing operations to point to our new empty graphic<br>
+SetBuffer ImageBuffer(gfxBox)<br>
+Color 255,0,0<br>
+; Note the extra space between the box and the edge of the graphic<br>
+Rect 10,10,30,30,1<br>
+SetBuffer FrontBuffer()<br>
+<br>
+While Not KeyHit(1)<br>
+; Make a copy of the image so we are always using a fresh one each time<br>
+; we rotate it.<br>
+gfxTemp=CopyImage(gfxBox)<br>
+; Rotate it a random value and draw it at a random location<br>
+RotateImage gfxTemp,Rnd(360) <br>
+DrawImage gfxTemp,Rnd(640),Rnd(480)<br>
+Wend<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

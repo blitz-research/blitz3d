@@ -1,0 +1,13 @@
+<html><head><title>Command: LoadSound </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;LoadSound (filename$)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Load a sound file into memory.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>filename$ = valid string with path/filename to the sound file<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command loads a sound file (.WAV or .MP3) into memory.  It returns a number if successful, or 0 if there was a problem loading the sound.  You must assign value this returns to a variable (preferably a <a href='Global.htm'>Global</a> variable) for subsequent playback using (PlaySound}.  Look at the example.<br>
+</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Assign a global variable for the sound<br>
+Global sndPlayerDie<br>
+<br>
+; Load the sound file into memory<br>
+<br>
+sndPlayerDie=LoadSound("sounds/die.wav")<br>
+<br>
+; Play the sound<br>
+<br>
+PlaySound sndPlayerDie<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

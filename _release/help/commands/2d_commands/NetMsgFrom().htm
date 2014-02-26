@@ -1,0 +1,47 @@
+<html><head><title>Command: NetMsgFrom() </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;NetMsgFrom()  &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns the sender's ID of a network message.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>First off, this ONLY works when you have joined a network game via <a href='StartNetGame.htm'>StartNetGame</a> or <a href='JoinNetGame.htm'>JoinNetGame</a> and you have created a player via <a href='CreateNetPlayer.htm'>CreateNetPlayer</a> (you must create a player, even if it is just to lurk).  You must've received the message already, determined by the <a href='RecvNetMsg().htm'>RecvNetMsg()</a> command - and probably determined the type of message with (<a href='NetMsgType().htm'>NetMsgType()</a>.<br>
+<br>
+The value returned from this command denotes the sender's ID number assigned to them when they were created with <a href='CreateNetPlayer.htm'>CreateNetPlayer</a> command.  Use this to perform actions on the player on the local machine.<br>
+<br>
+You will use <a href='NetMsgType().htm'>NetMsgType()</a>, <a href='NetMsgTo().htm'>NetMsgTo()</a>, and <a href='NetMsgData$().htm'>NetMsgData$()</a> to get other important information from the message and act on it.<br>
+<br>
+The example requires that you run it on a remote machine while the local computer runs the example in the <a href='SendNetMsg.htm'>SendNetMsg</a> command.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; NetMsgFrom() example<br>
+; --------------------<br>
+; Run this program on the REMOTE computer to 'watch'<br>
+; the activity of the SendNetMsg example.  Run that<br>
+; example on local machine.<br>
+;<br>
+; This program will tell you when a player involved in<br>
+; the game hits a wall ...<br>
+<br>
+; We'll use this instead of JoinHostGame - make it easier<br>
+StartNetGame()<br>
+<br>
+; Create a player - a player must be created to<br>
+; receive mesages!<br>
+playerID=CreateNetPlayer("Shane")<br>
+<br>
+; Loop and get status<br>
+While Not KeyHit(1)<br>
+<br>
+; Check to see if we've received a message<br>
+If RecvNetMsg() Then<br>
+<br>
+; if we did, let's figure out what type it is<br>
+; we know it will be a user message, though<br>
+msgType=NetMsgType()<br>
+<br>
+	; 1-99 means a user message<br>
+	If msgType>0 And msgType<100 Then<br>
+		<br>
+		; Let's see who the message was from<br>
+		msgFrom=NetMsgFrom()<br>
+<br>
+		; Let's get the message!<br>
+		msgData$=NetMsgData$()<br>
+<br>
+		; Print the message<br>
+		Print msgData$<br>
+	End If<br>
+End If<br>
+Wend<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

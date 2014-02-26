@@ -1,0 +1,11 @@
+<html><head><title>Command: SoundPan </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;SoundPan sound_variable,pan#&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Pans the sound effect right, center, or left.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>sound_variable = any valid sound variable previously created with the <a href="http://blitz.darkunicornproductions.com/comsearch.asp?command=LoadSound">LoadSound</a> command.<br>
+pan# = floating point number from -1 (left) to 0 (center) to 1 (right)</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Use this command to pan your sound effect between the left and right speakers (or restore the panning to the center).  Use this for cool panning stereo sounds during your game.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Load sound sample<br>
+sndDeath=LoadSound("audio\death.wav")<br>
+<br>
+; Pan sound effect half to the left<br>
+SoundPan sndDeath,-.5<br>
+<br>
+; Play sound<br>
+PlaySound sndDeath<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

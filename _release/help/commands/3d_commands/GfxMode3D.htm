@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Command: GfxMode3D</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;GfxMode3D&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>mode - graphics mode number from 1 - CountGfxModes ()</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>GfxMode3D returns True if the specified graphics mode is 3D-capable.
+<P>
+GfxMode3D is generally used after obtaining a list of available display modes from a user's system via CountGfxModes (). You apply this to each mode in turn (or a selected mode) to see if you can enter 3D mode. If this returns False, calling Graphics3D () with this mode's details will fail!
+<P>
+If you don't wish to perform this check, the only Graphics3D call you can make with a guarantee of working on 99% of 3D graphics cards is 'Graphics3D 640, 480'. However, see GfxModeExists' gfx3d parameter for another method of performing this check.
+</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/GfxMode3D.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>For a = 1 To CountGfxModes ()<BR>
+	If GfxMode3D (a)<BR>
+		Print "Mode " + a + " is 3D-capable"<BR>
+	Else<BR>
+		Print "Mode " + a + " is NOT 3D-capable"<BR>
+	EndIf<BR>
+	Delay 100<BR>
+	Next</td>
+  </tr>
+</table>
+</body>
+</html>

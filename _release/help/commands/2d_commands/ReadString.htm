@@ -1,0 +1,50 @@
+<html><head><title>Command: ReadString$ </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;ReadString$ (filehandle|stream)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Reads a single string variable from an open file (or stream).</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>filehandle|stream = a valid variable set with the OpenFile, ReadFile command, or OpenTCPStream (v1.52+)
+The value returned is a text string.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Once you've opened a disk file (or stream) for reading, use this command to read a string variable from the file.<br>
+<br>
+Each string is stored in the file as a 4 byte (32bit) integer followed by the characters that form the string.  The integer contains the number of characters in the string, i.e. its length.  Note, that Carriage Return, Line 
+Feed and Null characters are NOT use to indicate the end of the string.  A file of strings cannot be read like a text file, since it contains string variables and not text.  A null string, i.e. a string of zero length ("") is 
+stored as 4 bytes, an integer count with a value = zero, followed by no Characters.  Note strings are not limited to 255 characters as in some languages.   Reading beyond the end of file does not result in an error, but each value read will be a zero length string.<br>
+<br>
+Streams can only be used in Blitz Basic v1.52 or greater.<br>
+<br>
+See also:<br>
+<a href='ReadByte.htm'>ReadByte</a>, <a href='ReadShort.htm'>ReadShort</a>, <a href='ReadInt.htm'>ReadInt</a>, <a href='ReadFloat.htm'>ReadFloat</a>, <a href='ReadString$.htm'>ReadString$</a>, <a href='ReadLine$.htm'>ReadLine$</a>, <a href='WriteByte.htm'>WriteByte</a>, <a href='WriteShort.htm'>WriteShort</a>, <a href='WriteInt.htm'>WriteInt</a>, <a href='WriteFloat.htm'>WriteFloat</a>, <a href='WriteShort.htm'>WriteShort</a>, <a href='WriteString.htm'>WriteString</a>, <a href='WriteLine.htm'>WriteLine</a>, <a href='ReadFile.htm'>ReadFile</a>, <a href='WriteFile.htm'>WriteFile</a>, <a href='OpenFile.htm'>OpenFile</a>, <a href='CloseFile.htm'>CloseFile</a>, <a href='Eof.htm'>Eof</a>, <a href='FileType.htm'>FileType</a>, <a href='FilePos.htm'>FilePos</a>, <a href='SeekFile.htm'>SeekFile</a></td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Reading and writing a file using ReadString$ and WriteString functions<br>
+<br>
+; Initialise some variables for the example<br>
+String1$ = "A short string"<br>
+String2$ = "A longer string since these are variables lengths"<br>
+String3$ = "This is string3 "<br>
+String4$ = "joined to string4"<br>
+<br>
+; Open a file to write to<br>
+fileout = WriteFile("mydata.dat")<br>
+<br>
+; Write the information to the file<br>
+WriteString( fileout, String1 )<br>
+WriteString( fileout, String2 )<br>
+WriteString( fileout, String3 + String4)<br>
+WriteString( fileout, "Just to show you don't have to use variables" )<br>
+<br>
+; Close the file<br>
+CloseFile( fileout )<br>
+
+; Open the file to Read<br>
+filein = ReadFile("mydata.dat")<br>
+<br>
+Read1$ = ReadString$( filein )<br>
+Read2$ = ReadString$( filein )<br>
+Read3$ = ReadString$( filein )<br>
+Read4$ = ReadString$( filein )<br>
+<br>
+; Close the file once reading is finished<br>
+CloseFile( fileout )<br>
+<br>
+Print "String Variables Read From File - mydata.dat "<br>
+Print<br>
+Print Read1<br>
+Print Read2<br>
+Print Read3<br>
+Print Read4<br>
+<br>
+WaitKey()<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

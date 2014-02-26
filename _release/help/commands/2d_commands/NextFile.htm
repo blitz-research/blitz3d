@@ -1,0 +1,31 @@
+<html><head><title>Command: NextFile$ </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;NextFile$ (filehandle)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Retrieves the next file/folder from a directory opened with the ReadDir command.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>filehandle = valid filehandle assigned from the ReadDir command</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command will return the NEXT file or folder from the currently open directory (use <a href='ReadDir.htm'>ReadDir</a> to open the desired folder for reading).  This will return a string containing the folder name or the filename plus extention.  Use <a href='FILETYPE.htm'>FILETYPE</a> to determine if it is a file or folder.  See <a href='ReadDir.htm'>ReadDir</a> and <a href='CloseDir.htm'>CloseDir</a> for more.  You cannot move 'backwards' through a directory, only forward.  You might want to parse the contents of a directory into an array for display, processing, etc.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; ReadDir/NextFile$/CloseDir example<br>
+<br>
+; Define what folder to start with ...<br>
+folder$="C:\"<br>
+<br>
+; Open up the directory, and assign the handle to myDir<br>
+myDir=ReadDir(folder$)<br>
+<br>
+; Let's loop forever until we run out of files/folders to list!<br>
+Repeat<br>
+; Assign the next entry in the folder to file$<br>
+file$=NextFile$(myDir)<br>
+<br>
+; If there isn't another one, let's exit this loop<br>
+If file$="" Then Exit<br>
+<br>
+; Use FileType to determine if it is a folder (value 2) or a file and print results<br>
+If FileType(folder$+"\"+file$) = 2 Then<br>
+Print "Folder:" + file$<br>
+Else<br>
+Print "File:" + file$<br>
+End If<br>
+Forever<br>
+<br>
+; Properly close the open folder<br>
+CloseDir myDir<br>
+<br>
+; We're done!<br>
+Print "Done listing files!"<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

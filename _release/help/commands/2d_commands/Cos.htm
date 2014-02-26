@@ -1,0 +1,26 @@
+<html><head><title>Command: Cos </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Cos (Number)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>The Cos command is a trigonometry function, that returns a number between -1 and 1. This value represents the "X" coordinate of point x,y.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>number=float or integer representing a value in degree</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command is used for translating angle values to coordinates, but there are a few things you have to take into account when doing it. First of all the Cos() command assumes the point you want is at radius 1 (pixel), next it uses a circle where 0 degrees is due EAST and increases in a counterclockwise direction, then you've got to take into account the the Y axis on a computer screen is up-side-down compared to a normal mathematical coordinate system.<br>
+<br>
+See also <a href='ASin.htm'>ASin</a>, <a href='Cos.htm'>Cos</a>, <a href='ACos.htm'>ACos</a>, <a href='Tan.htm'>Tan</a>, <a href='Atan.htm'>Atan</a>, <a href='ATan2.htm'>ATan2</a><br></td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Graphics 640,480; Change to graphics mode, nothing tricky yet.<br>
+Origin 320,240	; Move the point of orign for all drawing commands to the middle of the screen.<br>
+<br>
+For degrees=0 To 359; Step though all the degrees in a circle (360 in all)<br>
+Delay(5); Wait 5 milli secsonds.<br>
+<br>
+; The next line calculates the Y coordinate of the point of the circle using the Sin<br>
+; command, and multiplies it by 100 (to get a larger radius, try and change it).<br>
+y=Sin(degrees)*100<br>
+<br>
+y=-y ; Invert Y coordinate to represent it properly on screen.<br>
+<br>
+; The next line calculates the X coordinate of the point of the circle using the Cos,<br>
+; command, and multiplies it by 100 (to get a larger radius, try and change it).<br>
+x=Cos(degrees)*100<br>
+<br>
+Rect x,y,1,1	; Draw the current point on the circle.<br>
+<br>
+Next ; Give us another angle<br>
+<br>
+MouseWait ; Wait for the mouse.<br>
+End ; Terminate the program.<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

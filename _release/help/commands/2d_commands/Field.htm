@@ -1,0 +1,28 @@
+<html><head><title>Command: Field </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Field variable&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Assigns a variable for use into a TYPE object structure.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>variable = any legal variable</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>If you haven't read up on the <a href='TYPE.htm'>TYPE</a> 
+  command, you might want to do so before continuing.</p>
+<p>When you define a custom Type, you need to assign some variables to track within 
+  in. Using the Field command within the Type .. <a href='End 
+  Type.htm'>End 
+  Type</a> commands, you set a variable that can be used for EACH object created 
+  with the <a href='NEW.htm'>NEW</a> 
+  command.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Define the CHAIR Type<br>
+  <br>
+  Type CHAIR<br>
+  Field X<br>
+  Field Y<br>
+  Field HEIGHT<br>
+  End Type</p>
+<p>; Create 100 new chairs using FOR ... NEXT using the collection name of ROOM</p>
+<p>For tempx = 1 to 10<br>
+  For tempy = 1 to 10<br>
+  room.chair = New Chair<br>
+  room\x = tempx<br>
+  room\y = tempy<br>
+  room\height = Rnd(0,10) ; set a random height 0 to 10<br>
+  Next<br>
+  Next</p>
+<p>; Move them all over 1 (like the description example from TYPE command)</p>
+<p>For room.chair = Each chair<br>
+  room\x = room\x + 1<br>
+  Next<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

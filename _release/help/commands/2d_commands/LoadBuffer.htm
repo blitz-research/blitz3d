@@ -1,0 +1,16 @@
+<html><head><title>Command: LoadBuffer </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;LoadBuffer (buffer, filename$)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Loads an image directly into a buffer in Blitz.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>buffer = system or image buffer<br>
+filename$ = string containing full path and filename of image<br>
+</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>There are a hundred and one uses for this command, but probably most often used would be to display a title screen or some other 'one time viewing only' image to the front buffer (as in our example).<br>
+<br>
+You can also load to an image buffer or back buffer.  The image is scaled to match the buffer size.  This command returns 1 if the command was successful, 0 if there was an error.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; LoadBuffer example<br>
+<br>
+; Set graphics mode<br>
+Graphics 800,600,16<br>
+<br>
+; Load an image directly to the front buffer (your location may be different)<br>
+LoadBuffer (FrontBuffer(),"C:\Program Files\Blitz Basic\samples\blitzanoid\gfx\title.bmp")<br>
+<br>
+; wait for ESC so user gets to see the screen<br>
+While Not KeyHit(1)<br>
+Wend <br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

@@ -1,0 +1,110 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+
+<title>Language Reference - Variables</title>
+<link rel="stylesheet" href="lang_ref.css" type="text/css">
+</head>
+
+<body><br>
+&nbsp;<span class="Command">&nbsp;Variables&nbsp;</span><br>
+<blockquote> 
+  <p>Variables may be of any basic data type, or a custom type. A variable's type 
+    is determined by a special character that follows its identifier.<br>
+    <br>
+    <span class="header"> Variable Types</span></p>
+  <blockquote>
+    <p>These special characters are called 'type tags' and are: </p>
+  </blockquote>
+</blockquote>
+  <table width="90%" border="0" cellspacing="0" cellpadding="0" align="center">
+    
+  <tr> 
+    <td> 
+
+        <blockquote><br>
+          <p> % = For integer variables </p>
+          <p> # = For floating point variables </p>
+          <p> $ = For string variables </p>
+          <p> .{typename} For custom type variables</p>
+        </blockquote>
+      
+    </td>
+    </tr>
+  </table>
+<blockquote> 
+  <blockquote>
+    <p> Here are some examples of valid variables: </p>
+  </blockquote>
+</blockquote
+  >
+<table width="90%" border="0" cellspacing="0" cellpadding="0" align="center">
+    
+  <tr> 
+    <td height="268"> 
+      <p><br>
+      </p>
+      <blockquote>
+        <p>Score%</p>
+        <p>Lives% </p>
+        <p>x_speed# </p>
+        <p>y_speed# </p>
+        <p>name$ </p>
+        <p>title$ </p>
+        <p>ali.Alien </p>
+        <p>player.Player</p>
+      </blockquote>
+    </td>
+    </tr>
+  </table>
+  
+<blockquote> 
+  <blockquote>
+    <p>The type tag only needs to be added the first time you use a variable, 
+      after that you can leave the type tag off if you wish. <br>
+      <br>
+      If you don't supply a type tag the first time a variable is used, the variable 
+      defaults to an integer. <br>
+    </p>
+    <p>It is illegal to use the same variable name with a different type. For 
+      example, if you already have an integer variable called 'name%', it is illegal 
+      to also have a string variable called 'name$' <br>
+    </p>
+  </blockquote>
+  <p class="header">Setting Variables</p>
+  <blockquote> 
+    <p>The '=' keyword is used to assign a value to a variable. For example: </p>
+    <blockquote> 
+      <p><i>score%=0 </i></p>
+    </blockquote>
+    <p> ... assigns the value '0' to the integer variable 'score'.</p>
+  </blockquote>
+  <p><span class="header">Variable Scope</span><br>
+  </p>
+  <blockquote> 
+    <p>Variables may also be either '<b>global</b>', or '<b>local</b>'. This refers 
+      to where in a program a variable may be used.</p>
+    <blockquote> 
+      <p>- <b>Global variables</b> can be used from anywhere in the program. <br>
+        <br>
+        - <b>Local variables</b> can only be used within the function they are 
+        created in. </p>
+    </blockquote>
+    <p> The '<b>Global</b>' keyword is used to define one or more global variables. 
+      For example: </p>
+    <blockquote> 
+      <p><i>Global Score=0,Lives=3,Player_up=1 </i></p>
+    </blockquote>
+    <p> ... defines 3 global variables. </p>
+    <p> Similarly, '<b>Local</b>' is used to define local variables: </p>
+    <blockquote> 
+      <p><i>Local temp_x=x,temp_y=y </i></p>
+    </blockquote>
+    <p>If you use a variable without defining it as either local or global, it 
+      defaults to being local. </p>
+  </blockquote>
+</blockquote>
+</body>
+</html>

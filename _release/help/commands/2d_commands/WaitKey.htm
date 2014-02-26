@@ -1,0 +1,16 @@
+<html><head><title>Command: WaitKey() </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;WaitKey()  &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Halts program execution until a key is pressed and returns its ASCII code.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command makes your program halt until a key is pressed on the keyboard.  Used alone, it simply halts and waits for a key press.  It can also be used to assign the pressed key's ASCII value to a variable.  See example.<br>
+<br>
+In MOST CASES, you are not going to want to use this command because chances are likely you are going to want things on the screen still happening while awaiting the keypress.  In that situation, you'll use a WHILE ... WEND awaiting a KeyHit value - refreshing your screen each loop.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; WaitKey() sample<br>
+<br>
+Print "Press any key to continue."<br>
+<br>
+key=WaitKey()<br>
+<br>
+Print "The ASCII code of the key you pressed was: " + key<br>
+Print "Now press a key to quit."<br>
+<br>
+WaitKey()<br>
+<br>
+End<br>
+</td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

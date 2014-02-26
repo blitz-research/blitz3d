@@ -1,0 +1,16 @@
+<html><head><title>Command: ChannelPlaying </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;ChannelPlaying (channel_handle)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Checks to see if a sound channel is still playing.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>channel_handle = variable assigned to the channel when played<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Often you will need to know if a sound channel has completed playing or not.  This command will return 1 if the sound is still playing or 0 if it has stopped.  Use this to restart your background music or some other sound that might have stopped unintentionally.<br>
+<br>
+Note: This command currently doesn't seem to work with a channel assigned to CD track playback.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Channel examples<br>
+<br>
+Print "Loading sound ..."<br>
+; Load the sample - you'll need to point this to a sound on your computer<br>
+; For best results, make it about 5-10 seconds...<br>
+sndWave=LoadSound("level1.wav")<br>
+<br>
+Print "Playing full sample until sound is done ..."<br>
+chnWave=PlaySound(sndWave) <br>
+While ChannelPlaying(chnWave)<br>
+Wend
+<br>
+Print "All done!"<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

@@ -1,0 +1,31 @@
+<html><head><title>Command: MouseYSpeed() </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;MouseYSpeed()  &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns the changes in the mouse location since the LAST call to the command.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Often you'd like to find the difference between where the mouse WAS to where it is NOW.  You can use this command and <a href='MouseXSpeed().htm'>MouseXSpeed()</a> in pairs to find out the changes in the mouse location between calls.<br>
+<br>
+You really have to use these commands TWICE to get anything out of them.  Each call you make returns the difference in location since the LAST time you called it.<br>
+<br>
+In the example, when you run it, move the mouse to a location, press left mouse button.  This makes the first call.  Then, move the mouse and press right mouse button.  The second call will return the difference since the first call and display it for you.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; MouseXSpeed()/MouseYSpeed() examples<br>
+<br>
+; Set graphics mode and double buffering<br>
+Graphics 800,600,16<br>
+SetBuffer BackBuffer()<br>
+<br>
+; repeat until right mouse button is pressed<br>
+Repeat<br>
+Cls	; Clear screen<br>
+Rect MouseX(),MouseY(),2,2,1 ; draw a small box where the mouse is<br>
+; if user hits left mouse, take note of where it is and call mousexspeed/mouseyspeed<br>
+If MouseHit(1) Then startx=MouseXSpeed():starty=MouseYSpeed()<br>
+<br>
+; When user hits right mouse button, record the difference between last call<br>
+; and this call to the mousey/xspeed commands.<br>
+If MouseHit(2) Then endx=MouseXSpeed():endy=MouseYSpeed()<br>
+Flip ; flip screen into view<br>
+Until endx ; end the loop when we have a value for endx<br>
+<br>
+; display results<br>
+Text 0,0,"Changes in mouse coordinates: " + endx + "," + endy<br>
+Flip ; flip changes into view<br>
+<br>
+; Wait for escape<br>
+While Not KeyHit(1)<br>
+Wend<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

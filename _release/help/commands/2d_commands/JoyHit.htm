@@ -1,0 +1,15 @@
+<html><head><title>Command: JoyHit </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;JoyHit (button,[port])&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns the number of times a specified joystick button has been hit.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>button = number of joystick button to check<br>
+port = number of joystick port to check (optional)<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command returns the number of times a specified joystick button has been hit since the last time you called the JoyHit() command.  Also see <a href='KeyHit.htm'>KeyHit</a> and <a href='MouseHit.htm'>MouseHit</a>.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; JoyHit Example<br>
+<br>
+; Set up the timer<br>
+current=MilliSecs()<br>
+Print "Press FireButton 1 a bunch of times for five seconds..."<br>
+<br>
+; Wait 5 seconds<br>
+While MilliSecs() < current+5000<br>
+Wend<br>
+<br>
+; Print the results<br>
+Print "Pressed button " + JoyHit(1) + " times."<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

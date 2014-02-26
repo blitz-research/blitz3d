@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>Command: WBuffer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;Wbuffer enable&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>enable - true to enable w-buffering rendering, false to disable. Defaults to 
+true for 16-bit colour mode, false for 24-bit and 32-bit.</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Enables or disables w-buffering.<br>
+<br>
+W-buffering is a technique used to draw 3D object in order of their depth - i.e. 
+the ones furthest away from the camera first, then the ones closer to the 
+camera, and so on. <br>
+<br>
+Normally, z-buffering is used to perform such a technique, but a z-buffer can be 
+slightly inaccurate in 16-bit colour mode, for which the level of precision is 
+less than in 24-bit or 32-bit colour modes. This means that in some situations, 
+objects will appear to overlap each other when they shouldn't and so on.<br>
+<br>
+To compensate for this, you can use w-buffering. This is a slightly more 
+accurate technique than z-buffering, although it may be less compatible on some 
+set-ups than z-buffering.</td>
+  </tr>
+</table>
+<p class="header">Example:<br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>None.</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

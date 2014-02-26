@@ -1,0 +1,24 @@
+<html><head><title>Command: SaveImage </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;SaveImage (image,bmpfile$,[frame] )&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Saves an image to hard drive as a .bmp file.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>image = variable handle to the image to save<br>
+bmpfile$ = string with full path and filename to save to<br>
+frame = optional; which frame of the image to save<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Saves an image or one of its frames to hard drive.  You will need an existing image to save off.  This returns a 1 if the save was successful, 0 if not.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; SaveImage example<br>
+<br>
+; Set Graphics Mode<br>
+Graphics 800,600,16<br>
+<br>
+; Load an image to tile (your location might vary)<br>
+gfxBall=LoadImage("C:\Program Files\Blitz Basic\samples\ball.bmp")<br>
+<br>
+; Save the image to the c: drive ...<br>
+ok=SaveImage (gfxBall,"c:\newball.bmp")<br>
+<br>
+; Print results<br>
+If ok=1 Then <br>
+Print "Save successful!"<br>
+Else<br>
+Print "There was an error saving!"<br>
+End If<br>
+<br>
+; Wait for ESC to hit<br>
+While Not KeyHit(1)<br>
+Wend<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

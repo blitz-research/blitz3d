@@ -1,0 +1,13 @@
+<html><head><title>Command: SoundVolume </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;SoundVolume sound_variable,volume#&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Alter the volume level of a sound effect.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>sound_variable = any valid sound variable previously created with the LoadSound command.<br>
+volume# = floating point number from 0 (silence) to 1 (full volume)</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Alter the playback volume of your sound effect with this command.  This command uses a floating point number from 0 to 1 to control the volume level.<br>
+<br>
+Please see <a href='ChannelVolume.htm'>ChannelVolume</a> for more options!<br></td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Load sound sample<br>
+sndDeath=LoadSound("audio\death.wav")<br>
+<br>
+; Change volume level to half<br>
+SoundVolume sndDeath,.5<br>
+<br>
+; Play sound<br>
+PlaySound sndDeath<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

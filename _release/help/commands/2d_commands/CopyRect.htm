@@ -1,0 +1,33 @@
+<html><head><title>Command: CopyRect </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;CopyRect src_x,src_y,src_width,src_height,dest_x,dest_y,[src_buffer],[dest_buffer]&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Copies a rectangle of graphics from one buffer to another.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>src_x = source top left x location to begin copying from<br>
+src_y = source top left y location to begin copying from<br>
+src_width = width of source area to copy<br>
+src_height = height of source area to copy<br>
+dest_x = destination top left x location to copy to<br>
+dest_y = destination top left y location to copy to<br>
+src_buffer = handle to the source image buffer (optional)<br>
+dest_buffer = handle to the destination image buffer (optional)<br>
+</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Copies a rectangle of graphics from one buffer to another. If a buffer is omitted, the current buffer is used.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; CopyRect Example<br>
+<br>
+; Turn on graphics mode<br>
+Graphics 800,600,16<br>
+<br>
+; create a blank image<br>
+gfxBlank=CreateImage (300,300)<br>
+<br>
+; Fill the screen with random boxes in random colors<br>
+For t = 1 To 1000<br>
+Rect Rand(800),Rand(600),Rand(100),Rand(100),Rand(0,1) <br>
+Color Rand(255),Rand(255),Rand(255)<br>
+Next<br>
+<br>
+; Wait a couple of seconds so the user can see it<br>
+Delay 2000<br>
+<br>
+; Copy graphics randomly from the front buffer to the blank image<br>
+CopyRect Rand(800),Rand(600),300,300,0,0,FrontBuffer(),ImageBuffer(gfxBlank)<br>
+<br>
+; Clear the screen, draw the copied to image, wait for user to hit a key<br>
+Cls<br>
+DrawImage gfxBlank,0,0<br>
+WaitKey <br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

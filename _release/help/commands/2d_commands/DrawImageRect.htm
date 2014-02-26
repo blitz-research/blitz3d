@@ -1,0 +1,34 @@
+<html><head><title>Command: DrawImageRect </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;DrawImageRect image,x,y,rect_x,rect_y,rect_width,rect_height,[frame]&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Draws a rectangular area of an image at the designated location.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>image = variable holding the image handle<br>
+x = x location on the screen to draw the image<br>
+y = y location on the screen to draw the image<br>
+rect_x = starting x location within the image to draw<br>
+rect_y = starting y location within the image to draw<br>
+rect_width = the height of the area to draw<br>
+rect_height = the width of the area to draw<br>
+frame = optional frame number of image to draw<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command will let you draw a rectangular PORTION of an image to the designated location on the screen.  The transparent/masked portions of the original image will be drawn transparent, just as you normally would draw an image.<br>
+<br>
+This is handy if you are doing something like revealing part of a screen when the player uncovers something (think QIX).  You could load the 'picture' into an image, then when the player clears a rectangular region, you could paste that portion of the final image onto the playfield.  If you want to draw the image portion with no transparency or mask, use <a href='DrawBlockRect.htm'>DrawBlockRect</a> instead.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; DrawImageRect Example<br>
+<br>
+; Turn on graphics mode<br>
+Graphics 640,480,16<br>
+<br>
+; Create new empty graphic to store our circle in<br>
+gfxCircle=CreateImage(50,50)<br>
+<br>
+; Draw the circle image<br>
+; Set drawing operations to point to our new empty graphic<br>
+SetBuffer ImageBuffer(gfxCircle)<br>
+Color 255,0,0<br>
+; Note the extra space between the circle and the edge of the graphic<br>
+Oval 10,10,30,30,1<br>
+SetBuffer FrontBuffer()<br>
+<br>
+<br>
+; Let's draw portions of the circle randomly<br>
+While Not KeyHit(1)<br>
+; We take random sized portions of the circle and put them<br>
+; at a random location ... wash, rinse, and repeat<br>
+DrawImageRect gfxCircle,Rnd(640),Rnd(480),0,0,Rnd(50),Rnd(50),0<br>
+Delay 100<br>
+Wend<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

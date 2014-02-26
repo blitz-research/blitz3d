@@ -1,0 +1,10 @@
+<html><head><title>Command: Forever </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Forever  &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Used in a REPEAT loop to make the loop run endlessly.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Replace the <a href='UNTIL.htm'>UNTIL</a> command in a <a href='REPEAT.htm'>REPEAT</a> ... UNTIL loop to make the loop run forever.  Remember, the program execution will continue indefinately until either you break out of it programmatically!  This is often known as 'the infinate loop'.  Once more for the cheap seats: "Make sure you provide a means for breaking out of the loop". Use <a href='EXIT.htm'>EXIT</a> (to leave the loop) or <a href='END.htm'>END</a> to quit the program.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; FOREVER Example<br>
+<br>
+Repeat<br>
+If KeyHit(1) Then Exit<br>
+Print "You are trapped in an infinate loop! Press ESC!"<br>
+Forever<br>
+<br>
+Print "The infinate loop has ended!"<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

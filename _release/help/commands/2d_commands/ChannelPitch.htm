@@ -1,0 +1,43 @@
+<html><head><title>Command: ChannelPitch </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;ChannelPitch channel_handle, hertz&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Alters the hertz pitch of a playing sound channel.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>channel_handle = variable assigned to the channel when played<br>
+hertz = pitch to apply to the channel (try 8000-44000)<br>
+</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>You can alter the hertz pitch of a sound channel that is playing (or in use and just paused).  I'm sure you can think of numerous uses for this command!  Use the frequency of your sound as the 'baseline' for pitch change.  So if your sample is at 11025 hertz, increase the pitch to 22050 to make the pitch higher, 8000 to make it lower, etc.  While similar to <a href='SoundPitch.htm'>SoundPitch</a>, this command let's you change the pitch individually of each and every channel in use.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Channel examples<br>
+<br>
+Print "Loading sound ..."<br>
+; Load the sample - you'll need to point this to a sound on your computer<br>
+; For best results, make it about 5-10 seconds...<br>
+sndWave=LoadSound("level1.wav")<br>
+; Prepare the sound for looping<br>
+LoopSound sndWave<br>
+<br>
+chnWave=PlaySound(sndWave)<br>
+<br>
+Print "Playing sound for 2 seconds ..."<br>
+Delay 2000<br>
+<br>
+Print "Pausing sound for 2 seconds ..."<br>
+PauseChannel chnWave<br>
+Delay 2000<br>
+<br>
+Print "Restarting sound ..."<br>
+ResumeChannel chnWave<br>
+Delay 2000<br>
+<br>
+Print "Changing Pitch of sound ..."<br>
+;StopChannel chnWave<br>
+ChannelPitch chnWave, 22000<br>
+Delay 2000<br>
+<br>
+Print "Playing new pitched sound ..."<br>
+Delay 2000<br>
+<br>
+Print "Left speaker only"<br>
+ChannelPan chnWave,-1<br>
+Delay 2000<br>
+<br>
+Print "Right speaker only"<br>
+ChannelPan chnWave,1<br>
+Delay 2000<br>
+<br>
+Print "All done!"<br>
+StopChannel chnWave<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

@@ -1,0 +1,7 @@
+<html><head><title>Command: CreateDir </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;CreateDir path/name&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Creates a directory/folder on a storage device.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>path/name = full path and name for new directory</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Creates a directory (file folder) at the destination specified.  Do not use a trailing slash at the end of the path/name parameter.  You cannot be sure the directory was created with this command, so you will need to verify its existance yourself (use the <a href='FILETYPE.htm'>FILETYPE</a> command).</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; CREATEDIR example<br>
+<br>
+fldr$="c:\winnt\system32\myfolder"<br>
+createDir fldr$<br>
+Print "Folder created!"<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

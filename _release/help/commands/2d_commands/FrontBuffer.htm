@@ -1,0 +1,23 @@
+<html><head><title>Command: FrontBuffer() </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;FrontBuffer() &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Designates the front buffer as the drawing buffer.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Its important to understand buffers when writing a game.<br>
+<br>
+What the player can see at any given time is usually the front buffer.  Anything you draw to this buffer is IMMEDIATELY visible to the player.  This sounds fast (and it is) but the problem is that when you are drawing to the front buffer - like a piece of paper and pencil - anything you draw on the screen overwrites anything else that exists in the same space.  So, if you want to 'save' any portion of the screen from being overwritten by another drawing operation, YOU - the programmer - have to copy the area 'under' the location of the new operation to an image so you can replace it later.  Imagine taking a piece of paper with a picture of some mountains, and making an airplane pass in front of them, inch by inch.  Every time the plane moves, you have to draw the new area that will be under the plane next on another sheet of paper (so you know what it looked like) then draw the plane over the new place.  Next time you move, you will repeat this, then draw the image back in the OLD plane location.  This process is labor-intensive and largely unnecessary thanks to a process called DOUBLE BUFFERING (see <a href='BackBuffer().htm'>BackBuffer()</a>. Double buffering is used for pretty much all games for high-action with lots of objects on the screen.<br>
+<br>
+So, if double buffering rocks so much, why would you WANT to ever draw to the front buffer?  Sometimes, you just want to draw crap to the screen, without caring what you overwrite.  You don't have to worry about redrawing the screen over and over again in double buffering in this case.  Just set the buffer to FrontBuffer() and you can write directly to the screen in real time.<br></td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; FrontBuffer()/Rect Example<br>
+<br>
+; Engage graphics mode<br>
+Graphics 640,480,16<br>
+<br>
+; Set the drawing buffer to front - instant drawing ops!<br>
+SetBuffer FrontBuffer()<br>
+<br>
+; Repeat this until user presses ESC<br>
+While Not KeyHit(1)<br>
+; Set a random color<br>
+Color Rnd(255),Rnd(255),Rnd(255)<br>
+; Draw a rectangle at a random location, with a random width and height<br>
+; plus randomly choose if the rectangle is solid or just an outline<br>
+Rect Rnd(640),Rnd(480),Rnd(50),Rnd(50),Rnd(0,1)<br>
+; Blitz is so dang fast, we need a delay so you can watch it draw!<br>
+Delay 10<br>
+Wend<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

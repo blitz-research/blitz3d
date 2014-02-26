@@ -1,0 +1,49 @@
+<html><head><title>Command: WriteBytes </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;WriteBytes bank,filehandle|stream,offset,count&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Write data from a memory bank to a file (or stream).</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>bank = variable containing handle to valid bank<br>
+filehandle|stream = a valid variable set with the WriteFile or OpenTCPStream (v1.52+)<br>
+offset = offset in bytes to write the value<br>
+count = how many bytes to write from the offset<br>
+</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>You can write the contents of a memory bank to a file on disk (or stream) using this command.<br>
+<br>
+Note: The file handle must be opened with <a href='WriteFile.htm'>WriteFile</a> or <a href='OpenTCPStream.htm'>OpenTCPStream</a> and subsequently closed with <a href='CloseFile.htm'>CloseFile</a> or <a href='CloseTCPStream.htm'>CloseTCPStream</a> after the writing operations are complete.<br>
+Return how many bytes successfully written to a stream.<br><br>
+Streams can only be used in Blitz Basic v1.52 or greater.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Read/WriteBytes Commands Example<br>
+<br>
+; Create a 50 byte memory bank<br>
+bnkTest=CreateBank(500)<br>
+<br>
+; Let's fill the bank with crap<br>
+For t = 1 To 50<br>
+PokeByte bnkTest,t,Rnd(255)<br>
+PokeInt bnkTest,t+1,Rnd(10000)<br>
+PokeShort bnkTest,t+2,Rnd(10000)<br>
+PokeFloat bnkTest,t+3,Rnd(-.999,.999)<br>
+Next<br>
+<br>
+; Open a file to write to<br>
+fileBank=WriteFile("test.bnk")<br>
+; Write the bank to the file<br>
+WriteBytes  bnkTest,fileBank,0,50<br>
+; Close it<br>
+CloseFile  fileBank<br>
+<br>
+; Free the bank<br>
+FreeBank bnkTest<br>
+<br>
+; Make a new one<br>
+bnkTest=CreateBank(500)<br>
+<br>
+; Open the file to read from<br>
+fileBank=OpenFile("test.bnk")<br>
+; Write the bank to the file<br>
+ReadBytes  bnkTest,fileBank,0,50<br>
+; Close it<br>
+CloseFile  fileBank<br>
+<br>
+; Write back the results!<br>
+For t = 1 To 50<br>
+Print PeekByte (bnkTest,t)<br>
+Print PeekInt (bnkTest,t+1)<br>
+Print PeekShort (bnkTest,t+2)<br>
+Print PeekFloat (bnkTest,t+3)<br>
+Next<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

@@ -1,0 +1,50 @@
+<html><head><title>Command: ReadLine$ </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;ReadLine$ (filehandle|stream)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Reads a single line of text from an open file (or stream).</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>filehandle|stream = a valid variable set with the OpenFile, ReadFile command, or OpenTCPStream (v1.52+). The value returned is a text string.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Once you've opened a disk file (or stream) for reading, use this command to read a whole line of text from a text file or stream.  Each line of text is returned as a string variable. This function can be used to read plain text files.<br>
+<br>
+Characters are read from the input file until an "end-of-line" mark is found.  An "end-of-line" can be a single carriage return (0Dh) or a single linefeed (0Ah) or carriage return followed by a linefeed (0Dh, 0Ah). Reading beyond the end of file does not result in an error, but each value 
+read will be a zero length string.<br>
+<br>
+ReadLine$ returns all chars except chr$(13)/chr$(10).<br>
+<br>
+Streams can only be used in Blitz Basic v1.52 or greater.<br>
+<br>
+See also:<br>
+<a href='ReadByte.htm'>ReadByte</a>, <a href='ReadShort.htm'>ReadShort</a>, <a href='ReadInt.htm'>ReadInt</a>, <a href='ReadFloat.htm'>ReadFloat</a>, <a href='ReadString$.htm'>ReadString$</a>, <a href='ReadLine$.htm'>ReadLine$</a>, <a href='WriteByte.htm'>WriteByte</a>, <a href='WriteShort.htm'>WriteShort</a>, <a href='WriteInt.htm'>WriteInt</a>, <a href='WriteFloat.htm'>WriteFloat</a>, <a href='WriteShort.htm'>WriteShort</a>, <a href='WriteString.htm'>WriteString</a>, <a href='WriteLine.htm'>WriteLine</a>, <a href='ReadFile.htm'>ReadFile</a>, <a href='WriteFile.htm'>WriteFile</a>, <a href='OpenFile.htm'>OpenFile</a>, <a href='CloseFile.htm'>CloseFile</a>, <a href='Eof.htm'>Eof</a>, <a href='FileType.htm'>FileType</a>, <a href='FilePos.htm'>FilePos</a>, <a href='SeekFile.htm'>SeekFile</a>.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Reading and writing a file using ReadLine$ and WriteLine functions<br>
+<br>
+; Initialise some variables for the example<br>
+String1$ = "Line 1 is short"<br>
+String2$ = "Line 2 is a longer line but they can be much longer"<br>
+String3$ = "Line 3 is made up "<br>
+String4$ = "of two parts joined together."<br>
+<br>
+; Open a file to write to<br>
+fileout = WriteFile("mydata.txt")<br>
+<br>
+; Write the information to the file<br>
+WriteLine( fileout, String1 )<br>
+WriteLine( fileout, String2 )<br>
+WriteLine( fileout, String3 + String4)<br>
+WriteLine( fileout, "Just to show you don't have to use variables" )<br>
+<br>
+; Close the file<br>
+CloseFile( fileout )<br>
+<br>
+; Open the file to Read<br>
+filein = ReadFile("mydata.txt")<br>
+<br>
+Read1$ = ReadLine( filein )<br>
+Read2$ = ReadLine$( filein )<br>
+Read3$ = ReadLine$( filein )<br>
+Read4$ = ReadLine$( filein )<br>
+<br>
+; Close the file once reading is finished<br>
+CloseFile( fileout )<br>
+<br>
+Print "Lines of text read from file - mydata.txt "<br>
+Print<br>
+Print Read1<br>
+Print Read2<br>
+Print Read3<br>
+Print Read4<br>
+<br>
+WaitKey()<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

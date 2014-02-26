@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>Command: TFormedY</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;TFormedY&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>n/a</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Returns the resulting y offset of the last transformation function called: TFormPoint, TFormVector and TFormNormal.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/TFormPoint.bb">Example (using TFormPoint):</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>Graphics3D 640, 480<BR><BR>cam = CreateCamera ()<BR>MoveEntity cam, 5, 0, 
+-5<BR><BR>box = CreateCube ()<BR>MoveEntity box, 5, 0, 0<BR><BR>Repeat<BR><BR>If 
+KeyDown (203) TurnEntity cam, 0, 0.5, 0<BR>If KeyDown (205) TurnEntity cam, 0, 
+-0.5, 0<BR>If KeyDown (200) MoveEntity cam, 0, 0, 0.1<BR>If KeyDown (208) 
+MoveEntity cam, 0, 0, -0.1<BR><BR>bx# = EntityX (box)<BR>by# = EntityY 
+(box)<BR>bz# = EntityZ (box)<BR><BR>cx# = EntityX (cam, 1)<BR>cy# = EntityY 
+(cam, 1)<BR>cz# = EntityZ (cam, 1)<BR><BR>TFormPoint 0, 0, 0, cam, box<BR>xdist# 
+= TFormedX ()<BR>ydist# = TFormedY ()<BR>zdist# = TFormedZ 
+()<BR><BR>UpdateWorld<BR>RenderWorld<BR><BR>Text 0, 20, "Box's global 
+position"<BR>Text 20, 40, "x: " + bx<BR>Text 20, 60, "y: " + by<BR>Text 20, 80, 
+"z: " + bz<BR><BR>Text 0, 120, "Camera's global position"<BR>Text 20, 140, "x: " 
++ cx<BR>Text 20, 160, "y: " + cy<BR>Text 20, 180, "z: " + cz<BR><BR>Text 0, 220, 
+"Camera position relative to box"<BR>Text 20, 240, "x: " + xdist<BR>Text 20, 
+260, "y: " + ydist<BR>Text 20, 280, "z: " + zdist<BR><BR>Flip<BR><BR>Until 
+KeyHit (1)<BR><BR>End
+</td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Command: CreateSprite</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;CreateSprite ( [parent] )&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>parent (optional) - parent entity of sprite</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Creates a sprite entity and returns its handle.<p>The sprite will be 
+    positioned at 0,0,0 and extend from 1,-1 to +1,+1.</p>
+    <p>A sprite entity is a flat, square (which can be made rectangular by 
+    scaling it) 3D object.</p>
+    <p>Sprites have two real strengths. The first is that they consist of only 
+    two polygons; meaning you can use many of them at once. This makes them 
+    ideal for particle effects and 2D-using-3D games where you want lots of 
+    sprites on-screen at once.</p>
+    <p>Secondly, sprites can be assigned a view mode using
+    <a href="SpriteViewMode.htm">SpriteViewMode</a>. By default this view mode 
+    is set to 1, which means the sprite will always face the camera. So no 
+    matter what the orientation of the camera is relative to the sprite, you 
+    will never actually notice that they are flat; by giving them a spherical 
+    texture, you can make them appear to look no different than a normal sphere.</p>
+    <font SIZE="2">
+    <p>The optional parent parameter allow you to specify a parent entity for 
+    the sprite so that when the parent is moved the child sprite will move with 
+    it. However, this relationship is one way; applying movement commands to the 
+    child will not affect the parent.</p>
+    <p>Specifying a parent entity will still result in the sprite being created 
+    at position 0,0,0 rather than at the parent entity's position.</p>
+    </font>
+    <p>See also: <a href="LoadSprite.htm">LoadSprite</a>.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/CreateSprite.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>None.</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

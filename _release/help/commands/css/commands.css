@@ -1,0 +1,11 @@
+.Command {  font-family: Verdana, Arial; font-size: small; font-weight: bold; color: #ffffff; background-color: #11AABB; border: solid; border-width: 0px 0px 0px 0pt; border-color: black black black #FFFFFF}
+
+body {  font-family: Verdana, Arial; font-size: x-small; color: #000000; background-color: #005070}
+
+.header {  font-family: Verdana, Arial; font-size: x-small; font-weight: bold; color: #00ff00}
+
+td {  font-family: Verdana, Arial; font-size: x-small; color: #ffffff; background-color: #117799; border: solid; border-width: 0px 0px 0px 0pt; border-color: black black black #FFFFFF}
+
+a:link {color: #ffff00; text-decoration: none}
+a:visited {color: #ffff00; text-decoration: none}
+a:hover {color: #00ff00; text-decoration: underline}

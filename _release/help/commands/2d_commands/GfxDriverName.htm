@@ -1,0 +1,22 @@
+<html><head><title>Command: GfxDriverName$ </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;GfxDriverName$ (index)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns the title of a graphic driver.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>index = index number obtained with CountGfxDrivers command<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Some computers may have more than one video card and/or video driver installed (a good example is a computer system with a primary video card and a Voodoo2 or other pass-through card).<br>
+<br>
+Once you know how many drivers there are using <a href='CountGfxDrivers().htm'>CountGfxDrivers()</a>, you can iterate through them with this command and display them for the user to choose from.  Once the user has chosen (or you decide), you can set the graphics driver with <a href='SetGfxDriver.htm'>SetGfxDriver</a>.<br>
+<br>
+Normally, this won't be necessary with 2D programming.<br></td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; GfxDriver Examples<br>
+<br>
+; Count how many drivers there are<br>
+totalDrivers=CountGfxDrivers()<br>
+Print "Choose a driver to use:"<br>
+<br>
+; Go through them all and print their names (most people will have only 1)<br>
+For t = 1 To totalDrivers<br>
+Print t+") " + GfxDriverName$(t)<br>
+Next<br>
+<br>
+; Let the user choose one<br>
+driver=Input("Enter Selection:")<br>
+<br>
+; Set the driver!<br>
+SetGfxDriver driver<br>
+Print "Your driver has been selected!"<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

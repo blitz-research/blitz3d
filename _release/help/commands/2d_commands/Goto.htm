@@ -1,0 +1,13 @@
+<html><head><title>Command: Goto </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Goto label&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Branches execution of a program to a designated label.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>label = any valid exisiting label</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This branches the flow of the program to a designated label. With the use of Functions inside of Blitz, it isn't very practical to use Gotos, but you may still find it useful.  If you require the need to return execution back to the calling statement, you may use <a href='Gosub.htm'>Gosub</a> instead.  See the example.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Print "The program starts ..."<br>
+Goto label1<br>
+Print "This line never gets printed .."<br>
+End<br>
+<br>
+.label1<br>
+Print "We just jumped here!"<br>
+<br>
+; wait for ESC key before ending<br>
+While Not KeyHit(1) <br>
+Wend<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

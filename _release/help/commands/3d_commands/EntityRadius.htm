@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>Command: EntityRadius</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;EntityRadius entity,radius#&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>entity -  entity handle<br>
+    radius# - radius of entity's collision sphere</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Sets the radius of an entity's collision sphere.<p>An entity radius 
+    should be set for all entities involved in spherical collisions, which is 
+    all source entities (as collisions are always sphere-to-something), and 
+    whatever destination entities are involved in sphere-to-sphere collisions 
+    (collision method No.1).</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/EntityRadius.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; EntityRadius Example<br>
+    ; --------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    light=CreateLight()<br>
+    <br>
+    sphere=CreateSphere( 32 )<br>
+    PositionEntity sphere,-2,0,5<br>
+    <br>
+    cone=CreateCone( 32 )<br>
+    EntityType cone,type_cone<br>
+    PositionEntity cone,2,0,5<br>
+    <br>
+    ; Set collision type values<br>
+    type_sphere=1<br>
+    type_cone=2<br>
+    <br>
+    ; Set sphere radius value<br>
+    sphere_radius#=1<br>
+    <br>
+    ; Set  sphere and cone entity types<br>
+    EntityType sphere,type_sphere<br>
+    EntityType cone,type_cone<br>
+    <br>
+    ; Enable collisions between type_sphere and type_cone, with sphere-&gt;polygon 
+    method and slide response<br>
+    Collisions type_sphere,type_cone,2,2<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    x#=0<br>
+    y#=0<br>
+    z#=0<br>
+    <br>
+    If KeyDown( 203 )=True Then x#=-0.1<br>
+    If KeyDown( 205 )=True Then x#=0.1<br>
+    If KeyDown( 208 )=True Then y#=-0.1<br>
+    If KeyDown( 200 )=True Then y#=0.1<br>
+    If KeyDown( 44 )=True Then z#=-0.1<br>
+    If KeyDown( 30 )=True Then z#=0.1<br>
+    <br>
+    MoveEntity sphere,x#,y#,z#<br>
+    <br>
+    ; If square brackets keys pressed then change sphere radius value<br>
+    If KeyDown( 26 )=True Then sphere_radius#=sphere_radius#-0.1<br>
+    If KeyDown( 27 )=True Then sphere_radius#=sphere_radius#+0.1<br>
+    <br>
+    ; Set entity radius of sphere<br>
+    EntityRadius sphere,sphere_radius#<br>
+    <br>
+    ; Perform collision checking<br>
+    UpdateWorld<br>
+    <br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Use cursor/A/Z keys to move sphere&quot;<br>
+    Text 0,20,&quot;Press [ or ] to change EntityRadius value&quot;<br>
+    Text 0,40,&quot;EntityRadius sphere,&quot;+sphere_radius<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

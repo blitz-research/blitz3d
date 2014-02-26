@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>Command: ClearCollisions</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;ClearCollisions&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>None.</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Clears the collision information list.<p>Whenever you use the
+    <a href="Collisions.htm">Collisions</a> command to enable collisions between 
+    two different entity types, information is added to the collision list. 
+    This command clears that list, so that no collisions will be detected until 
+    the Collisions command is used again.</p>
+    <p>The command will not clear entity collision information. For example, 
+    entity radius, type etc.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/ClearCollisions.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; ClearCollisions Example<br>
+    ; -----------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    light=CreateLight()<br>
+    <br>
+    sphere=CreateSphere( 32 )<br>
+    PositionEntity sphere,-2,0,5<br>
+    <br>
+    cone=CreateCone( 32 )<br>
+    EntityType cone,type_cone<br>
+    PositionEntity cone,2,0,5<br>
+    <br>
+    ; Set collision type values<br>
+    type_sphere=1<br>
+    type_cone=2<br>
+    <br>
+    ; Set up sphere collision data<br>
+    EntityRadius sphere,1<br>
+    EntityType sphere,type_sphere<br>
+    <br>
+    ; Set up cone collision data<br>
+    EntityType cone,type_cone<br>
+    <br>
+    ; Enable collisions between type_sphere and type_cone, with sphere-&gt;polygon 
+    method and slide response<br>
+    Collisions type_sphere,type_cone,2,2<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    x#=0<br>
+    y#=0<br>
+    z#=0<br>
+    <br>
+    If KeyDown( 203 )=True Then x#=-0.1<br>
+    If KeyDown( 205 )=True Then x#=0.1<br>
+    If KeyDown( 208 )=True Then y#=-0.1<br>
+    If KeyDown( 200 )=True Then y#=0.1<br>
+    If KeyDown( 44 )=True Then z#=-0.1<br>
+    If KeyDown( 30 )=True Then z#=0.1<br>
+    <br>
+    MoveEntity sphere,x#,y#,z#<br>
+    <br>
+    ; If spacebar pressed then clear collisions <br>
+    If KeyHit( 57 )=True Then ClearCollisions<br>
+    <br>
+    ; Perform collision checking<br>
+    UpdateWorld<br>
+    <br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Use cursor/A/Z keys to move sphere&quot;<br>
+    Text 0,20,&quot;Press spacebar to use ClearCollisions command&quot;<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

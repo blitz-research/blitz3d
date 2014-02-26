@@ -1,0 +1,101 @@
+<html>
+<head>
+<title>Command: CreateBrush</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;CreateBrush ( [red#][,green#][,blue#] )&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>red# (optional) - brush red value<br>
+    green# (optional) - brush green value<br>
+    blue# (optional) - brush blue value</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Creates a brush  and returns a brush handle.<p>The optional green, red and blue values 
+    allow you to set the colour of the brush. Values should be in the range 
+    0-255. If omitted the values default to 255.<br>
+    <br>
+    A brush is a collection of properties such as Colour, Alpha, Shininess, 
+    Texture etc that are all stored as part of the brush. Then, all these properties can 
+    be applied to an entity, mesh or surface at once just by using
+    <a href="PaintEntity.htm">PaintEntity</a>, <a href="PaintMesh.htm">PaintMesh</a> 
+    or <a href="PaintSurface.htm">PaintSurface</a>.</p>
+    <p>When creating your own 
+    mesh, if you wish for certain surfaces to look differently from one 
+    another, then you will need to use brushes to paint  individual surfaces. Using commands such as EntityColor, EntityAlpha will apply the effect to all 
+    surfaces at once, which may not be what you wish to achieve.<p>See also:
+    <a href="LoadBrush.htm">LoadBrush.</a></td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/CreateBrush.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; CreateBrush Example<br>
+    ; -------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    cube=CreateCube()<br>
+    PositionEntity cube,0,0,5<br>
+    <br>
+    ; Load texture<br>
+    tex=LoadTexture(&quot;../media/b3dlogo.jpg&quot;)<br>
+    <br>
+    ; Create brush<br>
+    brush=CreateBrush()<br>
+    <br>
+    ; Apply texture to brush<br>
+    BrushTexture brush,tex<br>
+    <br>
+    ; And some shininess<br>
+    BrushShininess brush,1 <br>
+    <br>
+    ; Paint mesh with brush<br>
+    PaintMesh cube,brush<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    pitch#=0<br>
+    yaw#=0<br>
+    roll#=0<br>
+    <br>
+    If KeyDown( 208 )=True Then pitch#=-1 <br>
+    If KeyDown( 200 )=True Then pitch#=1<br>
+    If KeyDown( 203 )=True Then yaw#=-1<br>
+    If KeyDown( 205 )=True Then yaw#=1<br>
+    If KeyDown( 45 )=True Then roll#=-1<br>
+    If KeyDown( 44 )=True Then roll#=1<br>
+    <br>
+    TurnEntity cube,pitch#,yaw#,roll#<br>
+    <br>
+    RenderWorld<br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<html><head><title>Command: FreeImage </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;FreeImage handle&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Removes the designated image from memory.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>handle=variable that holds the image handle of a previously loaded image</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>When you are done with an image, use this command to delete the image from memory and free up that memory for other use.  Good housekeeping.  Get in the habit!</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; FreeImage command<br>
+<br>
+; Global, as always, for graphics<br>
+Global gfxPlayer<br>
+<br>
+; Enter graphics mode and start double buffering<br>
+Graphics 640,480,16<br>
+SetBuffer BackBuffer()<br>
+<br>
+; Load the image-assign the handle to gfxPlayer<br>
+gfxPlayer=LoadImage("player.bmp")<br>
+<br>
+; draw the image at random until ESC pressed<br>
+While Not KeyHit(1)<br>
+Cls<br>
+DrawImage gfxPlayer,Rnd(640),Rnd(480)<br>
+Flip<br>
+Wend<br>
+<br>
+; Erase the image from memory!<br>
+FreeImage gfxPlayer<br>
+</td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

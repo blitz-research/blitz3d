@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>Command: Dither</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;Dither enable&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>enable - true to enable dithering, false to disable. Defaults to true.</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Enables or disables hardware dithering.<br>
+<br>
+Hardware dithering is useful when running games in 16-bit colour mode. Due to 
+the fact that 16-bit mode offers less colours than the human eye can 
+distinguish, separate bands of colour are often noticeable on shaded objects. 
+However, hardware dithering will dither the entire screen to give the impression 
+that more colours are being used than is actually the case, and generally looks 
+a lot better.<br>
+<br>
+Due to the fact that 24-bit and 32-bit offer more colours as the human eye can 
+distinguish, hardware dithering is made pretty much redundant in those modes.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/Dither.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; Dither Example<br>
+    ; --------------<br>
+    <br>
+    Graphics3D 640,480,16<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    light=CreateLight()<br>
+    <br>
+    ; Rotate light so that it creates maximum shading effect on sphere<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    sphere=CreateSphere( 32 )<br>
+    PositionEntity sphere,0,0,2<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    ; Toggle dither enable value between true and false when spacebar is pressed<br>
+    If KeyHit( 57 )=True Then enable=1-enable<br>
+    <br>
+    ; Enable/disable hardware dithering<br>
+    Dither enable<br>
+    <br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Press spacebar to toggle between Dither True/False&quot;<br>
+    If enable=False Then Text 0,20,&quot;Dither False&quot; Else Text 0,20,&quot;Dither True&quot;<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

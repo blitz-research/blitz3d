@@ -1,0 +1,15 @@
+<html><head><title>Command: FreeTimer </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;FreeTimer (timer_variable)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Destroys the timer specified and frees up its memory.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>timer = any valid timer variable created with the CreateTimer command.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command will destroy a timer variable created with the with the <a href='CreateTimer.htm'>CreateTimer</a> command and free the memory it was using.  It is a good practice to destroy elements in your game you are no longer using.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Create the timer to track speed<br>
+frameTimer=CreateTimer(60)<br>
+<br>
+; Your main screen draw loop<br>
+While Not KeyHit(1)<br>
+WaitTimer(frameTimer) ; Pause until the timer reaches 60<br>
+Cls<br>
+; Draw your screen stuff<br>
+Flip<br>
+Wend<br>
+<br>
+; Kill the timer<br>
+FreeTimer(frameTimer)<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

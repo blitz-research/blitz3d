@@ -1,0 +1,23 @@
+<html><head><title>Command: Shr </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Shr repetitions&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Performs binary shift right.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>repetitions = number of shifts to make right</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This performs a left binary shift on the value the specified number of times.  This basically is a faster method of dividing the value exponentially.  By shifting right once, you are dividing the value by 2.  By shifting right twice, you divide by 4, etc.<br>
+<br>
+The usefulness of this command is basically faster math execution.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; shl, shr, sar examples<br>
+<br>
+value = 100<br>
+<br>
+; multiple x 2<br>
+Print "Shift 1 bit left; Value = " + value Shl 1<br>
+; multiple x 4<br>
+Print "Shift 2 bits left; Value = " + value Shl 2<br>
+; multiple x 16<br>
+Print "Shift 4 bits left; Value = " + value Shl 4<br>
+; divide by 2<br>
+Print "Shift 1 bit right; Value = " + value Shr 1<br>
+; divide by 4<br>
+Print "Shift 2 bits right; Value = " + value Shr 2<br>
+; divide by 16<br>
+Print "Shift 4 bits right; Value = " + value Shr 4<br>
+<br>
+Print "Shift by SAR 4 times = " + value Sar 4<br>
+<br>
+WaitKey()<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

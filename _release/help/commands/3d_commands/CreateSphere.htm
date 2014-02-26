@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>Command: CreateSphere</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;CreateSphere ( [segments][,parent] )&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>segments (optional) - sphere detail. Defaults to 8.<br>
+    parent (optional) -  parent entity of sphere</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Creates a sphere mesh/entity and returns its handle.<p>The sphere will 
+    be centred 
+    at 0,0,0 and will have a radius of 1.</p>
+    <p>The segments value must be in the range 2-100 inclusive, although this is 
+    only checked in debug mode. A common mistake 
+    is to leave debug mode off and specify the parent parameter 
+    (usually an eight digit memory address) in the place of the segments value. 
+    As the amount of polygons used to create a sphere is exponentially 
+    proportional to the segments value, this will result in Blitz trying to create a sphere 
+    with unimaginable amounts of polygons! Depending on how unlucky you are, 
+    your computer will then crash.<p>Example segments values:<br>
+    8: 224 polygons - bare minimum amount of polygons for a sphere<br>
+    16: 960 polygons - smooth looking sphere at medium-high distances<br>
+    32: 3968 polygons - smooth sphere at close distances<font SIZE="2"><p>The 
+    optional parent parameter allow you to specify a parent entity for the 
+    sphere so that when the parent is moved the child sphere will move with it. 
+    However, this relationship is one way; applying movement commands to the 
+    child will not affect the parent.</p>
+    <p>Specifying a parent entity will still result in the sphere being created 
+    at position 0,0,0 rather than at the parent entity's position.</p>
+    <p>See also:
+    <a href="CreateCube.htm">CreateCube</a>, <a href="CreateCylinder.htm">
+    CreateCylinder</a>, <a href="CreateCone.htm">CreateCone</a>.</font></td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/CreateSphere.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; CreateSphere Example<br>
+    ; --------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    ; Create sphere<br>
+    sphere=CreateSphere()<br>
+    <br>
+    PositionEntity sphere,0,0,5<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    RenderWorld<br>
+    Flip<br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

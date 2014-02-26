@@ -1,0 +1,114 @@
+<html>
+<head>
+<title>Command: LoadTexture</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;LoadTexture ( file$[,flags] )&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>file$ - filename of image file to be used as texture<br>
+    <br>
+    flags (optional) - texture flag:<br>
+    1: Color<br>
+    2: Alpha<br>
+    4: Masked<br>
+    8: Mipmapped<br>
+    16: Clamp U<br>
+    32: Clamp V<br>
+    64: Spherical reflection map</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Load a texture from an image file and returns the texture's handle.<br>
+    <br>
+    The optional flags parameter allows 
+    you to apply certain effects to the texture. Flags can be added to combine 
+    two or more effects, e.g. 3 (1+2) = texture with colour and alpha maps.<p>Here 
+    are quick descriptions of the flags:<br>
+    1: Color - colour map, what you see is what you get.<br>
+    2: Alpha - alpha map. If an image contains an alpha map, this will be used 
+    to make certain areas of the texture transparent. Otherwise, the colour map 
+    will be used as an alpha map. With alpha maps, the dark areas always equal 
+    hihg-transparency, light areas equal low-transparency.<br>
+    4: Masked - all areas of a texture coloured 0,0,0 will not be drawn to the 
+    screen.<br>
+    8: Mipmapped - low detail versions of the texture will be used at high 
+    distance. Results in a smooth, blurred look.<br>
+    16: Clamp u - clamp u texture co-ordinates. Prevents texture wrapping.<br>
+    32: Clamp v - clamp v texture co-ordinates. Prevents texture wrapping.<br>
+    64: Spherical reflection map - environment mapping, for that shiny, teapot 
+    look.<br>
+    <br>
+    Something to consider when applying texture flags to loaded textures is that 
+    the texture may have already had certain flags applied to it via the
+    <a href="TextureFilter.htm">TextureFilter</a> command. The default for the
+    <a href="TextureFilter.htm">TextureFilter</a> command is 9 (1+8), which is a 
+    coloured, mipmapped texture. This cannot be overridden via the flags 
+    parameter of LoadTexture command - if you wish for the filters to be removed 
+    you will need to use the <a href="ClearTextureFilters.htm">
+    ClearTextureFilters</a> command.<p>See also: <a href="CreateTexture.htm">CreateTexture</a>, <a href="LoadAnimTexture.htm">
+    LoadAnimTexture</a>.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/LoadTexture.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; LoadTexture Example<br>
+    ; -------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    cube=CreateCube()<br>
+    PositionEntity cube,0,0,5<br>
+    <br>
+    ; Load texture<br>
+    tex=LoadTexture(&quot;../media/b3dlogo.jpg&quot;)<br>
+    <br>
+    ; Texture cube with texture<br>
+    EntityTexture cube,tex<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    pitch#=0<br>
+    yaw#=0<br>
+    roll#=0<br>
+    <br>
+    If KeyDown( 208 )=True Then pitch#=-1 <br>
+    If KeyDown( 200 )=True Then pitch#=1<br>
+    If KeyDown( 203 )=True Then yaw#=-1<br>
+    If KeyDown( 205 )=True Then yaw#=1<br>
+    If KeyDown( 45 )=True Then roll#=-1<br>
+    If KeyDown( 44 )=True Then roll#=1<br>
+    <br>
+    TurnEntity cube,pitch#,yaw#,roll#<br>
+    <br>
+    RenderWorld<br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

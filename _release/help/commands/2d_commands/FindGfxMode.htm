@@ -1,0 +1,18 @@
+<html><head><title>Command: FindGfxMode </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;FindGfxMode (width,height,depth) &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns the mode number of a graphic mode meeting your criteria.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>width = width, in pixels (i.e. 640)<br>
+height = height, in pixels (i.e. 480)<br>
+depth = color depth (i.e. 16, 24, 32)<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Use this command to determine which of the user's graphic card mode supports the parameters you supply.  You can get a full detailed list of the video card modes - see <a href='CountGFXModes().htm'>CountGFXModes()</a>.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; FindGFXMode example<br>
+<br>
+; change values to see different mode numbers<br>
+mode=FindGfxMode(800,600,16) <br>
+<br>
+; If there is a mode, tell user<br>
+If mode > 0 Then <br>
+Print "The mode you requested is: " + mode<br>
+Else<br>
+Print "That mode doesn't exist for this video card."<br>
+End If<br>
+<br>
+; Wait for ESC press from user<br>
+While Not KeyHit(1)<br>
+Wend<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

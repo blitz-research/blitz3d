@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>Command: CreateTexture</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;CreateTexture ( 
+width,height[,flags][,frames] )&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>width - width of texture<br>
+    height - height of texture<br>
+    <br>
+    flags (optional) - texture flag<br>
+    1: Color<br>
+    2: Alpha<br>
+    4: Masked<br>
+    8: Mipmapped<br>
+    16: Clamp U<br>
+    32: Clamp V<br>
+    64: Spherical reflection map<br>
+    <br>
+    frames (optional) - no of frames texture will have</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Creates a texture and returns its handle.<p>Width and height are 
+    the size of the texture. Note that the actual texture size may be different 
+    from the width and height requested, as different types of 3D hardware 
+    support different sizes of texture.<p>The optional flags parameter allows 
+    you to apply certain effects to the texture. Flags can be added to combine 
+    two or more effects, eg. 3 (1+2) = texture with color and alpha maps.<p>Here 
+    are quick descriptions of the flags:<br>
+    1: Color - color map, what you see is what you get.<br>
+    2: Alpha - alpha map. If an image contains an alpha map, this will be used 
+    to make certain areas of the texture transparent. Otherwise, the color map 
+    will be used as an alpha map. With alpha maps, the dark areas always equal 
+    hihg-transparency, light areas equal low-transparency.<br>
+    4: Masked - all areas of a texture coloured 0,0,0 will not be drawn to the 
+    screen.<br>
+    8: Mipmapped - low detail versions of the texture will be used at high 
+    distance. Results in a smooth, blurred look.<br>
+    16: Clamp u - clamp u texture co-ordinates. Prevents texture wrapping.<br>
+    32: Clamp v - clamp v texture co-ordiantes. Prevents texture wrapping.<br>
+    64: Spherical reflection map - environment mapping, for that shiny, teapot 
+    look.<p>Once you have created a texture, use
+    <a href="../2d_commands/SetBuffer.htm">SetBuffer</a>
+    <a href="TextureBuffer.htm">TextureBuffer</a> to draw to it. However, to 
+    display 2D graphics on a texture, it is usually quicker to draw to an image and then 
+    copy it to the texturebuffer, and to display 3D graphics on a texture, your 
+    only option is to copy from the backbuffer to the texturebuffer.<p>See also:
+    <a href="LoadTexture.htm">LoadTexture</a>, <a href="LoadAnimTexture.htm">
+    LoadAnimTexture</a>.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/CreateTexture.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; CreateTexture Example<br>
+    ; ---------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    cube=CreateCube()<br>
+    PositionEntity cube,0,0,5<br>
+    <br>
+    ; Create texture of size 256x256<br>
+    tex=CreateTexture(256,256)<br>
+    <br>
+    ; Set buffer - texture buffer<br>
+    SetBuffer TextureBuffer(tex)<br>
+    <br>
+    ; Clear texture buffer with background white color<br>
+    ClsColor 255,255,255<br>
+    Cls<br>
+    <br>
+    ; Draw text on texture<br>
+    font=LoadFont(&quot;arial&quot;,24)<br>
+    SetFont font<br>
+    Color 0,0,0<br>
+    Text 0,0,&quot;This texture&quot;<br>
+    Text 0,40,&quot;was created using&quot; : Color 0,0,255<br>
+    Text 0,80,&quot;CreateTexture()&quot; : Color 0,0,0<br>
+    Text 0,120,&quot;and drawn to using&quot; : Color 0,0,255<br>
+    Text 0,160,&quot;SetBuffer TextureBuffer()&quot;<br>
+    <br>
+    ; Texture cube with texture<br>
+    EntityTexture cube,tex<br>
+    <br>
+    ; Set buffer - backbuffer<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    pitch#=0<br>
+    yaw#=0<br>
+    roll#=0<br>
+    <br>
+    If KeyDown( 208 )=True Then pitch#=-1 <br>
+    If KeyDown( 200 )=True Then pitch#=1<br>
+    If KeyDown( 203 )=True Then yaw#=-1<br>
+    If KeyDown( 205 )=True Then yaw#=1<br>
+    If KeyDown( 45 )=True Then roll#=-1<br>
+    If KeyDown( 44 )=True Then roll#=1<br>
+    <br>
+    TurnEntity cube,pitch#,yaw#,roll#<br>
+    <br>
+    RenderWorld<br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<html>
+<head>
+<title>Command: MoveEntity</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;MoveEntity entity,x#,y#,z#&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>entity - name of entity to be moved<br>
+x# - x amount that entity will be moved by<br>
+y# - y amount that entity will be moved by<br>
+z# - z amount that entity will be moved by</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Moves an entity relative to its current position and orientation.<br>
+<br>
+What this means is that an entity will move in whatever direction it is facing. 
+So for example if you have an game character is upright when first loaded into 
+Blitz3D and it remains upright (i.e. turns left or right only), then moving it by 
+a z amount will always see it move forward or backward, moving it by a y amount 
+will always see it move up or down, and moving it by an x 
+amount will always see it strafe.<p>See also: <a href="TranslateEntity.htm">
+    TranslateEntity</a>, <a href="PositionEntity.htm">PositionEntity</a>.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/MoveEntity.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; MoveEntity Example<br>
+    ; ------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    light=CreateLight()<br>
+    <br>
+    cone=CreateCone( 32 )<br>
+    <br>
+    ; Move cone in front of camera, so we can see it to begin with<br>
+    MoveEntity cone,0,0,10 <br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    ; Reset movement values - otherwise, the cone will not stop!<br>
+    x#=0<br>
+    y#=0<br>
+    z#=0<br>
+    <br>
+    ; Change rotation values depending on the key pressed<br>
+    If KeyDown( 203 )=True Then x#=-0.1<br>
+    If KeyDown( 205 )=True Then x#=0.1<br>
+    If KeyDown( 208 )=True Then y#=-0.1<br>
+    If KeyDown( 200 )=True Then y#=0.1<br>
+    If KeyDown( 44 )=True Then z#=-0.1<br>
+    If KeyDown( 30 )=True Then z#=0.1<br>
+    <br>
+    ; Move cone using movement values<br>
+    MoveEntity cone,x#,y#,z#<br>
+    <br>
+    ; If spacebar pressed then rotate cone by random amount<br>
+    If KeyHit( 57 )=True Then RotateEntity cone,Rnd( 0,360 ),Rnd( 0,360 ),Rnd( 
+    0,360 )<br>
+    <br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Use cursor/A/Z keys to move cone, spacebar to rotate cone by random 
+    amount&quot;<br>
+    Text 0,20,&quot;X Movement: &quot;+x#<br>
+    Text 0,40,&quot;Y Movement: &quot;+y# <br>
+    Text 0,60,&quot;Z Movement: &quot;+z#<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

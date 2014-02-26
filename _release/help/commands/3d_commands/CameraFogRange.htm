@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>Command: CameraFogRange</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;CameraFogRange camera,near#,far#&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>camera - camera handle<br>
+    near# - distance in front of camera that fog starts<br>
+    far# - distance in front of camera that fog ends</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Sets camera fog range.<p>The near parameter specifies at what distance 
+    in front of the camera that the fogging effect will start; all 3D object 
+    before this point will not be faded.</p>
+    <p>The far parameter specifies at what distance in front of the camera that 
+    the fogging effect will end; all 3D objects beyond this point will be 
+    completely faded out.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/CameraFogRange.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; CameraFogRange Example<br>
+    ; ----------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    PositionEntity camera,0,1,0<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    plane=CreatePlane()<br>
+    grass_tex=LoadTexture( &quot;media/mossyground.bmp&quot; )<br>
+    EntityTexture plane,grass_tex<br>
+    <br>
+    ; Set camera fog to 1 (linear fog)<br>
+    CameraFogMode camera,1<br>
+    <br>
+    ; Set intial fog range value<br>
+    fog_range=10<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    ; If square brackets keys pressed then change fog range value<br>
+    If KeyDown( 26 )=True Then fog_range=fog_range-1<br>
+    If KeyDown( 27 )=True Then fog_range=fog_range+1<br>
+    <br>
+    ; Set camera fog range<br>
+    CameraFogRange camera,1,fog_range<br>
+    <br>
+    If KeyDown( 205 )=True Then TurnEntity camera,0,-1,0<br>
+    If KeyDown( 203 )=True Then TurnEntity camera,0,1,0<br>
+    If KeyDown( 208 )=True Then MoveEntity camera,0,0,-0.05<br>
+    If KeyDown( 200 )=True Then MoveEntity camera,0,0,0.05<br>
+    <br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Use cursor keys to move about the infinite plane&quot;<br>
+    Text 0,20,&quot;Press [ or ] to change CameraFogRange value&quot;<br>
+    Text 0,40,&quot;CameraFogRange camera,1,&quot;+fog_range<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

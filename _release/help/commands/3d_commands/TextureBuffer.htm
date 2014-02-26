@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>Command: TextureBuffer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;TextureBuffer ( texture[,frame] )&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>texture - texture handle<br>
+    frame (optional) - texture frame</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Returns the handle of a texture's drawing buffer.<p>This can be used 
+    with <a href="../2d_commands/SetBuffer.htm">SetBuffer</a> to perform 2D drawing operations to 
+    the texture, 
+    although it's usually faster to draw  to an image, and then copy the 
+    image buffer across to the texture buffer using
+    <a href="../2d_commands/CopyRect.htm">CopyRect</a>.</p>
+    <p>You cannot render 3D to a texture buffer; 3D can only be rendered to the 
+    back buffer. To display 3D graphics on a texture, use
+    <a href="../2d_commands/CopyRect.htm">CopyRect</a> to copy the contents of 
+    the back buffer to a texture buffer.</p>
+    </td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/TextureBuffer.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; TextureBuffer Example<br>
+    ; ---------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    cube=CreateCube()<br>
+    PositionEntity cube,0,0,5<br>
+    <br>
+    ; Create texture of size 256x256<br>
+    tex=CreateTexture(256,256)<br>
+    <br>
+    ; Set buffer - texture buffer<br>
+    SetBuffer TextureBuffer(tex)<br>
+    <br>
+    ; Clear texture buffer with background white color<br>
+    ClsColor 255,255,255<br>
+    Cls<br>
+    <br>
+    ; Draw text on texture<br>
+    font=LoadFont(&quot;arial&quot;,24)<br>
+    SetFont font<br>
+    Color 0,0,0<br>
+    Text 0,0,&quot;This texture&quot;<br>
+    Text 0,40,&quot;was created using&quot; : Color 0,0,255<br>
+    Text 0,80,&quot;CreateTexture()&quot; : Color 0,0,0<br>
+    Text 0,120,&quot;and drawn to using&quot; : Color 0,0,255<br>
+    Text 0,160,&quot;SetBuffer TextureBuffer()&quot;<br>
+    <br>
+    ; Texture cube with texture<br>
+    EntityTexture cube,tex<br>
+    <br>
+    ; Set buffer - backbuffer<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    pitch#=0<br>
+    yaw#=0<br>
+    roll#=0<br>
+    <br>
+    If KeyDown( 208 )=True Then pitch#=-1 <br>
+    If KeyDown( 200 )=True Then pitch#=1<br>
+    If KeyDown( 203 )=True Then yaw#=-1<br>
+    If KeyDown( 205 )=True Then yaw#=1<br>
+    If KeyDown( 45 )=True Then roll#=-1<br>
+    If KeyDown( 44 )=True Then roll#=1<br>
+    <br>
+    TurnEntity cube,pitch#,yaw#,roll#<br>
+    <br>
+    RenderWorld<br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

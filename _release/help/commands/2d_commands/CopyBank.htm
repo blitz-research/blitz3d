@@ -1,0 +1,24 @@
+<html><head><title>Command: CopyBank </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;CopyBank src_bank,src_offset,dest_bank,dest_offset,count&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Copies data from one bank to another.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>src_bank = handle of source memory bank<br>
+src_offset = offset location to start copying from<br>
+dest_bank = handle of destination memory bank<br>
+dest_offset = offset location to start writing to<br>
+count = how many bytes to copy<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Copies data from one meomry bank to another. If copying between the same banks, handles overlapping memory ranges.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; BankSize, ResizeBank, CopyBank Example<br>
+<br>
+; create a bank<br>
+bnkTest=CreateBank(5000)<br>
+<br>
+; Fill it with rand Integers<br>
+For t = 0 To 4999<br>
+PokeByte bnkTest,t,Rand(9)<br>
+Next<br>
+<br>
+; Resize the bank<br>
+ResizeBank bnkTest,10000<br>
+<br>
+; Copy the first half of the bank to the second half<br>
+CopyBank bnkTest,0,bnkTest,5000,5000 <br>
+<br>
+; Print final banksize<br>
+Print BankSize(bnkTest)<br>
+</td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

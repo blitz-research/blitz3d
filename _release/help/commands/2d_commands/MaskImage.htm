@@ -1,0 +1,39 @@
+<html><head><title>Command: MaskImage </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;MaskImage handle,red,green,blue&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Set the image's mask or transparent color.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>handle=the variable you assigned the handle to when you loaded the image.<br>
+red=the red color value (0-255)<br>
+green=the green color value (0-255)<br>
+blue=the blue color value (0-255)<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Blitz Basic assumes that when you load an image (using <a href='LoadImage.htm'>LoadImage</a> or <a href='LoadAnimImage.htm'>LoadAnimImage</a>) for drawing (using <a href='DrawImage.htm'>DrawImage</a> command), you want the color black (RGB color 0,0,0) on your image to be transparent (or see through).  There WILL come a time when you want some other color to be that masked color.  This command will let you set that mask color using the color's RGB values (I use Paint Shop Pro to determing the Red, Green, and Blue values).  The example is a bit bloated for other commands, but I'm pretty sure you'll understand.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; LoadAnimImage/MaskImage Example<br>
+; With animation timers<br>
+<br>
+; Even though we don't have any functions, let's do variables global<br>
+; One variable will hold the handle for the graphic, one will hold the<br>
+; current frame we are displaying, and one will hold the milliseconds<br>
+; timer so we can adjust the animation speed.<br>
+Global gfxSparks, frmSparks, tmrSparks<br>
+<br>
+; Standard graphic declaration and double buffering setup<br>
+Graphics 640,480,16<br>
+SetBuffer BackBuffer()<br>
+<br>
+; Load the imagestrip up and denote the frames 32x32 - for a total of 3 frames<br>
+gfxSparks=LoadAnimImage("c:\Program Files\BlitzBasic\samples\Graphics\spark.bmp",32,32,0,3)<br>
+<br>
+; We mask the image's color pink to be the 'transparent' color - look at the<br>
+; image in your favorite editor to see more why we use masking.<br>
+MaskImage gfxSparks,255,0,255<br>
+<br>
+; Loop until ESC<br>
+While Not KeyHit(1)<br>
+Cls ; Standard clear screen<br>
+<br>
+; The next statment checks to see if 100 milliseconds has passes since we<br>
+; last changed frames.  Change the 100 to higher and lower values to <br>
+; make the animation faster or slower.<br>
+If MilliSecs() > tmrSparks + 100 Then<br>
+tmrSparks=MilliSecs() ; 'reset' the timer<br>
+frmSparks=( frmSparks + 1 ) Mod 3 ; increment the frame, flip to 0 if we are out<br>
+End If <br>
+DrawImage gfxSparks,MouseX(),MouseY(),frmSparks ; draw the image<br>
+Flip ; show the buffer<br>
+Wend<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>Command: AddVertex</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;AddVertex ( surface,x#,y#,z#[,u#][,v#][,w#] 
+)&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>surface - surface handle<br>
+    x# - x coordinate of vertex<br>
+    y# - y coordinate of vertex<br>
+    z# - z coordinate of vertex<br>
+    u# (optional) - u texture coordinate of vertex<br>
+    v# (optional) - v texture coordinate of vertex<br>
+    w# (optional) - w texture coordinate of vertex - not used, included for 
+    future expansion</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Adds a vertex to the specified surface and returns the vertices' index 
+    number, starting from 0.<p>x,y,z are the geometric coordinates of the 
+    vertex, and u,v,w are texture mapping coordinates.</p>
+    <p>A vertex is a point in 3D space which is used to connect edges of a 
+    triangle together. Without any vertices, you can't have any triangles. At 
+    least three vertices are needed to create one triangle; one for each corner.</p>
+    <p>The optional u,v parameters allow you to specify texture coordinates for a vertex, 
+    which will determine how any triangle created using those vertices will be 
+    texture mapped.</p>
+    <p>This works on the following basis: the bottom left of an image has the uv 
+    coordinates 0,0. The bottom right has coordinates 0,1, top left 0,1 and top 
+    right 1,1. Now, depending on what uv coordinate you assign to the vertex, 
+    this will represent a point on the image. For example, a coordinate of 
+    0.5,0.5 would represent the centre of the image.</p>
+    <p>So now imagine you have a normal equilateral triangle. By assigning 
+    the bottom left vertex a uv coordinate of 0,0, then bottom right a 
+    coordinate of 1,0 and the top centre 0.5,1, this will texture map the 
+    triangle with an image that fits it.</p>
+    </td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/AddVertex.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>None.</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

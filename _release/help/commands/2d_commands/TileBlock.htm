@@ -1,0 +1,16 @@
+<html><head><title>Command: TileBlock </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;TileBlock image [,x,y,frame]&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Tile an image without transparency.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>image = file handle variable holding the loaded image<br>
+x = x coordinate offset(optional)<br>
+y = y coordinate offset (optional)<br>
+frame = frame of the image to use (optional)<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Similar to <a href='TileImage.htm'>TileImage</a> but ignores transparency.  Use this to tile an entire or portion of the screen with a single repetative image.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; TileBlock example<br>
+Graphics 800,600,16<br>
+<br>
+; Load an image to tile (your location might vary)<br>
+gfxBall=LoadImage("C:\Program Files\Blitz Basic\samples\ball.bmp")<br>
+<br>
+; Tile the graphic without transparency<br>
+TileBlock gfxBall<br>
+<br>
+; Wait for ESC to hit<br>
+While Not KeyHit(1)<br>
+Wend<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

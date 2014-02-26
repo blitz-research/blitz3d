@@ -1,0 +1,17 @@
+<html><head><title>Command: Text </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Text x,y,string$,[center x],[center y]&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Print text to the graphic screen at the designated coordinates.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>x = starting x coordinate to print text<br>
+y = starting 4 coordinate to print text<br>
+string$ = string/text to print<br>
+center x = optional; true = center horizontally<br>
+center y = optional; true = center vertically<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Prints a string at the designated screen coordinates.  You can center the text on the coordiates by setting center x/center y to TRUE.  This draws the text in the current drawing color.<br>
+<br>
+Note: Printing a space with text will NOT render a block - a space is an empty value.  So printing " " will not make a box appear.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Text example<br>
+<br>
+; enable graphics mode<br>
+Graphics 800,600,16<br>
+<br>
+; wait for ESC key before ending<br>
+While Not KeyHit(1)<br>
+;print the text, centered horizontally at x=400, y=0<br>
+Text 400,0,"Hello There!",True,False<br>
+Wend<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

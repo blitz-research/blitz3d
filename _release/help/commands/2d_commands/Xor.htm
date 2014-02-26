@@ -1,0 +1,27 @@
+<html><head><title>Command: Xor </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Xor  &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Performs a bit level Exclusive OR between two values.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Often used for lightweight (meaning worthless ;) encryption, this will take two values and perform an exclusive OR with each bit following the basic rules of XOR.  The result can be XORed with one of the original numbers to reveal the other number.  See the example for more.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>num=%11110000111100001111000011110000 	; Define a bit pattern which is easy to recognize<br>
+<br>
+bitmask=Rnd(-2147483648,2147483647)		; Define a RANDOM Xor 32bit wide bitmask<br>
+<br>
+; This line prints the binary and decimal numbers before the Xor<br>
+Print "Binary number is:    "+Bin$(num)+" ("+num+")"<br>
+<br>
+; This line prints the binary and decimal numbers of the Xor bitmask<br>
+Print "Xor bitmask is:      "+Bin$(bitmask)+" ("+bitmask+")"<br>
+<br>
+Print "------------------------------------------------------------------"<br>
+<br>
+; This line Xor's the number with the bitmask<br>
+xres=num Xor bitmask<br>
+<br>
+; This line prints the binary and decimal numbers after the Xor<br>
+Print "Xor result is:       "+Bin$(xres)+" ("+xres+")"<br>
+Print "------------------------------------------------------------------"<br>
+<br>
+; This line Xor's the Xor result with the bitmask again<br>
+xres=xres Xor bitmask<br>
+; This line prints the binary and decimal numbers after the second Xor. NOTE: This number is identical to the original number<br>
+Print "Result Xor'ed again: "+Bin$(xres)+" ("+xres+")"<br>
+<br>
+WaitMouse ; Wait for the mouse before ending.<br>
+</td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

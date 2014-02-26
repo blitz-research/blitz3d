@@ -1,0 +1,21 @@
+<html><head><title>Command: False </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;False  &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>A boolean expression used in comparisons.  Actually returns a value of 0.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>FALSE is a keyword to denote a negative result in a conditional statement.  Often times, FALSE is implied and doesn't need to be directly referenced - or a <a href='NOT.htm'>NOT</a> command is used in the comparison.  FALSE can also be used as a <a href='RETURN.htm'>RETURN</a> value from a <a href='FUNCTION.htm'>FUNCTION</a>.  Also see the <a href='TRUE.htm'>TRUE</a> command.  See the example.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; FALSE example<br>
+<br>
+; Assign test a random number of 0 or 1<br>
+test= Rnd(0,1)<br>
+<br>
+; FALSE is implied because of the NOT<br>
+If not test=1 Then<br>
+Print "Test was valued at 0"<br>
+End If<br>
+<br>
+; Let's set test to be false<br>
+test=False<br>
+<br>
+; Pointlessly test it<br>
+If test=False Then<br>
+Print "Test is false"<br>
+else<br>
+print "Test is true"<br>
+End If<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

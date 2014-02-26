@@ -1,0 +1,5 @@
+.Command {  font-family: Arial, Helvetica, sans-serif; font-size: 18px; color: #000000; background-color: #00CFFF; border: solid; border-width: 0px 0px 0px 0pt; border-color: black black black #FFFFFF}
+body {  font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #000000; background-color: #FFFFFF}
+.header {  font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; color: #333333}
+td {  font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #000000; background-color: #DDDDDD; border-color: #333333 #FFFFFF #FFFFFF #333333; border-style: ridge; border-top-width: thin; border-right-width: thin; border-bottom-width: thin; border-left-width: thin}
+a {  font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-style: italic; font-weight: bold; color: #0099FF; text-decoration: underline}

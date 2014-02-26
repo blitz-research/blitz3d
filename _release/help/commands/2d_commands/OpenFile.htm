@@ -1,0 +1,49 @@
+<html><head><title>Command: OpenFile </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;OpenFile (filename$)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Opens a file on disk for both reading and writing operations i.e. for update.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>filename$ = any valid path and filename. The returned value is the filehandle which is used by other file handling 
+commands.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command opens the designated file and prepares it to be updated.  The file must exists since this function will not create a new file.<br>
+<br>
+By using FilePos and SeekFile the position within the file that is being read or written can be determined and also changed.  This allows a file to be read and updated without having to make a new copy of the file or working 
+through the whole file sequentially.  This could be useful if you have created a database file and you want to find and update just a few records within it.<br>
+<br>
+The file handle that is returned is an integer value that the operating system uses to identify which file is to be read and  written to and must be passed to the functions such as ReadInt() and WriteInt().<br>
+<br>
+Note extreme care needs to be exercised when updating files that contain strings since these are not fixed in length.<br>
+See also:<br>
+<a href='ReadByte.htm'>ReadByte</a>, <a href='ReadShort.htm'>ReadShort</a>, <a href='ReadInt.htm'>ReadInt</a>, <a href='ReadFloat.htm'>ReadFloat</a>, <a href='ReadString$.htm'>ReadString$</a>, <a href='ReadLine$.htm'>ReadLine$</a>, <a href='WriteByte.htm'>WriteByte</a>, <a href='WriteShort.htm'>WriteShort</a>, <a href='WriteInt.htm'>WriteInt</a>, <a href='WriteFloat.htm'>WriteFloat</a>, <a href='WriteShort.htm'>WriteShort</a>, <a href='WriteString.htm'>WriteString</a>, <a href='WriteLine.htm'>WriteLine</a>, <a href='ReadFile.htm'>ReadFile</a>, <a href='WriteFile.htm'>WriteFile</a>, <a href='OpenFile.htm'>OpenFile</a>, <a href='CloseFile.htm'>CloseFile</a>, <a href='Eof.htm'>Eof</a>, <a href='FileType.htm'>FileType</a>, <a href='FilePos.htm'>FilePos</a>, <a href='SeekFile.htm'>SeekFile</a></td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Changing part of a file using OpenFile, SeekFile and WriteInt<br>
+<br>
+; Open/create a file to Write<br>
+fileout = WriteFile("mydata.dat")<br>
+<br>
+; Write the information to the file<br>
+WriteInt( fileout, 1 )<br>
+WriteInt( fileout, 2 )<br>
+WriteInt( fileout, 3 )<br>
+WriteInt( fileout, 4 )<br>
+WriteInt( fileout, 5 )<br>
+<br>
+; Close the file<br>
+CloseFile( fileout )<br>
+<br>
+DisplayFile( "The file as originally written", mydata.dat" )<br>
+; Open the file and change the Third Integer<br>
+<br>
+file = OpenFile("mydata.dat")<br>
+SeekFile( file, 8 ) ; Move to the third integer in the file<br>
+WriteInt( file, 9999 )	; Replace the original value with 9999<br>
+CloseFile( file )<br>
+<br>
+DisplayFile( "The file after being midified", "mydata.dat" )<br>
+WaitKey()<br>
+; ****   Function Definitions follow    ****<br>
+<br>
+; Read the file and print it<br>
+Function DisplayFile( Tittle$, Filename$ )<br>
+	Print tittle$<br>
+	filein = ReadFile( Filename$ )<br>
+	While Not Eof( filein )<br>
+		Number = ReadInt( filein )<br>
+		Print Number<br>
+	Wend<br>
+	CloseFile( filein )<br>
+	Print<br>
+End Function<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>Command: CreateCube</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;CreateCube( [parent] )&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>parent (optional) - parent entity of cube</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Creates a cube mesh/entity and returns its handle.<p>The cube  will  extend from 
+    -1,-1,-1 to +1,+1,+1.</p>
+    <font SIZE="2">
+    <p>The optional parent parameter allow you to specify a parent entity for 
+    the cube so that when the parent is moved the child cube will move with it. 
+    However, this relationship is one way; applying movement commands to the 
+    child will not affect the parent.</p>
+    <p>Specifying a parent entity will still result in the cube being created at 
+    position 0,0,0 rather than at the parent entity's position.</p>
+    <p>See also:
+    <a href="CreateSphere.htm">CreateSphere</a>, <a href="CreateCylinder.htm">
+    CreateCylinder</a>, <a href="CreateCone.htm">CreateCone</a>.</font></td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/CreateCube.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; CreateCube Example<br>
+    ; ------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    ; Create cube<br>
+    cube=CreateCube()<br>
+    <br>
+    PositionEntity cube,0,0,5<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    RenderWorld<br>
+    Flip<br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

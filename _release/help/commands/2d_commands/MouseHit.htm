@@ -1,0 +1,14 @@
+<html><head><title>Command: MouseHit </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;MouseHit (button)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns the number of times a specified mouse button has been hit.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>button = button code (1=Left, 2=Right, 3-Middle)</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command returns the number of times a specified mouse button has been hit since the last time you called the MouseHit() command.  Also see <a href='KeyHit.htm'>KeyHit</a> and <a href='JoyHit.htm'>JoyHit</a>.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; MouseHit Example<br>
+<br>
+; Set up the timer<br>
+current=MilliSecs()<br>
+Print "Press left mouse button a bunch of times for five seconds..."<br>
+<br>
+; Wait 5 seconds<br>
+While MilliSecs() < current+5000<br>
+Wend<br>
+<br>
+; Print the results<br>
+Print "Pressed left button " + MouseHit(1) + " times."<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

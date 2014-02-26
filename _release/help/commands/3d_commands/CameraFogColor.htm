@@ -1,0 +1,85 @@
+<html>
+<head>
+<title>Command: CameraFogColor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;CameraFogColor camera,red#,green#,blue#&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>camera - camera handle<br>
+    red# - red value of value<br>
+    green# - green value of fog<br>
+    blue# - blue value of fog</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Sets camera fog color.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/CameraFogColor.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>plane=CreatePlane()<br>
+    grass_tex=LoadTexture( &quot;media/mossyground.bmp&quot; )<br>
+    EntityTexture plane,grass_tex<br>
+    <br>
+    ; Set camera fog to 1 (linear fog)<br>
+    CameraFogMode camera,1<br>
+    <br>
+    ; Set camera fog range<br>
+    CameraFogRange camera,1,10<br>
+    <br>
+    ; Set initial fog colour values<br>
+    red#=0<br>
+    green#=0<br>
+    blue#=0<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    ; Change red, green, blue values depending on key pressed<br>
+    If KeyDown( 2 )=True And red#&gt;0 Then red#=red#-1<br>
+    If KeyDown( 3 )=True And red#&lt;255 Then red#=red#+1<br>
+    If KeyDown( 4 )=True And green#&gt;0 Then green#=green#-1<br>
+    If KeyDown( 5 )=True And green#&lt;255 Then green#=green#+1<br>
+    If KeyDown( 6 )=True And blue#&gt;0 Then blue#=blue#-1<br>
+    If KeyDown( 7 )=True And blue#&lt;255 Then blue#=blue#+1<br>
+    <br>
+    ; Set camera fog color using red, green, blue values<br>
+    CameraFogColor camera,red#,green#,blue#<br>
+    <br>
+    If KeyDown( 205 )=True Then TurnEntity camera,0,-1,0<br>
+    If KeyDown( 203 )=True Then TurnEntity camera,0,1,0<br>
+    If KeyDown( 208 )=True Then MoveEntity camera,0,0,-0.05<br>
+    If KeyDown( 200 )=True Then MoveEntity camera,0,0,0.05<br>
+    <br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Use cursor keys to move about the infinite plane&quot;<br>
+    Text 0,20,&quot;Press keys 1-6 to change CameraFogColor red#,green#,blue# values<br>
+    Text 0,40,&quot;Fog Red: &quot;+red#<br>
+    Text 0,60,&quot;Fog Green: &quot;+green#<br>
+    Text 0,80,&quot;Fog Blue: &quot;+blue#<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

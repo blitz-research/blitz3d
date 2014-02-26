@@ -1,0 +1,31 @@
+<html><head><title>Command: DrawBlock </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;DrawBlock image,x,y,[frame]&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Draws an image at a location without regards to transparency.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>image = variable of the image handle<br>
+x = x location to draw the image<br>
+y = y location to draw the image<br>
+frame = image's frame to draw (optional - default is 0)<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This is similar to the <a href='DrawImage.htm'>DrawImage</a> command except that any transparency or <a href='MaskImage.htm'>MaskImage</a> is ignored and the entire image (including masked colors) is drawn.  The frame is optional.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; DrawBlock Example<br>
+<br>
+; Turn on graphics mode<br>
+Graphics 640,480,16<br>
+<br>
+; Create new empty graphic to store our circle in<br>
+gfxCircle=CreateImage(50,50)<br>
+<br>
+; Draw the circle image<br>
+; Set drawing operations to point to our new empty graphic<br>
+SetBuffer ImageBuffer(gfxCircle)<br>
+Color 255,0,0<br>
+; Note the extra space between the circle and the edge of the graphic<br>
+Oval 10,10,30,30,1<br>
+<br>
+; Let's not forget to put the drawing buffer back!<br>
+SetBuffer BackBuffer()<br>
+; Set the CLS color to white<br>
+ClsColor 255,255,255<br>
+<br>
+; Let the user move the circle graphic around a white screen<br>
+; putting the graphic at the MouseX,Y coordinates<br>
+While Not KeyHit(1)<br>
+Cls<br>
+DrawBlock gfxCircle,MouseX(),MouseY()<br>
+Flip<br>
+Wend<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

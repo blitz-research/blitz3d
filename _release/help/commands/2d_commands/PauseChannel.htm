@@ -1,0 +1,42 @@
+<html><head><title>Command: PauseChannel </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;PauseChannel channel_handle&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Pauses the playing of a sound channel.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>channel_handle = variable assigned to the channel when played
+</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>When you are playing a sound channel, there may come a time you wish to pause the sound for whatever reason (like to play another sound effect).  This command does this - and the channel can be resumed with the <a href='ResumeChannel.htm'>ResumeChannel</a> command.  You can use <a href='StopChannel.htm'>StopChannel</a> to actually halt the sound.  This works with any channel playback (WAV, MP3, MIDI, etc.).</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Channel examples<br>
+<br>
+Print "Loading sound ..."<br>
+; Load the sample - you'll need to point this to a sound on your computer<br>
+; For best results, make it about 5-10 seconds...<br>
+sndWave=LoadSound("level1.wav")<br>
+; Prepare the sound for looping<br>
+LoopSound sndWave<br>
+<br>
+chnWave=PlaySound(sndWave)<br>
+<br>
+Print "Playing sound for 2 seconds ..."<br>
+Delay 2000<br>
+<br>
+Print "Pausing sound for 2 seconds ..."<br>
+PauseChannel chnWave<br>
+Delay 2000<br>
+<br>
+Print "Restarting sound ..."<br>
+ResumeChannel chnWave<br>
+Delay 2000<br>
+<br>
+Print "Changing Pitch of sound ..."<br>
+;StopChannel chnWave<br>
+ChannelPitch chnWave, 22000<br>
+Delay 2000<br>
+<br>
+Print "Playing new pitched sound ..."<br>
+Delay 2000<br>
+<br>
+Print "Left speaker only"<br>
+ChannelPan chnWave,-1<br>
+Delay 2000<br>
+<br>
+Print "Right speaker only"<br>
+ChannelPan chnWave,1<br>
+Delay 2000<br>
+<br>
+Print "All done!"<br>
+StopChannel chnWave<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

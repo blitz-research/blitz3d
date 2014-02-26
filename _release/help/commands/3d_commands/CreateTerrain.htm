@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>Command: CreateTerrain</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;CreateTerrain ( grid_size[,parent] )&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>grid_size - no of grid squares along each side of terrain, and must be a 
+    power of 2<br>
+    parent (optional) - parent entity of terrain</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Creates a  terrain entity and returns its handle.<font SIZE="2"><p>The 
+    terrain extends from 0,0,0 to grid_size,1,grid_size.</p>
+    <p>A terrain is a special type of polygon object that uses real-time level 
+    of detail (LOD) to display landscapes which should theoretically consist of 
+    over a million polygons with only a few thousand. The way it does this is by 
+    constantly rearranging a certain amount of polygons to display high levels 
+    of detail close to the viewer and low levels further away.</p>
+    <p>This constant rearrangement of polygons is noticeable however, and is an 
+    well-known side-effect of all LOD landscapes. This 'pop-in' effect can be 
+    reduced though in lots of ways, as the other terrain help files will go on 
+    to explain.</p>
+    <p>The optional parent parameter allow you to specify a parent entity for 
+    the terrain so that when the parent is moved the child terrain will move 
+    with it. However, this relationship is one way; applying movement commands 
+    to the child will not affect the parent.</p>
+    <p>Specifying a parent entity will still result in the terrain being created 
+    at position 0,0,0 rather than at the parent entity's position.</p>
+    </font><p>See also: <a href="LoadTerrain.htm">LoadTerrain</a>.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/CreateTerrain.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; CreateTerrain Example<br>
+    ; ---------------------<br>
+    <br>
+    Graphics3D 640,480<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    PositionEntity camera,0,1,0<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    ; Create terrain<br>
+    terrain=CreateTerrain(128)<br>
+    <br>
+    ; Texture terrain<br>
+    grass_tex=LoadTexture( &quot;media/mossyground.bmp&quot; )<br>
+    EntityTexture terrain,grass_tex<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    If KeyDown( 205 )=True Then TurnEntity camera,0,-1,0<br>
+    If KeyDown( 203 )=True Then TurnEntity camera,0,1,0<br>
+    If KeyDown( 208 )=True Then MoveEntity camera,0,0,-0.05<br>
+    If KeyDown( 200 )=True Then MoveEntity camera,0,0,0.05<br>
+    <br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Use cursor keys to move about the terrain&quot;<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<html><head><title>Command: ImageBuffer </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;ImageBuffer (handle[,frame])&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Used to denote an image and frame to direct drawing operations to.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>handle=variable holding the image's handle<br>
+frame=optional frame to draw to if using an imagestrip image<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>There are 1000 reasons for this command.  Simply put, you may want to 'draw' on an existing image you've loaded (<a href='LoadImage.htm'>LoadImage</a> or <a href='LoadAnimImage.htm'>LoadAnimImage</a>) or created (<a href='CreateImage.htm'>CreateImage</a>).  You could, for example, have a blank wall graphic and you want to add 'graffiti' to it based on the user action (Jet Grind Radio baybeee!  Sorry...).  Instead of trying to draw a dozen images all over the wall, just use the <a href='SetBuffer.htm'>SetBuffer</a> command to denote the wall graphic as the 'target' buffer, and draw away!  Next time you display that graphic (<a href='DrawImage.htm'>DrawImage</a>), you will see your changes!  This is a powerful command!</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; CreateImage/TileImage/ImageBuffer example<br>
+<br>
+; Again, we'll use globals even tho we don't need them here<br>
+; One variable for the graphic we'll create, one for a timer<br>
+Global gfxStarfield, tmrScreen<br>
+<br>
+; Declare graphic mode<br>
+Graphics 640,480,16<br>
+<br>
+; Create a blank image that is 320 pixels wide and 32 high with 10 frames of 32x32<br>
+gfxStarfield=CreateImage(32,32,10)<br>
+<br>
+; loop through each frame of the graphic we just made<br>
+For t = 0 To 9<br>
+; Set the drawing buffer to the graphic frame so we can write on it<br>
+SetBuffer ImageBuffer(gfxStarfield,t)<br>
+; put 50 stars in the frame at random locations<br>
+For y = 1 To 50<br>
+	Plot Rnd(32),Rnd(32)<br>
+Next<br>
+Next<br>
+<br>
+; Double buffer mode for smooth screen drawing<br>
+SetBuffer BackBuffer()<br>
+<br>
+; Loop until ESC is pressed<br>
+While Not KeyHit(1)<br>
+<br>
+; Only update the screen every 300 milliseconds. Change 300 for faster or<br>
+; slower screen updates<br>
+If MilliSecs() > tmrScreen+300 Then <br>
+Cls ; clear the screen<br>
+<br>
+; Tile the screen with a random frame from our new graphic starting at<br>
+; x=0 and y=0 location.<br>
+TileImage gfxStarfield,0,0,Rnd(9)<br>
+Flip ; Flip the screen into view<br>
+tmrScreen=MilliSecs() ; reset the time<br>
+End If<br>
+Wend <br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

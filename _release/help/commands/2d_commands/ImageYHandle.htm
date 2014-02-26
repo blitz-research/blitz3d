@@ -1,0 +1,51 @@
+<html><head><title>Command: ImageYHandle </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;ImageYHandle image&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns the Y location of the specified image's image handle.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>image = variable holding the image's file handle<br>
+</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>It is occasionally useful to determine the location of an image's image handle.  This command returns the Y coordinate.  Use <a href='ImageXHandle.htm'>ImageXHandle</a> to get the X coordinate.  Please see <a href='MidHandle.htm'>MidHandle</a> for more information on the image's image handle.
+<br>
+Note about the term 'handle'.  There are two types of 'handles' we discuss in these documents.  One is the location within an image - as discussed in this command.  The other is a 'file handle', a variable used to hold an image, sound, or font loaded with a command.  See <a href='LoadImage.htm'>LoadImage</a> for more information about file handles.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; MidHandle/ImageXHandle()/ImageYHandle()/AutoMidHandle<br>
+<br>
+; Initiate Graphics Mode<br>
+Graphics 640,480,16<br>
+<br>
+; Set up the image file handle as a global<br>
+Global gfxBall<br>
+<br>
+; Load the image - you may need to change the location of the file<br>
+gfxBall=LoadImage ("C:\Program Files\Blitz Basic\samples\ball.bmp")<br>
+<br>
+; Until the user presses ESC key ...<br>
+While Not KeyHit(1)<br>
+Text 0,0,"Default Image Handle for gfxBall... Press ESC ..."<br>
+Text 0,14,"X handle-" + ImageXHandle(gfxBall) ; Print the location of the image handle x location<br>
+Text 0,28,"Y handle-" + ImageYHandle(gfxBall) ; Print the location of the image handle y location<br>
+DrawImage gfxBall,200,200,0 ; draw the image at 200,200<br>
+Wend<br>
+<br>
+; Clear the screen<br>
+Cls<br>
+<br>
+; Set the ball's handle to the center of the image<br>
+MidHandle gfxBall<br>
+<br>
+; Until the user presses ESC key ... show the new information<br>
+While Not KeyHit(1)<br>
+Text 0,0,"New Image Handle for gfxBall... Press ESC ..."<br>
+Text 0,14,"X handle-" + ImageXHandle(gfxBall)<br>
+Text 0,28,"Y handle-" + ImageYHandle(gfxBall)<br>
+DrawImage gfxBall,200,200,0<br>
+Wend<br>
+<br>
+; Makes all images load up with their handles in the center of the image<br>
+AutoMidHandle True<br>
+Cls<br>
+<br>
+; Load the image again<br>
+gfxBall=LoadImage ("C:\Program Files\Blitz Basic\samples\ball.bmp")<br>
+<br>
+; Until the user presses ESC key ... show the new information<br>
+While Not KeyHit(1)<br>
+Text 0,0,"Automatic image handle of gfxBall... Press ESC ..."<br>
+Text 0,14,"X handle-" + ImageXHandle(gfxBall)<br>
+Text 0,28,"Y handle-" + ImageYHandle(gfxBall)<br>
+DrawImage gfxBall,200,200,0<br>
+Wend<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

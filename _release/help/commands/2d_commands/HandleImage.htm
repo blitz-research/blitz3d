@@ -1,0 +1,19 @@
+<html><head><title>Command: HandleImage </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;HandleImage image,x,y&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Set a new handle location on an existing image.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>image = variable holding the file handle to the image<br>
+x = x location of the new image handle location<br>
+y = y location of the new image handle location<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>When an image is loaded with <a href='LoadImage.htm'>LoadImage</a>, the image handle (the location within the image where the image is 'drawn from') is always defaulted to the top left corner (coordinates 0,0).  This means if you draw an image that is 50x50 pixels at screen location 200,200, the image will begin to be drawn at 200,200 and extend to 250,250.<br>
+<br>
+This command moves the image handle from the 0,0 coordinate of the image to the specified x and y location in the image. 
+
+You can retrieve an image's current location handle using the <a href='ImageXHandle.htm'>ImageXHandle</a> and <a href='ImageYHandle.htm'>ImageYHandle</a>.  Finally, you can make all images automatically load with the image handle set to middle using the <a href='AutoMidHandle.htm'>AutoMidHandle</a> command.<br>
+<br>
+Note about the term 'handle'.  There are two types of 'handles' we discuss in these documents.  One is the location within an image - as discussed in this command.  The other is a 'file handle', a variable used to hold an image, sound, or font loaded with a command.  See <a href='LoadImage.htm'>LoadImage</a> for more information about file handles.<br>
+<br>                     
+Also See: <a href='MidHandle.htm'>MidHandle</a><br></td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>;HandleImage Example<br>
+<br>
+Graphics 800,600,16<br>
+<br>
+gfxPlayer=LoadImage("player.bmp")<br>
+HandleImage gfxPlayer,20,20<br>
+DrawImage gfxPlayer,0,0<br>
+WaitKey<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

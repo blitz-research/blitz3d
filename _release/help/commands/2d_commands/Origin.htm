@@ -1,0 +1,14 @@
+<html><head><title>Command: Origin </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Origin x,y&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Allows you to offset all drawing commands from a designated location.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>x = x offset value<br>
+y = y offset value<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command sets a point of origin for all subsequent drawing commands.  This can be positive or negative.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Origin example<br>
+Graphics 800,600,16<br>
+<br>
+; Offset drawing options with origin command -200 in each direction<br>
+Origin -200,-200<br>
+<br>
+; Wait for ESC to hit<br>
+While Not KeyHit(1)<br>
+<br>
+; Draw an oval - SHOULD be at the exact center, but it isn't!<br>
+Oval 400,300,50,50,1<br>
+Wend<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

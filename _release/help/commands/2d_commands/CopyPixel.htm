@@ -1,0 +1,40 @@
+<html><head><title>Command: CopyPixel </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;CopyPixel src_x,src_y,src_buffer,dest_x,dest_y,[dest_buffer]&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Copys pixels from one image buffer to another.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>src_x = x location of the source pixel to copy<br>
+src_y = y location of the source pixel to copy<br>
+src_buffer = buffer to copy from<br>
+dest_x = x location to write pixel to<br>
+dest_y = y location to write pixel to<br>
+dest_buffer = optional</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Use this to directly copy pixels from one buffer to another.  You do not need to <a href='LockBuffer.htm'>LockBuffer</a> to use this command, but it will make the operations faster.<br>
+<br>
+Although fast, this command will not be fast enough to perform real-time screen effects.<br></td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; CopyPixel/CopyPixelFast commands<br>
+<br>
+Graphics 640,480,16<br>
+<br>
+; Draw a bunch of crap on the screen<br>
+For t= 1 To 1000<br>
+Color Rnd(255),Rnd(255),Rnd(255)<br>
+Rect Rnd(640),Rnd(480),Rnd(150),Rnd(150),Rnd(1)<br>
+Next<br>
+<br>
+Delay 3000<br>
+<br>
+; Copy the top half of the screen over the bottom half<br>
+; using fast pixels and locked buffers<br>
+For x = 1 To 640<br>
+For y = 1 To 240<br>
+LockBuffer FrontBuffer()<br>
+CopyPixelFast x,y,FrontBuffer(),x,y+241<br>
+UnlockBuffer FrontBuffer()<br>
+Next<br>
+Next<br>
+<br>
+Delay 3000<br>
+<br>
+; Draw the left half of the screen over the right half<br>
+; using the slower direct pixel access<br>
+For x = 1 To 320<br>
+For y = 1 To 480<br>
+CopyPixel x,y,FrontBuffer(),x+320,y<br>
+Next<br>
+Next<br>
+</td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

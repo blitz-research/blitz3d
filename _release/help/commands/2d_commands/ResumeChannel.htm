@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Command: ResumeChannel</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;ResumeChannel&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>channel -- a music or sound channel previously allocated via LoadSound, PlayMusic, etc.</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>ResumeChannel is used to continue the playing of a sound sample or music track on the given channel after you have temporarily halted playback on that channel (via PauseChannel).</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/ResumeChannel.bb">Example (using ResumeChannel):</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>
+Graphics 640, 480, 0, 2<BR>
+<BR>
+musicchannel = PlayMusic ("oohyeahbaby.mp3") ; Replace with a music file on your hard drive!<BR>
+<BR>
+Repeat<BR>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;Print "Press a key to pause the music..."<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;WaitKey<BR>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;PauseChannel musicchannel<BR>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;Print "Press a key to continue the music..."<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;WaitKey<BR>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;ResumeChannel musicchannel<BR>
+<BR>
+Until KeyHit (1)<BR>
+<BR>
+End<BR>
+</td>
+  </tr>
+</table>
+</body>
+</html>

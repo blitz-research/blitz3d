@@ -1,0 +1,13 @@
+<html><head><title>Command: MouseDown </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;MouseDown (button)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns TRUE if the specified mouse button is being held down.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>button = 1: Left Button, 2: Right Button, 3: Middle Button</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command (and its counterparts <a href='KeyDown.htm'>KeyDown</a> and <a href='JoyDown.htm'>JoyDown</a>) is used to detect if a mouse button is being held down.  You must check for each mouse button independantly with its corresponding number (unlike KeyDown which returns WHICH key is being held down).  Also see <a href='MouseHit.htm'>MouseHit</a>.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; MouseDown Example<br>
+<br>
+; Until user presses ESC, show the mouse button pressed<br>
+While Not KeyHit(1)<br>
+button$="No"<br>
+If MouseDown(1) Then button$="Left"<br>
+If MouseDown(2) Then button$="Right"<br>
+If MouseDown(3) Then button$="Middle"<br>
+<br>
+Print button$ + " mouse button pressed!"<br>
+Wend<br>
+<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

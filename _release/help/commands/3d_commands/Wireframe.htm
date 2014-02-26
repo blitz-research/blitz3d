@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>Command: Wireframe</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/commands.css">
+</head>
+
+<body>
+
+<p><span class="Command">&nbsp;&nbsp;Wireframe enable&nbsp;&nbsp;</span></p>
+
+<p>
+<span class="header">Parameters:</span><br>
+</p>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>enable - true to enable wireframe rendering, false to disable. Defaults to 
+false.</td>
+  </tr>
+</table>
+<p class="header">Description:<br>
+  <br>
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr>
+    <td>Enables or disables wireframe rendering.<p>This will show the outline of each 
+polygon on the screen, with no shaded-in areas.<br>
+<br>
+Wireframe should only be used for debugging purposes, as driver support is 
+patchy. For the same reason, no support is offered for the wireframe rendering 
+of individual polygon entities.</td>
+  </tr>
+</table>
+<p class="header"><a href="../3d_examples/Wireframe.bb">Example:</a><br>
+  <br>
+  
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+  <tr> 
+    <td>; Wireframe Example<br>
+    ; -----------------<br>
+    <br>
+    Graphics3D 640,480,16<br>
+    SetBuffer BackBuffer()<br>
+    <br>
+    camera=CreateCamera()<br>
+    <br>
+    light=CreateLight()<br>
+    RotateEntity light,90,0,0<br>
+    <br>
+    sphere=CreateSphere( 32 )<br>
+    PositionEntity sphere,0,0,2<br>
+    <br>
+    While Not KeyDown( 1 )<br>
+    <br>
+    ; Toggle wireframe enable value between true and false when spacebar is 
+    pressed<br>
+    If KeyHit( 57 )=True Then enable=1-enable<br>
+    <br>
+    ; Enable/disable wireframe rendering<br>
+    WireFrame enable<br>
+    <br>
+    RenderWorld<br>
+    <br>
+    Text 0,0,&quot;Press spacebar to toggle between Wireframe True/False&quot;<br>
+    If enable=False Then Text 0,20,&quot;Wireframe False&quot; Else Text 0,20,&quot;Wireframe 
+    True&quot;<br>
+    <br>
+    Flip<br>
+    <br>
+    Wend<br>
+    <br>
+    End</td>
+  </tr>
+</table>
+<p><b><a target="_top" href="../index.htm">Index</a></b></p>
+</body>
+</html>

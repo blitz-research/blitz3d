@@ -1,0 +1,94 @@
+<html><head><title>Command: SendNetMsg </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;SendNetMsg type,data$,from,to,reliable&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Sends a message during a network game.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>type = value 1-99<br>
+data$ = string containing message to send<br>
+from = player ID of the sender<br>
+to = player ID of the recipient (0=broadcast)<br>
+reliable = flag for sending message reliably<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>First off, this ONLY works when you have joined a network game via <a href='StartNetGame.htm'>StartNetGame</a> or <a href='JoinNetGame.htm'>JoinNetGame</a> and you have created a player via <a href='CreateNetPlayer.htm'>CreateNetPlayer</a> (you must create a player, even if it is just to lurk).<br>
+<br>
+This is probably the most complicated of the networking commands.  This what you use to actually send a message to one or all of the players on the network game.  The other players will use <a href='RecvNetMsg().htm'>RecvNetMsg()</a> to intercept your message.
+<br>
+The TYPE parameter is a number from 1 to 99. These values are denoted as 'user messages'.<br>
+<br>
+The Data$ parameter is the actual string that contains the message you want to send.  Helpful to know that in order to keep traffic low, you will want to combine details of a message into a single message instead of sending multiple messages with a single element.  For example, you might want to send X, Y, and FRAME in a single string like "200,100,4" and parse it out at the recipient's end.<br>
+<br>
+FROM is the player's ID that is sending the message.  This is the value returned from the <a href='CreateNetPlayer().htm'>CreateNetPlayer()</a> command.<br>
+<br>
+TO is the player's ID you wish to send the message to.  A default value of 0 will broadcast to ALL players.<br>
+<br>
+The RELIABLE flag will put a priority on the message and it will ensure there is no packet loss in the delivery.  However, it is at least 3 times slower than a regular non-reliable message.<br>
+<br>
+The example requires that you run it on the local machine while the remote computer runs the example in the <a href='RecvNetMsg().htm'>RecvNetMsg()</a> command.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; SendNetMsg example<br>
+; ------------------<br>
+; Run this example on the local computer<br>
+; run the example for RecvNetMsg() on a remote computer<br>
+<br>
+; Graphics mode with double buffering<br>
+Graphics 640,480,16<br>
+SetBuffer BackBuffer()<br>
+<br>
+; Create a network game with NO requester<br>
+joinStatus=HostNetGame("ShaneGame")<br>
+<br>
+; A type to hold all the player's information<br>
+Type multi<br>
+	Field x<br>
+	Field y<br>
+	Field id<br>
+	Field name$<br>
+	Field xspeed<br>
+	Field boxColor<br>
+End Type<br>
+<br>
+; make sure the game started ok...<br>
+If joinStatus=2 Then<br>
+	Print "Hosted game started... "<br>
+Else<br>
+	Print "Hosted game could not be started!"<br>
+End<br>
+End If<br>
+<br>
+; Create 5 local players using TYPEs<br>
+For t = 1 To 5<br>
+; New type instance<br>
+player.multi = New Multi<br>
+; Assign the ID field with the created player ID and name him<br>
+player\ID=CreateNetPlayer("Player" + t)<br>
+<br>
+; if the player was created ok ... assign some random parameters<br>
+If player\ID <> 0 Then <br>
+player\name$="Player" + t<br>
+player\x = Rand(640)<br>
+player\y = Rand(480)<br>
+player\boxColor = Rand(255)<br>
+player\xspeed = Rand(1,5)<br>
+; Print some text results<br>
+Print "Player " + t + " has joined the game with ID=" + player\ID<br>
+Else<br>
+Print "The player couldn't join!  Aborting!"<br>
+End If<br>
+Next<br>
+<br>
+; We've got them all! Wait for a key<br>
+Print "All local players are joined!  Press a key ..."<br>
+WaitKey()<br>
+<br>
+; Loop this routine<br>
+While Not KeyHit(1)<br>
+Cls<br>
+; for each of the players, update their locations on the screen<br>
+For player = Each multi<br>
+Color player\boxColor,player\boxColor,player\boxColor<br>
+Rect player\x,player\y,10,10,1<br>
+Text player\x-10,player\y-15,player\name$<br>
+player\x = player\x + player\xspeed<br>
+If player\x > 640 Or player\x < 0 Then <br>
+player\xspeed=-player\xspeed<br>
+message$="Player ID #" + player\ID + " hit a wall!"<br>
+; Send a broadcast message if a player rebounds off the wall<br>
+; this message will show up on the remote machine<br>
+SendNetMsg Rand(1,99),message$,player\id,0<br>
+End If<br>
+Next<br>
+Flip<br>
+Wend<br>
+End<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

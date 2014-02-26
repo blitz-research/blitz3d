@@ -1,0 +1,11 @@
+<html><head><title>Command: CopyImage </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;CopyImage (handle)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Duplicates a previously loaded image to a new handle.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>handle=the variable you gave the handle to when you loaded the image</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Instead of loading a graphic twice in two different handles, you can load the image ONCE then use the CopyImage command to make as many copies in memory as you want.<br>
+<br>
+Why would you want to do this?  So you still have a copy of the original image in case you want to alter a copy later for another purpose.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; CopyImage Example<br>
+<br>
+; Load an image and give its handle to gfxOld variable<br>
+gfxOld=LoadImage("mypicture.bmp")<br>
+<br>
+; Duplicate the gfxOld image to a new handle variable<br>
+gfxNew=CopyImage(gfxOld)<br>
+</td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>

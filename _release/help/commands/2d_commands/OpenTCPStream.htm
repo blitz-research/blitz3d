@@ -1,0 +1,32 @@
+<html><head><title>Command: OpenTCPStream </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;OpenTCPStream (ip$,port)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Opens a client TCP stream to the specified server.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>ip$=Address of stream<br>
+port=TCP/IP Port Number</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Use this command to open up a TCP/IP stream to the designated server and port.  If the open command was successful, the command returns a stream handle. Otherwise it returns 0.<br>
+<br>
+You can use this for a multitude of different 'internet' options.  Obviously to contact a TCP/IP host outside your own network, you'll need to be connected to the Internet.<br>
+<br>
+The IP address can be in the form of 1.2.3.4 or "www.domain.com".</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; OpenTCPStream/CloseTCPStream Example<br>
+<br>
+Print "Connecting..."<br>
+tcp=OpenTCPStream( "www.blitzbasement.com",80 )<br>
+<br>
+If Not tcp Print "Failed.":WaitKey:End<br>
+<br>
+Print "Connected! Sending request..."<br>
+<br>
+WriteLine tcp,"GET http://www.blitzbasement.com HTTP/1.0"<br>
+WriteLine tcp,Chr$(10)<br>
+<br>
+If Eof(tcp) Print "Failed.":WaitKey:End<br>
+<br>
+Print "Request sent! Waiting for reply..."<br>
+<br>
+While Not Eof(tcp)<br>
+	Print ReadLine$( tcp )<br>
+Wend<br>
+<br>
+If Eof(tcp)=1 Then Print "Success!" Else Print "Error!"<br>
+<br>
+CloseTCPStream tcp<br>
+<br>
+WaitKey<br>
+End<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+</html>
