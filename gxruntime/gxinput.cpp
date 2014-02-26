@@ -133,6 +133,7 @@ static Keyboard *createKeyboard( gxInput *input ){
 	IDirectInputDevice7 *dev;
 	if( input->dirInput->CreateDeviceEx( GUID_SysKeyboard,IID_IDirectInputDevice7,(void**)&dev,0 )>=0 ){
 		if( dev->SetCooperativeLevel( input->runtime->hwnd,DISCL_FOREGROUND|DISCL_EXCLUSIVE )>=0 ){
+
 			if( dev->SetDataFormat( &c_dfDIKeyboard )>=0 ){
 				DIPROPDWORD dword;
 	 			memset( &dword,0,sizeof(dword) );
@@ -144,11 +145,13 @@ static Keyboard *createKeyboard( gxInput *input ){
 				if( dev->SetProperty( DIPROP_BUFFERSIZE,&dword.diph )>=0 ){
 					return d_new Keyboard( input,dev );
 				}else{
-					input->runtime->debugInfo( "keyboard: SetProperty failed" );
+//					input->runtime->debugInfo( "keyboard: SetProperty failed" );
 				}
 			}else{
-				input->runtime->debugInfo( "keyboard: SetDataFormat failed" );
+//				input->runtime->debugInfo( "keyboard: SetDataFormat failed" );
 			}
+			return d_new Keyboard( input,dev );
+
 		}else{
 			input->runtime->debugInfo( "keyboard: SetCooperativeLevel failed" );
 		}
@@ -163,11 +166,14 @@ static Mouse *createMouse( gxInput *input ){
 	IDirectInputDevice7 *dev;
 	if( input->dirInput->CreateDeviceEx( GUID_SysMouse,IID_IDirectInputDevice7,(void**)&dev,0 )>=0 ){
 		if( dev->SetCooperativeLevel( input->runtime->hwnd,DISCL_FOREGROUND|DISCL_EXCLUSIVE )>=0 ){
+
 			if( dev->SetDataFormat( &c_dfDIMouse )>=0 ){
 				return d_new Mouse( input,dev );
 			}else{
-				input->runtime->debugInfo( "mouse: SetDataFormat failed" );
+//				input->runtime->debugInfo( "mouse: SetDataFormat failed" );
 			}
+			return d_new Mouse( input,dev );
+
 		}else{
 			input->runtime->debugInfo( "mouse: SetCooperativeLevel failed" );
 		}
