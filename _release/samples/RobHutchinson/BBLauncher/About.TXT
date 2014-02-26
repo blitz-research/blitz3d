@@ -1,0 +1,10 @@
+<TITLE>
+-------
+
+Author: <AUTHOR>
+Email: <EMAIL>
+WWW: <WEBSITE>
+
+
+Sample About Text..
+Write anything you want here.

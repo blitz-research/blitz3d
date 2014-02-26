@@ -1,0 +1,46 @@
+SKY PLATEAU V1.01
+-----------------
+
+Author: Rob Hutchinson
+Email: loki.sd@cableinet.co.uk
+WWW: http://www.blitzbasic.com/
+
+
+Blitz3D Demonstration.
+Inspired by Unreal :)
+
+This program was written in the space of about 5
+days or so (including all models, textures (a few
+borrowed from other B3D examples),
+sounds, and BBLauncher(vb)), with Blitz Basic 
+Beta V1.60.
+
+So what features does it show off?
+
+- Spherical Environment Mapping.
+- Alpha Blending.
+- Fogging.
+- Ping-Pong Mesh Deformation Animations.
+- Unlimited Length Planes.
+- Directional/Point Lighting.
+- Light Ranging.
+- Sprites.
+- X/MD2 Loader.
+- Tonnes of Pivoting..
+- But most importantly, how fast Blitz3D is!
+
+What are the controls?
+
+Its a rolling (spinning :)) demo, so theres not
+much interaction, but you can navigate the menu
+with the up and down arrow keys, select a menu
+option with the enter key. And quick-exit with
+the escape key. Mouselook option allows you to
+look around with the mouse, and the Pause Rot
+option allows to you pause the rotation so you
+can look around without spinning.
+
+Have fun watching it!
+
+-- 
+Rob Hutchinson - loki.sd@cableinet.co.uk

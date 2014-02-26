@@ -1,0 +1,11 @@
+Emerald Gate 1.0
+Written By Richard Betson
+www.redeyeware.50megs.com
+vidiot@getgoin.net
+
+Gate/Portal demo with animated texture and mesh wave deformation. The following files are Copyright 2001 Richard Betson:
+my_stargate.3ds
+water_anim.bmp 
+
+You can use theese file in any "not for profit" demo or other program. All other rights reserved.
+
