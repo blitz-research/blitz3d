@@ -1,0 +1,1350 @@
+
+***** V1.108 *****
+
+Fixed app not starting on directinput error.
+
+
+***** V1.107 *****
+
+Implemented DirectDraw SetAppCompatData kludge to fix slow fullscreen FPS on Windows 8. Big thanks to user jackfuste for the fix!
+
+
+***** V1.106 *****
+
+Kludge attempt #2 to solve mystery nvidia/sprite crashes on Windows 7.
+
+
+***** V1.105 *****
+
+Kludge attempt #1 to solve mystery nvidia/sprite crashes on Windows 7.
+
+
+***** V1.104 *****
+
+Fixed a bug that was causing TextureBuffer to crash with default 'null' textures.
+
+
+***** V1.103 *****
+
+Fixed std::map b3dsdk speedup for animation frame seeking.
+
+
+***** V1.102 *****
+
+Implemented std::map b3dsdk speedup for animation frame seeking.
+
+
+***** V1.101 *****
+
+Fixed bug with shallow copied transparent boned meshes.
+
+
+***** V1.100 *****
+
+Fixed FreeImage bug causing certain sized images to crash.
+
+
+***** V1.99 *****
+
+Implemented many fixes for 'loss of graphics' type situations, eg: when user logs out,
+hit's ctrl-alt-del, alt-tabs out of a full screen app etc.
+
+A few special cases:
+
+* 2D images that have been manually modified using WritePixel/WritePixelFast should be declared
+'dirty' after you have finished modifying them. You can do this using the new
+BufferDirty() command, eg: BufferDirty ImageBuffer( theImage ). If you don't care if such
+images survive loss of graphics, you can skip this.
+
+* Vidmem texture contents will not survive loss of graphics. However, the textures themseleves 
+will still exist, and these are supposed to be frequently updated anyway, so this shouldn't
+be a major problem.
+
+* Blitz3D still can't survive desktop rez-mode change in windowed mode. However,
+the new GraphicsLost() command can be used to detect this. The only thing you'll be
+able to do after GraphicsLost() returns True is EndGraphics() (and then perhaps reload everything
+back in if you can be arsed). Or, as I'd be inclined to do, just exit, eg:
+
+...
+If GraphicsLost() RuntimeError "Please restart Defender"
+RenderWorld
+...
+
+Also added 2 new windowed graphics modes: 6 and 7. These are similar to modes 2 and 3, but will
+auto-suspend the application when it loses activation. These new modes are highly recommended!
+
+
+***** V1.98 *****
+
+Fixed compressed textures lost surfaces at Alt-Tab etc.
+
+Q3BSP loader now tries png and dds files in addition to tga and jpg.
+
+
+***** V1.97 *****
+
+Fixed PlayMusic case sensitive file extension issue.
+
+LoadTexture now loads compressed '.dds' files. 
+
+TextureBuffer() returns 0 for compressed textures.
+
+Compressed anim and cube textures not yet supported.
+
+Only DXTC modes 1, 3 & 5 are currently supported. Modes 2 & 4 are pretty much never used in the industry, even
+NVidias own DDS exporter for Photoshop now only supports modes 1, 3 & 5.
+
+The loader code stricly adheres to the DDS format, files saved from Photoshop using NVidias DDS exporter will 
+work fine. If you're getting errors, it could be that your DDS file is non-standard.
+
+The mipmap flag is ignored when loading DDS textures. Instead, if the DDS file contains mipmaps, then they are 
+loaded & used.
+
+DDS textures will load when used by meshes that are loaded using Blitz3D's various load mesh commands.
+
+Usage tips:
+If your texture does not have an alpha use mode DXT1
+If your texture has a 1 bit mask, use mode DXT1a
+If your texture has a smooth gradient alpha, use mode DXT5
+
+Added MeshCullBox for manual mesh culling. This allows you to correct some situations where an
+animated mesh extends beyond the guesstimated bounding box.
+
+
+***** V1.96 *****
+
+Fixed Debugger globals
+
+Fixed default graphics mode and write/print/input/locate etc
+
+
+***** V1.95 *****
+
+Fixed VirtualFree leaks
+
+IDE should now work 'as is' with DEP.
+
+
+***** V1.94 *****
+
+Fixed file type extension case issue with LoadMesh and friends
+
+
+***** V1.93 *****
+
+Fixed string functions problem.
+
+Fixed DEP issue with IDE.
+
+
+***** V1.92 *****
+
+Fixed DEP issue with ReadPixel/ReadPixel/ReadPixelFast/WritePixelFast. IDE still needs to be excluded from DEP though.
+
+
+***** V1.91 *****
+
+Fixed Movie leak
+
+Updated FMOD to version 375.
+
+Fixed sprite vertex buffer glitches.
+
+Fixed function param used in For...Each causing mysterious object deletions.
+
+
+***** V1.90 *****
+
+More fixes for driver/skinning issues.
+
+
+***** V1.89 *****
+
+Fix for 'vertex glitching' issue with latest nvidia driver and skinned/md2 animating entities.
+
+
+***** V1.88 *****
+
+Tightened up collision detection as per bug report postings.
+
+Changed exe code malloc for DEP (Data execution prevention).
+
+Added new 'SystemProperty's: 
+Direct3D7, Direct3DDevice7, DirectDraw7, DirectInput7, AppHWND and AppHINSTANCE.
+
+Possible fix for non-pow2 tex's on GF6800 (don't have one, so untested as yet!)
+
+
+***** V1.87 *****
+
+Fixed slow mem deallocation.
+
+FMOD updated to version 372.
+
+Added HWTexUnits(), returns the number of hardware texturing units available.
+
+Reimplemented the 'bug' that allowed alphablending while multitexturing, but in a slightly more controlled way!
+
+
+***** V1.86 ***** 
+
+Fixed: 
+
+Evil, ancient ImagesCollide bug. 
+
+Added: 
+
+TextureBlend mode 5, for 'multiply 2' blending. This is the same as multiply blending, only 
+the output value is doubled. The idea behind this is that it allows lightmaps to not just 
+darken, but also brighten colormaps. Use a lightmap texel value of .5 (eg: 128,128,128 - 
+ actually, .5 can't be represented exactly!) to get 'null' lighting, <.5 to get darkening 
+and >.5 to get lightening. Roll on Ico in Blitz! 
+
+Multiple bone weights. Each vertex can now be influenced by up to 4 bones, each with an 
+arbitrary weight. If more than 4 weights are present, the 'heaviest' 4 are used. Weights 
+are always normalized so that they sum to 1. Bones can still only be imported/created via 
+B3D files. 
+
+Note: 
+
+The EntityRoll function and Dynamic mesh system have been tweaked a bit. Post any poroblems in the bug reports forum
+
+***** V1.85 *****
+
+Added: 
+
+brush=GetEntityBrush( entity )
+brush=GetSurfaceBrush( surface )
+texture=GetBrushTexture( brush[,index] )
+name$=TextureName$( texture )
+
+Note:
+
+You should release the brush/texture returned by GetEntityBrush()/GetSurfaceBrush()/GetBrushTexture() after use to prevent leaks! Use FreeBrush/FreeTexture to do this.
+
+Added:
+
+class_name$=EntityClass$( entity )
+
+Returns the actual 'class' of an entity. Possible return values are:
+
+Pivot
+Light
+Camera
+Mirror
+Listener
+Sprite
+Terrain
+Plane
+Mesh
+MD2
+BSP
+
+***** V1.84 *****
+
+Added: cubic environment mapping.
+
+Use texture flag 128 with CreateTexture/LoadTexture.
+
+Cubemap textures *must* be square 'power of 2' sizes. Recommended sizes are 32,64,128 or
+256.
+
+The new SetCubeFace command allows you to select cube faces for direct rendering.
+
+The syntax is: 'SetCubeFace texture,face'
+
+Face should be one of:
+
+0 : left (negative X) face
+1 : forward (positive Z) face - this is the default.
+2 : right (positive X) face
+3 : backward (negative Z) face
+4 : up (positive Y) face
+5 : down (negative Y) face
+
+All rendering to a texture buffer affects the currently selected face. Do not change cube face while a buffer is locked.
+
+To load prerendered images into a cubemap using LoadTexture, faces should be laid out in a horizontal strip in the above order.
+
+
+Added: GfxDriverCaps3D()
+
+Returns the 'caps level' of the current graphics driver. Values are:
+
+100: card supports all 'standard' Blitz3D operations.
+110: card supports all standard ops plus cubic environment mapping.
+
+Fixed: a reasonably major collision bug that affected 'stop' response collisions.
+
+
+***** V1.83 *****
+
+Fixed hide/show light bug.
+
+Fixed unscaled CollisionY bug with ellipsoid collisions.
+
+Changed EntityOrder so it can be used with cameras as well as models. This allows you to
+force certain camera views to be rendered before or after others.
+
+Custom mesh vertices now have a default color of 255,255,225 and alpha of 1. Perviously, vertex 
+colors defaulted to the less useful value of 0,0,0. This improvement was actually 'accidentally' 
+introduced in V1.81.
+
+Userlibs problem with duplicate identifiers fixed. Compiler will now refuse to run if there's
+anything suspect in userlibs.
+
+Changed runtime to only open userlibs that are actually used by the program. Previously,
+everything in userlibs was automatically opened at runtime.
+
+
+***** V1.82 *****
+
+Re-release - major bug in 1.81!
+
+***** V1.81 *****
+
+B3D:
+
+Userlibs system added - see 'specs and utils' page.
+
+Ellipsoid collisions added. Entity radius now takes 2 parameters: x_radius and y_radius.
+
+EntityType ID's for collisions are now limited to a range of 1...999, or 0 for 'no collisions'.
+This has allowed me to replace a 'sparse' array in the system with a real one for more speed.
+
+The entity system was given a semi-major overhaul in the interest of speeding up Hide/Show entity.
+All demo code I have tested works fine with the new system, but its a reasonably radical overhaul
+and its possible that some of the more esoteric stuff going on out there could encounter problems.
+But, ShowEntity and HideEntity are now instantaneous.
+
+Vertex Alpha has been added, via an extra, optional parameter on the end of VertexColor.
+This is currently rather limited: polys are NOT sorted for you, and you'll need to use the
+new entityfx value of 32 which 'forces' alpha blending even if an entity is apparantly opaque.
+The alternative would have been to add some 'per vertex' overhead to calculate/update whether a
+surface has at least one vertex with alpha<1 - but I wasn't happy about doing this.
+
+FMOD channels upped to 1024 - get noisy!
+
+Minor bug in b3d loader fixed. Files that contain multiple anims (although they still need to be
+under a common root node) should now work.
+
+
+***** V1.80 *****
+
+B2D/B3D
+
+Added:
+
+RndSeed()
+SetGamma red,green,blue,dest_red#,dest_green#,dest_blue#
+UpdateGamma [calibrate]
+GammaRed( red )
+GammaGreen( green )
+GammaBlue( blue )
+
+B3D Only
+
+Added:
+
+SetAnimTime entity,time#[,anim_seq]
+
+
+***** V1.79 *****
+
+Hopefully stable release!
+
+Lots of little fixes/tweaks/rearrangements...
+
+Mouse and Keyboard input are no longer DirectInput based, and now just use
+standard Windows messages. This has come about due to a few reports from end-
+users of games written in Blitz who have suffered mouse/keyboard lockups. These
+are usually fixed with a driver update, but I feel its unrealistic to expect
+end users to perform such updates (do you know where YOUR mouse driver is? I
+don't...), and when you're trying to sell a shareware game its HUGELY important
+that it works first time on as many machines as possible.
+
+The debugger is still 'not quite there' yet. A few things it yet needs to be
+capable of are highlighting of runtime error statements and a persistant log -
+probably in the form of being able to 'log-to-file'.
+
+***** V1.78 *****
+
+B2D/B3D
+
+Compiler and Debugger have been separated from the IDE!
+
+blitzcc.exe is now a standalone exe that compiles/runs a program, launching the debugger if required. The debugger is now a separate DLL.
+
+The general syntax for using BlitzCC is:
+
+blitzcc [options] [sourcefile]
+
+Where options can be:
+
+-h			: show help
+-q			: operate quietly
++q			: operate very quietly
+-d			: compile and run in debug mode
+-k			: print a list of all keywords to stdout
++k			: print a list of all keywords plus 'quickhelp' to stdout
+-o exefile	: create an executable called 'exefile'.
+
+eg:
+
+blitzcc -d myprogram.bb
+
+...will compile and run 'myprogram.bb' in debug mode.
+
+I have successfully used BlitzCC with several 3rd party 'programmer editors' including ConText (my favourite), SourceEdit and CrimsonEditor. ConText can even be setup to 'catch' error output so that you're taken to the correct line if there are any compilation errors.
+
+IMPORTANT: If you are planning to use BlitzCC with a 3rd party editor, you must setup an environment variable called 'blitzpath' that points at the blitz directory (ie: the one 'blitzbasic.exe' is in).
+
+There is no longer an 'End Program' button in the IDE. This has been moved to the debugger along with step/stepin/stepout etc, but be careful with running non-debug programs as you'll no longer be able to terminate them from within the IDE.
+
+Programs are now individual processes, which should make for a more stable system in general. Previously, programs just ran in a separate thread which meant they could corrupt IDE memory if something went wrong.
+
+Control is now returned to the IDE as soon as a program has finished compiling. This means you can launch multiple instances of the same/different programs from within the IDE - great for client/server stuff!
+
+The IDE toolbar image is now hardcoded to 'cfg/ide_toolbar.bmp' and the debugger toolbar to 'cfg/dbg_toolbar.bmp', so customized toolbars will have to be renamed. Also note that some buttons have gone.
+
+Added JoyU(),JoyUDir(),JoyV(),JoyVDir(),JoyYaw(),JoyPitch(),JoyRoll(). Some way of detecting which axis/buttons are present is still required...
+
+Implemented FMOD3.60 using 'safer' settings. On my machine, this has also meant a slight speed improvement! Go figure...
+
+
+B3D Only:
+
+Fixed CameraPick with orthographic mode bug.
+
+
+***** V1.77 *****
+
+B2D/B3D:
+
+Had another crack at fixing the weird, intermitant font bug. Seems to be working now, although I'm not 100% sure why. Looks suspicously like a Windows GDI bug...
+
+Implemented Floyds FTOA() routine. This should result in more accurate float-to-string conversions.
+
+DLLs fixed. CDECL and STDCALL dlls should both work properly now.
+
+
+B3D Only:
+
+CopyMesh bug fixed.
+
+Added texture flag 512 to force the use of high color textures in low bit depth graphics modes. 
+
+'CameraProjMode camera,mode' added. 'mode' should be one of:
+
+0 : no projection - disables camera (faster than HideEntity)
+1 : perspective projection - the default
+2 : orthographic projection - new!
+
+Use 'CameraZoom' to control the scale of graphics rendered with orthographic projection. I will be adding commands to give more precise control over just what's on screen at a later date....
+
+Orthographic projection will not work properly with terrains. Terrains depend on perspective to calculate level-of-detail, and with no perspective this system goes out the window!
+
+
+***** V1.76 *****
+
+B2D/B3D:
+
+FMOD now loops MIDIs, meaning that all music started with PlayMusic now loops. ChannelPlaying has been modified (only when used with music) to indicate whether the music has played through at least once.
+
+Note that autolooping of music means there is no way to play music just once without a noticable glitch when it ends! I have to talked to the FMOD guy about this and a fix is coming.
+
+
+B3D Only:
+
+Fixed bug with nested meshes in b3d files.
+
+Fixed bug where a 'null' root node in B3D files would cause a crash.
+
+Fixed normals bug with scalemesh/fitmesh/rotatemesh etc. This resulted in dodgy lighting of meshes that had been transformed.
+
+Normals from .X and .B3D files now preserved. UpdateNormals will still overwrite all normals, and is still used if file contains no normals.
+
+Added texture flag 256, for creating non-managed textures. Use this flag for textures that need to be frequently updated. Note: Highly experimental!
+
+Fixed bug with high vertex count models. More work to be done here, as per surface/material vertex counts>65535 will still blow up, but at least its back to the way it was.
+
+Added CopyMesh( mesh,[parent] ). You should still use CopyEntity whenever possible, as this allows mesh geometry to be shared between multiple entities.
+
+Added a new texture flag value '65536' to the B3D file format, to emulate the TextureCoords command. See the B3D format docs for more...
+
+
+***** V1.75 *****
+
+B2D/B3D:
+
+B2D gets the 3.51 FMOD update!
+
+Fixed memleak with arrays of objects.
+
+B3D:
+
+B3D File format introduced.
+
+Basic Bone support added - only internally for now via b3d file loader.
+
+ExtractAnimSeq command added to extract a single animseq from an anim 'series'.
+
+Fixed multitexturing bug where textures were being reused.
+
+
+***** V1.74 *****
+
+FMOD 3.51 implemented, including midi StopChannel fix.
+
+Problem with single texture scenes fixed. This problem typically manifested itself as a 'wrong texture'  glitch when rendering scenes which only contained a single texture.
+
+Texture format selection modified a bit. Now tries to use 16 bit textures if mode depth is 16 (was just going for 'max bits' textures in all modes), which will save on videomem for the 'low color' modes. Also, texture format argb 3328 is NOT used unless necessary, which gives much better results on 16 bit cards like the Voodoo etc.
+
+Sprite tweening behaviour now mimics other entities completely. Sprites were 'zooming in/out' if created then immediately scaled with render tweening enabled. No more!
+
+
+***** V1.73 *****
+
+FMOD DX7 problem fixed.
+
+Hardware acceleration and 'forcemono' flag added to Load3DSound.
+
+
+***** V1.72 *****
+
+AlignToVector bug fixed, and an optional 'rate#' parameter added. A rate of 1 will 'snap' an entity to the vector, and rates between 0 and 1 will cause an entity to smoothly 'tend towards' the vector. Defaults to '1'.
+
+Terrain crash bug fixed. Terrain 'LOD' algorithm also changed slightly. Gotta find a better algorithm for this stuff...
+
+Alpha values<.5 should now work with new style masked textures.
+
+FMOD 350 implemented. Ogg Vorbis (cool name!) support added.
+
+
+***** V1.71 *****
+
+B2D/B3D
+
+Some simple movie and DLL commands added:
+
+OpenMovie( file$ )
+--------------------------
+Opens a movie file and returns a movie handle.
+ 
+CloseMovie movie
+--------------------------
+Closes a movie.
+ 
+DrawMovie movie,x,y[,width,height]
+---------------------------------------------------
+Draws a movie at x,y on the current buffer. Width/height default to movie width/height. Returns true if the movie is still playing.
+ 
+Viewport and Origin are not taken into account, and the movie must be positioned entirely 'on screen'.
+ 
+Movie support relys on DirectShow, so you will need to ensure the correct drivers are installed.
+ 
+Movies will typically playback fastest at their natural size.
+ 
+MovieWidth( movie )
+-----------------------------
+Returns the width of a movie.
+ 
+MovieHeight( movie )
+------------------------------
+Returns the height of a movie.
+ 
+MoviePlaying( movie )
+-------------------------------
+Returns true if the specified movie is playing.
+ 
+CallDLL( dll_name$,proc_name$[,in_bank,out_bank] )
+-------------------------------------------------------------------
+Calls the specified procedure in the specified DLL, and returns the integer value returned by the DLL procedure.
+
+The DLL is called with pointers to and sizes of bank memory. Dll function prototypes should like something like this (Visual C++) example:
+
+extern "C"{
+_declspec(dllexport) int _cdecl my_dll_func( const void *in,int in_size,void *out,int out_sz );
+}
+
+The 'extern "C"' bit prevents C++ 'name-mangling', and the _cdecl bit prevents name decoration. You could call this function using something like:
+
+in_bank=CreateBank(...)
+out_bank=CreateBank(...)
+
+;poke input parameters into in_bank
+result=CallDLL( "mydll","my_dll_func",bank1,bank2 )
+;peek output results from out_bank
+
+
+***** V1.70 *****
+
+B2D/B3D
+
+TCPStreamIP and TCPSTreamPort now return the IP and port of the computer at the other end of the connection. I haven't had a chance to test this, but it should work.
+
+App title for executables now defaults to a single space - ie: blank.
+
+B3D Only:
+
+Masked texture mode changed to use alpha reference value instead of alpha blending.
+
+
+***** V1.69 *****
+
+B2D/B3D:
+
+Bug in ReadString$() fixed, where a chr$(0) was terminating the string.
+
+B3D Only:
+
+Some subtle UpdateNormals weirdness fixed. UpdateNormals now also normalizes normals. This is not strictly necessary, but makes the normals more useful.
+
+TrisRendered() command added - returns number of triangles rendered by most recent RenderWorld. This is the number of triangles sent to Direct3D, so will include triangles that are back-faced culled, but not triangles culled by Blitz's frustum (ie:camera viewport/zoom/range) culling.
+
+***** V1.68 *****
+
+Quake3 BSP loader in!
+
+* Shaders are *not* supported!
+
+* BSP's cannot (yet) be painted, textured, colored, faded etc.
+
+* A BSP model is just an entity. Use the standard entity commands to scale, rotate and position the BSP, and the standard collision commands to setup collisions with the BSP.
+
+* BSP models are not lit by either 'normal' AmbientLight, or by any directional lighting. This allows you to setup lighting for in-game models without affecting the BSP lighting. However, BSP models *will* be lit by point or spot lights.
+
+* Textures for the BSP model must be in the same directory as the BSP file itself. I'll be working on a generic solution to locating textures at some time in the future.
+
+* This is fairly experimental! Please post your impressions on the Blitz website.
+
+
+Commands added:
+
+bsp=LoadBSP( file$[,gamma_adjust#][,parent] )
+---------------------------------------------
+
+Loads a BSP model.
+
+gamma_adjust# can be used to 'boost' the intensity of the BSP lightmaps. Valid values range from 0...1 inclusive. Defaults to 0 - ie: no gamma adjustment. This can result in very dark levels!
+
+BSPAmbientLight bsp,red#,green#,blue#
+-------------------------------------
+
+Sets the ambient lighting for a BSP model. Note that BSP models do not use the normal AmbientLight setting. This can also be used to increase the brightness of a BSP model, but the effect is not as 'nice' as using the gamma_adjust parameter of LoadBSP.
+
+BSPLighting bsp,use_lightmaps
+-----------------------------
+
+Controls whether BSP models are illuminated using lightmaps, or by vertex lighting. Vertex lighting will be faster on some graphics cards, but doesn't look as good!
+
+
+Other changes:
+
+TCPStreamIP/TCPStreamPort should now work with TCPServer 'accepted' streams.
+
+CopyEntity now copies entity name too.
+
+Sprite viewmode 3 modified to allow the sprite to pitch.
+
+Alpha tweening/autofading bug fixed.
+
+Fixed UpdateNormals bug/memleak.
+
+
+***** V1.67 *****
+
+MD2 transitions in - AnimateMD2 now has an extra transition# parameter.
+
+
+***** V1.66 *****
+
+Fixed a UDP buffering problem. Also removed UDP stream closing down if there is an ICMP 'port not found' error - very important for servers!
+
+Clamped windowed mode y position to >=0. This prevents the title bar getting lost when window is larger than desktop.
+
+
+***** V1.65 *****
+
+Net commands added:
+
+CountHostIPs
+HostIP
+DottedIP
+
+UDP commands added:
+
+CreateUDPStream
+CloseUDPStream
+SendUDPMsg
+RecvUDPMsg
+UDPStreamIP
+UDPStreamPort
+UDPMsgIP
+UDPMsgPort
+UDPTimeouts
+
+TCP commands added:
+
+TCPStreamIP
+TCPStreamPort
+TCPTimeouts
+
+
+***** V1.64 *****
+
+3D Runtime:
+
+Fixed terrain crashing/corruption bug.
+
+
+***** V1.63 *****
+
+MD2 Support back in - hurrah!
+
+
+***** V1.62 *****
+
+Runtime:
+
+A few 3D bug fixes.
+
+Final Blitz3D Release build!
+
+
+***** V1.61 *****
+
+IDE:
+
+Better handling of file extensions.
+
+F1/F1 handler changed to Si H's docs format.
+
+Windowed modes are now centred.
+
+
+Runtime:
+
+MouseZ()/MouseZSpeed() added for wheely mice.
+
+FreeImage updated to 2.4.1, apparantley fixes some mem-leaks, definitely fixes a BMP loading problem!
+
+AppTitle takes an extra, optional, close_prompt$ parameter. This sets up a prompt to be displayed when a windows close gadget is hit.
+
+***** V1.60 *****
+
+3D Runtime:
+
+Picks and Collisions unified a bit. Both now return surface handle and triangle index
+if pick/collision was with a mesh.
+
+Commands changed/added:
+
+PickedX,PickedY,PickedZ,
+PickedNX,PickedNY,PickedNZ,
+PickedTime,PickedEntity,PickedSurface,PickedTriangle
+
+CollisionX,CollisionY,CollisionZ,
+CollisionNX,CollisionNY,CollisionNZ,
+CollisionTime,CollisionEntity,CollisionSurface,CollisionTriangle
+
+
+***** V1.59 *****
+
+3D Runtime:
+
+Very nasty mipmapping bug fixed. It affected textures with an aspect ratio of >=2:1, resulting in the occasional random 'illegal memory address'. Its been in there forever, too!
+
+EntityOrder/transparancy fixed.
+
+
+***** V1.58 *****
+
+IDE:
+
+Simple 'mediaview' hook added to IDE. Source code available in core release.
+
+3D Runtime:
+
+Fixed alpha tweening problem.
+
+Fixed MD2 loading bug.
+
+Cleaned up md2 animations a bit. *NOTE* MD2s have their own set of anim commands!
+
+WBuffering available only for 16 bit modes - on by default.
+
+Load commands should now return 0 if resource cannot be loaded.
+
+AlignToVector changed - now uses relative quaternions which should be more flexible.
+
+Beta Autodoc back in.
+
+Commands added/changed:
+
+WBuffer
+MD2AnimTime
+MD2AnimLength
+MD2Animating
+
+
+***** V1.57 *****
+
+3D Runtime:
+
+Another crack at W buffering.
+
+Mask texture format detection routine slightly modified.
+
+
+***** V1.56 *****
+
+3D Runtime:
+
+Optimized dynamic meshes a bit.
+
+Optimized per-entity overhead a bit.
+
+Dummy objects in 3DS files now named.
+
+
+***** V1.55 *****
+
+Bug with Image mask building on images with alpha fixed.
+
+CurrentDir$() now has '\' appended.
+
+SystemProperty$( property$ ) added for returning windows specific stuff. property$ should be one of: "os", "windowsdir", "systemdir", "appdir", "tempdir".
+
+Rand() with negative 'from' value fixed.
+
+FontWidth() fixed to return something else apart from '8'!
+
+LoadFont fixed to recognize path properly, eg: LoadFont( "media\blitz.fon" ) now works.
+
+Minimize and close gadgets added to windowed-mode window. Close abruptly closes for now...
+
+
+***** V1.54 *****
+
+Another bug in ImagesCollide fixed - an oldy, too. One more, and I'm rewriting the thing!
+
+Links with wsock32.lib instead of ws2_32.lib, so should run on minimum install systems without complaining about DLLs.
+
+ShowPointer/HidePointer added to show/hide the mouse pointer in windowed mode.
+
+Resurrected a hack that may reduce Flip 'jitters' on some cards.
+
+Joystick re-acquired if focus lost in windowed mode.
+
+Faster non-GDI Line routine courtesy of Simon Armstrong.
+
+
+***** V1.53 *****
+
+Replace$ bug with same strings fixed.
+
+ReadLine$() returns all chars except chr$(13)/chr$(10).
+
+ImagesCollided fixed.
+
+
+READPIXEL AND READPIXELFAST USERS PLEASE READ:
+----------------------------------------------
+
+Some issues with ReadPixel and ReadPixelFast have arisen.
+
+While working on the 3D, it has been necessary to make ReadPixel and ReadPixelFast "alpha-aware".
+
+This means that the high 8 bits of the color returned ReadPixel/ReadPixelFast now contain valid alpha information.
+
+However, in the case of Blitz2D apps, there is no alpha information in images!
+
+I have decided that in the abscence of any alpha information, a pixel is assumed to have 'full' alpha.
+
+Therefore, values returned by ReadPixel/ReadPixelFast will now (usually) have their high 8 bits sets. The exception will be when reading pixels from Blitz3D textures created with an alpha channel.
+
+To get the old behaviour of ReadPixel/ReadPixelFast, use the following:
+
+rgb=ReadPixel( x,y ) And $FFFFFF
+
+This will 'mask out' the 8 high bits of alpha and return just the red, green and blue components of the pixel.
+
+I apologize for any inconvenience this change may have caused/be causing, but I believe that, long term, this approach is the right way to go...
+
+
+***** V1.52 *****
+
+Sanity check release - mainly making sure all the 3D tweaking hasn't upset anything!
+
+Some simple TCP client/server stuff added - more coming!
+
+The file system has changed a little internally, but all file commands SHOULD work the way they used to.
+
+The idea of a 'stream' has been introduced. Open files and TCP connections are both types of streams. You can use the following commands with any type of stream:
+
+Eof( stream )
+ReadAvail( stream )	;NEW
+ReadByte( stream )
+ReadShort( stream )
+ReadInt( stream )
+ReadFloat#( stream )
+ReadString$( stream )
+ReadBytes( bank,stream,offset,count )
+ReadLine( stream )
+Writebyte stream,value
+WriteShort stream,value
+WriteInt stream,value
+WriteFloat stream,value
+WriteString stream,value#
+WriteLine stream,line$
+WriteBytes( bank,stream,offset,count )
+
+...so, these commands are not strictly file commands any more, but since a file is now a type of stream, they can still be used successfully with files!
+
+----- New commands -----
+
+* OpenTCPStream( ip$,port )
+
+Opens a client TCP stream to the specified server, and returns a stream handle if successful or 0 if not. You'll need to be online for this to work over the internet.
+
+ip$ can either be of the form "1.2.3.4" or "www.w3.org".
+
+* CloseTCPStream tcp_stream
+
+Closes the specified tcp stream.
+
+* CreateTCPServer( port )
+
+Creates a TCP server on the specified port. Returns a tcp server handle if successful or 0 if not.
+
+* AcceptTCPStream( tcp_server )
+
+Accepts an incoming tcp stream, and returns a tcp stream if one is available, or 0 if not.
+
+* CloseTCPServer tcp_server
+
+Closes a TCP server.
+
+* ReadAvil( stream )
+
+Returns how many bytes are guaranteed to be successfully read from a stream. In the case of file streams, this reflects how much data is internally buffered. In the case of TCP streams, this reflects how much data has 'arrived'.
+
+* BankSize( bank )
+
+Returns the size of a bank.
+
+* ResizeBank bank,new_size
+
+Resizes a bank. Existing bank data is unmodified, but may be moved in memory.
+
+* CopyBank src_bank,src_offset,dest_bank,dest_offset,count
+
+Copies data from one bank to another. If copying between the same banks, handles overlapping memory ranges.
+
+* CopyRect src_x,src_y,src_width,src_height,dest_x,dest_y[,src_buffer][,dest_buffer]
+
+Copies a rectangle of graphics from one buffer to another. If a buffer is omitted, the current buffer is used.
+
+
+----- Changes ------
+
+ReadBytes/WriteBytes now return how many bytes successfully read/written from/to the stream. They used to return nothing.
+
+Eof returns 1 if eof has been reached or, in the case of a TCP stream, the stream has been 'nicely' closed.
+
+Eof now returns -1 if something has gone wrong during stream processing.
+
+***** V1.50 *****
+
+FMOD Library updated to 3.33 - ChannelPlaying() now works with MIDI!
+
+Added Labels list to editor.
+
+
+***** V1.49 *****
+
+Re-dimming arrays of objects and strings fixed.
+
+
+***** V1.48 *****
+
+Optimized Text clipping.
+
+Fixed '&' char not printing.
+
+Fixed IDE program command line.
+
+Added F6 to re-run last program - useful for projects with Includes.
+
+Added integer version of Rnd():
+
+* Rand( n )	;returns random integer from 1 to n inclusive
+* Rand( x,y )	;returns random integer from x to y inclusive
+
+Added copy pixel commands:
+
+* CopyPixel src_x,src_y,src_buffer,dest_x,dest_y[,dest_buffer]
+* CopyPixelFast src_x,src_y,src_buffer,dest_x,dest_y[,dest_buffer]
+
+Note: CopyPixelFast requires both source and destination buffers to be locked, and does no clipping or origin translation - be careful! May be useful for BlitzDoom?..
+
+
+***** V1.47 *****
+
+ExecFile now uses ShellExecute instead of CreateProcess, so should be able to open documents 
+now.
+
+Played with the Win/DX internals a bit, so there may be some minor issues.
+
+
+***** V1.46 *****
+
+CommandLine$() and 'Program command line' requester added, so you can now get at the command line parameters used when a Blitz exe is run.
+
+
+***** V1.45 *****
+
+Double spaced save file fixed.
+MoveMouse drifting in windowed mode fixed.
+Editor not tokenizing before compile/save fixed.
+
+
+***** V1.44 *****
+
+Bank commands added at last!
+
+bank=CreateBank( size )
+FreeBank bank
+PeekByte( bank,offset )
+PeekShort( bank,offset )
+PeekInt( bank,offset )
+PeekFloat( bank,offset )
+PokeByte bank,offset,value
+PokeShort bank,offset,value
+PokeInt bank,offset,value
+PokeFloat bank,offset,value
+ReadBytes bank,file,offset,count
+WriteBytes bank,file,offset,count
+
+
+***** V1.43 *****
+
+Oval bug fixed.
+
+ImageRectCollide fixed.
+
+Print in tight loop fixed.
+
+Dragging editor to death fixed.
+
+Font corruption fixed - smoothing disabled for now.
+
+Temporarily disabled secondary device detection.
+
+Note: All fonts are discarded when graphics mode changes.
+
+Note: Print/Write/Input ignore viewport & origin, and always write to the front buffer.
+
+
+***** V1.42 *****
+
+Runtime window made topmost in debug mode.
+
+
+***** V1.41 *****
+
+Mouse leap to 0,0 fixed.
+
+Joystick unacquired fixed.
+
+Debug log shortcut to F9.
+
+Cls damage rect applied.
+
+WaitMouse waits for mouse.
+
+Text bounding clipped before rendering.
+
+Print with default empty string fixed.
+
+Font setup bug fixed? Maybe.
+
+Font bold/italic/underline fixed.
+
+WritePixelFast/ReadPixelFast fixed.
+
+
+***** V1.40 *****
+
+MAJOR internal re-working - all directX stuff rewritten from scratch!
+
+Added recent files list to IDE.
+
+Added function and type lists to IDE.
+
+Added DebugLog text$ command. Select 'View Log' from the 'Debug' menu to view a programs DebugLog output.
+
+Cleaned up include file debugging/error reporting. Should work OK now...
+
+Windowed mode now usable in exes. Graphics command has an extra 'mode' parameter:
+
+0 : auto - windowed in debug, fullscreen in non-debug (this is the default)
+1 : fullscreen mode
+2 : windowed mode
+3 : scaled window mode
+
+The depth parameter is ignored in windowed mode.
+
+LoadFont now actually loads fonts.
+
+Text command greatly improved - should be much faster.
+
+Commands for using mulitple graphics drivers:
+
+CountGfxDrivers()
+GfxDriverName$( driver )
+SetGfxDriver driver
+
+The CountGfxModes, GfxModeWidth, GfxModeHeight and GfxModeDepth commands are now dependant on the driver set by 'SetGfxDriver'.
+
+Timers rewritten and are much more accurate.
+
+Implemented a kludge for ye old 'jerky flipping if not much on-screen' problem - works on my machine, but not very scientific. Based on a flash-back to DOS days...
+
+Low-level/high-speed functions for reading/writing pixels - for advanced/brave users only:
+
+LockBuffer [buffer]
+UnlockBuffer [buffer]
+rgb=ReadPixel( x,y[,buffer] )
+WritePixel x,y,rgb[,buffer]
+rgb=ReadPixelFast( x,y[,buffer] )
+WritePixelFast x,y,rgb[,buffer]
+
+After you use LockBuffer on a buffer, the only graphics commands you can use are the read/write pixel commands listed above. You must UnlockBuffer before using other graphics commands.
+
+If a buffer parameter is omitted, the current buffer selected by 'SetBuffer' is used.
+
+ReadPixel/WritePixel may be used anywhere in your program, but will work faster if buffer is locked. ReadPixelFast/WritePixelFast MUST be used on a locked buffer.
+
+ReadPixelFast/WritePixelFast do no clipping - if your pixel is off-screen you may crash Blitz!
+
+The rgb values for read/write pixel are packed into a 32 bit integer. The red component occupies bits 16-23, green 8-15 and blue 0-7.
+
+These are STILL not really fast enough for fullscreen fades/wipes, but may be of use to someone out there...
+
+
+***** V1.36 *****
+
+FMOD sound system implemented!
+
+This is really a BETA version, as I have only tested this on my computer and there may be some compatibility problems - audio stuff REALLY hits the hardware! Therefore, I wouldn't recommend releasing executables with this version just yet.
+
+The eagle eyed will notice that Blitz executables are getting bigger! I will be working at reducing this in the near future, and there is quite a bit of 'fat' yet to be trimmed from the FMOD library.
+
+Sound commands have changed substantially. I was nervous about doing this, but better sooner than later. We are working on new help files for Blitz owners, and plan to eventually release help files along with each Blitz update.
+
+You can now play a single sound as many times as you want, so CopySound has gone.
+
+LoopSound/SoundPitch/SoundVolume/SoundPan all set up a sound for the next time it is played, and have no immediate effect.
+
+Playing a sound, music file, or CD track returns a channel number. Modifying a channel WILL have an immediate effect. Note that not all formats/device support all channel effects. For example, you can't control the pitch of a CD track.
+
+You can now play multiple songs simultaneously. Using ChannelVolume, you can even cross-fade between songs!
+
+Summary of new sound commands:
+
+* sound=LoadSound( filename$ )
+
+Loads a sound file and returns a sound number. 
+
+Formats supported: raw/wav/mp3
+
+* LoopSound sound
+
+Sets loop mode for a sound. Sound will loop when next played.
+
+* SoundPitch sound,hertz
+
+Sets pitch for when sound is next played.
+
+* SoundVolume sound,volume#
+
+Sets volume for when sound is next played. Volume is in the range 0...1, where 0=silence, and 1=full volume.
+
+* SoundPan sound,pan#
+
+Sets the left/right pan for when sound is next played. Pan is in the range -1...+1, where -1=full left and +1=full right.
+
+* channel=PlaySound( sound )
+
+Starts a sound playing and returns a channel number.
+
+* channel=PlayMusic( filename$ )
+
+Starts a piece of music playing and returns a channel number. If a piece of music with the same filename is already playing, it will be restarted.
+
+Formats supported: raw/wav/mp3/mod/s3m/xm/it/mid/rmi
+
+* channel=PlayCDTrack( track[,mode] )
+
+Starts a CD track playing and returns a channel number. Set mode to 1 to play the track once, 2 to loop the track and 3 to play the entire CD starting from the track. The default mode is 1.
+
+* StopChannel channel
+
+Stops a channel playing.
+
+* PauseChannel channel
+
+Pauses a channel playing.
+
+* ResumeChannel channel
+
+Resumes a channel playing after PauseChannel.
+
+* ChannelPitch channel,hertz
+
+Sets the pitch of a channel.
+
+* ChannelVolume channel,volume#
+
+Sets the volume of a channel. See 'SoundVolume' for volume values.
+
+* ChannelPan channel,pan#
+
+Sets the pan of a channel. See 'SoundPan' for pan values.
+
+* ChannelPlaying( channel )
+
+Returns 1 if channel is playing, otherwise 0.
+
+Have FUN!
+
+
+***** V1.35 *****
+
+TFormImage/ScaleImage/ResizeImage/RotateImage fixed: the output size was being calculated incorrectly.
+
+
+***** V1.34 *****
+
+Finally tidied up Includes. Error reporting and debugging should now work across
+multiple source files.
+
+
+***** V1.33 *****
+
+FreeImage library implemented! Formats supported: BMP,PNG,JPG
+
+Asc() fixed to return positive values only - except for null strings where it returns -1.
+
+
+***** V1.32 *****
+
+Added HostNetGame( game_name$ ) and JoinNetGame( game_name$,server_ip$ ) for TCP/IP only.
+
+Return values are the same as for StartNetGame() - 0 if failed, 1 if joined, 2 if hosting.
+
+These allow you to bypass the grungy 'connection dialog' bit.
+
+
+***** V1.31 *****
+
+Fixed multiplayer dialog bug, typically manifested as a 'Can't enumerate sessions' error.
+
+
+***** V1.30 *****
+
+Unselectable debugger control fixed.
+
+
+***** V1.29 *****
+
+Stray mouse pointer fixed? Here's hoping...
+
+Optional 'vwait' parameter added to 'Flip'. Defaults to 'True' for compatible behaviour. May be useful for timer synced games.
+
+Internal cleanup of nightmare 'surface-lost' code. You can now run 2 full-screen BB progs and Alt-Tab between them: on my machine, anyway. Not even slightly recommended.
+
+
+***** V1.28 *****
+
+'About' requester removed from start of final version.
+
+Source code position set to error position for runtime errors.
+
+GetJoy() fixed.
+
+
+***** V1.27 *****
+
+Multiple joystick support added. All joystick commands except FlushJoy now take an optional port paramter - see quick help.
+
+Includes cleaned up a little. Still not ideal.
+
+
+***** V1.21 *****
+
+Include command added.
+
+initialdir for create exec fixed.
+
+More consistant error messages.
+
+Fixed globals not appearing in debugger.
+
+Fixed FlushMouse, FlushJoy.
+
+
+***** V1.20 *****
+
+VWait fails quietly.
+
+FP rounding mode changed to 'nearest'.
+
+Added FlushKeys, FlushMouse, FlushJoy.
+
+
+***** V1.17 *****
+
+Weird assembler error nailed.
+
+Case insensitive identifiers added.
+
+Separate namespaces for types, functions and vars.
+
+Keywords not tokenized until cursor leaves identifier.
+
+PlayMusic wont play same music twice if first attempt fails.
+
+Fixed sound mono->stereo bug.
+
+Fixed sound sample rate conversion bug.
+
+
+***** V1.15 *****
+
+Fixed 'Mod 0' bug.
+
+Majorly souped up optimizer.
+
+Added command reference docs to demo.
+
+
+***** V1.14 *****
+
+Fixed ImagesCollide bug.
+
+Fixed 'Error loading source' bug.
+
+
+***** V1.13 *****
+
+Fixed Asc memleak.
+
+Fixed Restore bug.
+
+
+***** V1.12 *****
+
+First demo release.

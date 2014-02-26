@@ -1,0 +1,123 @@
+
+New DLL interface spec
+----------------------
+
+There is now a directory in the root blitzpath called 'userlibs'.
+
+By adding DLLs and '.decls' files to this directory, you can extend blitz's command set.
+
+DLLs contain actually library code, while .decls files contain 'declarations' to be added to the
+base command set. These declarations describe the functions contained in the Dll.
+
+
+Format of decls files
+---------------------
+
+Decls files should always start with a '.lib' directive, followed by the quoted name of the DLL to be
+loaded, eg:
+
+.lib "mylib.dll"
+
+Following the .lib is a list of function declarations. The syntax of these is identical to
+function declarations in Blitz, with the following exceptions:
+
+* No default parameter values are allowed.
+
+* If no function return type is specified, the function is a 'void' function - ie: it returns nothing.
+
+* Instead of object parameters, you can only specify 'void*' parameters using a '*' type tag. Such
+parameters can be assigned ANY object or bank, so BE CAREFUL!
+
+* A declaration may be optionally followed by a 'decorated name'. This takes the form of a ':' 
+followed by a quoted string denoting the decorated name, eg:
+
+MyFunction( text$ ):"_MyFunction@4"
+MessageBox%( hwnd,text$,title$,style ):"MessageBoxA"
+
+The decorated name is the name of the function as it appears in the dll, and only needs to be
+specified if it is different from the actual function name.
+
+
+Writing DLLs
+------------
+
+All functions MUST use the _stdcall calling convention.
+
+Floats are passed and returned as per standard C/C++ conventions.
+
+Strings are passed and returned in 'C' format - ie: a pointer to a null-terminated sequence of
+characters.
+
+Returned strings must be in a 'static' memory buffer. Once the function returns, this string is
+immediately copied into an internal Blitz style string, so its OK to share this buffer between
+multiple functions.
+
+Both banks and objects can be passed to functions. The value passed is the address of the first byte
+of storage. No information is sent regarding the size or type of memory passed so, again, BE CAREFUL!
+
+Neither Banks or objects can be returned from functions.
+
+Arrays are not supported at all.
+
+VisualC decorates symbols quite heavily! If you are coding in 'C', the necessary stdcall specifier
+will cause a '_' to be prepended, and a '@' (followed by the number of bytes passed to the function
+- ie: number of parameters*4) to be appended. So, something like: 'void _stdcall MyFunc( int x )'
+will end up as '_MyFunc@4'. In C++, the name decoration is even messier! But you can supress it by 
+using the 'extern "C"' feature (see examples below) so you're just left with the 'C' stdcall mess.
+
+Other languages such as Delphi and Purebasic don't appear to suffer from this feature, but it can be
+worthwhile looking through dll symbols if you're having problems. Check out PEview at
+http://www.magma.ca/~wjr  Open your dll and select 'SECTION .rdata'/'EXPORT address table'
+to have a look at the exported symbols your compiler has seen fit to bestow upon your dll.
+
+Example
+-------
+
+Ok, here's a little C++ example, as it would appear in VisualC.
+
+First, we write the DLL:
+
+//demo.dll
+//
+#include <math.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define BBDECL extern "C" _declspec(dllexport)
+#define BBCALL _stdcall
+
+//returns a float and has 6 float parameters
+BBDECL float BBCALL VecDistance( float x1,float y1,float z1,float x2,float y2,float z2 ){
+	float dx=x1-x2,dy=y1-y2,dz=z1-z2;
+	return sqrtf( dx*dx+dy*dy+dz*dz );
+}
+
+//returns a string and has one string parameter
+BBDECL const char * BBCALL ShuffleString( const char *str ){
+	static char *_buf;
+
+	int sz=strlen(str);
+
+	delete[] _buf;
+	_buf=new char[ sz+1 ];
+	strcpy( _buf,str );
+	
+	for( int k=0;k<sz;++k ){
+		int n=rand()%sz;
+		int t=_buf[k];_buf[k]=_buf[n];_buf[n]=t;
+	}
+
+	return _buf;
+}
+After building this, the resultant 'demo.dll' should be placed in the userlibs directory.
+
+Now, we also need to create a 'demo.decls' file, describing the functions in our dll. This file
+is also placed in the userlibs directory:
+
+.lib "demo.dll"
+VecDistance#( x1#,y1#,z1#,x2#,y2#,z2# ):"_VecDistance@24"
+ShuffleString$( str$ ):"_ShuffleString@4"
+
+...Voila! The next time Blitz is started up, the new commands appear within the IDE and can be used.
+
+
