@@ -1,0 +1,1 @@
+* At certain moments, music hangs when proceeding from title screen to game or vice versa.
