@@ -1,0 +1,1107 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Developer Studio">
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=iso-8859-1">
+<TITLE>Getting Started In Blitz BASIC</TITLE>
+</HEAD>
+<body bgcolor="#206060" text="#ffff00" link="#00ff00"
+vlink="#00ff00" alink="#00ff00">
+<style>
+<!--
+     A:link {text-decoration: none;}
+     A:visited {text-decoration: none;}
+-->
+</style>
+<h2><font color="#FFFF00" face="MS Sans Serif"><strong>Getting
+Started with BlitzBasic</strong></font></h2>
+<hr>
+<menu>
+    <li><h4><a href="#first"><font face="MS Sans Serif">My First
+        Program</font></a></h4>
+    </li>
+    <li><h4><a href="#variables"><font face="MS Sans Serif">Variables</font></a></h4>
+    </li>
+    <li><h4><a href="#firstgame"><font face="MS Sans Serif">My
+        First Game</font></a></h4>
+    </li>
+    <li><h4><a href="#gettinggraphic"><font face="MS Sans Serif">Getting
+        Graphic</font></a></h4>
+    </li>
+    <li><h4><a href="#doublebuffering"><font face="MS Sans Serif">Double
+        Buffering</font></a></h4>
+    </li>
+    <li><h4><a href="#mysecondgame"><font face="MS Sans Serif">My
+        Second Game</font></a></h4>
+    </li>
+</menu>
+
+<hr>
+
+<h4><a name="first"><font color="#A7E3F5" face="MS Sans Serif">My
+First Program</font></a></h4>
+
+<p><font face="MS Sans Serif">After sampling some of the fine
+example programs included in the BlitzBasic package you are
+hopefully itching to try some of your own code.</font></p>
+
+<p><font face="MS Sans Serif">BlitzBasic is intended as both a
+friendly introduction to programming computers as well as a
+language capable of producing polished video game software.</font></p>
+
+<p><font face="MS Sans Serif">First up, the traditonal hello
+world program. A simple one line program that prints the message
+&quot;hello world&quot; on the screen. Select the File-New menu
+option and enter the following text:</font></p>
+<div align="center"><center>
+
+<table border="2" cellpadding="8" width="600" bgcolor="#006060">
+    <tr>
+        <td><font color="#FFE75F" size="2" face="blitz">Print</font><font
+        color="#FFFFFF" size="2" face="blitz"> </font><font
+        color="#00FF00" size="2" face="blitz">&quot;Hello World!&quot;</font></td>
+    </tr>
+</table>
+</center></div>
+
+<p><font face="MS Sans Serif">If you press the F5 key to compile
+and run and a message greeting the world appears then </font><font
+color="#80FF00" face="MS Sans Serif">congratulations!</font><font
+face="MS Sans Serif"> you have just authored your first
+BlitzBasic program.</font></p>
+
+<p><font face="MS Sans Serif">The following code illustrates
+prompting the user of your program for some input.</font></p>
+<div align="center"><center>
+
+<table border="2" cellpadding="8" width="600" bgcolor="#006060">
+    <tr>
+        <td><font color="#FFFFFF" size="2" face="blitz">a</font><font
+        color="#FFF0C8" size="2" face="blitz">=</font><font
+        color="#FFE75F" size="2" face="blitz">Input</font><font
+        color="#FFF0C8" size="2" face="blitz">(</font><font
+        color="#00FF00" size="2" face="blitz">&quot;enter a
+        number sweety:&quot;</font><font color="#FFF0C8" size="2"
+        face="blitz">)</font><p><font color="#FFE75F" size="2"
+        face="blitz">Print</font><font color="#FFFFFF" size="2"
+        face="blitz"> </font><font color="#00FF00" size="2"
+        face="blitz">&quot;the value of a is &quot;</font><font
+        color="#FFFFFF" size="2" face="blitz"> </font><font
+        color="#FFF0C8" size="2" face="blitz">+ </font><font
+        color="#FFFFFF" size="2" face="blitz">a</font></p>
+        </td>
+    </tr>
+</table>
+</center></div>
+
+<p><font face="MS Sans Serif">Note: see how we add text and an
+integer variable together to print them both on the same line.</font></p>
+
+<hr>
+
+<h4><a name="variables"><font color="#A7E3F5"
+face="MS Sans Serif">Variables</font></a></h4>
+
+<p><font face="MS Sans Serif">Variables in Blitz are used to
+store integers, floats and strings.</font></p>
+
+<p><font face="MS Sans Serif">The first time a float or a string
+variable is used in your program it must be denoted with # or $
+symbols .</font></p>
+
+<p><font face="MS Sans Serif">If the &quot;a=&quot; in the
+program is changed to &quot;a$=&quot; Blitz will treat a as a
+string variable which can then contain any text the user enters
+instead of the integer number it originally converted the user's
+reply into.</font></p>
+<div align="center"><center>
+
+<table border="2" cellpadding="8" width="600" bgcolor="#006060">
+    <tr>
+        <td><font color="#FFFFFF" size="2" face="blitz">a</font><font
+        color="#FFF0C8" size="2" face="blitz">$=</font><font
+        color="#FFE75F" size="2" face="blitz">Input</font><font
+        color="#FFF0C8" size="2" face="blitz">(</font><font
+        color="#00FF00" size="2" face="blitz">&quot;enter a
+        number sweety:&quot;</font><font color="#FFF0C8" size="2"
+        face="blitz">)</font><p><font color="#FFE75F" size="2"
+        face="blitz">Print</font><font color="#FFFFFF" size="2"
+        face="blitz"> </font><font color="#00FF00" size="2"
+        face="blitz">&quot;the value of a is &quot;</font><font
+        color="#FFFFFF" size="2" face="blitz"> </font><font
+        color="#FFF0C8" size="2" face="blitz">+ </font><font
+        color="#FFFFFF" size="2" face="blitz">a</font></p>
+        </td>
+    </tr>
+</table>
+</center></div>
+
+<p><font face="MS Sans Serif">Suggestion: change the &quot;a$=&quot;
+to &quot;a#=&quot; and enter the number 22.95. What's going on?</font></p>
+
+<hr>
+
+<h4><a name="firstgame"><font color="#A7E3F5"
+face="MS Sans Serif">My First Game</font></a></h4>
+
+<p><font face="MS Sans Serif">The following program gives the
+user 5 turns to guess the random number.</font></p>
+<div align="center"><center>
+
+<table border="2" cellpadding="8" width="600" bgcolor="#006060">
+    <tr>
+        <td><font color="#00FFFF" size="2" face="blitz">;
+        guessing game</font><p><font color="#FFFFFF" size="2"
+        face="blitz">turnsleft</font><font color="#FFF0C8"
+        size="2" face="blitz">=</font><font color="#C8F0FF"
+        size="2" face="blitz">5</font></p>
+        <p><font color="#FFFFFF" size="2" face="blitz">sheep</font><font
+        color="#FFF0C8" size="2" face="blitz">=</font><font
+        color="#FFE75F" size="2" face="blitz">Rnd</font><font
+        color="#FFF0C8" size="2" face="blitz">(</font><font
+        color="#C8F0FF" size="2" face="blitz">20</font><font
+        color="#FFF0C8" size="2" face="blitz">)</font></p>
+        <p><font color="#FFE75F" size="2" face="blitz">While</font><font
+        color="#FFF0C8" size="2" face="blitz"> (</font><font
+        color="#FFFFFF" size="2" face="blitz">turnsleft</font><font
+        color="#FFF0C8" size="2" face="blitz">&gt;</font><font
+        color="#C8F0FF" size="2" face="blitz">0</font><font
+        color="#FFF0C8" size="2" face="blitz">)</font></p>
+        <blockquote>
+            <p><font color="#FFFFFF" size="2" face="blitz">turnsleft</font><font
+            color="#FFF0C8" size="2" face="blitz">=</font><font
+            color="#FFFFFF" size="2" face="blitz">turnsleft</font><font
+            color="#FFF0C8" size="2" face="blitz">-</font><font
+            color="#C8F0FF" size="2" face="blitz">1</font></p>
+            <p><font color="#FFFFFF" size="2" face="blitz">guess</font><font
+            color="#FFF0C8" size="2" face="blitz">=</font><font
+            color="#FFE75F" size="2" face="blitz">Input</font><font
+            color="#FFF0C8" size="2" face="blitz">(</font><font
+            color="#00FF00" size="2" face="blitz">&quot;guess how
+            many sheep I have in my room:&quot;</font><font
+            color="#FFF0C8" size="2" face="blitz">)</font></p>
+            <p><font color="#FFE75F" size="2" face="blitz">If</font><font
+            color="#FFF0C8" size="2" face="blitz"> </font><font
+            color="#FFFFFF" size="2" face="blitz">guess</font><font
+            color="#FFF0C8" size="2" face="blitz">&lt;</font><font
+            color="#FFFFFF" size="2" face="blitz">sheep</font><font
+            color="#FFF0C8" size="2" face="blitz"> </font><font
+            color="#FFE75F" size="2" face="blitz">Then</font><font
+            color="#FFF0C8" size="2" face="blitz"> </font><font
+            color="#FFE75F" size="2" face="blitz">Print</font><font
+            color="#FFF0C8" size="2" face="blitz"> </font><font
+            color="#00FF00" size="2" face="blitz">&quot;more than
+            that!&quot;</font></p>
+            <p><font color="#FFE75F" size="2" face="blitz">If</font><font
+            color="#FFF0C8" size="2" face="blitz"> </font><font
+            color="#FFFFFF" size="2" face="blitz">guess</font><font
+            color="#FFF0C8" size="2" face="blitz">&gt;</font><font
+            color="#FFFFFF" size="2" face="blitz">sheep</font><font
+            color="#FFF0C8" size="2" face="blitz"> </font><font
+            color="#FFE75F" size="2" face="blitz">Then</font><font
+            color="#FFF0C8" size="2" face="blitz"> </font><font
+            color="#FFE75F" size="2" face="blitz">Print</font><font
+            color="#FFF0C8" size="2" face="blitz"> </font><font
+            color="#00FF00" size="2" face="blitz">&quot;oh, not
+            that many!</font></p>
+            <p><font color="#FFE75F" size="2" face="blitz">If</font><font
+            color="#FFF0C8" size="2" face="blitz"> </font><font
+            color="#FFFFFF" size="2" face="blitz">guess</font><font
+            color="#FFF0C8" size="2" face="blitz">=</font><font
+            color="#FFFFFF" size="2" face="blitz">sheep</font><font
+            color="#FFF0C8" size="2" face="blitz"> </font><font
+            color="#FFE75F" size="2" face="blitz">Then</font><font
+            color="#FFF0C8" size="2" face="blitz"> </font><font
+            color="#FFE75F" size="2" face="blitz">Exit</font></p>
+        </blockquote>
+        <p><font color="#FFE75F" size="2" face="blitz">Wend</font></p>
+        <p><font color="#FFE75F" size="2" face="blitz">If</font><font
+        color="#FFF0C8" size="2" face="blitz"> </font><font
+        color="#FFFFFF" size="2" face="blitz">turnsleft</font><font
+        color="#FFF0C8" size="2" face="blitz">=</font><font
+        color="#C8F0FF" size="2" face="blitz">0</font><font
+        color="#FFF0C8" size="2" face="blitz"> </font><font
+        color="#FFE75F" size="2" face="blitz">Then</font><font
+        color="#FFF0C8" size="2" face="blitz"> </font><font
+        color="#FFE75F" size="2" face="blitz">Print</font><font
+        color="#FFF0C8" size="2" face="blitz"> </font><font
+        color="#00FF00" size="2" face="blitz">&quot;game over
+        dude&quot; </font><font color="#FFE75F" size="2"
+        face="blitz">Else</font><font color="#FFF0C8" size="2"
+        face="blitz"> </font><font color="#FFE75F" size="2"
+        face="blitz">Print</font><font color="#FFF0C8" size="2"
+        face="blitz"> </font><font color="#00FF00" size="2"
+        face="blitz">&quot;good guess!&quot;</font></p>
+        </td>
+    </tr>
+</table>
+</center></div>
+
+<blockquote>
+</blockquote>
+
+<p><font face="MS Sans Serif">There are three variables used in
+this program: turnsleft, sheep and guess.</font></p>
+
+<p><font face="MS Sans Serif">To begin with, turnsleft is set to
+5 and sheep is set to a random number between 0 and 20. The
+program then enters a &quot;while&quot; loop asking the player to
+guess a number, and comparing their answer which is placed in the
+variable guess with the value in sheep.</font></p>
+
+<p><font face="MS Sans Serif">After playing the game a few times,
+you may notice that the number of sheep does not vary much. Try
+adding the following line to the top of the program to &quot;seed&quot;
+the random number generator using the time of day in milliseconds.</font></p>
+<div align="center"><center>
+
+<table border="2" cellpadding="8" width="600" bgcolor="#006060">
+    <tr>
+        <td><font color="#FFE75F" size="2" face="blitz">SeedRnd
+        MilliSecs</font><font color="#FFF0C8" size="2"
+        face="blitz">()</font></td>
+    </tr>
+</table>
+</center></div>
+
+<p><font face="MS Sans Serif">Congratulations, you have just
+doubled the playability of the game with one line of code!</font></p>
+
+<hr>
+
+<h4><a name="gettinggraphic"><font color="#A7E3F5"
+face="MS Sans Serif">Getting Graphic</font></a></h4>
+
+<p><font face="MS Sans Serif">BlitzBasic is not designed for
+building text based application such as our initial guessing game.
+It is also not designed for building applications featuring
+friendly graphics user interfaces filled with windows and sliders.</font></p>
+
+<p><font face="MS Sans Serif">The only thing BlitzBasic has been
+designed for is the very serious business of video game
+development.</font></p>
+
+<p><font face="MS Sans Serif">The following program initializes a
+640x480 video display then plots points at random positions until
+the user presses the escape key.</font></p>
+<div align="center"><center>
+
+<table border="2" cellpadding="8" width="600" bgcolor="#006060">
+    <tr>
+        <td><font color="#00FFFF" size="2" face="blitz">; getting
+        graphic</font><p><font color="#FFE75F" size="2"
+        face="blitz">Graphics</font><font color="#00FFFF"
+        size="2" face="blitz"> </font><font color="#C8F0FF"
+        size="2" face="blitz">640</font><font color="#FFF0C8"
+        size="2" face="blitz">,</font><font color="#C8F0FF"
+        size="2" face="blitz">480</font></p>
+        <p><font color="#FFE75F" size="2" face="blitz">While</font><font
+        color="#00FFFF" size="2" face="blitz"> </font><font
+        color="#FFE75F" size="2" face="blitz">Not KeyDown</font><font
+        color="#FFF0C8" size="2" face="blitz">(</font><font
+        color="#C8F0FF" size="2" face="blitz">1</font><font
+        color="#FFF0C8" size="2" face="blitz">)</font></p>
+        <blockquote>
+            <p><font color="#FFE75F" size="2" face="blitz">Plot</font><font
+            color="#00FFFF" size="2" face="blitz"> </font><font
+            color="#FFE75F" size="2" face="blitz">Rnd</font><font
+            color="#FFF0C8" size="2" face="blitz">(</font><font
+            color="#C8F0FF" size="2" face="blitz">640</font><font
+            color="#FFF0C8" size="2" face="blitz">),</font><font
+            color="#FFE75F" size="2" face="blitz">Rnd</font><font
+            color="#FFF0C8" size="2" face="blitz">(</font><font
+            color="#C8F0FF" size="2" face="blitz">480</font><font
+            color="#FFF0C8" size="2" face="blitz">)</font></p>
+        </blockquote>
+        <p><font color="#FFE75F" size="2" face="blitz">Wend</font></p>
+        </td>
+    </tr>
+</table>
+</center></div>
+
+<p><font face="MS Sans Serif">Once again we rely on the random
+number generator to provide an interesting result. Try adding the
+following color command before the plot statement to vary the
+color of the dots.</font></p>
+<div align="center"><center>
+
+<table border="2" cellpadding="8" width="600" bgcolor="#006060">
+    <tr>
+        <td><font color="#FFE75F" size="2" face="blitz">Color Rnd</font><font
+        color="#FFF0C8" size="2" face="blitz">(</font><font
+        color="#C8F0FF" size="2" face="blitz">256</font><font
+        color="#FFF0C8" size="2" face="blitz">),</font><font
+        color="#FFE75F" size="2" face="blitz">Rnd</font><font
+        color="#FFF0C8" size="2" face="blitz">(</font><font
+        color="#C8F0FF" size="2" face="blitz">256</font><font
+        color="#FFF0C8" size="2" face="blitz">),</font><font
+        color="#FFE75F" size="2" face="blitz">Rnd</font><font
+        color="#FFF0C8" size="2" face="blitz">(</font><font
+        color="#C8F0FF" size="2" face="blitz">256</font><font
+        color="#FFF0C8" size="2" face="blitz">)</font></td>
+    </tr>
+</table>
+</center></div>
+
+<p><font face="MS Sans Serif">Although this may seem like a
+simple program, creating a DirectX display such as featured here
+using traditional methods can be a complex task. BlitzBasic makes
+it so easy!</font></p>
+
+<hr>
+
+<h4><a name="doublebuffering"><font color="#A7E3F5"
+face="MS Sans Serif">Double Buffering</font></a></h4>
+
+<p><font face="MS Sans Serif">The following code illustrates the
+typical &quot;main loop&quot; of a game. For a video game to
+display smoothly animated graphics it must use a technique called
+&quot;Double Buffering&quot;.</font></p>
+
+<p><font face="MS Sans Serif">The following program shows one
+frame (the FrontBuffer) while drawing to another frame (the
+BackBuffer).</font></p>
+<div align="center"><center>
+
+<table border="2" cellpadding="8" width="600" bgcolor="#006060">
+    <tr>
+        <td><font color="#00FFFF" size="2" face="blitz">; double
+        buffering</font><p><font color="#FFE75F" size="2"
+        face="blitz">Graphics</font><font color="#FFF0C8"
+        size="2" face="blitz"> </font><font color="#C8F0FF"
+        size="2" face="blitz">640</font><font color="#FFF0C8"
+        size="2" face="blitz">,</font><font color="#C8F0FF"
+        size="2" face="blitz">480</font></p>
+        <p><font color="#FFE75F" size="2" face="blitz">SetBuffer</font><font
+        color="#FFF0C8" size="2" face="blitz"> </font><font
+        color="#FFE75F" size="2" face="blitz">BackBuffer</font><font
+        color="#FFF0C8" size="2" face="blitz">()</font></p>
+        <p><font color="#FFE75F" size="2" face="blitz">While</font><font
+        color="#FFF0C8" size="2" face="blitz"> </font><font
+        color="#FFE75F" size="2" face="blitz">Not KeyDown</font><font
+        color="#FFF0C8" size="2" face="blitz">(</font><font
+        color="#C8F0FF" size="2" face="blitz">1</font><font
+        color="#FFF0C8" size="2" face="blitz">)</font></p>
+        <blockquote>
+            <p><font color="#FFE75F" size="2" face="blitz">Flip</font></p>
+            <p><font color="#FFE75F" size="2" face="blitz">Cls</font></p>
+            <p><font color="#FFE75F" size="2" face="blitz">Line</font><font
+            color="#FFF0C8" size="2" face="blitz"> </font><font
+            color="#C8F0FF" size="2" face="blitz">320</font><font
+            color="#FFF0C8" size="2" face="blitz">,</font><font
+            color="#C8F0FF" size="2" face="blitz">240</font><font
+            color="#FFF0C8" size="2" face="blitz">,</font><font
+            color="#C8F0FF" size="2" face="blitz">320</font><font
+            color="#FFF0C8" size="2" face="blitz">+</font><font
+            color="#C8F0FF" size="2" face="blitz">100</font><font
+            color="#FFF0C8" size="2" face="blitz">*</font><font
+            color="#FFE75F" size="2" face="blitz">Cos</font><font
+            color="#FFF0C8" size="2" face="blitz">(</font><font
+            color="#FFFFFF" size="2" face="blitz">a</font><font
+            color="#FFF0C8" size="2" face="blitz">),</font><font
+            color="#C8F0FF" size="2" face="blitz">240</font><font
+            color="#FFF0C8" size="2" face="blitz">+</font><font
+            color="#C8F0FF" size="2" face="blitz">100</font><font
+            color="#FFF0C8" size="2" face="blitz">*</font><font
+            color="#FFE75F" size="2" face="blitz">Sin</font><font
+            color="#FFF0C8" size="2" face="blitz">(</font><font
+            color="#FFFFFF" size="2" face="blitz">a</font><font
+            color="#FFF0C8" size="2" face="blitz">)</font></p>
+            <p><font color="#FFFFFF" size="2" face="blitz">a</font><font
+            color="#FFF0C8" size="2" face="blitz">=</font><font
+            color="#FFFFFF" size="2" face="blitz">a</font><font
+            color="#FFF0C8" size="2" face="blitz">+</font><font
+            color="#C8F0FF" size="2" face="blitz">1</font></p>
+        </blockquote>
+        <p><font color="#FFE75F" size="2" face="blitz">Wend</font></p>
+        </td>
+    </tr>
+</table>
+</center></div>
+
+<p><font face="MS Sans Serif">In BlitzBasic the Flip command
+performs the double buffering by swapping the back and front
+buffers. The </font><font color="#FFFF00" face="MS Sans Serif">Cls</font><font
+face="MS Sans Serif"> command clears the screen and the </font><font
+color="#FFFF00" face="MS Sans Serif">Line</font><font
+face="MS Sans Serif"> command draws a line.</font></p>
+
+<p><font face="MS Sans Serif">Note: the flip command also
+synchronizes to the video refresh which on standard VGA monitors
+is 60 frames per second. </font></p>
+
+<p><font face="MS Sans Serif">The program draws a line from the
+center of the screen (320,240) at an angle of a degrees, 100
+pixels long.</font></p>
+
+<p><font face="MS Sans Serif">Try changing the program to add 6
+to the value of a. If the frame rate of your monitor is 60 frames
+per second, and a is incrementing by 6 each frame, in theory it
+should increment by 360 every second which is equivalent to a
+complete rotation in the world of degrees.</font></p>
+
+<hr>
+
+<h4><a name="mysecondgame"><font color="#A7E3F5"
+face="MS Sans Serif">My Second Game</font></a></h4>
+
+<p><font face="MS Sans Serif">The following introduces the basic
+skeleton of a simple video game. </font></p>
+
+<p><font face="MS Sans Serif">The status variable contains the
+&quot;state&quot; of the game, which is either displaying a title
+page or allowing the player to steer round the screen. Extra
+states such as player dies with cosmic explosion and gameover
+screen would be added to extend the game further.</font></p>
+
+<p><font face="MS Sans Serif">Reading through the program, the
+display is initialized in a similar manned to the previous
+example using the Graphics and SetBuffer commands. The main loop,
+then uses the Flip command to perform the double buffering (allowing
+us to draw to one screen while the other is displayed) and then
+either prints a message informing the user to press Enter to
+start or calls the UpdatePlayer() function.</font></p>
+<div align="center"><center>
+
+<table border="2" cellpadding="8" width="600" bgcolor="#006060">
+    <tr>
+        <td><font color="#00FFFF" size="2" face="blitz">; eat the
+        dots</font><p><font color="#FFE75F" size="2" face="blitz">Graphics
+        </font><font color="#C8F0FF" size="2" face="blitz">640</font><font
+        color="#FFF0C8" size="2" face="blitz">,</font><font
+        color="#C8F0FF" size="2" face="blitz">480</font></p>
+        <p><font color="#FFE75F" size="2" face="blitz">SetBuffer
+        BackBuffer</font><font color="#FFF0C8" size="2"
+        face="blitz">()</font></p>
+        <p><font color="#FFE75F" size="2" face="blitz">Global</font><font
+        color="#FFFFFF" size="2" face="blitz"> status</font><font
+        color="#FFF0C8" size="2" face="blitz">=</font><font
+        color="#C8F0FF" size="2" face="blitz">0</font><font
+        color="#FFF0C8" size="2" face="blitz">,</font><font
+        color="#FFFFFF" size="2" face="blitz">x</font><font
+        color="#FFF0C8" size="2" face="blitz">#=</font><font
+        color="#C8F0FF" size="2" face="blitz">0</font><font
+        color="#FFF0C8" size="2" face="blitz">,</font><font
+        color="#FFFFFF" size="2" face="blitz">y</font><font
+        color="#FFF0C8" size="2" face="blitz">#=</font><font
+        color="#C8F0FF" size="2" face="blitz">0</font><font
+        color="#FFF0C8" size="2" face="blitz">,</font><font
+        color="#FFFFFF" size="2" face="blitz">speed</font><font
+        color="#FFF0C8" size="2" face="blitz">#=</font><font
+        color="#C8F0FF" size="2" face="blitz">1</font><font
+        color="#FFF0C8" size="2" face="blitz">,</font><font
+        color="#FFFFFF" size="2" face="blitz">dir</font><font
+        color="#FFF0C8" size="2" face="blitz">=</font><font
+        color="#C8F0FF" size="2" face="blitz">1</font></p>
+        <p><font color="#00FFFF" size="2" face="blitz">; main
+        loop</font></p>
+        <p><font color="#FFE75F" size="2" face="blitz">While Not</font><font
+        color="#FFFFFF" size="2" face="blitz"> </font><font
+        color="#FFE75F" size="2" face="blitz">KeyHit</font><font
+        color="#FFF0C8" size="2" face="blitz">(</font><font
+        color="#C8F0FF" size="2" face="blitz">1</font><font
+        color="#FFF0C8" size="2" face="blitz">)</font></p>
+        <p><font color="#00FFFF" size="2" face="blitz">; refresh
+        screen</font></p>
+        <blockquote>
+            <p><font color="#FFE75F" size="2" face="blitz">Flip</font></p>
+            <p><font color="#FFE75F" size="2" face="blitz">Cls</font></p>
+            <p><font color="#FFE75F" size="2" face="blitz">Color </font><font
+            color="#C8F0FF" size="2" face="blitz">255</font><font
+            color="#FFF0C8" size="2" face="blitz">,</font><font
+            color="#C8F0FF" size="2" face="blitz">255</font><font
+            color="#FFF0C8" size="2" face="blitz">,</font><font
+            color="#C8F0FF" size="2" face="blitz">0</font></p>
+            <p><font color="#FFE75F" size="2" face="blitz">Rect </font><font
+            color="#C8F0FF" size="2" face="blitz">0</font><font
+            color="#FFF0C8" size="2" face="blitz">,</font><font
+            color="#C8F0FF" size="2" face="blitz">0</font><font
+            color="#FFF0C8" size="2" face="blitz">,</font><font
+            color="#C8F0FF" size="2" face="blitz">640</font><font
+            color="#FFF0C8" size="2" face="blitz">,</font><font
+            color="#C8F0FF" size="2" face="blitz">480</font><font
+            color="#FFF0C8" size="2" face="blitz">,</font><font
+            color="#C8F0FF" size="2" face="blitz">0</font></p>
+            <p><font color="#00FFFF" size="2" face="blitz">;
+            select state</font></p>
+        </blockquote>
+        <blockquote>
+            <p><font color="#FFE75F" size="2" face="blitz">Select
+            </font><font color="#FFFFFF" size="2" face="blitz">status</font></p>
+            <p><font color="#FFE75F" size="2" face="blitz">Case </font><font
+            color="#C8F0FF" size="2" face="blitz">0</font></p>
+            <blockquote>
+                <p><font color="#FFE75F" size="2" face="blitz">Locate
+                </font><font color="#C8F0FF" size="2"
+                face="blitz">100</font><font color="#FFF0C8"
+                size="2" face="blitz">,</font><font
+                color="#C8F0FF" size="2" face="blitz">100</font></p>
+                <p><font color="#FFE75F" size="2" face="blitz">Print
+                </font><font color="#00FF00" size="2"
+                face="blitz">&quot;Press Enter To Start&quot;</font></p>
+                <p><font color="#FFE75F" size="2" face="blitz">If
+                KeyHit</font><font color="#FFF0C8" size="2"
+                face="blitz">(28)</font><font color="#C8F0FF"
+                size="2" face="blitz"> </font><font
+                color="#FFFFFF" size="2" face="blitz">InitGame</font><font
+                color="#FFF0C8" size="2" face="blitz">() </font></p>
+            </blockquote>
+            <p><font color="#FFE75F" size="2" face="blitz">Case </font><font
+            color="#C8F0FF" size="2" face="blitz">1</font></p>
+            <blockquote>
+                <p><font color="#FFFFFF" size="2" face="blitz">UpdatePlayer</font><font
+                color="#FFF0C8" size="2" face="blitz">()</font></p>
+            </blockquote>
+            <p><font color="#FFE75F" size="2" face="blitz">End
+            Select</font></p>
+        </blockquote>
+        <p><font color="#FFE75F" size="2" face="blitz">Wend</font></p>
+        </td>
+    </tr>
+</table>
+</center></div>
+
+<p><font face="MS Sans Serif">What UpdatePlayer() function you
+ask? And if the user presses Enter what's this InitGame()
+function?</font></p>
+
+<p><font face="MS Sans Serif">Unlike traditional BASIC languages
+where we would implement these functions as subroutines and call
+them with the Gosub command BlitzBasic features user defined
+functions. </font></p>
+
+<p><font face="MS Sans Serif">Add the following two functions at
+the bottom of the above program to allow the program to run.</font></p>
+
+<p><font face="MS Sans Serif">The first function initializes the
+variables we will need inorder to steer the players rectangle
+around the screen. Note how these variables have been declared at
+the top of the program as Global which allows us to access them
+from inside functions such as InitGame().</font></p>
+<div align="center"><center>
+
+<table border="2" cellpadding="8" width="600" bgcolor="#006060">
+    <tr>
+        <td><font color="#FFE75F" size="2" face="blitz">Function</font><font
+        color="#FFFFFF" size="2" face="blitz"> InitGame</font><font
+        color="#FFF0C8" size="2" face="blitz">()</font><blockquote>
+            <p><font color="#FFFFFF" size="2" face="blitz">x</font><font
+            color="#FFF0C8" size="2" face="blitz">=</font><font
+            color="#C8F0FF" size="2" face="blitz">320</font></p>
+            <p><font color="#FFFFFF" size="2" face="blitz">y</font><font
+            color="#FFF0C8" size="2" face="blitz">=</font><font
+            color="#C8F0FF" size="2" face="blitz">240</font></p>
+            <p><font color="#FFFFFF" size="2" face="blitz">speed</font><font
+            color="#FFF0C8" size="2" face="blitz">=</font><font
+            color="#C8F0FF" size="2" face="blitz">1</font></p>
+            <p><font color="#FFFFFF" size="2" face="blitz">dir</font><font
+            color="#FFF0C8" size="2" face="blitz">=</font><font
+            color="#C8F0FF" size="2" face="blitz">1</font></p>
+            <p><font color="#FFFFFF" size="2" face="blitz">status</font><font
+            color="#FFF0C8" size="2" face="blitz">=</font><font
+            color="#C8F0FF" size="2" face="blitz">1</font></p>
+        </blockquote>
+        <p><font color="#FFE75F" size="2" face="blitz">End
+        Function</font><font color="#FFF0C8" size="2"
+        face="blitz"> </font></p>
+        </td>
+    </tr>
+</table>
+</center></div>
+
+<p><font face="MS Sans Serif">This second function changes the
+players direction depending on the arrow key they are pressing or
+the direction of the joystick. The code then moves the players
+position (x,y) depending on the dir variable which corresponds to
+up, right, down and left respectively.</font></p>
+<div align="center"><center>
+
+<table border="2" cellpadding="8" width="600" bgcolor="#006060">
+    <tr>
+        <td><font color="#FFE75F" size="2" face="blitz">Function </font><font
+        color="#FFFFFF" size="2" face="blitz">UpdatePlayer</font><font
+        color="#FFF0C8" size="2" face="blitz">()</font><blockquote>
+            <p><font color="#00FFFF" size="2" face="blitz">;
+            steer player </font></p>
+            <p><font color="#FFE75F" size="2" face="blitz">If
+            KeyDown</font><font color="#FFF0C8" size="2"
+            face="blitz">(</font><font color="#C8F0FF" size="2"
+            face="blitz">200</font><font color="#FFF0C8" size="2"
+            face="blitz">) </font><font color="#FFE75F" size="2"
+            face="blitz">Or JoyY</font><font color="#FFF0C8"
+            size="2" face="blitz">()&lt;-</font><font
+            color="#C8F0FF" size="2" face="blitz">0</font><font
+            color="#FFF0C8" size="2" face="blitz">.</font><font
+            color="#C8F0FF" size="2" face="blitz">5 </font><font
+            color="#FFFFFF" size="2" face="blitz">dir</font><font
+            color="#FFF0C8" size="2" face="blitz">=</font><font
+            color="#C8F0FF" size="2" face="blitz">0</font></p>
+            <p><font color="#FFE75F" size="2" face="blitz">If
+            KeyDown</font><font color="#FFF0C8" size="2"
+            face="blitz">(</font><font color="#C8F0FF" size="2"
+            face="blitz">205</font><font color="#FFF0C8" size="2"
+            face="blitz">) </font><font color="#FFE75F" size="2"
+            face="blitz">Or JoyX</font><font color="#FFF0C8"
+            size="2" face="blitz">()&gt;</font><font
+            color="#C8F0FF" size="2" face="blitz">0</font><font
+            color="#FFF0C8" size="2" face="blitz">.</font><font
+            color="#C8F0FF" size="2" face="blitz">5 </font><font
+            color="#FFFFFF" size="2" face="blitz">dir</font><font
+            color="#FFF0C8" size="2" face="blitz">=</font><font
+            color="#C8F0FF" size="2" face="blitz">1</font></p>
+            <p><font color="#FFE75F" size="2" face="blitz">If
+            KeyDown</font><font color="#FFF0C8" size="2"
+            face="blitz">(</font><font color="#C8F0FF" size="2"
+            face="blitz">208</font><font color="#FFF0C8" size="2"
+            face="blitz">) </font><font color="#FFE75F" size="2"
+            face="blitz">Or JoyY</font><font color="#FFF0C8"
+            size="2" face="blitz">()&gt;</font><font
+            color="#C8F0FF" size="2" face="blitz">0</font><font
+            color="#FFF0C8" size="2" face="blitz">.</font><font
+            color="#C8F0FF" size="2" face="blitz">5 </font><font
+            color="#FFFFFF" size="2" face="blitz">dir</font><font
+            color="#FFF0C8" size="2" face="blitz">=</font><font
+            color="#C8F0FF" size="2" face="blitz">2</font></p>
+            <p><font color="#FFE75F" size="2" face="blitz">If
+            KeyDown</font><font color="#FFF0C8" size="2"
+            face="blitz">(</font><font color="#C8F0FF" size="2"
+            face="blitz">203</font><font color="#FFF0C8" size="2"
+            face="blitz">) </font><font color="#FFE75F" size="2"
+            face="blitz">Or JoyX</font><font color="#FFF0C8"
+            size="2" face="blitz">()&lt;-</font><font
+            color="#C8F0FF" size="2" face="blitz">0</font><font
+            color="#FFF0C8" size="2" face="blitz">.</font><font
+            color="#C8F0FF" size="2" face="blitz">5 </font><font
+            color="#FFFFFF" size="2" face="blitz">dir</font><font
+            color="#FFF0C8" size="2" face="blitz">=</font><font
+            color="#C8F0FF" size="2" face="blitz">3</font></p>
+            <p><font color="#00FFFF" size="2" face="blitz">; move
+            player</font></p>
+            <p><font color="#FFE75F" size="2" face="blitz">Select
+            </font><font color="#FFFFFF" size="2" face="blitz">dir</font></p>
+            <blockquote>
+                <p><font color="#FFE75F" size="2" face="blitz">Case
+                </font><font color="#C8F0FF" size="2"
+                face="blitz">0 </font><font color="#FFFFFF"
+                size="2" face="blitz">y</font><font
+                color="#FFF0C8" size="2" face="blitz">=</font><font
+                color="#FFFFFF" size="2" face="blitz">y</font><font
+                color="#FFF0C8" size="2" face="blitz">-</font><font
+                color="#FFFFFF" size="2" face="blitz">speed</font></p>
+                <p><font color="#FFE75F" size="2" face="blitz">Case
+                </font><font color="#C8F0FF" size="2"
+                face="blitz">1 </font><font color="#FFFFFF"
+                size="2" face="blitz">x</font><font
+                color="#FFF0C8" size="2" face="blitz">=</font><font
+                color="#FFFFFF" size="2" face="blitz">x</font><font
+                color="#FFF0C8" size="2" face="blitz">+</font><font
+                color="#FFFFFF" size="2" face="blitz">speed</font></p>
+                <p><font color="#FFE75F" size="2" face="blitz">Case
+                </font><font color="#C8F0FF" size="2"
+                face="blitz">2 </font><font color="#FFFFFF"
+                size="2" face="blitz">y</font><font
+                color="#FFF0C8" size="2" face="blitz">=</font><font
+                color="#FFFFFF" size="2" face="blitz">y</font><font
+                color="#FFF0C8" size="2" face="blitz">+</font><font
+                color="#FFFFFF" size="2" face="blitz">speed</font></p>
+                <p><font color="#FFE75F" size="2" face="blitz">Case
+                </font><font color="#C8F0FF" size="2"
+                face="blitz">3 </font><font color="#FFFFFF"
+                size="2" face="blitz">x</font><font
+                color="#FFF0C8" size="2" face="blitz">=</font><font
+                color="#FFFFFF" size="2" face="blitz">x</font><font
+                color="#FFF0C8" size="2" face="blitz">-</font><font
+                color="#FFFFFF" size="2" face="blitz">speed</font></p>
+            </blockquote>
+            <p><font color="#FFE75F" size="2" face="blitz">End
+            Select</font></p>
+            <p><font color="#00FFFF" size="2" face="blitz">; draw
+            player </font></p>
+            <p><font color="#FFE75F" size="2" face="blitz">Color </font><font
+            color="#C8F0FF" size="2" face="blitz">255</font><font
+            color="#FFF0C8" size="2" face="blitz">,</font><font
+            color="#C8F0FF" size="2" face="blitz">255</font><font
+            color="#FFF0C8" size="2" face="blitz">,</font><font
+            color="#C8F0FF" size="2" face="blitz">255</font></p>
+            <p><font color="#FFE75F" size="2" face="blitz">Rect </font><font
+            color="#FFFFFF" size="2" face="blitz">x</font><font
+            color="#FFF0C8" size="2" face="blitz">,</font><font
+            color="#FFFFFF" size="2" face="blitz">y</font><font
+            color="#FFF0C8" size="2" face="blitz">,</font><font
+            color="#C8F0FF" size="2" face="blitz">10</font><font
+            color="#FFF0C8" size="2" face="blitz">,</font><font
+            color="#C8F0FF" size="2" face="blitz">10</font></p>
+        </blockquote>
+        <p><font color="#FFE75F" size="2" face="blitz">End
+        Function</font></p>
+        </td>
+    </tr>
+</table>
+</center></div>
+
+<p><font face="MS Sans Serif">After adding the InitGame() and
+UpdatePlayer() code the game should run.</font></p>
+
+<p><font face="MS Sans Serif">Next it's time to add some deadly
+rocks and some yummy food. </font></p>
+
+<p><font face="MS Sans Serif">In order to do this we create some
+new Types that will hold all the information we need for each
+rock and food. To begin with these Types will simply hold the x
+and y position of each rock and food element we create for our
+game.</font></p>
+
+<p><font face="MS Sans Serif">Place the following Type
+declarations at the top of the program.</font></p>
+<div align="center"><center>
+
+<table border="2" cellpadding="8" width="600" bgcolor="#006060">
+    <tr>
+        <td><font color="#FFE75F" size="2" face="blitz">Type </font><font
+        color="#FFFFFF" size="2" face="blitz">food</font><blockquote>
+            <p><font color="#FFE75F" size="2" face="blitz">Field </font><font
+            color="#FFFFFF" size="2" face="blitz">x</font><font
+            color="#FFF0C8" size="2" face="blitz">,</font><font
+            color="#FFFFFF" size="2" face="blitz">y</font></p>
+        </blockquote>
+        <p><font color="#FFE75F" size="2" face="blitz">End Type</font></p>
+        <p><font color="#FFE75F" size="2" face="blitz">Type </font><font
+        color="#FFFFFF" size="2" face="blitz">rock</font></p>
+        <blockquote>
+            <p><font color="#FFE75F" size="2" face="blitz">Field </font><font
+            color="#FFFFFF" size="2" face="blitz">x</font><font
+            color="#FFF0C8" size="2" face="blitz">,</font><font
+            color="#FFFFFF" size="2" face="blitz">y</font></p>
+        </blockquote>
+        <p><font color="#FFE75F" size="2" face="blitz">End Type</font></p>
+        </td>
+    </tr>
+</table>
+</center></div>
+
+<p><font face="MS Sans Serif">The following code then needs to be
+added to the InitGame() function, insert it after the line that
+reads status=1.</font></p>
+
+<p><font face="MS Sans Serif">This code creates 20 rocks that
+will kill the player and 20 food that will speed the player up.
+The New command creates a new object and also adds it to a list.
+We set the position of each rock and food by setting the x and y
+fields of each new object created using the backslash \ character
+to denote which field.</font></p>
+<div align="center"><center>
+
+<table border="2" cellpadding="8" width="600" bgcolor="#006060">
+    <tr>
+        <td><font color="#FFE75F" size="2" face="blitz">For </font><font
+        color="#FFFFFF" size="2" face="blitz">i</font><font
+        color="#FFF0C8" size="2" face="blitz">=</font><font
+        color="#C8F0FF" size="2" face="blitz">0 </font><font
+        color="#FFE75F" size="2" face="blitz">To </font><font
+        color="#C8F0FF" size="2" face="blitz">20 </font><blockquote>
+            <p><font color="#FFFFFF" size="2" face="blitz">r</font><font
+            color="#FFF0C8" size="2" face="blitz">.</font><font
+            color="#FFFFFF" size="2" face="blitz">rock</font><font
+            color="#FFF0C8" size="2" face="blitz">=</font><font
+            color="#FFE75F" size="2" face="blitz">New </font><font
+            color="#FFFFFF" size="2" face="blitz">rock</font></p>
+            <p><font color="#FFFFFF" size="2" face="blitz">r</font><font
+            color="#FFF0C8" size="2" face="blitz">\</font><font
+            color="#FFFFFF" size="2" face="blitz">x</font><font
+            color="#FFF0C8" size="2" face="blitz">=</font><font
+            color="#FFE75F" size="2" face="blitz">Rnd</font><font
+            color="#FFF0C8" size="2" face="blitz">(</font><font
+            color="#C8F0FF" size="2" face="blitz">640</font><font
+            color="#FFF0C8" size="2" face="blitz">)</font></p>
+            <p><font color="#FFFFFF" size="2" face="blitz">r</font><font
+            color="#FFF0C8" size="2" face="blitz">\</font><font
+            color="#FFFFFF" size="2" face="blitz">y</font><font
+            color="#FFF0C8" size="2" face="blitz">=</font><font
+            color="#FFE75F" size="2" face="blitz">Rnd</font><font
+            color="#FFF0C8" size="2" face="blitz">(</font><font
+            color="#C8F0FF" size="2" face="blitz">480</font><font
+            color="#FFF0C8" size="2" face="blitz">)</font></p>
+        </blockquote>
+        <p><font color="#FFE75F" size="2" face="blitz">Next</font></p>
+        <p><font color="#FFE75F" size="2" face="blitz">For </font><font
+        color="#FFFFFF" size="2" face="blitz">i</font><font
+        color="#FFF0C8" size="2" face="blitz">=</font><font
+        color="#C8F0FF" size="2" face="blitz">0 </font><font
+        color="#FFE75F" size="2" face="blitz">To </font><font
+        color="#C8F0FF" size="2" face="blitz">20 </font></p>
+        <blockquote>
+            <p><font color="#FFFFFF" size="2" face="blitz">f</font><font
+            color="#FFF0C8" size="2" face="blitz">.</font><font
+            color="#FFFFFF" size="2" face="blitz">food</font><font
+            color="#FFF0C8" size="2" face="blitz">=</font><font
+            color="#FFE75F" size="2" face="blitz">New </font><font
+            color="#FFFFFF" size="2" face="blitz">food</font></p>
+            <p><font color="#FFFFFF" size="2" face="blitz">f</font><font
+            color="#FFF0C8" size="2" face="blitz">\</font><font
+            color="#FFFFFF" size="2" face="blitz">x</font><font
+            color="#FFF0C8" size="2" face="blitz">=</font><font
+            color="#FFE75F" size="2" face="blitz">Rnd</font><font
+            color="#FFF0C8" size="2" face="blitz">(</font><font
+            color="#C8F0FF" size="2" face="blitz">640</font><font
+            color="#FFF0C8" size="2" face="blitz">)</font></p>
+            <p><font color="#FFFFFF" size="2" face="blitz">f</font><font
+            color="#FFF0C8" size="2" face="blitz">\</font><font
+            color="#FFFFFF" size="2" face="blitz">y</font><font
+            color="#FFF0C8" size="2" face="blitz">=</font><font
+            color="#FFE75F" size="2" face="blitz">Rnd</font><font
+            color="#FFF0C8" size="2" face="blitz">(</font><font
+            color="#C8F0FF" size="2" face="blitz">480</font><font
+            color="#FFF0C8" size="2" face="blitz">)</font></p>
+        </blockquote>
+        <p><font color="#FFE75F" size="2" face="blitz">Next</font></p>
+        </td>
+    </tr>
+</table>
+</center></div>
+
+<p><font face="MS Sans Serif">We now need a function that draws
+all the food and rocks each frame and checks if the player has
+collided with any.</font></p>
+
+<p><font face="MS Sans Serif">Note how we can loop through each
+food and rock element that exist using the For..Each command pair.
+This is another great feature of BlitzBasic that keeps programs
+simple and easy to read.</font></p>
+
+<p><font face="MS Sans Serif">We use the RectsOverlap command to
+check of the players position (x,y) collides with each food or
+rock element (f \ x , f \ y) or (r \ x , r \ y). If the player
+collides with some food we delete that piece of food and increase
+the player's speed. If the player collides with a rock we end the
+game by resetting the status variable.</font></p>
+<div align="center"><center>
+
+<table border="2" cellpadding="8" width="600" bgcolor="#006060">
+    <tr>
+        <td><font color="#FFE75F" size="2" face="blitz">Function </font><font
+        color="#FFFFFF" size="2" face="blitz">UpdateRocksandFood</font><font
+        color="#FFF0C8" size="2" face="blitz">()</font><blockquote>
+            <p><font color="#00FFFF" size="2" face="blitz">; draw
+            food and check if eaten</font></p>
+            <p><font color="#FFE75F" size="2" face="blitz">Color </font><font
+            color="#C8F0FF" size="2" face="blitz">0</font><font
+            color="#FFF0C8" size="2" face="blitz">,</font><font
+            color="#C8F0FF" size="2" face="blitz">255</font><font
+            color="#FFF0C8" size="2" face="blitz">,</font><font
+            color="#C8F0FF" size="2" face="blitz">0</font></p>
+            <p><font color="#FFE75F" size="2" face="blitz">For </font><font
+            color="#FFFFFF" size="2" face="blitz">f</font><font
+            color="#FFF0C8" size="2" face="blitz">.</font><font
+            color="#FFFFFF" size="2" face="blitz">food</font><font
+            color="#FFF0C8" size="2" face="blitz">=</font><font
+            color="#FFE75F" size="2" face="blitz">Each </font><font
+            color="#FFFFFF" size="2" face="blitz">food </font></p>
+            <blockquote>
+                <p><font color="#FFE75F" size="2" face="blitz">Rect
+                </font><font color="#FFFFFF" size="2"
+                face="blitz">f</font><font color="#FFF0C8"
+                size="2" face="blitz">\</font><font
+                color="#FFFFFF" size="2" face="blitz">x</font><font
+                color="#FFF0C8" size="2" face="blitz">,</font><font
+                color="#FFFFFF" size="2" face="blitz">f</font><font
+                color="#FFF0C8" size="2" face="blitz">\</font><font
+                color="#FFFFFF" size="2" face="blitz">y</font><font
+                color="#FFF0C8" size="2" face="blitz">,</font><font
+                color="#C8F0FF" size="2" face="blitz">10</font><font
+                color="#FFF0C8" size="2" face="blitz">,</font><font
+                color="#C8F0FF" size="2" face="blitz">10</font></p>
+                <p><font color="#FFE75F" size="2" face="blitz">If
+                RectsOverlap</font><font color="#FFF0C8" size="2"
+                face="blitz">(</font><font color="#FFFFFF"
+                size="2" face="blitz">x</font><font
+                color="#FFF0C8" size="2" face="blitz">,</font><font
+                color="#FFFFFF" size="2" face="blitz">y</font><font
+                color="#FFF0C8" size="2" face="blitz">,</font><font
+                color="#C8F0FF" size="2" face="blitz">10</font><font
+                color="#FFF0C8" size="2" face="blitz">,</font><font
+                color="#C8F0FF" size="2" face="blitz">10</font><font
+                color="#FFF0C8" size="2" face="blitz">,</font><font
+                color="#FFFFFF" size="2" face="blitz">f</font><font
+                color="#FFF0C8" size="2" face="blitz">\</font><font
+                color="#FFFFFF" size="2" face="blitz">x</font><font
+                color="#FFF0C8" size="2" face="blitz">,</font><font
+                color="#FFFFFF" size="2" face="blitz">f</font><font
+                color="#FFF0C8" size="2" face="blitz">\</font><font
+                color="#FFFFFF" size="2" face="blitz">y</font><font
+                color="#FFF0C8" size="2" face="blitz">,</font><font
+                color="#C8F0FF" size="2" face="blitz">10</font><font
+                color="#FFF0C8" size="2" face="blitz">,</font><font
+                color="#C8F0FF" size="2" face="blitz">10</font><font
+                color="#FFF0C8" size="2" face="blitz">)</font></p>
+                <blockquote>
+                    <p><font color="#FFFFFF" size="2"
+                    face="blitz">speed</font><font
+                    color="#FFF0C8" size="2" face="blitz">=</font><font
+                    color="#FFFFFF" size="2" face="blitz">speed</font><font
+                    color="#FFF0C8" size="2" face="blitz">+</font><font
+                    color="#C8F0FF" size="2" face="blitz">0</font><font
+                    color="#FFF0C8" size="2" face="blitz">.</font><font
+                    color="#C8F0FF" size="2" face="blitz">2</font></p>
+                    <p><font color="#FFE75F" size="2"
+                    face="blitz">Delete </font><font
+                    color="#FFFFFF" size="2" face="blitz">f</font></p>
+                </blockquote>
+                <p><font color="#FFE75F" size="2" face="blitz">EndIf
+                </font></p>
+            </blockquote>
+            <p><font color="#FFE75F" size="2" face="blitz">Next</font></p>
+            <p><font color="#00FFFF" size="2" face="blitz">; draw
+            rocks and check for roadkill</font></p>
+            <p><font color="#FFE75F" size="2" face="blitz">Color </font><font
+            color="#C8F0FF" size="2" face="blitz">255</font><font
+            color="#FFF0C8" size="2" face="blitz">,</font><font
+            color="#C8F0FF" size="2" face="blitz">0</font><font
+            color="#FFF0C8" size="2" face="blitz">,</font><font
+            color="#C8F0FF" size="2" face="blitz">255</font></p>
+            <p><font color="#FFE75F" size="2" face="blitz">For </font><font
+            color="#FFFFFF" size="2" face="blitz">r</font><font
+            color="#FFF0C8" size="2" face="blitz">.</font><font
+            color="#FFFFFF" size="2" face="blitz">rock</font><font
+            color="#FFF0C8" size="2" face="blitz">=</font><font
+            color="#FFE75F" size="2" face="blitz">Each </font><font
+            color="#FFFFFF" size="2" face="blitz">rock </font></p>
+            <blockquote>
+                <p><font color="#FFE75F" size="2" face="blitz">Rect
+                </font><font color="#FFFFFF" size="2"
+                face="blitz">r</font><font color="#FFF0C8"
+                size="2" face="blitz">\</font><font
+                color="#FFFFFF" size="2" face="blitz">x</font><font
+                color="#FFF0C8" size="2" face="blitz">,</font><font
+                color="#FFFFFF" size="2" face="blitz">r</font><font
+                color="#FFF0C8" size="2" face="blitz">\</font><font
+                color="#FFFFFF" size="2" face="blitz">y</font><font
+                color="#FFF0C8" size="2" face="blitz">,</font><font
+                color="#C8F0FF" size="2" face="blitz">10</font><font
+                color="#FFF0C8" size="2" face="blitz">,</font><font
+                color="#C8F0FF" size="2" face="blitz">10</font></p>
+                <p><font color="#FFE75F" size="2" face="blitz">If
+                RectsOverlap</font><font color="#FFF0C8" size="2"
+                face="blitz">(</font><font color="#FFFFFF"
+                size="2" face="blitz">x</font><font
+                color="#FFF0C8" size="2" face="blitz">,</font><font
+                color="#FFFFFF" size="2" face="blitz">y</font><font
+                color="#FFF0C8" size="2" face="blitz">,</font><font
+                color="#C8F0FF" size="2" face="blitz">10</font><font
+                color="#FFF0C8" size="2" face="blitz">,</font><font
+                color="#C8F0FF" size="2" face="blitz">10</font><font
+                color="#FFF0C8" size="2" face="blitz">,</font><font
+                color="#FFFFFF" size="2" face="blitz">r</font><font
+                color="#FFF0C8" size="2" face="blitz">\</font><font
+                color="#FFFFFF" size="2" face="blitz">x</font><font
+                color="#FFF0C8" size="2" face="blitz">,</font><font
+                color="#FFFFFF" size="2" face="blitz">r</font><font
+                color="#FFF0C8" size="2" face="blitz">\</font><font
+                color="#FFFFFF" size="2" face="blitz">y</font><font
+                color="#FFF0C8" size="2" face="blitz">,</font><font
+                color="#C8F0FF" size="2" face="blitz">10</font><font
+                color="#FFF0C8" size="2" face="blitz">,</font><font
+                color="#C8F0FF" size="2" face="blitz">10</font><font
+                color="#FFF0C8" size="2" face="blitz">)</font></p>
+                <blockquote>
+                    <p><font color="#FFFFFF" size="2"
+                    face="blitz">status</font><font
+                    color="#FFF0C8" size="2" face="blitz">=</font><font
+                    color="#C8F0FF" size="2" face="blitz">0</font></p>
+                </blockquote>
+            </blockquote>
+            <blockquote>
+                <p><font color="#FFE75F" size="2" face="blitz">EndIf</font></p>
+            </blockquote>
+            <p><font color="#FFE75F" size="2" face="blitz">Next</font></p>
+        </blockquote>
+        <p><font color="#FFE75F" size="2" face="blitz">End
+        Function</font></p>
+        </td>
+    </tr>
+</table>
+</center></div>
+
+<p><font face="MS Sans Serif">Oops, one last thing, don't forget
+to call the UpdateRocksandFood() function from the main loop,
+just after the UpdatePlayer() call should do nicely.</font></p>
+<div align="center"><center>
+
+<table border="2" cellpadding="8" width="600" bgcolor="#006060">
+    <tr>
+        <td><font color="#FFFFFF" size="2" face="blitz">UpdateRocksandFood</font><font
+        color="#FFF0C8" size="2" face="blitz">()</font></td>
+    </tr>
+</table>
+</center></div>
+
+<p><font face="MS Sans Serif">OK, after playing the game, a few
+things should become evident.</font></p>
+
+<p><font face="MS Sans Serif">First, the player should die if
+they hit the outer wall. We could do this by checking if their
+position does not collide with the main screen rectangle (0,0,640,480).
+Try adding the following code to the UpdatePlayer function.</font></p>
+<div align="center"><center>
+
+<table border="2" cellpadding="8" width="600" bgcolor="#006060">
+    <tr>
+        <td><font color="#FFE75F" size="2" face="blitz">If Not
+        RectsOverlap</font><font color="#FFF0C8" size="2"
+        face="blitz">(</font><font color="#FFFFFF" size="2"
+        face="blitz">x</font><font color="#FFF0C8" size="2"
+        face="blitz">,</font><font color="#FFFFFF" size="2"
+        face="blitz">y</font><font color="#FFF0C8" size="2"
+        face="blitz">,</font><font color="#C8F0FF" size="2"
+        face="blitz">10</font><font color="#FFF0C8" size="2"
+        face="blitz">,</font><font color="#C8F0FF" size="2"
+        face="blitz">10</font><font color="#FFF0C8" size="2"
+        face="blitz">,</font><font color="#C8F0FF" size="2"
+        face="blitz">0</font><font color="#FFF0C8" size="2"
+        face="blitz">,</font><font color="#C8F0FF" size="2"
+        face="blitz">0</font><font color="#FFF0C8" size="2"
+        face="blitz">,</font><font color="#C8F0FF" size="2"
+        face="blitz">630</font><font color="#FFF0C8" size="2"
+        face="blitz">,</font><font color="#C8F0FF" size="2"
+        face="blitz">470</font><font color="#FFF0C8" size="2"
+        face="blitz">) </font><font color="#FFFFFF" size="2"
+        face="blitz">status</font><font color="#FFF0C8" size="2"
+        face="blitz">=</font><font color="#C8F0FF" size="2"
+        face="blitz">0</font></td>
+    </tr>
+</table>
+</center></div>
+
+<p><font face="MS Sans Serif">Secondly, each time the game starts
+more rocks and food appear. This is because we never delete the
+food and rocks remaining from the last game. Insert the following
+code <strong>before</strong> the code that creates the new food
+and rocks in the InitGame() function.</font></p>
+<div align="center"><center>
+
+<table border="2" cellpadding="8" width="600" bgcolor="#006060">
+    <tr>
+        <td><font color="#FFE75F" size="2" face="blitz">For </font><font
+        color="#FFFFFF" size="2" face="blitz">f</font><font
+        color="#FFF0C8" size="2" face="blitz">.</font><font
+        color="#FFFFFF" size="2" face="blitz">food</font><font
+        color="#FFF0C8" size="2" face="blitz">=</font><font
+        color="#FFE75F" size="2" face="blitz">Each </font><font
+        color="#FFFFFF" size="2" face="blitz">food </font><font
+        color="#FFE75F" size="2" face="blitz">Delete </font><font
+        color="#FFFFFF" size="2" face="blitz">f </font><font
+        color="#FFE75F" size="2" face="blitz">Next</font><p><font
+        color="#FFE75F" size="2" face="blitz">For </font><font
+        color="#FFFFFF" size="2" face="blitz">r</font><font
+        color="#FFF0C8" size="2" face="blitz">.</font><font
+        color="#FFFFFF" size="2" face="blitz">rock</font><font
+        color="#FFF0C8" size="2" face="blitz">=</font><font
+        color="#FFE75F" size="2" face="blitz">Each </font><font
+        color="#FFFFFF" size="2" face="blitz">rock </font><font
+        color="#FFE75F" size="2" face="blitz">Delete </font><font
+        color="#FFFFFF" size="2" face="blitz">r </font><font
+        color="#FFE75F" size="2" face="blitz">Next</font></p>
+        </td>
+    </tr>
+</table>
+</center></div>
+</BODY>
+</HTML>

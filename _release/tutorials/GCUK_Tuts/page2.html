@@ -1,0 +1,157 @@
+<font face="verdana">
+<table border="1" width="100%" bordercolor="#FFFFFF">
+  <tr>
+    <td width="61%" bgcolor="#6097C9"><font face="verdana">
+<h1 align="left"><font color="#FFFFFF">&nbsp;Movement &amp;<br>
+&nbsp;Rotation</font></h1>
+<p align="left"><b>&nbsp;Aim</b>: Move an object around 3d space<br>
+&nbsp;<b>Skill level</b>: Beginner<br>
+&nbsp;<b>Files Needed</b>: movement.bb / rocket.3ds</font>
+      <p>&nbsp;</td>
+    <td width="5%">&nbsp;</td>
+    <td width="34%">
+      <p align="center"><font face="verdana">
+<img src="2c.jpg" alt="Movement" width="167" height="127" align="right">
+</font>
+
+
+      </p>
+    </td>
+  </tr>
+</table>
+
+<p>
+Lets start to get things moving, in this tutorial we will be loading an object which I made up in 3D Studio. Granted its not wonderful and looks more like a candle than a state-of-the-art rocket, but it will do us.</p>
+<p>
+Let's take a look through the full source, feel free to run it and have a play !.</p>
+<p>NOTE: You will need to have the object ROCKET.3DS in the same directory as the sourcecode for Blitz to find it</p> 
+<p>
+You can move the rocket forwards with the <b>UP</b> cursor, and rotate it with the <b>LEFT</b> and <b>RIGHT</b> cursor keys.</p>
+<table border="1" width="86%" bordercolor="#FFFFFF">
+  <tr>
+    <td width="14%">&nbsp;</td>
+    <td width="72%" bordercolor="#000000" bgcolor="#C0C0C0">&nbsp;<br>
+      &nbsp; <font face="arial">Graphics3D 800,600<br>
+      <br>
+      &nbsp; SetBuffer BackBuffer()<br>
+      <br>
+      &nbsp; camera=CreateCamera()<br>
+      &nbsp; CameraViewport camera,0,0,800,600<br>
+      <br>
+      &nbsp; light=CreateLight()<br>
+      <br>
+      &nbsp; rocket=LoadMesh( &quot;rocket.3ds&quot; )<br>
+      &nbsp; PositionEntity rocket,0,0,7<br>
+      <br>
+      &nbsp; While Not KeyHit(1)<br>
+      <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If KeyDown(200) Then<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MoveEntity
+      rocket,0,0.05,0<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EndIf<br>
+      <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If KeyDown(203) Then<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TurnEntity
+      rocket,0,0,1.0<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EndIf<br>
+      <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If KeyDown(205) Then<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TurnEntity
+      rocket,0,0,-1.0<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EndIf<br>
+      <br>
+      &nbsp; UpdateWorld<br>
+      &nbsp; RenderWorld<br>
+      <br>
+      &nbsp; Text 320,500,&quot;Movement &amp; Rotation&quot;<br>
+      <br>
+      &nbsp; Flip<br>
+      <br>
+      &nbsp; Wend<br>
+      &nbsp; End<br><br>
+      </font></td>
+    <td width="14%">&nbsp;</td>
+  </tr>
+</table>
+<p>
+I won't explain every line of code, just the new commands which we have yet to use. First up is:</p>
+</font>
+
+
+<table border="0" width="100%" bgcolor="#6097C9">
+  <tr>
+    <td width="100%">
+
+<b><font face="Arial">rocket=LoadMesh(&quot;rocket.3ds&quot;)</font></b></td>
+  </tr>
+</table>
+<font face="verdana">
+<p>
+As you can probably guess, this line of code will load a 3d model called ROCKET.3DS into a handle variable called 'rocket'.</p>
+<p>
+What's a handle variable ?, its exactly the same type of label we use in normal blitz for initializing sprites. (It holds the address in memory of where the data is stored), in this case the variable rocket points to the location of where the model is stored.</p>
+</font>
+
+
+<table border="0" width="100%" bgcolor="#6097C9">
+  <tr>
+    <td width="100%">
+
+<b><font face="Arial">If KeyDown(200)	Then<br>
+MoveEntity rocket,0,0.05,0<br>
+EndIf</font></b></td>
+  </tr>
+</table>
+<font face="verdana">
+<p>
+These 3 lines tell us that if you are pressing the UP cursor move the object 'ROCKET' in the Y axis 0.05 units upwards.</p>
+<p>
+Let's take a more indepth look at this, remember my rocket is pointing up - so to start with I want my rocket to travel upwards - hence why I am increasing the Y coordinate. (remember in 3D a positive Y means up - not down like in normal coordinate systems, such as plotting sprites in standard Blitz)</p>
+<p>
+If my rocket was a car, that was designed to be facing towards the right - then I would want my car to travel to the right of the screen, (it goes forwards) - so I would be  increasing the X coordinate. It's very important to get this right at the beginning of your program, or your shape could start moving in the wrong direction to what you want it to.</p>
+</font>
+
+
+<table border="0" width="100%" bgcolor="#6097C9">
+  <tr>
+    <td width="100%">
+
+<p>
+<b><font face="Arial">If KeyDown(203)	Then<br>
+TurnEntity rocket,0,0,1.0<br>
+EndIf</font></b></p>
+<p>	
+<b><font face="Arial">If KeyDown(205)	Then<br>
+TurnEntity rocket,0,0,-1.0<br>
+EndIf</font></b></p>
+    </td>
+  </tr>
+</table>
+<font face="verdana">
+<p>
+It should be quite obvious to you that these lines control the rotation of our rocket. If you press the LEFT cursor - turn the rocket 1.0 unit clockwise, whereas pressing the RIGHT cursor results in turning -1.0 units anti clockwise.</p>
+<p>
+So how comes the shape still moves forward even though we are no longer pointing up ? .. well.. you've got to thank Mr Sibly for giving us the very easy TurnEntity command !. You see as we turn the object, the axis move with it. If we rotate the shape 90 degrees, the Y axis is now pointing where the X axis should be. Don't worry why or how.. just be thankful you don't have to work out any nasty calculations to do it.</p>
+<p>
+Just incase you where wondering, you can rotate the shape without the axis moving by using the RotateEntity command. This would be used mainly for placement of objects in your world - for example, if I designed the rocket on its side. I would firstly rotate it till its standing upright with the Rotate command - then I could use the turn command to move it.</p>
+<p>
+And that's about it really.. The only way of getting to know this command, (which will probably be your most widely used command) - is to experiment. Try getting the rocket to rotate in other directions !!</p>
+<p>
+remember here's the format you use:</p>
+<table border="0" width="100%" bgcolor="#FFFF00">
+  <tr>
+    <td width="100%">
+
+<font face="verdana">
+<i>TurnEntity [what object it is],<br>
+X [amount to rotate about the X axis],<br>
+Y [amount to rotate about the Y axis],<br>
+Z [amount to rotate about the Z axis]</i>
+</font>
+
+
+    </td>
+  </tr>
+</table>
+<p>NOTE: Blitz3D also contains a command for scaling an object, (see the doc's for info on SCALEENTITY) - if for instance we designed it too small we could increase it on-the-fly, or shrink it if its too large. If you choose to use a multitude of different 3d Packages to design your objects with, then you will need to use this command quite a lot. 3D Studio for instance, likes to scale your object much larger than other packages.</p>
+<center><font color="#808080">Tutorial 3 - <a href="page3.html">Camera Movement</a></font></center></font>

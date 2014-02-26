@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Introduction to Camera Entities</title>
+</head>
+<body>
+
+<center><h1><font face="Verdana">Introduction to Terrains</font></h1>
+</center>
+
+<p>
+<font face="Verdana">Terrain entities are used to draw very large landscapes made up
+of many, many triangles - even up to a million or more!<br>
+<br>
+To actually draw this many triangles would be a very slow process, so terrains use a technique known as
+'<b>dynamic level of detail</b>' to speed things up.<br>
+<br>
+This basically means that instead of drawing all of the triangles in a terrain, a smaller number of triangles is used to render an approximation of the terrain.<br>
+<br>
+Terrains have a few limitations:</font></p>
+
+<ul>
+  <li><font face="Verdana"> The vertices of a terrain are laid out in a square grid pattern, with the same number of vertices along each edge of the grid.<br>
+    </font></li>
+  <li><font face="Verdana"> Only the height of a vertex may be modified.<br>
+    </font></li>
+  <li><font face="Verdana"> The size of a terrain must be a 'power of 2' value,
+    eg: 2,4,8,16,32...</font></li>
+</ul>
+
+<h2><font face="Verdana"><span style="background-color: #6097C9">&nbsp;Creating
+Terrains&nbsp;</span></font></h2>
+<p>
+<font face="Verdana">You can create terrains either by loading in a heightmap image, or by creating an 'empty' terrain and setting the height of each vertex yourself.<br>
+<br>
+A heightmap image is simply a grayscale image, where black pixels represent 'low' vertices, and white pixels represent 'high' vertices. A heightmap image must be of a valid terrain size - ie: square, and a power of 2 wide/high.<br>
+<br>
+When a terrain is created, its width and depth are the same as the size of the terrain, and its height is 1. For example, if you create a terrain using:<br>
+<br>
+<b>terrain=CreateTerrain( 32 )</b><br>
+<br>
+The terrain will extend from 0 to 32 along the x and z axis', and from 0 to 1 along the y axis.<br>
+<br>
+However, you are free to position and scale the terrain as you see fit using entity manipulation commands such as ScaleEntity, PositionEntity. For example:</font>
+</p>
+<table border="1" width="100%" bordercolor="#FFFFFF">
+  <tr>
+    <td width="14%">&nbsp;</td>
+    <td width="72%" bordercolor="#000000" bgcolor="#C0C0C0">&nbsp;<br>
+	<font face="Arial">
+&nbsp;&nbsp;&nbsp;&nbsp;;terrain is 32 x 1 x 32<b><br>
+      &nbsp;&nbsp;&nbsp; terrain=CreateTerrain( 32 )<br>
+      <br>
+      &nbsp;&nbsp;&nbsp; </b>;terrain is now 320 x 100 x 320<br>
+      &nbsp;&nbsp;&nbsp; <b>ScaleEntity terrain,10,100,10<br>
+      <br>
+      &nbsp;&nbsp;&nbsp; </b>;and centred (on x/z axis') at 0,0,0<br>
+      &nbsp;&nbsp;&nbsp; <b>PositionEntity terrain,-160,0,-160</b></font><br><br>
+	
+    </td>
+    <td width="14%">&nbsp;</td>
+  </tr>
+</table>
+
+<h2><font face="Verdana"><span style="background-color: #6097C9">&nbsp;Terrrain
+Detail Level&nbsp;</span></font></h2>
+
+<p>
+<font face="Verdana">You can directly control how many triangles are used to approximate a terrain using the
+<b> TerrainDetail</b> command.<br>
+<br>
+Using less triangles will naturally result in better speed, but beware that below a certain threshold your terrain will start to behave very strangely!<br>
+<br>
+For example, if you ask Blitz3D to render a detailed 1,000,000 triangle terrain using only 100 triangles, chances are it just wont be able to do a decent job.<br>
+<br>
+This usually leads to a phenomenon known as 'pop-in', where Blitz3D just isn't able to make its mind about about how to draw the terrain, and you end up with vertices abruptly changing position, or 'popping', when the camera view changes.<br>
+<br>
+So what number of triangles should be used? Well, this is definitely a 'trial and error' kind of thing and depends on a number of factors:</font></p>
+
+<ul>
+  <li><font face="Verdana">The variation in the terrain - ie: how 'bumpy' it is.<br>
+    </font></li>
+  <li><font face="Verdana"> The scale of the terrain - ie: how much of it is visible to the camera.<br>
+    </font></li>
+  <li><font face="Verdana"> The range of the camera.</font></li>
+</ul>
+<p><font face="Verdana">You can reduce the number of triangles needed to represent a terrain using the following tricks:</font></p>
+<ul>
+  <li><font face="Verdana"> 'Blur' or smooth out the terrain. For example, if you're using a heightmap image, just apply a 'blur' filter or equivalent to the
+    heightmap.<br>
+    </font></li>
+  <li><font face="Verdana"> Increase the scale of the terrain so less of it is visible to the camera.<br>
+    </font></li>
+  <li><font face="Verdana"> Decrease the camera range, again meaning less of the terrain is visible to the camera.</font></li>
+</ul>
+<p><font face="Verdana">If all of this sounds a bit wishy-washy, well, it is!<br>
+<br>
+Generating nice looking terrain with minimum pop-in is as much an artform as it is a science.<br>
+<br>
+Blitz3D also provides a technique called '<b>vertex morphing</b>' to help reduce pop-in. Vertex morphing involves Blitz3D automatically smoothing out the terrain a little to reduce pop-in. The
+<b> TerrainDetail</b> command is also used to enable vertex morphing.</font></p>
+
+
+<h2><font face="Verdana"><span style="background-color: #6097C9">&nbsp;Modifying
+Terrain&nbsp;</span></font></h2>
+
+<p>
+<font face="Verdana">The <b> ModifyTerrain</b> command is used to change the height of a terrain vertex, for example:</font></p>
+
+<table border="1" width="100%" bordercolor="#FFFFFF">
+  <tr>
+    <td width="14%">&nbsp;</td>
+    <td width="72%" bordercolor="#000000" bgcolor="#C0C0C0">&nbsp;<br>
+	
+&nbsp;&nbsp;&nbsp;&nbsp;<font face="Arial">;create a terrain of size 32.</font><br>&nbsp;&nbsp;&nbsp;
+      <font face="Arial"><b>terrain=CreateTerrain( 32 )&nbsp;</b></font>
+      <p><font face="Arial">&nbsp;&nbsp; ;push the centre vertex up half-way.<br>
+      &nbsp;&nbsp; <b>ModifyTerrain terrain,16,16,.5</b></font><br><br>
+	
+      </p>
+	
+    </td>
+    <td width="14%">&nbsp;</td>
+  </tr>
+</table>
+
+<p>
+<font face="Verdana">The parameters used with <b> ModifyTerrain</b> must be given in 'terrain coordinates'. This means that the x and z values should always be from 0 to the size of the terrain, and the height value should always be from 0 to 1. In other words, any scale, position or rotation applied to the terrain will be ignored.</font></p>
+
+
+<h2><font face="Verdana"><span style="background-color: #6097C9">&nbsp;Texturing
+Terrains&nbsp;</span></font></h2>
+
+<p><font face="Verdana">By default the terrain you create will be just a plain
+colour, but by using the <b>EntityTexture</b> command it is possible to apply a
+texture brush to the whole landscape. Unfortunately at this time, it is not
+possible to texture different parts of the terrain with different textures. But
+fear not !, remember a brush can have 8 multitextures applied to it. By
+carefully building up these textures - it is possible to have different
+texturemaps applied onto the same landscape.</font></p>
+
+<p><center>
+<font color="#666666" face="Verdana">Copyright 2001 (c) Paul Gerfen -
+GamecodingUK</font></center></p>
+</body>
+</html>

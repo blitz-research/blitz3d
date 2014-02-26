@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Introduction to Entities</title>
+</head>
+<body>
+
+<center><h1><font face="Verdana">Introduction to Entities</font></h1>
+</center>
+<p>
+<font face="Verdana">
+Everything going on in a Blitz3D program takes place within a 3D world, which is populated by 'entities'.</font></p>
+<p>
+<font face="Verdana">
+Entities come in many flavors, and each kind of entity performs a certain, specialized task, but all entities have a few things in common, the most important of which are:</font></p>
+
+<p>
+<font face="Verdana">All entities have a position, a rotation and a size, and can be moved, rotated and
+scaled at will.</font></p>
+
+<p>
+<font face="Verdana">All entities have an optional 'parent' entity. If an entity has a parent, then it becomes 'attached' to the parent and will move, rotate and scale whenever the parent does.</font></p>
+
+<p>
+<font face="Verdana">
+Now, lets have a quick look at the kind of entities that can be used in the 3D world:</font></p>
+
+<h2><font face="Verdana"><span style="background-color: #6097C9">&nbsp;Cameras&nbsp;</span></font></h2>
+<p>
+<font face="Verdana">
+Camera entities allows you to 'see' what's going on in the world. If you don't create at least one camera, you wont be able to see anything! Cameras also control where on the screen 3D rendering occurs, and provide atmospheric fog effects.</font></p>
+<h2><span style="background-color: #6097C9"><font face="Verdana">&nbsp;Lights</font><font face="Verdana" color="#FFFFFF">&nbsp;</font></span></h2>
+<p>
+<font face="Verdana">
+Light entities provide illumination for the 3D world. Without any lights, you will still see what's happening in the world thanks to 'ambient light'. Amibent light is light that is 'everywhere at once', and illuminates everything equally. However, since ambient light has no position or direction, you wont get nice shading effects, and everything will look very flat.</font></p>
+<h2><span style="background-color: #6097C9"><font face="Verdana">&nbsp;Meshes</font><font face="Verdana" color="#FFFFFF">&nbsp;</font></span></h2>
+<p>
+<font face="Verdana">
+Mesh entities provide a way to add actual, physical items to the world. Meshes are made up of triangles, and each triangle can be colored or textured in a variety of ways. The most common way of adding a mesh to the world is to load it from a file produced by a 3D modelling program, but you can also create your own meshes.</font></p>
+<h2><span style="background-color: #6097C9"><font face="Verdana" color="#FFFFFF">&nbsp;</font><font face="Verdana">Pivots</font><font face="Verdana" color="#FFFFFF">&nbsp;</font></span></h2>
+<p>
+<font face="Verdana">
+Pivot entities don't actually do a lot! Their main purpose in life is to provide a parent for other entities. This can be useful for many reasons. For example, by attaching a bunch of meshes to a pivot, you can move all the meshes at once simply by moving the pivot!</font></p>
+<h2><span style="background-color: #6097C9"><font face="Verdana" color="#FFFFFF">&nbsp;</font><font face="Verdana">Sprites</font><font face="Verdana" color="#FFFFFF">&nbsp;</font></span></h2>
+<p>
+<font face="Verdana">
+Sprite entities are flat, 2D entities most commonly used for particle effects, like explosions, smoke and fire. Sprites automatically face the camera, regardless of the angle you view them from, so are often textured with a 'spherical' style texture.</font></p>
+<h2><span style="background-color: #6097C9"><font face="Verdana" color="#FFFFFF">&nbsp;</font><font face="Verdana">Planes</font><font face="Verdana" color="#FFFFFF">&nbsp;</font></span></h2>
+<p><font face="Verdana">Plane entities are infinitely large, flat surfaces that can be used for a variety of effects such as ground and water. Since planes are entities, they can also be moved and rotated, which means you can also use them for sky and cloud effects.</font></p>
+<h2><span style="background-color: #6097C9"><font face="Verdana" color="#FFFFFF">&nbsp;</font><font face="Verdana">Terrains</font><font face="Verdana" color="#FFFFFF">&nbsp;</font></span></h2>
+<p>
+<font face="Verdana">
+Terrain entities are used to create very large landscapes. They are constructed of a grid of triangles, and are rendered using a technique that draws an approximation of the terrain using a limited number of triangles. This is necessary for very large terrains that may contains millions of triangles - which would not only be far too slow for realtime rendering, but would also take up way too much memory!</font></p>
+<p>
+<font face="Verdana">
+These entities form the backbone of any B3D program, it really is worth spending the time getting to know the various instructions associated with them. As we shall see - by using different parameters and the special additional commands for controlling or altering their behavour, we can adapt an entity to our liking. Even if it means defining a special FX that Blitz, with its present command set cannot do !.</font>
+<p><center>
+<font color="#666666" face="Verdana">Copyright 2001 (c) Paul Gerfen -
+GamecodingUK</font></center></p>
+</body>
+</html>

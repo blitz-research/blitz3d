@@ -1,0 +1,96 @@
+<font face="verdana">
+<table border="1" width="100%" bordercolor="#FFFFFF">
+  <tr>
+    <td width="61%" bgcolor="#6097C9"><font face="verdana">
+<h1 align="left"><font color="#FFFFFF">&nbsp;Camera Movement</font></h1>
+<p align="left"><b>&nbsp;Aim</b>: Move the camera around 3d space<br>
+&nbsp;<b>Skill level</b>: Beginner<br>
+&nbsp;<b>Files Needed</b>: camera.bb / house.3ds
+</font>
+      <p>&nbsp;</td>
+    <td width="5%">&nbsp;</td>
+    <td width="34%"><font face="verdana">
+<img src="5c.jpg" alt="Camera" width="167" height="129" align="right">
+</font>
+
+
+    </td>
+  </tr>
+</table>
+
+<p>
+So far we have just used a static camera, which just sits there - pointing at the screen. But in the real world of PC games - we will want it to follow the main character around, (if a third person view is required - such as Tomb Raider) or perhaps give us a more personal
+view such as a first person view (used in Quake or Unreal).</p>
+<p>Take a good look at Mr Sibly's 'Marko' demo for a great example of an intelligent
+camera. The code to control your camera can be just as complicated as the main game code... if you want it to be !
+<p>
+Let's have a look at a basic example:
+</p>
+
+<table border="1" width="86%" bordercolor="#FFFFFF">
+  <tr>
+    <td width="14%">&nbsp;</td>
+    <td width="72%" bordercolor="#000000" bgcolor="#C0C0C0">&nbsp;<br>
+      
+	  
+	  
+	  &nbsp; <font face="arial">Graphics3D 800,600<br>
+      <br>
+      &nbsp; SetBuffer BackBuffer()<br>
+      <br>
+      &nbsp; camera=CreateCamera()<br>
+      &nbsp; CameraViewport camera,0,0,800,600<br>
+      <br>
+      &nbsp; light=CreateLight()<br>
+      <br>
+      &nbsp; house=LoadMesh( &quot;house.3ds&quot; )<br>
+      &nbsp; RotateEntity house,0,90,0<br>
+      <br>
+      &nbsp; While Not KeyHit(1)<br>
+      <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If KeyDown(200) Then<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MoveEntity
+      camera,0,0,1<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EndIf<br>
+      <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If KeyDown(208) Then<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MoveEntity
+      camera,0,0,-1<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EndIf<br>
+      <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If KeyDown(203) Then<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TurnEntity
+      camera,0,1.0,0<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EndIf<br>
+      <br>
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If KeyDown(205) Then<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TurnEntity
+      camera,0,-1.0,0<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EndIf<br>
+      <br>
+      &nbsp; UpdateWorld<br>
+      &nbsp; RenderWorld<br>
+      <br>
+      &nbsp; Text 3</font></font><font face="arial">35</font><font face="verdana"><font face="arial">,500,&quot;Camera Movement&quot;<br>
+      <br>
+      &nbsp; Flip<br>
+      <br>
+      &nbsp; Wend<br>
+      &nbsp; End<br><br>
+      </font></td>
+    <td width="14%">&nbsp;</td>
+  </tr>
+</table>
+<p>
+Using the cursor keys you can explore the environment,  The UP & DOWN cursors moving forward and back in space - the LEFT & RIGHT cursors panning the camera around on the spot.</p>
+<p>
+There's not really much more to it, we have already covered movement and rotation in the previous tutorial. The only difference here is that we are moving forward into the screen. Just as we moved the shape, we use the same MoveEntity and TurnEntity commands to move the camera, That's what makes B3D such a great language to learn !.<br>
+Instead of having to remember loads of different commands for objects, cameras and lights - we just use the same instructions.</p>
+<p>Perhaps you want to make the view bob up and down, such as the walking motion in Quake or Doom.. easy enough, just create a loop that moves the height of the camera up and down. I'll leave the actual coding part up to you !.
+<p>By Default Blitz3D will stop drawing an object if it is too far away from the camera, this is known as the CAMERA RANGE. Anything past its region will not be drawn. This is very handy if we have alot on screen, anything far into the distance will not show - meaning that we gain some extra processing time.</p>
+<p>BUT WAIT... Blitz3D can also give us a fog effect !. We've all seen games that use it, (Unreal or example). The further the object is away from the camera the less we can see it. For more info on these functions see the doc's under Camera Commands. Used correctly, the fog commands can give a 3D world something of a sinister lifelike look !.</p>
+</font>
+
+
+<p><font face="verdana"><center><font color="#808080">Tutorial 3 - <a href="page4.html">Object
+Animation</a></font></center></font></p>

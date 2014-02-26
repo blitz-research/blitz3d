@@ -1,0 +1,681 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<title>Getting Started with BlitzBasic </title>
+<style>
+<!--
+     A:link {text-decoration: none;}
+     A:visited {text-decoration: none;}
+-->
+</style>
+</head>
+
+<body bgcolor="#206060" text="#ffff00" link="#00ff00"
+vlink="#00ff00" alink="#00ff00">
+
+
+<br>
+<center><h1>Learning how to program Blitz BASIC</center></h1>
+<center>You want to learn the first steps so you can evantually write a game? Well you've come to the right place.</center> 
+<p align="left"><font size="2" face="verdana">
+<br>
+Blitz Basic uses a specially designed and easy to use programming language so that it is easy to follow and requires no previous knowledge of programming, just a love of games and your ideas.<br><br> 
+So, welcome to the BASIC guide to Blitz - where the only restrictions are your imagination. 
+The sole purpose of this section is to teach you how to write your own Blitz Basic programs. The traditional description of a program is a task that you want your computer to perform via a set of instructions. The task is described to the computer using an instruction set Blitz Basic can understand.
+
+The instructions in your program must be written using a set of rules known as Syntax. You must follow these rules if you are to write Blitz Basic programs. With lots of practice and a sprinkle of determination you will gain a firm and confident understanding about the general rules of BASIC and how to use them as a programmer 
+- When you have this working knowledge of Blitz Basic, the types of games you create are entirely up to you, but with a little imagination you could be writing the next hit game.
+<br>
+<br> If you didn't know - BASIC is an acronym for <b>Beginners All-purpose Symbollic Instruction Code.</b> In this mini course you'll learn the BASIC language as implemented in Blitz and the planning of good programming structures.<br><br><b>Hello World Hello Me or <i>Hello sheep! Hello cup of tea!</i></b><br><br>
+
+OK - lets start with the <b>Print</b> command - this simply prints any text onto your screen - like this:<br><br>
+
+<b>print "Hello sheep"</b><br>
+<b>print "Hello cup of tea"</b><br>
+<b>End</b><br><br>
+just simply type it into your ide...
+<img align="left" src="hello.gif"><br><br><br><br><br><br><br><br><br><br><br><br><br>
+...and click on the red rocket <img src="rocket.gif"> to run....
+<img align="left" src="hellooutput.gif"><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><b>Well done - you've just written your first Blitz program.</b>
+<br><br>You can also include comments/notes in your programs - this is highly
+recommended and is good programming practice also. You do this by placing a semi-colon (;) into your program
+then just type your text eg:<br><br>
+<b>Print "George Bray" </b>; This piece of code is for printing your name to the screen<br><br>
+You can also stop the machine with the <b>End</b> command - this will break your program
+at any point that you want it to end.<br><br>
+You can give your code a title too by typing <b>AppTitle "gamenamehere"</b><br><br>
+OK let's learn how Blitz works in interpreting your programs and what you'll need to know to write them...<br><br>
+<b><u>Data</b></u><br><br>These are the main items in programming. Data is represented to in three basic forms. The first is a whole number which is known as an <b>Integer</b> eg. 8,20,100,1000.</b> The second type is a <b>Real Number</b>, this allows decimal
+points eg. 1.2, 48.20, 100.4, 3000.201. The third type of data is a <b>String</b> which is basically 
+something that is not a number, all strings consist of characters enclosed within quotation marks.
+A string can include numbers eg "A", "1", "Blitz Basic", "Commodore 64", "Sheep".
+<br><br>
+<b><u>Variables</b></u><br><br>
+A Variable is used to store Data - to simplify this - Imagine a Variable as
+being one big box and within that box you can store an item plus more boxes if required.
+An example would be:<br><br> <b>A = 2 + 2</b><br><br>You can also <b>print</b> the contents of a variable to the screen:<br><br>
+<b>A = 2 + 2<br>
+Print A</b><br><br>
+Another example would be:<br><br>
+<b>A = 1<br>
+B = 2<br>
+C = A + B<br>
+PRINT C</b><br><br>
+If we break this down - we have 3 variables here A & B - which store 2 numbers
+and finally variable C which is a calculation that is based on the values stored within variables A & B 
+so the calculation is actually C = 1 + 2. The result is then stored in C and printed to the screen.<br><br>
+Variables can also store <b>Real Numbers</b> and <b>Strings</b> In order to allow a variable to store these other types of data, 
+you must make sure you tell the computer whether it is a <b>Integer</b>, <b>Real Number</b>, or a <b>String</b>
+variable. To specify a real number variable, you must add a hash sign (#) as the last character
+of the variable name. If you want your variable to store a string, you must add a dollar sign ($) as the last 
+character of the variable name eg:<br><br>
+
+<b>A# = 1.2<br>
+B$ = vic20<br>
+Print A#:Print B$<br><br></b>
+You can also create mathematical functions using <b>String</b> variables eg:<br><br>
+<b>A$ = "Welcome to "<br>B$ = "the world "<br>C$ = "of programming."<br>
+D$ = A$ + B$ + C$<br>
+Print D$<br><br></b>
+When you run this program, it will print <b> Welcome to the world of programming</b> on your screen.<br><br>
+ 
+Easy eh?<br><br>
+<b><u>Arrays</b></u><br><br>
+Arrays are very important because you can store lots of data under a single name.
+ You can even pinpoint an item of data and use it from within an array. If for example
+you want to store 7 days of the week, you would have to create 7 different
+variables eg. <br><br><b>day0$ = "Monday" <br>day1$ = "Tuesday" <br> </b>upto<b><br> day6$ = "Sunday"</b><br><br> But with an Array 
+ you can create a different kind of variable that can store more than one item of data.
+eg. For days of the week you might go:<br><br>
+<b>Dim day$(6)	; Dim the array... 7 elements (0 to 6)<br>
+day$(0)="Monday"	; Set the array data<br>
+day$(1)="Tuesday"</b><br><br>
+You can then just include:<br><br>
+<b>Print day$(3)</b><br><br>
+Which would print <b>Thursday</b><br><br>
+To print the seven days of the week we would include a <b>FOR NEXT</b> loop
+for example:<br><br>
+<b>For loop = 0 to 6 <br>
+Print day$(loop) ; loops through and prints the data.<br>
+Next ; this continues until loop is equal to 6 then continues with the next line of your program.</b><br><br>
+You can also you the <b>STEP</b> command when creating a FOR/NEXT loop eg. If you
+were to create a FOR/NEXT loop followed by STEP 2 the computer would count
+up the for next loop in increments of 2 eg. 2, 4, 6. So if we were to apply this to our days of the week 
+program: <br><br>
+<b>
+For loop = 0 to 6 step 2</b><br><br>
+The computer would then print only <b>Monday Wednesday Friday & Sunday.</b><br><br>
+You can also step backwards by placing a minus (-) sign after the command with the number of steps backwards you would like to take:<br><br>
+<b>For A = 10 To 0 step -2<br>
+Print A<br>
+Next</b><br><br>
+This would print: <b>10 8 6 4 2 0</b> <br><br>
+One final point on Arrays - As documented earlier they are very versatile as they can store many
+levels of data so by:<br><br>
+<b>Dim day(7,5)</b><br><br>
+Here we are setting up the arrays 0 - 6 but for each one there is another
+5 boxes of data numbered 0 - 4 upon which more data can be stored. So if you
+think back to your boxes - here we have 7 boxes with 5 boxes inside, so in all
+you can store 35 values (7x5) in this array. So data entry into the Array you would 
+create something like this:<b><br><br> 
+day(0,0) = 10<br>
+day(0,1) = 20<br>
+day(0,2) = 30<br>
+day(0,3) = 40<br>
+day(0,4) = 50<br>
+day(1,0) = 100<br>
+day(1,1) = 200<br>
+day(1,2) = 300<br>
+day(1,3) = 400<br>
+day(1,4) = 500<br><br>
+</b>
+As you can see arrays need to be declared as a particular type - <b>Integer, Real Number & String.</b> 
+You can have an array of integer, real numbers or strings but you cannot have multiple 
+types in the same array. <br><br><b><u>
+Mathematical Commands</u></b><br><br>
+The dreaded mathematical side of computers but DON'T PANIC - I'm no mathematician either.
+I'll just give you a quick run down on the "boring" side of things - don't worry - with
+a little patience you will be familiar with all these functions in no time as
+we will make the computer do all the hard work. Just relax - make a nice steaming hot cup of tea & read on.....<br><br>
+OK - lets start with the easiest stuff - <b>Add, Subtract, Divide and Multiply.</b>
+In computer terms these are represented by<b>(+) (-) (/) (*)</b> respectively. 
+A simple example would be:<br><br><b>
+
+A = 2 + 2<br>
+B = 2 * 2<br>
+C = 2 - 2<br>
+D = 2 / 2<br>
+
+Print A: Print B: Print C: Print D</b><br><br>
+The result would print: <b>4 4 0 1</b> to the screen - But you knew that....
+You can also assign letters in mathematical functions:<br><br> <b> A + B<br> A - B<br> A * B<br> A / B</b><br><br>
+<b><u>Boolean Stuff</b></u><br><br>
+This is where you must have a cup of tea in your hand because it's time to focus!
+ Once you've cracked this - you are well away to mastering the normally hated mathematical
+side of programming...<br><br>
+OK - Here goes...Sitting comfortably?<br><br>
+Boolean operators allow your program to perform logical operations on
+your data.<br><br>
+We have the <b>AND</b> and <b>OR</b> operator - this works with any integer.<br><br>
+The basics are (study the logic in these examples - it is pretty straight forward)<br><br>
+
+<b>agecategory$=Input("What is the age restriction on this film 15 or 18? ")</b> ; Asks a moderator to set the age rating for a film<br>
+<b>age$=Input("What is your age: ")</b> ; Then asks a viewer their age<br>
+<b>If agecategory$ = 18 And age$&lt;18 Or agecategory$ = 15 and age$&lt; 15 Then Print "Your are not allowed to view this film - Sorry"</b> ; using AND OR expressions decides if they are too young<br>
+<b>If agecategory$ = 18 And age$&gt;18 Or agecategory$ = 15 And age$&gt;15 Then Print "Enjoy your film."</b> ; Using AND OR expressions decides if they are old enough<br>
+<b>WaitMouse</b> ; waits for the mouse button to be pressed<br>
+<b>End</b> ; Once the mouse button has been pressed - Ends the program.<br><br>
+We can compare not only numbers, but strings (text) also. We have seen '=' used 
+in 'agecategory$ = 18' so what does 'less than' & 'more than' mean for strings?
+One thing it does not mean is 'shorter than', so we don't make that
+mistake. We make the definition that one string is less than another
+if it come first in alphabetical order, thus<br><br>
+Smith	  &lt;	  Smythe<br>
+Smythe	  &gt;	  Smith<br>
+Sheep	  &lt;	  Shop<br>
+Shop	  &gt;	  Sheep<br><br>
+all hold. &lt;= means is 'is less than or equal to'and so on - just
+as for numbers.<br><br>
+We then have the <b>NOT</b> operator.<br><br>
+This is simply used to say:<br><br>
+<b>If agecategory$ not &lt;&gt; 18</b> - Is the same as <b>A = B.</b> <i>It really is that straight forward.</i><br><br>
+<b>You will discover how useful these operators become when writing conditions for your programs.</b><br><br>
+<b><u>Storing DATA using the READ command</b></u><br><br>
+Storing data will become an important and useful way to hold and read
+numbers or strings (text) easily. These can be used for storing many
+different types of data eg. Level Data (formations that aliens might attack or
+data for landscapes/scenery within your game etc). Here's a basic example of the READ/DATA
+commands:<br><br>
+<b>Example1</b><br><br>
+
+<b>Read a,b,c</b>                   ;read next 3 data items into variables a, b and c<br>
+<b>Print a+","+b+","+c</b>         ;print out their values<br>
+<b>Data 1,2,3   </b>                 ;the actual data items<br><br>
+
+<b>Example 2</b><br><br>
+
+<b>Restore second</b>            ;start reading data from the '.second' label<br>
+<b>Read a,b,c</b>              ;read in data<br>
+<b>Print a+","+b+","+c</b>      ;print out variables<br>
+<b>Restore first    </b>         ;start reading data from the '.first' label<br>
+<b>Read a,b,c  </b>              ;read in data<br>
+<b>Print a+","+b+","+c</b>       ;print out values<br>
+<b>.first</b><br>
+<b>Data 1,2,3</b>                ;data items<br>
+<b>.second</b><br>
+<b>Data 4,5,6</b>                ;more data items<br><br>
+
+You may have notice that I threw in the <b>RESTORE</b> command within example 2. This is used 
+to reset the data pointer at any time. In a games programming environment
+you may need to read the same data again eg. If you want to clear the
+screen & redraw it using your data table - by resetting the pointer
+the Read command will start at the top of the data list and you can read it again.<br><br>
+<u><b>GOTO Command</u></b><br><br>
+I always remember this command by saying <i>goat-to</i> in my head when calling this command :) - OK - type in following:<br><br>
+<b>Print "Emily & Ellis were here today"</b><br>
+<b>Goto goat</b><br><br>
+<b>.goat</b><br>
+<b>Print "So was George and his furry animals"</b><br><br>
+So here we are printing our text - then jumping to a label called <b>.goat</b>
+ the program then continues reading the rest of your program from the label you
+have set downwards.
+<br><br><u><b>Subroutines</u></b><br><br>
+
+Often a particular sequence of commands gets used several times too within a program.
+You <i>may</i> be able to avoid writing the sequence several times by judicious
+use of <b>GOTO</b> commands; but this isn't always good enough. The command
+<b>GOSUB</b> is like a <b>GOTO</b> that remembers where it came from on meeting
+another command <b>RETURN</b> the program jumps back to the line after
+the particular <b>GOSUB</b> that it originally started from. The <b>GOSUB</b>
+must be followed by a label eg. <b>Gosub sheep</b> which sends the program
+to the series of commands beginning on line <b>.sheep</b> - The part of
+the program that lies between <b>.sheep</b> and the <b>RETURN</b> command
+is known as a <i>subroutine</i>. An example of the <b>GOSUB</b> command would be:<br><br>
+
+<b>Print "Baa Baa"</b> ; Prints text to the screen<br>
+<b>Gosub sheep</b> ; Goes to the subroutine .sheep<br>
+<b>WaitMouse</b> ; The computer return(s) here! - waits for the mouse button to be pressed<br>
+<b>End</b> ; End(s) the program when the mouse button has been pressed.<br><br>
+
+<b>.sheep</b> ; subroutine sheep<br>
+<b>Print "Blitz Basic"</b> ; Prints text to the screen<br>
+<b>Return</b> ; Return(s) to the next line after <i>gosub</i> command.<br>
+<br><br>
+
+<b><u>FOR NEXT Commands</b></u><br><br>
+OK - I'll breifly explain the <b>FOR</b>...<b>NEXT</b> commands - these beasts
+have already been used in an earlier example if you never realised!
+These two commands create a technique known as a <b>loop</b> - so your computer
+performs any given task several times. Try out the following program.
+follows.<br><br>
+<b>For a = 0 To 100</b> ; set up loop with <b>a</b> as a counter ranging from 0 (start) to 100 (finish)<br>
+<b>Print a</b> ; prints the current value of <b>a</b><br>
+<b>Next</b> ; Is <b>a</b> 100? No, it's 1. Add 1 to <b>a</b> to get 2 and go back to line <b>Print a</b><br>
+<b>Your program continues here...</b> ; When <b>a</b> does equal 100 the program ends the <b>loop</b> and continues to run here.<br>
+<br><br>
+The result will be that the computer prints the numbers 0-100 on your screen.<br><br>
+
+<b><u>STEP size</b></u><br><br>
+When you are creating a loop - you can also write it as below.<br><br>
+<b>For a = 0 To 100 Step 10</b> ; The same as the previous example except the computer will count in <b>STEPS</b> of 10 at a time<br>
+<b>Print a</b> ; Prints the current value of <b>a</b><br>
+<b>Next</b> ; If a does not equal 100 then add 10 to it and goes to the line above <b>Print</b><br>
+<b>Your program continues here...</b> ; When <b>a</b> does equal 100 the program ends the <b>loop</b> and continues to run here.<br><br>
+So the program will now give the result:<br><br>
+<b>0<br>10<br>
+20<br>30<br>40<br>50<br>60<br>70<br>80<br>90<br>100</b><br><br>As opposed
+to printing out 1-100 sequencially - as per previous <b>FOR</b>...<b>NEXT loop</b> example.<br><br>
+<b><u>Functions</b></u><br><br>
+Using functions - Part 1<br><br>
+
+Now that you are getting to grips with the very "basics" of Basic 
+programming (eg. For...Next)!
+
+A function allows you to run a commonly used piece of code. For
+ example, this is a  function which prints "Hello" to the screen
+whenever you "call" it:<br><br>
+
+<b>Function PrintHello ()<br>
+	Print "Hello"<br>
+End Function<br></b>
+
+<b>For a=1 To 5 </b> ; Let's print "Hello" 5 times by calling the PrintHello () function:<br>
+	<b>PrintHello ()<br>
+Next</b><br><br>
+
+Now run the program to see the result.<br><br>
+Using Functions - Part 2<br><br>
+OK, now we'll modify the function so that it'll print whatever we 
+want, which can be different each time we call it.<br><br>
+
+The function:<br><br>
+<b>Function PrintSomething (a$)<br>
+	Print a$<br>
+End Function<br>
+
+</b>; In this case, we "pass" a string (either a string variable such as blah$,
+ or a piece of text enclosed in quotes, eg. ("Hello there") to the function<br>
+
+<b>PrintSomething ("Hello, I'm gonna be printed.")<br>
+PrintSomething ("So am I.")<br>
+
+</b>; Using a string variable<br>
+
+<b>sentence$="This is also being printed to the screen."
+PrintSomething (sentence$)<br>
+
+</b>So, whatever is put within the brackets () when you call it is
+ "passed" to the function. If you look at the function itself, you'll
+see that it takes the form "PrintSomething (a$)", which means it's
+expecting you to pass a string variable, as we've done above.<br><br>
+Note that "a$" could be named anything at all - "b$" "sometext$" whatever.<br><br>
+Look inside the function, and it takes whatever is passed into its
+ "a$" parameter and uses it in the Print call ("Print a$").<br><br>
+As an exercise, try changing "a$" to "b$". Make sure you change "a$" to "b$" 
+all throughout the function, or it won't work! Do that before continuing, then run it.<br><br> 
+Here's what you should have ended up with:<br><br>
+Function PrintSomething (b$)<br>
+Print b$<br>
+End Function<br><br>
+
+</b>Now try changing the string to something of your own choosing (as long as
+it ends with the $ string sign!)<br><br>
+Using functions - Part 3<br><br>
+OK, so that was a very simple function call, where a function basically acted like
+any other command. Now we'll look at another way to call functions. We can have them perform
+ a calculation and "return" a value to us.<br><br>
+
+The function:<br><br>
+<b>Function JoinString$ (a$)<br>
+	Return "You passed: "+a$<br>
+End Function<br></b>
+
+; Again, we "pass" a string to the function, but this time, we store what the function returns. <br><br>
+
+<b>mysentence$=JoinString ("Hello, I'm gonna be printed.")
+Print mysentence$<br><br></b>
+
+Run the program as before - now what happens here?<br><br>
+
+First of all, looking at the function itself, we know we're returning a string 
+from the function (it's joining "You passed: " onto whatever string you pass to it), so we add
+a $ (string) sign to the name of the function ("JoinString"), which gives us "JoinString$".
+The "Return" statement passes the joined string back to where we called it. Remember,
+this is why we added a "$" to the name; we're returning this STRING.
+Calling the function, we simply pass whatever string we want, and it's received into
+ our string variable (in this case, "mysentence$"). So mysentence$ becomes "You passed: Hello,
+I'm gonna be printed." once we call the function.<br><br>
+
+<b>Some exercises:</b><br><br>
+Try changing the name of the variable "mysentence$" to something of your own, eg. b$,
+something$, whatever. Note that you'll have to change it in the Print statement too! Run it.<br><br>
+
+Change the "You passed: " string within the function to something else, and change
+the string you're passing ("Hello, I'm gonna be printed"). Run it. Try a few different things.<br><br>
+Using Functions - Part 4<br><br>
+By default, a function returns either:<br><br>
+
+0	- (zero) for numeric values
+ ""	- (an empty string) for string type functions
+<br><br>
+<b>Function AddOneAndOne ()<br>
+	a=1+1<br>
+End Function</b> ; This will return 0, because we haven't told it to actually return the result of 1+1!<br>
+<b>Print "Result of AddOneAndOne: "+AddOneAndOne ()</b> ; Try adding a line saying "Return a" (without the quotes!) to the AddOneAndOne
+function, then run it again. NOW it returns the value!<br>
+
+<b>Function GimmeString$ ()<br>
+	a$="If you can read this, you must have fixed this function!"<br>
+End Function<br>
+
+b$=GimmeString ()<br>
+
+If b$="" <br>
+	b$="GimmeString doesn't return a value!"<br>
+Else Print b$<br>
+EndIf<br>
+
+Print "Result of GimmeString (): "+b$<br><br>
+
+</b>Exercise: add the necessary line to the function so that it returns a$, then
+run it again.<br><br>
+
+
+
+
+<b><u>IF...THEN Commands</b></u><br><br>
+The <b>IF</b> statement works out the condition of something as either true or false.
+If the condition is true then the statement after <b>THEN</b> is executed, but otherwise it
+is skipped over. The most useful conditions compare two number or two strings. You can test
+whether two numbers are equal, or whether one is bigger than the other and they can test whether
+two strings are equal, or whether one come before the other in alphabetical order. They use the
+relations =,&lt;,&gt;,&lt;=,&gt;=, and <>. If you've not experienced 
+these signs before they represent the following:<br><br>
+<b>Sign</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Meaning</b><br><br>
+=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Equals<br>
+&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is less than<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is greater than<br>
+&lt;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is less than or equal to<br>
+&gt;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is greater than or equal to<br>
+<>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is unequal to<br><br><br>
+Take the following example:<br><br>
+<b>.start</b> ; sets up the label start<br>
+<b>question$ = Input ("Shall I tell you the meaning of life yes/no? "</b> ; prints a question - waits for users input<br>
+<b>If question$ = "no" Then Print "Alright, Then I won't"</b>; IF input = no THEN print text<br>
+<b>If question$ = "yes" Then Print "42"</b> ; IF input = yes THEN print text<br>
+<b>If question$ <> "yes" Or "no" Then Goto start</b> ; IF input is not equal to either yes or no THEN GOTO start<br><br>
+We can also achieve the same effect with numbers too:<br><br>
+
+<b>number = Input ("How old are you ")</b> ; prints a question - waits for users input<br>
+<b>If number &lt; 18 Then Print "You are under 18"</b> ; IF input is smaller than 18 THEN print text<br>
+<b>If number > 18 Then Print "You are over 18"</b> ; IF input is greater than 18 THEN print text<br> 
+<b>If number = 18 Then Print "you are 18"</b> ; IF input is equal to 18 THEN print text<br>
+<br><br>
+The expression IF THEN can be any combination of values, variables, arrays and operators providing the expressions are logical.<br><br>
+<u><b>IF ENDIF</u></b><br><br>
+On a similar principal to the IF command - instead of a THEN command
+ENDIF points to the end of the commands to be executed - the example below
+shows you this principle:<br><br>
+<b>commodore = 20</b> ; sets up the variable for commodore<br>
+<b>atari = 20</b> ; sets up the variable for atari<br>
+<b>If commodore = atari</b> ; IF both variables are the same...(execute the code between here and ENDIF)<br>
+<b>Print "Welcome to the machine - commodore and atari..."</b> ; code to be executed if the values are the same.
+<b>EndIf</b> ; Execute and ENDIF they are equal<br><br>
+The above code is the same as typing:<br><br>
+IF commodore = atari THEN PRINT "Welcome to the machine - commodore and atari..."<br><br>
+If you change the values of commodore and atari - so they are both different - see the end result?<br><br>
+You can also make your program follow a different chain of events if the values are not equal to. 
+Here we introduce the <b>ELSE</b> command - so you would point this to a different
+piece of code that you wanted to execute - like below:<br><br>
+<b>IF commodore = atari<br>
+PRINT "The values are equal to"<br>
+ELSE<br>
+PRINT "The values are different"<br>
+ENDIF<br><br></b>
+You must remember that when the command <b>THEN</b> is not used you must
+use <b>ENDIF</b> - You will  should also note that <b>ENDIF</b>
+ is used whether or not the <b>ELSE</b> command is used.<br><br>
+<b><u>Types</b></u><br><br>
+
+Using normal arrays (as documented earlier) we can store important information
+ about, for example, our players' positions:<br><br>
+
+  <b>player = 3<br>
+  x = 640<br>
+  y = 480<br><br>
+
+  Dim players (player, x, y)<br><br>
+
+  players (2, 100, 100)</b>        ; this sets player 2's on-screen position to x = 100, y = 100<br><br>
+
+This is fine, but what if we want to add more players? We have to re-Dim the
+array with the maximum number of players! It can also be quite difficult to
+remember what each element in the array stands for when you have a lot of
+elements, eg.<br><br>
+
+<b>  Dim playerdata (player, x, y, animframe, weaponselected, lives, rockets,
+jewelscollected, blah, blah2)</b><br><br>
+
+Try just changing the "rockets" element later on when you can't see the
+actual list of elements without scrolling all the way back up!<br><br>
+
+A way around this general awkwardness is to use <b>types.</b> Whereas with the
+array, we made a "playerdata" array, here we'll make a "playerdata" type
+instead:<br><br>
+
+  <b>Type playerdata<br>
+      Field player<br>
+      Field x<br>
+      Field y<br>
+      Field animframe<br>
+      Field weaponselected<br>
+      Field lives<br>
+      Field rockets<br>
+      Field jewelscollected<br>
+      Field blah<br>
+      Field blah2<br>
+  End Type<br><br></b>
+
+Think it looks complicated? Well, let's take a look:<br><br>
+
+<b>Type playerdata</b><br><br>
+
+This line simply creates a new type (you'll also hear types referred to as
+"objects", so this might be called a "playerdata object").<br><br>
+
+<b>Field player<br>
+Field whatever</b><br><br>
+
+The field lines simply say what information we want to hold in the
+playerdata object.<br><br>
+
+<b>End Type</b><br><br>
+
+This just signifies the end of our type definition. <b>Don't forget it!</b><br><br>
+
+OK, in the array example, we wanted to change the rocket element (we'll give
+'em 1000 rockets), which would mean typing something like:<br><br>
+
+ <b> playerdata (player, x, y, animframe, weaponselected, lives, 1000,
+jewelscollected, blah, blah2)</b><br><br>
+
+Ouch, what a lot of typing! And I hope you remembered the order of the items
+(gosh, and you probably had to scroll all the way back up to find the
+definition of the array elements as well)! The efficient (read: cleverly
+lazy) programmer will use types instead. Using our playerdata type:<br><br>
+
+ <b> playerdata\rockets = 1000</b><br><br>
+
+Now, not only is that shorter, but we didn't have to remember where to place
+the rockets value either (in fact, we couldn't even accidentally put it in
+the wrong place, since we're specifically saying "makes the rockets value
+equal 1000").<br><br>
+
+Note the way we access the type data, with a backslash like this: \<br><br>
+
+To read the jewelscollected value into a temporary variable and show the
+value, we'd do this:<br><br>
+
+  <b>temp = playerdata\jewelscollected : Print temp</b><br><br>
+
+Of course, there's nothing to stop us printing the value directly:<br><br>
+
+ <b> Print playerdata\jewelscollected</b><br><br>
+
+One very important aspect of using types is that you must tell Blitz that
+you're going to be assigning a variable with a custom type. If we want to
+make two players using the playerdata type, we do this:<br><br>
+
+ <b> player1.playerdata = New playerdata<br>
+  player2.playerdata = New playerdata</b><br><br>
+
+This can be read as "create a new playerdata object called player1" and
+"create a new playerdata object called player1". From here on, we can do
+whatever we like with our newly defined player objects.<br><br>
+
+It's important to remember this step, as you can't simply do this:<br><br>
+
+  <b>player1.playerdata\rockets = 1000</b><br><br>
+
+...without first creating the player1 playerdata object, as above!<br><br>
+
+To recap, if we want to use an object called "zoolook", of type
+"whatever", we do this:<br><br>
+
+  ; Define our object structure:<br><br>
+
+  <b>Type whatever<br>
+    Field something</b><br>
+   ; As many fields of information as needed for the zoolook objects<br>
+  <b>End Type<br><br>
+
+  zoolook.whatever = New whatever</b><br><br>
+
+Now we can use our zoolook object.<br><br>
+
+Where types can become really powerful is if we just need a heap of
+similar objects (for instance, the aliens in a "Space Invaders" clone), and
+want an easy way to define and manipulate them.<br><br>
+
+  <b>Type invader<br>
+    Field x<br>
+    Field y<br>
+  End Type</b><br><br>
+
+We can set up a huge number of alien invaders with a simple loop:<br><br>
+
+  <b>For a = 1 to 100<br>
+
+    alien.invader = New invader<br>
+
+    alien\x = Rnd (GraphicsWidth)<br>
+    alien\y = Rnd (GraphicsHeight)<br>
+
+  Next</b><br><br>
+
+This appears to keep redefining a single object over and over! The strange
+thing about types, though, is that when we create a new object, we're
+actually creating a *reference* to an object, rather than the object itself.<br><br>
+
+Every time you say:<br><br>
+
+  <b>something.mycustomtype = New mycustomtype</b>               ; a new "customtype" called "something"<br><br>
+
+...you're saying "create a new 'mycustomtype' object, and give me a
+reference to it; call my reference 'something'".<br><br>
+
+Although we can refer to them individually if we define objects with
+individual names (eg player1.playerdata, player2.playerdata), we can also
+ignore the names completely. If we give the same name to more than one item
+of a particular type, we're just adding to a hidden list of those objects,
+which we don't need to access individually. To draw all of our aliens, we'd
+simply do this:<br><br>
+
+ <b> For nasties.invader = Each invader<br>
+    DrawImage invaderimage, nasties\x, nasties\y<br>
+  Next</b><br<br>
+
+...and all of our aliens are drawn!<br><br>
+
+Note the importance of giving our For...Next variable (nasties) an
+"invaders" type while we read through our list of "invaders".<br><br>
+
+So, to recap, whenever we create a new object, we're really adding to a
+hidden list of objects of that type. When we want to be able to refer to
+ each individual object, we give each a different name:<br><br>
+
+  <b>Type playerdata<br>
+    Field x<br>
+    Field y<br>
+  End Type<br><br>
+
+  player1.playerdata = New playerdata<br>
+  player2.playerdata = New playerdata</b><br><br>
+
+The computer adds each object to its hidden list of "playerdata" objects,
+which might look like this:<br><br>
+
+  <b>xxxxx1.playerdata [player1]<br>
+  xxxxx2.playerdata [player2]</b><br><br>
+
+...but it doesn't matter to us how the computer stores its hidden list - we
+just refer to player1 and player2.<br><br>
+
+If we don't need to be able to access each item individually, we can do
+this:<br><br>
+
+  <b>Type blah<br>
+    Field whatever<br>
+  End Type<br><br>
+
+  For a = 1 to 3<br>
+    myobject.blah = New blah<br>
+    myobject\whatever = 5<br>
+  Next</b><br><br>
+
+The above example creates a hidden list of "blah" objects, and sets the
+"whatever" value of each to 5. To the computer, they might be stored in some
+abstract form which we have no knowledge of, eg:<br><br>
+
+<b>xxxx1.blah [myobject]<br>
+xxxx2.blah [myobject]<br>
+xxxx3.blah [myobject]</b><br><br>
+
+Obviously, we can't read individual objects from this list, because we gave
+them all the same name! But we don't care; we didn't want to - we can read
+them "en masse" by using the For...Each...Next loop:<br><br>
+
+ <b>For a.blah = Each blah<br>
+    Print a\whatever<br>
+  Next</b><br><br>
+
+Taken apart, we get this:<br><br>
+
+<b>For a.blah = Each blah</b><br><br>
+
+This reads each "blah" object in turn into a temporary object called "a",
+which has a "blah" type (so it can store the same data as our "blah"
+objects).<br><br>
+
+<b>Print a\whatever</b><br><br>
+
+This prints out the contents of the temporary "a" variable's "whatever"
+field.<br><br>
+
+<b>Next</b><br><br>
+
+This is just the normal "Next" used in a For...Next loop.<br><br>
+
+There's a lot more to types (hence their awesome power!), but this has
+basics, which will get you started!<br><br>
+<b>OK Now that you've covered the Basics look in the Blitz manual
+for a synopsis of the more advanced commands :) </b>
+
+<br><br><center><b>REMEMBER: Look in the Blitz Basic samples folder for lots of example code for
+you to play around with and more importantly - learn whilst having fun.</center><br><br>
+<hr><br><br>
+</body>
+</html>

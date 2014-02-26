@@ -1,0 +1,212 @@
+<font face="verdana">
+<table border="1" width="100%" bordercolor="#FFFFFF">
+  <tr>
+    <td width="61%" bgcolor="#6097C9"><font face="verdana">
+<h1 align="left"><font color="#FFFFFF">&nbsp;Object Animation</font></h1>
+<p align="left"><b>&nbsp;Aim</b>: To animate an object<br>
+&nbsp;<b>Skill level</b>: Intermediate<br>
+&nbsp;<b>Files Needed</b>: animation.bb / gargoyle.md2</font>
+      <p>&nbsp;</td>
+    <td width="5%">&nbsp;</td>
+    <td width="34%">
+      <p align="right"><font face="verdana">
+<img src="6c.jpg" alt="Animation" width="166" height="128"></font></p>
+    </td>
+  </tr>
+</table>
+
+<p>
+So far we have just used static objects, its Time to liven up our 3d world and think about animation. Blitz will load in animated meshes from a variety of sources, including X. format (DirectX), MD2 (used by the Quake 2 engine) and lastly 3DS
+(3D Studio).</p>
+
+<p>
+How do you draw and animate an object ?, although B3D has a few commands for building shapes such as the cube and sphere instructions - really we need to use a 3d modeller program to create our object.</p>
+
+<p>
+Most 3d packages will export/import just about every format you are going to ever need, personally I like to work with the Directx format (X). What modeller you choose to use really depends on your preference, Truespace (www.caligari.com), Rhino 3D (www.rhino3d.com) and Canvas 3d
+(www.amegia.com) - all support X format without any problems.</p>
+
+<p>
+Recently I've been using the AC3D modeller for my modelling needs, since its simple but powerful. You can download a fully working trial version from
+official website - (www.comp.lancs.ac.uk/computing/users/andy/ac3d.html), but of course designing an object that has realistic movement really is an art form all in itself. Most of us including me - are going to find it a struggle,
+luckily places such as 3dcafe (www.3dcafe.com) contain hundreds of ready made free models for us to use.
+</p>
+
+
+<p>
+Time for the source:
+</p>
+
+<table border="1" width="86%" bordercolor="#FFFFFF">
+  <tr>
+    <td width="14%">&nbsp;</td>
+    <td width="72%" bordercolor="#000000" bgcolor="#C0C0C0">&nbsp;<br>
+      
+	  
+	  
+	  &nbsp; <font face="arial">Graphics3D 800,600<br>
+      <br>
+      &nbsp; SetBuffer BackBuffer()<br>
+      <br>
+      &nbsp; camera=CreateCamera()<br>
+      &nbsp; CameraViewport camera,0,0,800,600<br>
+      <br>
+      &nbsp; light=CreateLight()<br>
+      <br>
+      &nbsp; man=LoadMD2( &quot;gargoyle.md2&quot; )<br>
+	  &nbsp; PositionEntity man,0,-35,600<br>
+      &nbsp; RotateEntity man,0,</font></font><font face="arial">180<font face="verdana">,0<br>
+	  <br>
+	  &nbsp; Animate</font></font><font face="arial">MD2</font><font face="arial"> <font face="verdana"> man,1,.1,32,46<br>
+      <br>
+      &nbsp; While Not KeyHit(1)<br>
+      <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If dist<970 MoveEntity man,.5,0,0<br>
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If dist=970 Animate</font>MD2 </font><font face="arial"><font face="verdana">man,1,.05,0,31<br>
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dist=dist+1<br>
+	  
+	  
+      <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UpdateWorld<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RenderWorld<br>
+      <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Text 320,500,&quot;An Animated M</font>D2</font><font face="verdana"><font face="arial"> Demo&quot;<br>
+      <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flip<br>
+      <br>
+      &nbsp; Wend<br>
+      &nbsp; End<br><br>
+      </font></font></td>
+    <td width="14%">&nbsp;</td>
+  </tr>
+</table>
+<p>
+So whats going on ?</p>
+
+<table border="0" width="100%" bgcolor="#6097C9">
+  <tr>
+    <td width="100%">
+
+<b><font face="Arial">man=LoadMD2( "gargoyle.md2" )<br>
+PositionEntity man,0,-35,600<br>
+RotateEntity man,0,-90,0</font></b></td>
+  </tr>
+</table>
+<font face="verdana">
+
+<p>
+Here, I've used the LoadMD2 command to load an MD2 animated object into the pointer handle 'man'.
+MD2 models can be found just about anywhere on the net, they are the staple diet
+of Quake 2 - So as you'd expect there's thousands of ready made objects with
+animation out there just waiting to be included in your epic. (Although be
+careful to read any copyright messages that may be attached to them).<br>
+<br>
+Unless you plan on using MD2 models all the time, I expect you will be using the LOADMESH
+command which does exactly the same thing as the LOADMD2 instruction. (but allows loading of X and 3DS animations)&nbsp;<br>
+<br>
+We wont be going into any of the details that involve creating animations from a modeller, but if your interested I'm sure whatever product you use will contain some sort of tutorial for creating animations. (You should be able to find some tutorials for 3d modelling from
+my Gamecoding website very soon)</p>
+
+<p>
+The frames of animation (keyframes) are loaded in with the model, all we have to do is tell B3D where to start - and where to end !. Before we look at this in action, you will notice that I've positioned and rotated the object to a new starting point. Originally the character was designed facing Right, so we need to rotate it by 90 degrees - so it faces us.
+(I did this by using the RotateEntity command)</p>
+
+</font>
+<table border="0" width="100%" bgcolor="#6097C9">
+  <tr>
+    <td width="100%">
+
+<b><font face="Arial">AnimateMD2 man,1,.1,32,46</font></b></td>
+  </tr>
+</table>
+<font face="verdana">
+
+<p>
+This instruction informs B3D that we want the object 'man' to animate in a loop (so the walking frames can restart), at a speed of .1 of a unit, starting at frame 32 - and ending in frame 46</p>
+
+<p>
+When we have set the command up, every update (depending on the animation speed you have selected) the animation will run by itself without us having to do any more to
+it.</p>
+
+<p>
+If we were using a regular animated object (X or 3DS format) - we would use the
+ANIMATE instruction, which works exactly like the ANIMATEMD2 command I've used
+here in this example.</p>
+
+<p>
+As you can see by looking through the source, I've setup a loop that continues to move the shape forwards until the counter is equal to 970. (using the
+MOVEENTITY command)</p>
+
+<p>
+After that the animation is reset to display the standing stance animation.. (frames 0-31). Why not alter the program to include rotation, so that the character can move about freely.</p>
+
+<p>
+Although I've setup the animation to loop, we can of course just have it run through the animation loop once if we had wanted to it.
+To do this you just change the MODE flag in the Animate instruction. Here's the instruction in full:</p>
+
+</font>
+<table border="0" width="100%" bgcolor="#FFFF00">
+  <tr>
+    <td width="100%">
+
+<font face="Arial"><i>Animate [entity name], [mode 0,1,2 or 3], [speed], [frame to begin at], [frame to end at]</i></font></td>
+  </tr>
+</table>
+<font face="verdana">
+
+<p>
+in the case of MD2's you'd use the instruction:</p>
+
+<table border="0" width="100%" bgcolor="#FFFF00">
+  <tr>
+    <td width="100%">
+
+<i>
+
+<font face="Arial">Animate</font></font><font face="Arial">MD2 [entity name], [mode
+0, 1,2 or 3], [speed], [frame to begin at], [frame to end at]</font></i></td>
+  </tr>
+</table>
+<font face="verdana">
+
+<p>
+Just incase your interested, here's a rundown of all the mode switches we can
+use: (Remember we used the loop anim mode)</p>
+
+<table border="0" width="100%" bgcolor="#FFFF00">
+  <tr>
+    <td width="100%">
+
+<font face="Arial"><i>0: Stop Anim<br>
+1: Loop Anim<br>
+2: Ping-Pong Anim<br>
+3: One-Shot Anim</i></font></td>
+  </tr>
+</table>
+
+<p><b>NOTE: To play an anim backwards use a negative speed value</b></p>
+
+<p>B3D thankfully makes animation very easy, it really is just a case of setting up whatever we need
+the anim to do first using the various flags in the ANIMATION instruction before
+setting it running. However to make the animation look convincing you need to get the timing right. How many times have you looked at a game only to see the
+main hero character float-walking over the floor rather than connecting with it ?.<br><br>
+
+But that's half the fun of it !, as you'll see a little effort can really make a big difference.</p>
+
+<p>B3D contains a large array of animation commands that will suit every purpose
+you will ever need, but tucked away in the depths you'll find a couple of incredible
+commands that can morph animation frames from one animation to another. For
+instance, an object of a man running can switch smoothly to an anim of him
+standing still. If you run this example a few times and watch the point that the
+object comes to a halt you'll notice the jump. But, by using these commands we
+could smooth out the change so it would be unnoticeable. Although I wont be
+using these commands in this tutorial, I may add a new tutorial on the subject
+very soon.</p>
+
+<p>
+So what are you waiting for !, go and design the next Quake !!</p>
+</font>
+<p><font face="verdana"><center><font color="#808080">Tutorial 4 - <a href="page5.html">Texturing</a></font></center>
+</font>
+</p>

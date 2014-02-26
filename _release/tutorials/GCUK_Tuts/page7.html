@@ -1,0 +1,253 @@
+<font face="verdana">
+<table border="1" width="100%" bordercolor="#FFFFFF">
+  <tr>
+    <td width="61%" bgcolor="#6097C9"><font face="verdana">
+<h1 align="left"><font color="#FFFFFF">&nbsp;Collision Detection</font></h1>
+<p align="left"><b>&nbsp;Aim</b>: To detect a collision between 2 objects<br>
+&nbsp;<b>Skill level</b>: Intermediate<br>
+&nbsp;<b>Files Needed</b>: collision.bb</font>
+      <p>&nbsp;</td>
+    <td width="5%">&nbsp;</td>
+    <td width="34%">
+      <p align="center"><font face="verdana">
+<img src="9c.jpg" alt="Movement" width="167" height="127" align="right">
+</font>
+
+
+      </p>
+    </td>
+  </tr>
+</table>
+
+<p>
+In this example I shall be using 2 ready-made entity objects, a Sphere and a
+Box.</p>
+
+<p>
+Hopefully The program will display a message once the sphere comes into contact
+with the box. Run the program first to fully understand what is happening before
+delving into the sourcecode below.</p>
+<table border="1" width="86%" bordercolor="#FFFFFF">
+  <tr>
+    <td width="14%">&nbsp;</td>
+    <td width="72%" bordercolor="#000000" bgcolor="#C0C0C0">&nbsp;<br>
+      <font face="arial">
+      &nbsp; Graphics3D 800,600<br>
+      <br>
+      &nbsp; Const CUBE_COL=1<br>
+      &nbsp; Const SPHERE_COL=2<br>
+      <br>
+      &nbsp; SetBuffer BackBuffer()<br>
+      <br>
+      &nbsp; camera=CreateCamera()<br>
+      &nbsp; CameraViewport camera,0,0,800,600<br>
+      &nbsp; PositionEntity camera,0,0,-5<br>
+      <br>
+      &nbsp; light=CreatLight()<br>
+      <br>
+      &nbsp; cube=CreateCube()<br>
+      &nbsp; PositionEntity cube,-5,0,5<br>
+      &nbsp; EntityColor cube,70,80,190<br>
+      &nbsp; EntityType cube,CUBE_COL<br>
+      <br>
+      &nbsp; sphere=CreateSphere(12)<br>
+      &nbsp; PositionEntity sphere,5,0,5<br>
+      &nbsp; EntityColor sphere,170,80,90<br>
+      &nbsp; EntityType sphere,SPHERE_COL<br>
+      <br>
+      &nbsp; Collisions SPHERE_COL,CUBE_COL,3,1<br>
+      <br>
+      &nbsp; While Not KeyHit(1)<br>
+      <br>
+      &nbsp; MoveEntity sphere,-0.02,0,0<br>
+      <br>
+      &nbsp; UpdateWorld<br>
+      &nbsp; RenderWorld<br>
+      <br>
+      &nbsp; If EntityCollided(sphere,CUBE_COL) Then<br>
+      &nbsp; Text 370,80,"Collided !!!"<br>
+      &nbsp; EndIf<br>
+      <br>
+      &nbsp; Text 335,500,"Collision Detection"<br>
+      &nbsp; Flip<br>
+      <br>
+      &nbsp; Wend<br>
+      <br>
+      &nbsp; End<br><br>
+      </font>
+    </font></td>
+    <td width="14%">&nbsp;</td>
+  </tr>
+</table>
+<p>
+Being able to check for collisions is perhaps the most major part of any game. After all, without collision detection
+what's to stop Mario falling through the floor, or the bullets from Max Payne's
+gun doing its damage. We need it - whether we want it or not !. </p>
+<p>
+If you look carefully through the above example you will&nbsp;notice quite a few
+new commands. Let's briefly run through the entire program before we look at
+these. </p>
+<p>
+Firstly we create 2 objects - a Cube and a Sphere.., then we setup the collision
+so that B3D will check these objects every time the UPDATEWORLD instruction is
+called. </p>
+<p>
+Slowly we move the Sphere towards the Cube, until they collide.. after that, we
+print up the collision message on the screen to signal that we have collided. </p>
+<p>
+So what do these new instructions do: </p>
+
+
+<table border="0" width="100%" bgcolor="#6097C9">
+  <tr>
+    <td width="100%">
+
+<b><font face="Arial">Const CUBE_COL=1<br>
+Const SPHERE_COL=2</font></b></td>
+  </tr>
+</table>
+<font face="verdana">
+<p>
+Ok, its not an instruction, but just something I've strung together for this
+example. When programming always try and make things as easy as possible - It
+will certainly help when it comes to debugging. (working out any problems)</p>
+<p>
+The Collision instructions we have to setup rely on variables, but rather than
+just using numbers - I'll use the CONSTANT variables I've setup to represent
+them.</p>
+<p>
+So in the above two lines, I can use the variable names CUBE_COL every time I
+want to use a 1 - and SPHERE_COL instead of 2. Although of course I could just
+use the numbers with the instructions, as you'll see it will help us out.</p>
+</font>
+
+
+<table border="0" width="100%" bgcolor="#6097C9">
+  <tr>
+    <td width="100%">
+
+<b><font face="Arial">EntityType cube,CUBE_COL</font></b></td>
+  </tr>
+</table>
+<font face="verdana">
+<p>
+After we've setup the basic entity object, we need to setup a collision variable
+for it. We do this by assigning a number to the entity, As you can see to do
+this we use the ENTITYTYPE command. Here I've set the entity cube to have a
+value of 1. (remember the CONST variable is set to 1)</p>
+
+
+<table border="0" width="100%" bgcolor="#6097C9">
+  <tr>
+    <td width="100%">
+
+<b><font face="Arial">EntityType </font>
+</font>
+
+
+<font face="Arial">sphere,SPHERE_COL</font></b></td>
+  </tr>
+</table>
+<font face="verdana"><p>As before, we setup the sphere collision variable to
+have a value of 2.</p>
+<p><b>AN IMPORTANT NOTE TO REMEMBER !</b></p>
+<p>Every entity <b>DOES NOT</b> have to have a separate collision variable
+number. For example say we created a 3d maze game, that had 10 objects for the
+sides of the maze. We would want to check if we have collided with a wall, it wouldn't
+matter which wall.. just a wall. So every wall object(entity) would have the
+same collision variable.<br>
+I would use the code:<br>
+<br>
+Const WALL=1<br>
+EntityType wall1,WALL<br>
+EntityType wall2,WALL... etc</p>
+<p>Later on when we check for a collision we would just say, is there a
+collision with the wall ?. Nice and Easy isnt it ?</p>
+</font>
+
+
+<table border="0" width="100%" bgcolor="#6097C9">
+  <tr>
+    <td width="100%">
+
+<b><font face="Arial">Collisions SPHERE_COL,CUBE_COL,3,1</font></b></td>
+  </tr>
+</table>
+<font face="verdana">
+<p>
+Now the fun begins, this is the main instruction that informs B3D which objects
+to check for collisions and what action it should take.</p>
+<p>
+The first part of the line &quot;<b>Collisions SPHERE_COL,CUBE_COL</b>,3,1&quot;,
+is saying that we want a check to take place between the collision markers 1 and
+2. (Remember the Sphere is 1 and the Cube is 2)</p>
+<p>
+If we had more entities with the same collision marker value, then of course
+these too would be included.</p>
+<p>&quot;Collisions SPHERE_COL,CUBE_COL,<b>3</b>,1&quot; - The first value (3</font>),
+<font face="verdana">represents the type of collision that we want B3D to
+perform, in this case we are using mode '3' - which is a Sphere-to-Box
+collision.</p>
+<p>
+B3D has 3 different types of collisions we can perform, these are:</p>
+
+
+<table border="0" width="100%" bgcolor="#FFFF00">
+  <tr>
+    <td width="100%">
+
+<i>1 = Sphere-to-Sphere<br>
+2 = Sphere-to-Polygon<br>
+3 = Sphere-to-Box</i></td>
+  </tr>
+</table>
+<p>Now we come to the last value, &quot;Collisions SPHERE_COL,CUBE_COL,3,<b>1</b>&quot;.
+This is the response value, it signals what B3D should do when a collision has
+taken place. I used the value 1 which is used for a dead stop. (when it collides
+with something, don't let it move any closer to it)</p>
+<p>
+As before there are 3 mode types we can use:</p>
+
+
+<table border="0" width="100%" bgcolor="#FFFF00">
+  <tr>
+    <td width="100%">
+
+<i>1 = Stop<br>
+2 = Slide1 - Full sliding collision<br>
+3 = Slide2 - Takes into consideration the angle of slopes</i></td>
+  </tr>
+</table>
+<p>Even though in my program I am moving the sphere into the box with the
+MOVEENTITY command, when it collides (because I've used the STOP mode).. the
+entity will NOT move through it.</p>
+<p>We have one more command to look at, that's the collision check instruction
+itself &quot;EntityCollided&quot;</font><font face="arial">.</font></p>
+
+
+<table border="0" width="100%" bgcolor="#6097C9">
+  <tr>
+    <td width="100%">
+
+<font face="Arial">If
+
+<b> EntityCollided(sphere,CUBE_COL) </b> then</font><font face="arial"><br>
+Text 370,80,"Collided !!!"<br>
+EndIf
+      </font></td>
+  </tr>
+</table>
+<font face="verdana"><p>As you can can probably guess, this instruction (imbedded
+in an IF statement) - is checking the entity SPHERE for a collision with the
+collision marker 1 (the cube).</p>
+<p>If it has collided then print the message to signal a collision !.</p>
+<p>Ok, we have now run through the entire program - but did it make much sense
+to you ?, To begin with I couldn't grasp it at all !. The best way to understand the various collision
+instructions is to experiment yourself with the different mode settings.
+Eventually (if you haven't understood fully by now).. you will realize just how
+easy and powerful they can be.</p>
+
+
+
+<p align="center"><font color="#808080">Tutorial 8 - <a href="page8.html">Vertexes</a></font></p>
+</font>

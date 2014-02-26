@@ -1,0 +1,255 @@
+<font face="verdana">
+<table border="1" width="100%" bordercolor="#FFFFFF">
+  <tr>
+    <td width="61%" bgcolor="#6097C9"><font face="verdana">
+<h1 align="left"><font color="#FFFFFF">&nbsp;Lighting</font></h1>
+<p align="left"><b>&nbsp;Aim</b>: Lighting a scene<br>
+&nbsp;<b>Skill level</b>: Intermediate<br>
+&nbsp;<b>Files Needed</b>: lights.bb</font>
+      <p>&nbsp;</td>
+    <td width="5%">&nbsp;</td>
+    <td width="34%">
+      <p align="right"><font face="verdana">
+<img src="4c.jpg" alt="Lighting" width="166" height="127">
+</font>
+
+
+      </p>
+    </td>
+  </tr>
+</table>
+
+<p>
+So we can now move objects (and ourselves) around, texture objects, animate... so what shall we look at now ?<br><br>
+
+How about lighting, used correctly we can make great use of it to really give our little world
+ambiance.<br><br>
+
+By default B3D will already give us a light in our scene, pointing directly into the screen. Think of it as a torch stuck
+on top of the camera, pointing at whatever we can see.</p>
+
+<p>Sourcecode time:</p>
+
+<table border="1" width="86%" bordercolor="#FFFFFF">
+  <tr>
+    <td width="14%">&nbsp;</td>
+    <td width="72%" bordercolor="#000000" bgcolor="#C0C0C0">&nbsp;<br><font face="arial">
+      &nbsp; Graphics3D 800,600<br>
+      <br>
+      &nbsp; SetBuffer BackBuffer()<br>
+      <br>
+      &nbsp; camera=CreateCamera()<br>
+      &nbsp; CameraViewport camera,0,0,800,600<br>
+      <br>
+      &nbsp; AmbientLight 0,0,0<br>
+      <br>
+	  &nbsp; ;cube 1<br>
+	  &nbsp; cube=CreateCube()<br>
+	  &nbsp; PositionEntity cube,0,0,5<br>
+	  <br>
+	  &nbsp; light=CreateLight(3)<br>
+	  &nbsp; LightColor light,100,20,30<br>
+	  &nbsp; LightConeAngles light,0,45<br>
+	  &nbsp; PositionEntity light,0,0,0.5<br>
+	  &nbsp; LightRange light,8<br>
+	  &nbsp; PointEntity light,cube<br><br>
+
+	  &nbsp; ;cube 2<br>
+	  &nbsp; cube2=CopyEntity(cube)<br>
+	  &nbsp; PositionEntity cube2,-5,0,8<br>
+	  <br>
+	  &nbsp; light2=CreateLight(3)<br>
+	  &nbsp; LightColor light2,40,150,60<br>
+	  &nbsp; LightConeAngles light2,0,45<br>
+	  &nbsp; PositionEntity light2,-5,0,4.5<br>
+	  &nbsp; LightRange light2,8<br>
+	  &nbsp; PointEntity light2,cube2<br>
+	  <br>
+	  
+	  &nbsp; ;cube 3<br>
+	  &nbsp; cube3=CopyEntity(cube)<br>
+	  &nbsp; PositionEntity cube3,5,0,8<br>
+	  <br>
+	  &nbsp; light3=CreateLight(3)<br>
+	  &nbsp; LightColor light3,70,80,190<br>
+	  &nbsp; LightConeAngles light3,0,45<br>
+	  &nbsp; PositionEntity light3,5,0,4.5<br>
+	  &nbsp; LightRange light3,8<br>
+	  &nbsp; PointEntity light3,cube3<br>
+	  <br>
+	  
+      &nbsp; While Not KeyHit(1)<br>
+      <br>
+	  &nbsp; TurnEntity cube,0.1,0.2,0.3<br>      
+      
+	  &nbsp; TurnEntity cube2,0.3,0.2,0.1<br>
+	  
+	  &nbsp; TurnEntity cube3,0.3,0.2,0.1<br>
+	  <br>
+      &nbsp; UpdateWorld<br>
+      &nbsp; RenderWorld<br>
+      <br>
+      &nbsp; Text 3</font></font><font face="arial">1</font><font face="arial"><font face="verdana">0,500,&quot;</font>Coloured
+    Lighting</font><font face="verdana"><font face="arial"> Demo&quot;<br>
+      <br>
+      &nbsp; Flip<br>
+      <br>
+      &nbsp; Wend<br>
+      &nbsp; End<br><br>
+      </font></font></td>
+    <td width="14%">&nbsp;</td>
+  </tr>
+</table>
+
+<p>
+There's quite a few new commands to look at here.<br><br>
+
+Remember that torch I spoke about, well the first new command we will learn is strictly for changing the colour of the beam. (so to speak)</p>
+
+
+<table border="0" width="100%" bgcolor="#6097C9">
+  <tr>
+    <td width="100%">
+
+<b><font face="Arial">AmbientLight 0,0,0</font></b></td>
+  </tr>
+</table>
+<font face="verdana">
+
+<p>
+
+This sets the light to black, so that any additional lights we use will show up with full effect. First thing to remember when using this command is that the colour values range from 0 to 255, and we have 3 separate colour shades to think of RED, GREEN & BLUE. (the same as a TV)<br><br>
+
+By changing these values we can just about get any colour we want, such as setting them all to 255 will result in the colour white. It's usually easier to work out the values you will need from a paint program such as Paintshop Pro.</p>
+
+</font>
+
+
+<table border="0" width="100%" bgcolor="#6097C9">
+  <tr>
+    <td width="100%">
+
+<b><font face="Arial">light=CreateLight(3)</font></b></td>
+  </tr>
+</table>
+<font face="verdana">
+
+<p>
+
+B3D at present lets us use three different types of lighting. As with the ANMATE
+instruction these are selected with flags, these are:</p>
+
+</font>
+
+
+<table border="0" width="100%" bgcolor="#FFFF00">
+  <tr>
+    <td width="100%">
+
+<font face="Arial"><i>1: AREALIGHT - Which will light the whole surrounding area around it.<br>
+
+2: POINTLIGHT - A directional light that can light a specific area<br>
+
+3: SPOTLIGHT - Very similar to POINT, but can give off more light on a subject area than using
+POINTLIGHT.</i></font></td>
+  </tr>
+</table>
+<font face="verdana">
+
+<p>
+
+For this demo I chose to use SPOTLIGHT.</p>
+
+</font>
+
+
+<table border="0" width="100%" bgcolor="#6097C9">
+  <tr>
+    <td width="100%">
+
+<b><font face="Arial">LightColor light,100,20,30</font></b></td>
+  </tr>
+</table>
+<font face="verdana">
+
+<p>
+
+Same as the AMBIENTLIGHT instruction, this command lets us select the colour of the light. Here I've set it up so that RED=100, GREEN=20 and BLUE=30 - which gives us a nice reddish glow.</p>
+
+</font>
+
+
+<table border="0" width="100%" bgcolor="#6097C9">
+  <tr>
+    <td width="100%">
+
+<b><font face="Arial">LightConeAngles light,0,45</font></b></td>
+  </tr>
+</table>
+<font face="verdana">
+
+<p>
+
+We use this instruction to control the angle of light that comes from our spotlight. In this case I've set it up to 45 degrees, In-other-words.. The light has a radius of 45 degrees, any part of the object that is outside of this will not be lit.</p>
+
+</font>
+
+
+<table border="0" width="100%" bgcolor="#6097C9">
+  <tr>
+    <td width="100%">
+
+<b><font face="Arial">PositionEntity light,0,0,0.5</font></b></td>
+  </tr>
+</table>
+<font face="verdana">
+
+<p>
+
+We move the light into position.</p>
+
+</font>
+
+
+<table border="0" width="100%" bgcolor="#6097C9">
+  <tr>
+    <td width="100%">
+
+<b><font face="Arial">LightRange light,8</font></b></td>
+  </tr>
+</table>
+<font face="verdana">
+
+<p>
+
+This controls the distance of the light, I set it at 8 units.. If I wanted the light to shine further into the distance then I would increase this value.</p>
+
+</font>
+
+
+<table border="0" width="100%" bgcolor="#6097C9">
+  <tr>
+    <td width="100%">
+
+<b><font face="Arial">PointEntity light,cube</font></b></td>
+  </tr>
+</table>
+<font face="verdana">
+
+<p>
+This command will point the light at our cube object. No matter where are light is
+positioned it will point towards the cube. But if you then move the object or light - you will have to repoint it with this command.<br><br>
+Something else you should think about is whether the light and object can see each other. (the LIGHTRANGE instruction)<br><br>
+
+I won't go into details with the rest of the program as you should be able to work out what is happening without any additional help.</p>
+
+<p>
+Where's the fancy lensflare commands, I can hear you cry. Well at present B3D doesn't
+have any readymade, built-in commands - so its really up to you the programmer -
+to come up with these effects. And believe me it is possible with a little careful
+effort. I've seen some of the Beta Testers come up with lighting effects that
+would equal Unreal !. But then this is a subject for another tutorial...</p>
+
+<p align="center">
+
+<center><font color="#808080">Tutorial 6 - </font><font color="#808080"><a href="page7.html">Collisions</a></font></font></center>

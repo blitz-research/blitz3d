@@ -1,0 +1,109 @@
+<font face="verdana">
+<table border="1" width="100%" bordercolor="#FFFFFF">
+  <tr>
+    <td width="61%" bgcolor="#6097C9"><font face="verdana">
+<h1 align="left"><font color="#FFFFFF">&nbsp;Texturing</font></h1>
+<p align="left"><b>&nbsp;Aim</b>: How to texture an object<br>
+&nbsp;<b>Skill level</b>: Intermediate<br>
+&nbsp;<b>Files Needed</b>: texture.bb / blitztexture.bmp
+</font>
+      <p>&nbsp;</td>
+    <td width="5%">&nbsp;</td>
+    <td width="34%">
+      <p align="right"><font face="verdana">
+<img src="7c.jpg" alt="Texturing" width="166" height="127">
+</font>
+
+
+      </p>
+    </td>
+  </tr>
+</table>
+
+<p>
+For our objects to look more realistic we really need to texture them, but what is texture mapping ?<br>
+Think if it as a way of adding extra details to an object. For example... You design an ordinary white cube, doesn't look much does it ?</p>
+<p>
+But add a texturemap to it, and suddenly you have a BORG cube !.<br>
+Textures are bitmap pictures that have been designed with a paint program (that can save BMP format files.)</p>
+<p>
+Another example... If you designed a basic model of a creature, using a texturemap you could add all the external features - such as clothes and facial expressions.</p>
+<p>
+Although B3D has alot of commands to manage multiple textures and special effects, for now we shall just be using the very basic EntityTexture command.<br>
+
+Of course we could save ourselves alot of time by designing our objects and applying the textures to them directly from a 3d modelling program, but that would make this tutorial a waste of time !.<br><br>
+
+So why would we want to apply a texture in realtime ?, well for starters a new texture may be put onto the object at any time. Take a wall, shoot it ! - now for things to look realistic in our 3d world, we would like to have somekind of indication that it was shot. We could do this by loading a texture of a bullet hole directly onto the wall. Every 3d game currently on the market uses texture trickery in some form or another, as your experience grows - so will your imagination !. Why have a flat river, when you could use texturemaps to give the impression of ripples or waves.</p>
+
+<p>B3D has so many lovely features for us to use including the new ANIMATED textures command, we will be using this later on !. (Quake I/II/III used this trick to give us the impression of moving water)</p>
+
+<p>Let's look at this in practice:</p>
+
+<table border="1" width="86%" bordercolor="#FFFFFF">
+  <tr>
+    <td width="14%">&nbsp;</td>
+    <td width="72%" bordercolor="#000000" bgcolor="#C0C0C0">&nbsp;<br>
+      &nbsp; <font face="arial">Graphics3D 800,600<br>
+      <br>
+      &nbsp; SetBuffer BackBuffer()<br>
+      <br>
+      &nbsp; camera=CreateCamera()<br>
+      &nbsp; CameraViewport camera,0,0,800,600<br>
+      <br>
+      &nbsp; light=CreateLight()<br>
+      <br>
+	  &nbsp; cube=CreateCube()<br>
+	  &nbsp; PositionEntity cube,0,0,5<br>
+	  
+	  
+	  <br>
+      &nbsp; texture=LoadTexture("blitztexture.bmp")<br>
+      &nbsp; EntityTexture cube,texture<br>
+      <br>
+      &nbsp; While Not KeyHit(1)<br>
+      <br>
+	  &nbsp; TurnEntity cube,0.1,0.2,0.3<br>      
+      <br>
+      &nbsp; UpdateWorld<br>
+      &nbsp; RenderWorld<br>
+      <br>
+      &nbsp; Text 340,500,&quot;Texturing Demo&quot;<br>
+      <br>
+      &nbsp; Flip<br>
+      <br>
+      &nbsp; Wend<br>
+      &nbsp; End<br><br>
+      </font></td>
+    <td width="14%">&nbsp;</td>
+  </tr>
+</table>
+<p>
+As you can see, a texture can make all the difference to a very basic object.</p> 
+<p>
+The only 2 lines of code we don't already know are:
+</p>
+
+</font>
+
+
+<table border="0" width="100%" bgcolor="#6097C9">
+  <tr>
+    <td width="100%">
+<b>
+<font face="Arial">texture=LoadTexture(&quot;blitztexture.bmp&quot;)<br>
+EntityTexture cube,texture</font></b>
+    </td>
+  </tr>
+</table>
+<font face="verdana">
+<p>
+Two nice and friendly commands, the first loads a texturemap into memory - with the pointer variable 'texture' pointing to it.<br><br>
+
+Once we have successfully loaded the texture, we assign it to the object using the <b>EntityTexture</b> command. (here we are assigning the variable pointer TEXTURE to the cube we defined earlier)<br><br>
+
+You could if you wanted load the picture file <b>BLITZTEXTURE.BMP</b> into MS Paint and make some changes.. if you wanted to !<br><br>
+
+And that's all there is to it, but a quick word of advice: If your object isn't textured as it should, always check that the texturemaps are in the right directory. It's all to easy to spend half the day trying to work out a texturing problem, only to find that you moved the program to another directory without dragging the associated texture files with it.
+</p>
+
+<center><font color="#808080">Tutorial 5 - <a href="page6.html">Lighting</a></font></center></font>

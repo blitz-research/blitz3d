@@ -1,0 +1,170 @@
+
+
+<table border="1" width="100%" bordercolor="#FFFFFF">
+  <tr>
+    <td width="20%" valign="top">
+      <p align="center"><img border="0" src="b3dlogo_small.jpg" width="150" height="74"></td>
+    <td width="60%"><h1><center><font face="Verdana"><span style="background-color: #6098C8"><br>
+      &nbsp;<font color="#FFFFFF">Welcome to Blitz3D</font>&nbsp;</span></font></center></h1>
+
+<p align="center"><b><font face="Arial">&quot;The Ultimate 3D Creation
+Language&quot;</font></b></p>
+
+<p align="center"><font face="Verdana"><b>By Paul Gerfen<br>
+</b><font size="1">(c) Copyright 2001 Paul Gerfen<br>
+&nbsp; <a href="http://www.gamecoding.co.uk">http://www.gamecoding.co.uk</a></font></font></p>
+
+    </td>
+    <td width="20%" valign="top">
+      <p align="center"><img border="0" src="b3dlogo_small.jpg" align="right" width="150" height="74"></td>
+  </tr>
+</table>
+
+<p>
+<font face="Verdana">
+Hi Guys, Paul here from Gamecoding.. recently I was asked to come up with a selection of tutorials for complete beginners. Seeing as
+I'm mostly a 2D games programmer - I too could be considered as a total beginner.</font></p>
+<p><font face="Verdana">B3D is an incredibly powerful language, but believe me - by the time you have worked your way through these mini tutorials, you will have the basic 3D knowledge to realize your dreams and start to create your own projects.</font></p>
+
+<p>
+<font face="Verdana">
+Updates to these tutorials as well as extra notes, can be found on my website www.gamecoding.co.uk or at the official blitz website, www.blitzbasic.com</font>
+</p>
+<h2><font face="Verdana"><span style="background-color: #6097C9">&nbsp;<font color="#FFFFFF">Background</font>&nbsp;</span></font></h2>
+<p>
+<font face="Verdana">
+Let's begin by running through what we have, and more importantly what we shall need:</font></p>
+<p>
+<font face="Verdana">
+No doubt you've already had a run through the demos that accompany Blitz3D, and are very keen to get stuck in and produce the next big "Quakey-Game". Unfortunately and this stage all we are going to do is start with the very basic's and work our way through all the main functions of B3D before we even think of moving on to advanced topics.</font></p>
+<p>
+<font face="Verdana">
+Hopefully you have a little experience of Blitz Basic programming (or for that matter any Basic language would help), Let's take a look at 3D before we delve in…</font></p>
+<p>
+<font face="Verdana">
+As your probably use to with other basic languages you have a set of co-ordinates, X (Left & Right) and Y (Up and Down). With 3D we have an extra coordinate to consider "Z", This gives us depth into the screen. For example if we were standing at a river throwing a rock as far as we can into it, what would be happening is:</font></p>
+<p>
+<font face="Verdana">
+As the stone leaves our hand it firstly moves away from us, and then gains height. What is happening here is that the Z coordinate is increasing as the stone moves away from us, while the Y coordinate gains height. Of course the stone will eventually fall to the ground (decrease in Y).</font></p>
+<p>
+<font face="Verdana">
+Its important to try and visualize these 3 axes, as we shall see a 3d world is based entirely on them.</font></p>
+<p>
+<font face="Verdana">
+Let's start by running through some of the major parts of Blitz3D before we start to get our hands dirty on some actual code.</font></p>
+
+<table border="0" width="100%" bgcolor="#6098C8">
+  <tr>
+    <td width="100%"><b><a href="Entities.html"><font face="Arial" color="#FFFFFF">Entities</font></a></b></td>
+  </tr>
+</table>
+<p>
+<font face="Verdana">
+The basic building blocks of all Blitz3D programs.</font></p>
+<table border="0" width="100%" bgcolor="#6098C8">
+  <tr>
+    <td width="100%"><b><a href="Cameras.html"><font face="Arial" color="#FFFFFF">Cameras</font></a></b></td>
+  </tr>
+</table>
+<p>
+<font face="Verdana">
+Well, we all need to see what's going on !</font></p>
+<table border="0" width="100%" bgcolor="#6098C8">
+  <tr>
+    <td width="100%"><b><a href="Planes.html"><font face="Arial" color="#FFFFFF">Planes</font></a></b></td>
+  </tr>
+</table>
+<p><font face="Verdana">Nope, not the flying kind with wings and engines...</font></p>
+
+<table border="0" width="100%" bgcolor="#6098C8">
+  <tr>
+    <td width="100%"><b><a href="Meshes.html"><font face="Arial" color="#FFFFFF">Meshes</font></a></b></td>
+  </tr>
+</table>
+<p><font face="Verdana">Perhaps you'd like to make your own objects from
+scratch.</font></p>
+
+<table border="0" width="100%" bgcolor="#6098C8">
+  <tr>
+    <td width="100%"><b><a href="Terrains.html"><font face="Arial" color="#FFFFFF">Terrains</font></a></b></td>
+  </tr>
+</table>
+<p><font face="Verdana">Rolling Hills and Landscapes, in less time it takes to
+put the kettle on.</font></p>
+
+<table border="0" width="100%" bgcolor="#6098C8">
+  <tr>
+    <td width="100%"><b><a href="Texturing.html"><font face="Arial" color="#FFFFFF">MultiTexturing</font></a></b></td>
+  </tr>
+</table>
+<p><font face="Verdana">Why have a plain object when you can give it a coat of
+many colours.</font></p>
+<hr>
+<p><font face="Verdana">
+Read through some of the info ?, I hope so.. Lets dig deep and start to produce our first B3D program.<br>
+My aim to take you step by step through the very basic's. You can run the source code that goes with each chapter by either CUT & PASTING from the tutorials themselves, or by loading the accompanying files from the B3D CD. (Recommended!)</font></p>
+
+<h2><font face="Verdana"><span style="background-color: #6097C9">&nbsp;<font color="#FFFFFF">The Tutorials</font>&nbsp;</span></font></h2>
+<p><font face="Verdana">You will need the sourcecode files and object files to
+run these snippets. These can be found on the Blitz3D CD (or in the zip
+accompanying the Blitz Trial), I would advise opening
+up the sourcecode projects and switching between Blitz and this tutorial. (As
+this will hopefully explain the code and various instructions in more
+detail)&nbsp;</font></p>
+<table border="0" width="100%" bgcolor="#6098C8">
+  <tr>
+    <td width="100%"><b><a href="page1.html"><font face="Arial" color="#FFFFFF">Setting Up</font></a></b></td>
+  </tr>
+</table>
+<p><font face="Verdana">Everything you will need to know about writing a B3D program.</font></p>
+<table border="0" width="100%" bgcolor="#6098C8">
+  <tr>
+    <td width="100%"><b><a href="page2.html"><font face="Arial" color="#FFFFFF">Movement & Rotation</font></a></b></td>
+  </tr>
+</table>
+<p><font face="Verdana">Time to display a shape on the screen and start to give it some movement.</font></p>
+<table border="0" width="100%" bgcolor="#6098C8">
+  <tr>
+    <td width="100%"><b><a href="page3.html"><font face="Arial" color="#FFFFFF">Camera Movement</font></a></b></td>
+  </tr>
+</table>
+<p><font face="Verdana">There's more to B3D than just a static camera.</font></p>
+<table border="0" width="100%" bgcolor="#6098C8">
+  <tr>
+    <td width="100%"><b><a href="page4.html"><font face="Arial" color="#FFFFFF">Object Animation</font></a></b></td>
+  </tr>
+</table>
+<p><font face="Verdana">Time to make our object come alive.</font></p>
+<table border="0" width="100%" bgcolor="#6098C8">
+  <tr>
+    <td width="100%"><b><a href="page5.html"><font face="Arial" color="#FFFFFF">Texturing</font></a></b></td>
+  </tr>
+</table>
+<p><font face="Verdana">Let's make the object more lifelike, by giving it a coat of paint.</font></p>
+<table border="0" width="100%" bgcolor="#6098C8">
+  <tr>
+    <td width="100%"><b><a href="page6.html"><font face="Arial" color="#FFFFFF">Lighting</font></a></b></td>
+  </tr>
+</table>
+<p><font face="Verdana">B3D supports more than one type of lighting, here we take a brief look at the 3 main types available to us.</font></p>
+
+<table border="0" width="100%" bgcolor="#6098C8">
+  <tr>
+    <td width="100%"><b><a href="page7.html"><font face="Arial" color="#FFFFFF">Collision
+      Detection</font></a></b></td>
+  </tr>
+</table>
+<p><font face="Verdana">So what does happen when two worlds collide ?</font></p>
+
+<table border="0" width="100%" bgcolor="#6098C8">
+  <tr>
+    <td width="100%"><b><a href="page8.html"><font face="Arial" color="#FFFFFF">Vertexes</font></a></b></td>
+  </tr>
+</table>
+<p><font face="Verdana">What happens when you smash your object up into separate
+pieces, and then tear each part up ?</font></p>
+
+<p><center><b><font face="Verdana">More tutorials to be added at a later date....</font></b></center></p>
+
+<p><center><font color="#666666" face="Verdana">Written by Paul Gerfen<br>Copyright
+(c) 2001 GameCodingUK</font></center></p>

@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Introduction to Camera Entities</title>
+</head>
+<body>
+
+<center><h1><font face="Verdana">Introduction to Texturing</font></h1>
+</center>
+
+<p>
+<font face="Verdana">Textures are probably the coolest thing to happen to 3D graphics since polygons!<br>
+<br>
+Textures are special images which are drawn on top of polygons in order to give them added detail.<br>
+<br>
+Textures can be either created 'from scratch' or loaded from an image file.<br>
+<br>
+Just like ordinary Blitz2D images, textures are made up of pixels. These pixels can be accessed using x,y coordinates just like images - only, in a slightly different way.<br>
+<br>
+Instead of x,y values ranging from 0 up to the size of the texture, x,y values for textures range from 0 to 1. This means the texture pixel at location .5,.5 is always in the center of the texture. This is possibly a little confusing at first, but it actually turns out to be very convenient as you don't have to keep track of how big your textures are!</font>
+</p>
+<h2>
+<font face="Verdana"><span style="background-color: #6097C9">&nbsp;Texture
+Flags&nbsp;</span></font>
+</h2>
+<p>
+<font face="Verdana">When a texture is created, a 'texture flags' value is provided to indicate what type of texture you're after.<br>
+<br>
+Here are the legal texture flags values:</font>
+</p>
+<table border="1" width="100%">
+  <tr>
+    <td width="5%"><font face="Verdana">1:</font></td>
+    <td width="95%"><font face="Verdana">	Texture has color information.</font></td>
+  </tr>
+  <tr>
+    <td width="5%"><font face="Verdana">2:</font></td>
+    <td width="95%"><font face="Verdana">	Texture has alpha information.</font></td>
+  </tr>
+  <tr>
+    <td width="5%"><font face="Verdana">4:</font></td>
+    <td width="95%"><font face="Verdana">	Texture is a masked texture. This means that black pixels are transparent.</font></td>
+  </tr>
+  <tr>
+    <td width="5%"><font face="Verdana">8:</font></td>
+    <td width="95%"><font face="Verdana">	Texture is mipmapped.</font></td>
+  </tr>
+  <tr>
+    <td width="5%"><font face="Verdana">16:</font></td>
+    <td width="95%"><font face="Verdana">	Texture is horizontally clamped.</font></td>
+  </tr>
+  <tr>
+    <td width="5%"><font face="Verdana">32:</font></td>
+    <td width="95%"><font face="Verdana">	Texture is vertically clamped.</font></td>
+  </tr>
+  <tr>
+    <td width="5%"><font face="Verdana">64:</font></td>
+    <td width="95%"><font face="Verdana">	Texture is a spherical environment map.</font></td>
+  </tr>
+</table>
+<p>
+<font face="Verdana">Texture flags can be added together to combine the effect of separate flags. For example, a texture flags value of '3' indicates you want a texture with both color PLUS alpha information.<br>
+<br>
+If neither the color, alpha or mask flags are used, then the texture is created in a special format that allows you to draw to it using standard Blitz2D or even Blitz3D commands! A texture created this way will have color information, but may or may not have alpha information (this depends on what graphics card you're using!), so its really safest to assume it has no alpha information.<br>
+<br>
+If the masked flag is used, the color and alpha flags are ignored.<br>
+<br>
+The clamped flags allow you to control whether the texture 'wraps' or not. By default, textures will 'wrap' or 'repeat' if drawn on large triangles. However, you can prevent this by using the clamped flags.<br>
+<br>
+Finally, the spherical environment map flag provides a dead easy way to do cool 'reflective' type effects. Try it!</font>
+</p>
+
+<h2><font face="Verdana"><span style="background-color: #6097C9">&nbsp;Creating
+Textures&nbsp;</span></font></h2>
+
+<p>
+<font face="Verdana">You can either create a texture and draw to it by hand, or load a texture from an image file.<br>
+<br>
+Loading a texture from a file is easy:</font></p>
+
+<table border="1" width="100%" bordercolor="#FFFFFF">
+  <tr>
+    <td width="14%">&nbsp;</td>
+    <td width="72%" bordercolor="#000000" bgcolor="#C0C0C0">&nbsp;<br>
+	
+      &nbsp;&nbsp;&nbsp; <font face="Arial"><b>texture=LoadTexture( "mytexture.jpg",3 )&nbsp;&nbsp;</b></font>&nbsp;&nbsp;<font face="Arial"><br>
+      </font><br>
+	
+    </td>
+    <td width="14%">&nbsp;</td>
+  </tr>
+</table>
+
+<p>
+<font face="Verdana">Note the texture flags value of '3'. This indicates we want the texture to contain both color and alpha information.<br>
+<br>
+However, the JPG file format does not support alpha information! In this case, Blitz3D will create its own alpha values based on the color values in the texture.<br>
+<br>
+However, both the PNG and TGA file formats do support alpha information, and Blitz3D will use this information if present.<br>
+<br>
+To create a texture by hand, use the <b> CreateTexture</b> command.</font></p>
+
+<table border="1" width="100%" bordercolor="#FFFFFF">
+  <tr>
+    <td width="14%">&nbsp;</td>
+    <td width="72%" bordercolor="#000000" bgcolor="#C0C0C0">&nbsp;<br>
+	
+      &nbsp;&nbsp;&nbsp; <font face="Arial">;create a 256x256 texture</font><br>
+      &nbsp;&nbsp;&nbsp; <font face="Arial"><b>texture=CreateTexture( 256,256,0 )</b></font>
+      <p><font face="Arial">&nbsp;&nbsp;&nbsp; </font><font face="Arial">;retrieve its width</font><font face="Arial"><br>
+      &nbsp;&nbsp;&nbsp; <b>width=TextureWidth( texture )</b></font></p>
+      <p><font face="Arial">&nbsp;&nbsp;&nbsp; ;retrieve its height<br>
+      &nbsp;&nbsp;&nbsp; <b>height=TextureHeight( texture )</b><br>
+      </font><br>
+	
+    </td>
+    <td width="14%">&nbsp;</td>
+  </tr>
+</table>
+
+<p>
+<font face="Verdana">Why are we retrieving the texture size when we've already told Blitz3D how big we want the texture?<br>
+<br>
+Well, this is because all 3D graphics cards have limits on the size of texture they can handle. Typically, texture width and height should be a power of 2 value (eg: 1,2,4,8,16,32,64,128,256,512,1024...) and in some cases - 3DFX cards being the main culprit here - must be no larger than 256 by 256.<br>
+<br>
+There are also rumours out there that some cards can only handle square textures - although here at Blitz Research we are yet to run into any such beast!<br>
+<br>
+A texture size where width and height are both power of 2 values and &lt;= 256 is pretty much guaranteed to be supported by your card - but it never hurts to check!<br>
+<br>
+In the event that you specify a texture size not supported by your graphics card, Blitz3D will pick the nearest useful size instead.<br>
+<br>
+Also note that we are using a texture flags value of 0. This is because we probably want to draw something to the texture, and to be able to use graphics commands on a texture you should not specify the color, alpha or masked texture flags.<br>
+<br>
+OK, now we've created our texture we should probably draw something on it:</font></p>
+
+<table border="1" width="100%" bordercolor="#FFFFFF">
+  <tr>
+    <td width="14%">&nbsp;</td>
+    <td width="72%" bordercolor="#000000" bgcolor="#C0C0C0">&nbsp;<br>
+	
+      &nbsp;&nbsp;&nbsp;&nbsp; <font face="Arial">;set drawing buffer to the texture<br>
+      &nbsp;&nbsp;&nbsp;<b> SetBuffer TextureBuffer( texture )</b></font>
+      <p><font face="Arial">&nbsp;&nbsp;&nbsp; ;set cls color to red<br>
+      &nbsp;&nbsp;&nbsp;<b> ClsColor 255,0,0</b></font></p>
+      <p><font face="Arial">&nbsp;&nbsp;&nbsp; ;clear the texture to red<br>
+      &nbsp;&nbsp;&nbsp;<b> Cls&nbsp;</b></font></p>
+      <p><font face="Arial">&nbsp;&nbsp;&nbsp; ;set drawing color to blue<br>
+      &nbsp;&nbsp;&nbsp; <b>Color 0,0,255&nbsp;</b></font></p>
+      <p><font face="Arial">&nbsp;&nbsp;&nbsp; ;draw a blue oval.<br>
+      &nbsp;<b>&nbsp;&nbsp; Oval 0,0,width,height&nbsp;</b></font></p>
+      <p><font face="Arial">&nbsp;&nbsp;&nbsp; ;back to the back buffer...&nbsp;&nbsp;&nbsp;<br>
+      &nbsp;&nbsp;&nbsp; <b>SetBuffer BackBuffer()</b>&nbsp;&nbsp;<br>
+      </font><br>
+	
+    </td>
+    <td width="14%">&nbsp;</td>
+  </tr>
+</table>
+
+<p>
+<br>
+<font face="Verdana">Finally, once you've finished with a texture, use <b> FreeTexture</b> to release it.</font></p>
+
+
+<h2><font face="Verdana"><span style="background-color: #6097C9">&nbsp;Animating
+Textures&nbsp;</span></font></h2>
+
+<p><font face="Verdana"><b>ScaleTexture</b>, <b> RotateTexture</b> and <b> PositionTexture</b> can all be used to animate textures. For example, to cause a texture to scroll, you might use something like...<br>
+<br>
+</font><font face="Arial"><b>texture_x#=texture_x#+.1</b>		;add .1 to texture x position.<br>
+<b>PositionTexture texture,texture_x#,0</b>	;position the texture.</font><font face="Verdana"><br>
+<br>
+...in your main loop. You can dynamically scale and rotate textures in a similar way.</font></p>
+
+<h2><font face="Verdana"><span style="background-color: #6097C9">&nbsp;Multitexturing&nbsp;</span></font></h2>
+
+<p><font face="Verdana">Blitz3D allows you to draw up to 8 textures to a single triangle, a technique known as
+'<b>multitexturing</b>'.<br>
+<br>
+A common use for multitexturing is '<b>light mapping</b>', a technique where a texture containing lighting information is combined with a texture containing color information to provide lighting effects.<br>
+<br>
+When you use the <b> EntityTexture</b> or <b> BrushTexture</b> commands, an optional 'index' parameter allows you to control which of the 8 textures you are setting.<br>
+<br>
+By default, multiple textures are combined using multiplication which achieves a lighting type effect. However, the
+<b> TextureBlend</b> command allows you to perform other operations such as alpha-blend and add on multiple textures.</font></p>
+
+<p><center>
+<font color="#666666" face="Verdana">Copyright 2001 (c) Paul Gerfen -
+GamecodingUK</font></center></p>
+</body>
+</html>
