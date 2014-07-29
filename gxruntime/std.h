@@ -2,6 +2,8 @@
 #ifndef STD_H
 #define STD_H
 
+#include "../../fmodapi375win/api/inc/fmod.h"
+
 #include "../config/config.h"
 #include "../stdutil/stdutil.h"
 
@@ -23,8 +25,6 @@
 #include <ddraw.h>
 #include <dinput.h>
 #include <d3d.h>
-
-#include "../../fmod375/fmod.h"
 
 using namespace std;
 

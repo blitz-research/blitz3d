@@ -192,14 +192,6 @@ LIB32=link.exe -lib
 # Name "stdutil - Win32 Blitz3DDemo"
 # Begin Source File
 
-SOURCE=.\shareprot.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\shareprot.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\stdutil.cpp
 # End Source File
 # Begin Source File

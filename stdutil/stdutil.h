@@ -6,12 +6,6 @@
 
 #include "../config/config.h"
 
-/*
-#ifdef DEMO
-#include "shareprot.h"
-#endif
-*/
-
 #include <string>
 #include <iostream>
 

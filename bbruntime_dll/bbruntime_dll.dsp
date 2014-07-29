@@ -243,7 +243,7 @@ SOURCE=..\..\FreeImage241\Source\FreeImageLib\Release\FreeImage.lib
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\fmod375\fmodstatic.lib
+SOURCE=..\..\fmodapi375win\api\lib\fmodvc.lib
 # End Source File
 # End Target
 # End Project
