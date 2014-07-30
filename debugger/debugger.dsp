@@ -21,8 +21,6 @@ CFG=debugger - Win32 Debug
 !MESSAGE "debugger - Win32 Debug" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE "debugger - Win32 Blitz3DRelease" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE "debugger - Win32 Blitz2DRelease" (based on "Win32 (x86) Dynamic-Link Library")
-!MESSAGE "debugger - Win32 Blitz3DEdu" (based on "Win32 (x86) Dynamic-Link Library")
-!MESSAGE "debugger - Win32 Blitz3DDemo" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE 
 
 # Begin Project
@@ -147,64 +145,6 @@ LINK32=link.exe
 # ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\release\blitz2drelease\bin\debugger.dll"
 # SUBTRACT LINK32 /pdb:none /force
 
-!ELSEIF  "$(CFG)" == "debugger - Win32 Blitz3DEdu"
-
-# PROP BASE Use_MFC 1
-# PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "debugger___Win32_Blitz3DEdu"
-# PROP BASE Intermediate_Dir "debugger___Win32_Blitz3DEdu"
-# PROP BASE Ignore_Export_Lib 0
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 1
-# PROP Use_Debug_Libraries 0
-# PROP Output_Dir "debugger___Win32_Blitz3DEdu"
-# PROP Intermediate_Dir "debugger___Win32_Blitz3DEdu"
-# PROP Ignore_Export_Lib 0
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /G6 /Gz /MT /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "DEBUGGER_EXPORTS" /D "_WINDLL" /D "PRO" /YX /FD /c
-# ADD CPP /nologo /G6 /Gz /MT /W3 /GX /O1 /D "_WINDOWS" /D "_USRDLL" /D "DEBUGGER_EXPORTS" /D "_WINDLL" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "PRO" /D "EDU" /YX /FD /c
-# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
-# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
-# ADD BASE RSC /l 0x409 /d "NDEBUG"
-# ADD RSC /l 0x409 /d "NDEBUG"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LINK32=link.exe
-# ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\release\blitz3drelease\bin\debugger.dll"
-# SUBTRACT BASE LINK32 /pdb:none /force
-# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\release\blitz3dedu\bin\debugger.dll"
-# SUBTRACT LINK32 /pdb:none /force
-
-!ELSEIF  "$(CFG)" == "debugger - Win32 Blitz3DDemo"
-
-# PROP BASE Use_MFC 1
-# PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "debugger___Win32_Blitz3DDemo"
-# PROP BASE Intermediate_Dir "debugger___Win32_Blitz3DDemo"
-# PROP BASE Ignore_Export_Lib 0
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 1
-# PROP Use_Debug_Libraries 0
-# PROP Output_Dir "debugger___Win32_Blitz3DDemo"
-# PROP Intermediate_Dir "debugger___Win32_Blitz3DDemo"
-# PROP Ignore_Export_Lib 0
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /G6 /Gz /MT /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "DEBUGGER_EXPORTS" /D "_WINDLL" /D "PRO" /YX /FD /c
-# ADD CPP /nologo /G6 /Gz /MT /W3 /GX /O1 /D "_WINDOWS" /D "_USRDLL" /D "DEBUGGER_EXPORTS" /D "_WINDLL" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "PRO" /D "DEMO" /YX /FD /c
-# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
-# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
-# ADD BASE RSC /l 0x409 /d "NDEBUG"
-# ADD RSC /l 0x409 /d "NDEBUG"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LINK32=link.exe
-# ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\release\blitz3drelease\bin\debugger.dll"
-# SUBTRACT BASE LINK32 /pdb:none /force
-# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\release\blitz3ddemo\bin\debugger.dll"
-# SUBTRACT LINK32 /pdb:none /force
-
 !ENDIF 
 
 # Begin Target
@@ -213,8 +153,6 @@ LINK32=link.exe
 # Name "debugger - Win32 Debug"
 # Name "debugger - Win32 Blitz3DRelease"
 # Name "debugger - Win32 Blitz2DRelease"
-# Name "debugger - Win32 Blitz3DEdu"
-# Name "debugger - Win32 Blitz3DDemo"
 # Begin Group "Source Files"
 
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
@@ -258,16 +196,6 @@ SOURCE=.\stdafx.cpp
 # ADD CPP /Yc"stdafx.h"
 
 !ELSEIF  "$(CFG)" == "debugger - Win32 Blitz2DRelease"
-
-# ADD BASE CPP /Yc"stdafx.h"
-# ADD CPP /Yc"stdafx.h"
-
-!ELSEIF  "$(CFG)" == "debugger - Win32 Blitz3DEdu"
-
-# ADD BASE CPP /Yc"stdafx.h"
-# ADD CPP /Yc"stdafx.h"
-
-!ELSEIF  "$(CFG)" == "debugger - Win32 Blitz3DDemo"
 
 # ADD BASE CPP /Yc"stdafx.h"
 # ADD CPP /Yc"stdafx.h"

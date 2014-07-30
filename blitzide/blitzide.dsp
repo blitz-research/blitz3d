@@ -21,8 +21,6 @@ CFG=blitzide - Win32 Debug
 !MESSAGE "blitzide - Win32 Debug" (based on "Win32 (x86) Application")
 !MESSAGE "blitzide - Win32 Blitz3DRelease" (based on "Win32 (x86) Application")
 !MESSAGE "blitzide - Win32 Blitz2DRelease" (based on "Win32 (x86) Application")
-!MESSAGE "blitzide - Win32 Blitz3DEdu" (based on "Win32 (x86) Application")
-!MESSAGE "blitzide - Win32 Blitz3DDemo" (based on "Win32 (x86) Application")
 !MESSAGE 
 
 # Begin Project
@@ -147,64 +145,6 @@ LINK32=link.exe
 # ADD LINK32 winmm.lib /nologo /subsystem:windows /machine:I386 /force /out:"..\..\release\blitz2drelease\bin\ide.exe"
 # SUBTRACT LINK32 /debug /nodefaultlib
 
-!ELSEIF  "$(CFG)" == "blitzide - Win32 Blitz3DEdu"
-
-# PROP BASE Use_MFC 1
-# PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "blitzide___Win32_Blitz3DEdu"
-# PROP BASE Intermediate_Dir "blitzide___Win32_Blitz3DEdu"
-# PROP BASE Ignore_Export_Lib 0
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 1
-# PROP Use_Debug_Libraries 0
-# PROP Output_Dir "blitzide___Win32_Blitz3DEdu"
-# PROP Intermediate_Dir "blitzide___Win32_Blitz3DEdu"
-# PROP Ignore_Export_Lib 0
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /G6 /Gz /MT /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "PRO" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /G6 /Gz /MT /W3 /GX /O1 /D "_WINDOWS" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "PRO" /D "EDU" /Yu"stdafx.h" /FD /c
-# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
-# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
-# ADD BASE RSC /l 0x409 /d "NDEBUG" /d "PRO"
-# ADD RSC /l 0x409 /d "NDEBUG" /d "PRO"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LINK32=link.exe
-# ADD BASE LINK32 winmm.lib /nologo /subsystem:windows /machine:I386 /force /out:"..\..\release\blitz3drelease\bin\ide.exe"
-# SUBTRACT BASE LINK32 /debug /nodefaultlib
-# ADD LINK32 winmm.lib /nologo /subsystem:windows /machine:I386 /force /out:"..\..\release\blitz3dedu\bin\ide.exe"
-# SUBTRACT LINK32 /debug /nodefaultlib
-
-!ELSEIF  "$(CFG)" == "blitzide - Win32 Blitz3DDemo"
-
-# PROP BASE Use_MFC 1
-# PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "blitzide___Win32_Blitz3DDemo"
-# PROP BASE Intermediate_Dir "blitzide___Win32_Blitz3DDemo"
-# PROP BASE Ignore_Export_Lib 0
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 1
-# PROP Use_Debug_Libraries 0
-# PROP Output_Dir "blitzide___Win32_Blitz3DDemo"
-# PROP Intermediate_Dir "blitzide___Win32_Blitz3DDemo"
-# PROP Ignore_Export_Lib 0
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /G6 /Gz /MT /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "PRO" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /G6 /Gz /MT /W3 /GX /O1 /D "_WINDOWS" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "PRO" /D "DEMO" /Yu"stdafx.h" /FD /c
-# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
-# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
-# ADD BASE RSC /l 0x409 /d "NDEBUG" /d "PRO"
-# ADD RSC /l 0x409 /d "NDEBUG" /d "PRO"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LINK32=link.exe
-# ADD BASE LINK32 winmm.lib /nologo /subsystem:windows /machine:I386 /force /out:"..\..\release\blitz3drelease\bin\ide.exe"
-# SUBTRACT BASE LINK32 /debug /nodefaultlib
-# ADD LINK32 winmm.lib /nologo /subsystem:windows /machine:I386 /force /out:"..\..\release\blitz3ddemo\bin\ide.exe"
-# SUBTRACT LINK32 /debug /nodefaultlib
-
 !ENDIF 
 
 # Begin Target
@@ -213,8 +153,6 @@ LINK32=link.exe
 # Name "blitzide - Win32 Debug"
 # Name "blitzide - Win32 Blitz3DRelease"
 # Name "blitzide - Win32 Blitz2DRelease"
-# Name "blitzide - Win32 Blitz3DEdu"
-# Name "blitzide - Win32 Blitz3DDemo"
 # Begin Group "Source Files"
 
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"

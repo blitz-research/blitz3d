@@ -21,8 +21,6 @@ CFG=blitz - Win32 Debug
 !MESSAGE "blitz - Win32 Debug" (based on "Win32 (x86) Console Application")
 !MESSAGE "blitz - Win32 Blitz3DRelease" (based on "Win32 (x86) Console Application")
 !MESSAGE "blitz - Win32 Blitz2DRelease" (based on "Win32 (x86) Console Application")
-!MESSAGE "blitz - Win32 Blitz3DEdu" (based on "Win32 (x86) Console Application")
-!MESSAGE "blitz - Win32 Blitz3DDemo" (based on "Win32 (x86) Console Application")
 !MESSAGE 
 
 # Begin Project
@@ -130,56 +128,6 @@ LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /machine:I386 /out:"..\..\release\blitz3drelease\bin\blitzcc.exe"
 # ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /machine:I386 /out:"..\..\release\blitz2drelease\bin\blitzcc.exe"
 
-!ELSEIF  "$(CFG)" == "blitz - Win32 Blitz3DEdu"
-
-# PROP BASE Use_MFC 0
-# PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "blitz___Win32_Blitz3DEdu"
-# PROP BASE Intermediate_Dir "blitz___Win32_Blitz3DEdu"
-# PROP BASE Ignore_Export_Lib 0
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 0
-# PROP Use_Debug_Libraries 0
-# PROP Output_Dir "blitz___Win32_Blitz3DEdu"
-# PROP Intermediate_Dir "blitz___Win32_Blitz3DEdu"
-# PROP Ignore_Export_Lib 0
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /G6 /Gz /MT /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /D "PRO" /YX /FD /c
-# ADD CPP /nologo /G6 /Gz /MT /W3 /GX /O1 /D "_CONSOLE" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "PRO" /D "EDU" /YX /FD /c
-# ADD BASE RSC /l 0x1409 /d "NDEBUG"
-# ADD RSC /l 0x1409 /d "NDEBUG"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /machine:I386 /out:"..\..\release\blitz3drelease\bin\blitzcc.exe"
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /machine:I386 /out:"..\..\release\blitz3dedu\bin\blitzcc.exe"
-
-!ELSEIF  "$(CFG)" == "blitz - Win32 Blitz3DDemo"
-
-# PROP BASE Use_MFC 0
-# PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "blitz___Win32_Blitz3DDemo"
-# PROP BASE Intermediate_Dir "blitz___Win32_Blitz3DDemo"
-# PROP BASE Ignore_Export_Lib 0
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 0
-# PROP Use_Debug_Libraries 0
-# PROP Output_Dir "blitz___Win32_Blitz3DDemo"
-# PROP Intermediate_Dir "blitz___Win32_Blitz3DDemo"
-# PROP Ignore_Export_Lib 0
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /G6 /Gz /MT /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /D "PRO" /YX /FD /c
-# ADD CPP /nologo /G6 /Gz /MT /W3 /GX /O1 /D "_CONSOLE" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "PRO" /D "DEMO" /YX /FD /c
-# ADD BASE RSC /l 0x1409 /d "NDEBUG"
-# ADD RSC /l 0x1409 /d "NDEBUG"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /machine:I386 /out:"..\..\release\blitz3drelease\bin\blitzcc.exe"
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /machine:I386 /out:"..\..\release\blitz3ddemo\bin\blitzcc.exe"
-
 !ENDIF 
 
 # Begin Target
@@ -188,8 +136,6 @@ LINK32=link.exe
 # Name "blitz - Win32 Debug"
 # Name "blitz - Win32 Blitz3DRelease"
 # Name "blitz - Win32 Blitz2DRelease"
-# Name "blitz - Win32 Blitz3DEdu"
-# Name "blitz - Win32 Blitz3DDemo"
 # Begin Source File
 
 SOURCE=.\libs.cpp

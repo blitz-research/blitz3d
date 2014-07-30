@@ -21,8 +21,6 @@ CFG=linker_dll - Win32 Debug
 !MESSAGE "linker_dll - Win32 Debug" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE "linker_dll - Win32 Blitz3DRelease" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE "linker_dll - Win32 Blitz2DRelease" (based on "Win32 (x86) Dynamic-Link Library")
-!MESSAGE "linker_dll - Win32 Blitz3DEdu" (based on "Win32 (x86) Dynamic-Link Library")
-!MESSAGE "linker_dll - Win32 Blitz3DDemo" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE 
 
 # Begin Project
@@ -141,60 +139,6 @@ LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:"..\..\release\blitz3drelease\bin\linker.dll"
 # ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:"..\..\release\blitz2drelease\bin\linker.dll"
 
-!ELSEIF  "$(CFG)" == "linker_dll - Win32 Blitz3DEdu"
-
-# PROP BASE Use_MFC 0
-# PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "linker_dll___Win32_Blitz3DEdu"
-# PROP BASE Intermediate_Dir "linker_dll___Win32_Blitz3DEdu"
-# PROP BASE Ignore_Export_Lib 0
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 0
-# PROP Use_Debug_Libraries 0
-# PROP Output_Dir "linker_dll___Win32_Blitz3DEdu"
-# PROP Intermediate_Dir "linker_dll___Win32_Blitz3DEdu"
-# PROP Ignore_Export_Lib 0
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /G6 /Gz /MT /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "LINKER_DLL_EXPORTS" /D "PRO" /YX /FD /c
-# ADD CPP /nologo /G6 /Gz /MT /W3 /GX /O1 /D "_WINDOWS" /D "_USRDLL" /D "LINKER_DLL_EXPORTS" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "PRO" /D "EDU" /YX /FD /c
-# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
-# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
-# ADD BASE RSC /l 0x409 /d "NDEBUG"
-# ADD RSC /l 0x409 /d "NDEBUG"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:"..\..\release\blitz3drelease\bin\linker.dll"
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:"..\..\release\blitz3dedu\bin\linker.dll"
-
-!ELSEIF  "$(CFG)" == "linker_dll - Win32 Blitz3DDemo"
-
-# PROP BASE Use_MFC 0
-# PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "linker_dll___Win32_Blitz3DDemo"
-# PROP BASE Intermediate_Dir "linker_dll___Win32_Blitz3DDemo"
-# PROP BASE Ignore_Export_Lib 0
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 0
-# PROP Use_Debug_Libraries 0
-# PROP Output_Dir "linker_dll___Win32_Blitz3DDemo"
-# PROP Intermediate_Dir "linker_dll___Win32_Blitz3DDemo"
-# PROP Ignore_Export_Lib 0
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /G6 /Gz /MT /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "LINKER_DLL_EXPORTS" /D "PRO" /YX /FD /c
-# ADD CPP /nologo /G6 /Gz /MT /W3 /GX /O1 /D "_WINDOWS" /D "_USRDLL" /D "LINKER_DLL_EXPORTS" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "PRO" /D "DEMO" /YX /FD /c
-# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
-# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
-# ADD BASE RSC /l 0x409 /d "NDEBUG"
-# ADD RSC /l 0x409 /d "NDEBUG"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:"..\..\release\blitz3drelease\bin\linker.dll"
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386 /out:"..\..\release\blitz3ddemo\bin\linker.dll"
-
 !ENDIF 
 
 # Begin Target
@@ -203,8 +147,6 @@ LINK32=link.exe
 # Name "linker_dll - Win32 Debug"
 # Name "linker_dll - Win32 Blitz3DRelease"
 # Name "linker_dll - Win32 Blitz2DRelease"
-# Name "linker_dll - Win32 Blitz3DEdu"
-# Name "linker_dll - Win32 Blitz3DDemo"
 # Begin Source File
 
 SOURCE=.\linker_dll.cpp

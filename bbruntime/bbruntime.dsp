@@ -21,8 +21,6 @@ CFG=bbruntime - Win32 Debug
 !MESSAGE "bbruntime - Win32 Debug" (based on "Win32 (x86) Static Library")
 !MESSAGE "bbruntime - Win32 Blitz3DRelease" (based on "Win32 (x86) Static Library")
 !MESSAGE "bbruntime - Win32 Blitz2DRelease" (based on "Win32 (x86) Static Library")
-!MESSAGE "bbruntime - Win32 Blitz3DEdu" (based on "Win32 (x86) Static Library")
-!MESSAGE "bbruntime - Win32 Blitz3DDemo" (based on "Win32 (x86) Static Library")
 !MESSAGE 
 
 # Begin Project
@@ -128,52 +126,6 @@ LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
 # ADD LIB32 /nologo
 
-!ELSEIF  "$(CFG)" == "bbruntime - Win32 Blitz3DEdu"
-
-# PROP BASE Use_MFC 0
-# PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "bbruntime___Win32_Blitz3DEdu"
-# PROP BASE Intermediate_Dir "bbruntime___Win32_Blitz3DEdu"
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 0
-# PROP Use_Debug_Libraries 0
-# PROP Output_Dir "bbruntime___Win32_Blitz3DEdu"
-# PROP Intermediate_Dir "bbruntime___Win32_Blitz3DEdu"
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /G6 /Gz /MT /W3 /GX /O2 /Ob2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /D "PRO" /Yu"std.h" /FD /c
-# ADD CPP /nologo /G6 /Gz /MT /W3 /GX /O2 /Ob2 /D "_LIB" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "PRO" /D "EDU" /Yu"std.h" /FD /c
-# ADD BASE RSC /l 0x409 /d "NDEBUG"
-# ADD RSC /l 0x409 /d "NDEBUG"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LIB32=link.exe -lib
-# ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo
-
-!ELSEIF  "$(CFG)" == "bbruntime - Win32 Blitz3DDemo"
-
-# PROP BASE Use_MFC 0
-# PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "bbruntime___Win32_Blitz3DDemo"
-# PROP BASE Intermediate_Dir "bbruntime___Win32_Blitz3DDemo"
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 0
-# PROP Use_Debug_Libraries 0
-# PROP Output_Dir "bbruntime___Win32_Blitz3DDemo"
-# PROP Intermediate_Dir "bbruntime___Win32_Blitz3DDemo"
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /G6 /Gz /MT /W3 /GX /O2 /Ob2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /D "PRO" /Yu"std.h" /FD /c
-# ADD CPP /nologo /G6 /Gz /MT /W3 /GX /O2 /Ob2 /D "_LIB" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "PRO" /D "DEMO" /Yu"std.h" /FD /c
-# ADD BASE RSC /l 0x409 /d "NDEBUG"
-# ADD RSC /l 0x409 /d "NDEBUG"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LIB32=link.exe -lib
-# ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo
-
 !ENDIF 
 
 # Begin Target
@@ -182,8 +134,6 @@ LIB32=link.exe -lib
 # Name "bbruntime - Win32 Debug"
 # Name "bbruntime - Win32 Blitz3DRelease"
 # Name "bbruntime - Win32 Blitz2DRelease"
-# Name "bbruntime - Win32 Blitz3DEdu"
-# Name "bbruntime - Win32 Blitz3DDemo"
 # Begin Group "Source Files"
 
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
@@ -200,10 +150,6 @@ SOURCE=.\basic.cpp
 !ELSEIF  "$(CFG)" == "bbruntime - Win32 Blitz3DRelease"
 
 !ELSEIF  "$(CFG)" == "bbruntime - Win32 Blitz2DRelease"
-
-!ELSEIF  "$(CFG)" == "bbruntime - Win32 Blitz3DEdu"
-
-!ELSEIF  "$(CFG)" == "bbruntime - Win32 Blitz3DDemo"
 
 !ENDIF 
 
@@ -249,10 +195,6 @@ SOURCE=.\bbruntime.cpp
 !ELSEIF  "$(CFG)" == "bbruntime - Win32 Blitz3DRelease"
 
 !ELSEIF  "$(CFG)" == "bbruntime - Win32 Blitz2DRelease"
-
-!ELSEIF  "$(CFG)" == "bbruntime - Win32 Blitz3DEdu"
-
-!ELSEIF  "$(CFG)" == "bbruntime - Win32 Blitz3DDemo"
 
 !ENDIF 
 

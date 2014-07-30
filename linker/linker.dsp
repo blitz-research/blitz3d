@@ -21,8 +21,6 @@ CFG=linker - Win32 Debug
 !MESSAGE "linker - Win32 Debug" (based on "Win32 (x86) Static Library")
 !MESSAGE "linker - Win32 Blitz3DRelease" (based on "Win32 (x86) Static Library")
 !MESSAGE "linker - Win32 Blitz2DRelease" (based on "Win32 (x86) Static Library")
-!MESSAGE "linker - Win32 Blitz3DEdu" (based on "Win32 (x86) Static Library")
-!MESSAGE "linker - Win32 Blitz3DDemo" (based on "Win32 (x86) Static Library")
 !MESSAGE 
 
 # Begin Project
@@ -126,52 +124,6 @@ LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
 # ADD LIB32 /nologo
 
-!ELSEIF  "$(CFG)" == "linker - Win32 Blitz3DEdu"
-
-# PROP BASE Use_MFC 0
-# PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "linker___Win32_Blitz3DEdu"
-# PROP BASE Intermediate_Dir "linker___Win32_Blitz3DEdu"
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 0
-# PROP Use_Debug_Libraries 0
-# PROP Output_Dir "linker___Win32_Blitz3DEdu"
-# PROP Intermediate_Dir "linker___Win32_Blitz3DEdu"
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /G6 /Gz /MT /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /D "PRO" /Yu"std.h" /FD /c
-# ADD CPP /nologo /G6 /Gz /MT /W3 /GX /O1 /D "_LIB" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "PRO" /D "EDU" /Yu"std.h" /FD /c
-# ADD BASE RSC /l 0x409 /d "NDEBUG"
-# ADD RSC /l 0x409 /d "NDEBUG"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LIB32=link.exe -lib
-# ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo
-
-!ELSEIF  "$(CFG)" == "linker - Win32 Blitz3DDemo"
-
-# PROP BASE Use_MFC 0
-# PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "linker___Win32_Blitz3DDemo"
-# PROP BASE Intermediate_Dir "linker___Win32_Blitz3DDemo"
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 0
-# PROP Use_Debug_Libraries 0
-# PROP Output_Dir "linker___Win32_Blitz3DDemo"
-# PROP Intermediate_Dir "linker___Win32_Blitz3DDemo"
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /G6 /Gz /MT /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /D "PRO" /Yu"std.h" /FD /c
-# ADD CPP /nologo /G6 /Gz /MT /W3 /GX /O1 /D "_LIB" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "PRO" /D "DEMO" /Yu"std.h" /FD /c
-# ADD BASE RSC /l 0x409 /d "NDEBUG"
-# ADD RSC /l 0x409 /d "NDEBUG"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LIB32=link.exe -lib
-# ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo
-
 !ENDIF 
 
 # Begin Target
@@ -180,8 +132,6 @@ LIB32=link.exe -lib
 # Name "linker - Win32 Debug"
 # Name "linker - Win32 Blitz3DRelease"
 # Name "linker - Win32 Blitz2DRelease"
-# Name "linker - Win32 Blitz3DEdu"
-# Name "linker - Win32 Blitz3DDemo"
 # Begin Source File
 
 SOURCE=.\image_util.cpp
@@ -214,16 +164,6 @@ SOURCE=.\std.cpp
 # ADD CPP /Yc"std.h"
 
 !ELSEIF  "$(CFG)" == "linker - Win32 Blitz2DRelease"
-
-# ADD BASE CPP /Yc"std.h"
-# ADD CPP /Yc"std.h"
-
-!ELSEIF  "$(CFG)" == "linker - Win32 Blitz3DEdu"
-
-# ADD BASE CPP /Yc"std.h"
-# ADD CPP /Yc"std.h"
-
-!ELSEIF  "$(CFG)" == "linker - Win32 Blitz3DDemo"
 
 # ADD BASE CPP /Yc"std.h"
 # ADD CPP /Yc"std.h"
