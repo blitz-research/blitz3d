@@ -5,5 +5,6 @@
 *.opt
 Debug
 Release
+_release
 *__Win32_*
 
