@@ -1,22 +1,57 @@
-<html><head><title>Command: PeekShort </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;PeekShort bank,offset&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Reads a short value from a memory bank.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>bank = variable containing handle to valid bank<br>
-offset = offset in bytes to read the value<br>
-</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command reads a short type value from a memory bank created with the <a href='CreateBank.htm'>CreateBank</a> command. Also see <a href='PokeInt.htm'>PokeInt</a>, <a href='PokeFloat.htm'>PokeFloat</a>, <a href='PokeByte.htm'>PokeByte</a>, and <a href='PokeShort.htm'>PokeShort</a>. To retrieve from a memory bank, use <a href='PeekInt.htm'>PeekInt</a>, <a href='PeekFloat.htm'>PeekFloat</a>, and <a href='PeekByte.htm'>PeekByte</a>.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Bank Commands Example<br>
+<html>
+<head>
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
+</head>
+<body>
+<h1>PeekShort(bank,offset)</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+bank - bank handle<br />
+offset - offset in bytes, that the peek operation will be started at
+</td>
+</tr>
+</table>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Reads a short from a memory bank and returns the value.<br />
+<br />
+A short takes  up two bytes of a memory bank. Values can be in the range 0 to 65535.
 <br>
-bnkTest=CreateBank(500)<br>
 <br>
-For t = 1 To 50<br>
-PokeByte bnkTest,t,Rnd(255)<br>
-PokeInt bnkTest,t+1,Rnd(10000)<br>
-PokeShort bnkTest,t+2,Rnd(10000)<br>
-PokeFloat bnkTest,t+3,Rnd(-.999,.999)<br>
-Next<br>
+See also: <a class=small href=PeekByte.htm>PeekByte</a>, <a class=small href=PeekInt.htm>PeekInt</a>, <a class=small href=PeekFloat.htm>PeekFloat</a>.
+</td>
+</tr>
+</table>
+<h1><a href=../2d_examples/PeekShort.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; Bank Commands Example<br />
+; ---------------------<br />
+<br />
+bnkTest=CreateBank(12)<br />
+<br />
+PokeByte bnkTest,0,Rand(255)<br />
+PokeShort bnkTest,1,Rand(65535)<br />
+PokeInt bnkTest,3,Rand(-2147483648,2147483647)<br />
+PokeFloat bnkTest,7,0.5<br />
+<br />
+Print PeekByte(bnkTest,0)<br />
+Print PeekShort(bnkTest,1)<br />
+Print PeekInt(bnkTest,3)<br />
+Print PeekFloat(bnkTest,7)<br />
+<br />
+FreeBank bnkTest
+</td>
+</tr>
+</table>
 <br>
-For t = 1 To 50<br>
-Print PeekByte (bnkTest,t)<br>
-Print PeekInt (bnkTest,t+1)<br>
-Print PeekShort (bnkTest,t+2)<br>
-Print PeekFloat (bnkTest,t+3)<br>
-Next<br>
+<a target=_top href=../index.htm>Index</a><br>
 <br>
-Freebank bnkTest<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=PeekShort&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

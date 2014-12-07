@@ -1,41 +1,85 @@
 <html>
 <head>
-<title>Command: CaptureWorld</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;CaptureWorld&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>None.</td>
-  </tr>
+<h1>CaptureWorld</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+None.
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Takes a snapshot of the position and orientation of each entity in the 
-    world.<p>This snapshot can then be used with <a href="RenderWorld.htm">
-    RenderWorld</a> to render entities at a point somewhere between their 
-    captured position and their current position. See <a href="RenderWorld.htm">
-    RenderWorld</a> for more about how and why this is done.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+CaptureWorld 'captures' the properties (position, rotation, scale, alpha etc) of each entity in the 3D world.<br />
+<br />
+This is then used in conjunction with the <a class=small href=../3d_commands/RenderWorld.htm>RenderWorld</a> tween parameter in order to render an interpolated frame between the captured state of each entity and the current state of each entity. See the <a class=small href=../3d_commands/RenderWorld.htm>RenderWorld</a> docs for a full explanation of render tweening.
+<br>
+<br>
+See also: <a class=small href=RenderWorld.htm>RenderWorld</a>.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/CaptureWorld.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/CaptureWorld.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; CaptureWorld and RenderWorld with tween.<br />
+<br />
+; Left/Right arrow keys change tween. Escape quits.<br />
+<br />
+Const width = 640, height = 480<br />
+Const KEY_ESC = 1, KEY_LEFT = 203, KEY_RIGHT = 205 <br />
+<br />
+Graphics3D 640, 480<br />
+AmbientLight 50, 50, 50<br />
+<br />
+c1 = CreateCone( )<br />
+PositionEntity c1, -5, 0, 0		; on the left side of the screen<br />
+ScaleEntity c1, 1, 3, 1<br />
+EntityColor c1, 255, 0, 0<br />
+<br />
+cam = CreateCamera()<br />
+PositionEntity cam, 0, 0, -50<br />
+CameraZoom cam, 4<br />
+<br />
+lt = CreateLight() : TurnEntity lt, 30, 40, 0<br />
+<br />
+<br />
+c2 = CopyEntity( c1 )<br />
+<br />
+CaptureWorld	; with c1 and c2 identically placed<br />
+<br />
+MoveEntity c2, 8, 0, 0		; to the right side of the screen<br />
+TurnEntity c2, 0, 0, 90		; and tilted<br />
+<br />
+tw# = 100		; 100 * tween<br />
+<br />
+; Interpolate between the pre-CaptureWorld ( tween = 0 )<br />
+; arrangement and the current one ( tween = 1 ).<br />
+<br />
+While Not KeyDown( KEY_ESC )<br />
+<br />
+If KeyDown( KEY_LEFT  ) Then tw = tw - 1<br />
+If KeyDown( KEY_RIGHT ) Then tw = tw + 1<br />
+RenderWorld tw / 100<br />
+Text 250, 100, "tween = " + ( tw / 100 )<br />
+Flip<br />
+<br />
+Wend<br />
+<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=CaptureWorld&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

@@ -1,44 +1,62 @@
 <html>
 <head>
-<title>Command: LightMesh</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;LightMesh mesh,red#,green#,blue#[,range#][,light_x#][,light_y#][,light_z#]&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>mesh - mesh handle<br>
-    red# - mesh red value<br>
-    green# - mesh green value<br>
-    blue# - mesh blue value<br>
-    range# (optional) - light range<br>
-    light_x# (optional) - light x position<br>
-    light_y# (optional) - light y position<br>
-    light_z# (optional) - light z position</td>
-  </tr>
+<h1>LightMesh mesh,red#,green#,blue#[,range#][,light_x#][,light_y#][,light_z#]</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+mesh - mesh handle<br />
+red# - mesh red value<br />
+green# - mesh green value<br />
+blue# - mesh blue value<br />
+range# (optional) - light range<br />
+light_x# (optional) - light x position<br />
+light_y# (optional) - light y position<br />
+light_z# (optional) - light z position
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Performs a 'fake' lighting operation on a mesh.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Performs a 'fake' lighting operation on a mesh.<br />
+<br />
+You need to use EntityFX ent,2 to enable vertex colors on the target mesh before you can see any results.<br />
+<br />
+Since V1.83 the default vertex color for primitives is 255,255,255 and not 0,0,0, so for LightMesh to effect primitives as it did before, you will first need to reset the vertex colors to 0,0,0. You can do this using LightMesh mesh,-255,-255,-255.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/LightMesh.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/LightMesh.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+Graphics3D 640,480 ,16,2<br />
+camera=CreateCamera() <br />
+<br />
+ent=CreateSphere()<br />
+EntityFX ent,2 ; enable vertex colors<br />
+Lightmesh ent,-255,-255,-255 ; reset vertex colors from 255,255,255 (default) to 0,0,0<br />
+LightMesh ent,255,255,0,50,-20,20,-20 ; apply fake lighting<br />
+<br />
+MoveEntity camera,0,2,-10 <br />
+PointEntity camera,ent<br />
+<br />
+While Not KeyDown(1) <br />
+RenderWorld<br />
+Flip <br />
+Wend<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=LightMesh&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

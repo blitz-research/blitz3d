@@ -1,42 +1,116 @@
 <html>
 <head>
-<title>Command: SpriteViewMode</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;SpriteViewMode sprite,view_mode&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>sprite - sprite handle<br>
-    <br>
-    view_mode - view_mode of sprite<br>
-    1: fixed (sprite always faces camera)<br>
-    2: free (sprite is independent of camera)<br>
-    3: upright (sprite always faces camera, but tilts with camera)</td>
-  </tr>
+<h1>SpriteViewMode sprite,view_mode</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+sprite - sprite handle<br />
+<br />
+view_mode - view_mode of sprite<br />
+1: fixed (sprite always faces camera - default)<br />
+2: free (sprite is independent of camera)<br />
+3: upright1 (sprite always faces camera, but rolls with camera as well, unlike  mode no.1)<br />
+4: upright2 (sprite always remains upright. Gives a 'billboard' effect. Good  for trees, spectators etc.)
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Sets the viewmode of a sprite.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Sets the view mode of a sprite.<br />
+<br />
+The view mode determines how a sprite  alters its orientation in respect to the camera. This allows the sprite to in  some instances give the impression that it is more than two dimensional. <br />
+<br />
+In technical terms, the four sprite modes perform the following changes: <br />
+<br />
+1: Sprite changes its pitch and yaw values to face camera, but doesn't roll.<br />
+2: Sprite does not change either its pitch, yaw or roll values.<br />
+3: Sprite changes its yaw and pitch to face camera, and changes its roll value  to match cameras.<br />
+4: Sprite changes its yaw value to face camera, but not its pitch value, and  changes its roll value to match cameras. <br />
+<br />
+Note that if you use sprite view mode 2, then because it is independent from  the camera, you will only be able to see it from one side unless you use EntityFx  flag 16 with it to disable backface culling.
+<br>
+<br>
+See also: <a class=small href=CreateSprite.htm>CreateSprite</a>, <a class=small href= LoadSprite.htm> LoadSprite</a>.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/SpriteViewMode.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/SpriteViewMode.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; SpriteViewMode Example<br />
+; ----------------------<br />
+<br />
+Graphics3D 640,480<br />
+SetBuffer BackBuffer()<br />
+<br />
+pivot=CreatePivot()<br />
+PositionEntity pivot,0,1,0<br />
+<br />
+camera=CreateCamera(pivot)<br />
+PositionEntity camera,0,0,10<br />
+<br />
+light=CreateLight()<br />
+RotateEntity light,90,0,0<br />
+<br />
+plane=CreatePlane()<br />
+ground_tex=LoadTexture("media/Chorme-2.bmp")<br />
+EntityTexture plane,ground_tex<br />
+<br />
+sprite=LoadSprite("media/b3dlogo.jpg")<br />
+PositionEntity sprite,0,1,0<br />
+<br />
+pitch=-15<br />
+yaw=180<br />
+roll=0<br />
+view_mode=1<br />
+view_mode_info$=" (fixed)"<br />
+<br />
+While Not KeyDown(1)<br />
+<br />
+If KeyDown(208)=True And pitch<0 Then pitch=pitch+1<br />
+If KeyDown(200)=True And pitch>-89 Then pitch=pitch-1<br />
+If KeyDown(205)=True Then yaw=yaw+1<br />
+If KeyDown(203)=True Then yaw=yaw-1<br />
+If KeyDown(30)=True Then roll=roll+1<br />
+If KeyDown(31)=True Then roll=roll-1<br />
+<br />
+; Change sprite view mode depending on key pressed<br />
+If KeyHit(2)=True Then view_mode=1 : view_mode_info$=" (fixed)"<br />
+If KeyHit(3)=True Then view_mode=2 : view_mode_info$=" (free)"<br />
+If KeyHit(4)=True Then view_mode=3 : view_mode_info$=" (upright1)"<br />
+If KeyHit(5)=True Then view_mode=4 : view_mode_info$=" (upright2)"<br />
+<br />
+; Set sprite view mode<br />
+SpriteViewMode sprite,view_mode<br />
+<br />
+RotateEntity pivot,pitch,yaw,0<br />
+PointEntity camera,sprite,roll<br />
+<br />
+RenderWorld<br />
+<br />
+Text 0,0,"Use cursor keys to orbit camera around sprite"<br />
+Text 0,20,"Press A and S keys to roll camera"<br />
+Text 0,40,"Press keys 1-4 to change sprite view mode"<br />
+Text 0,60,"SpriteViewMode: "+view_mode+view_mode_info$<br />
+<br />
+Flip<br />
+<br />
+Wend<br />
+<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=SpriteViewMode&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

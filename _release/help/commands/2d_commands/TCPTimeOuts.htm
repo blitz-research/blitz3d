@@ -1,68 +1,40 @@
 <html>
 <head>
-<title>Command: TCPTimeOuts</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
+<h1>TCPTimeouts read_millis,accept_millis</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+read_millis - milliseconds value<br />
+accept_millis - milliseconds value 
+</td>
+</tr>
+</table>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+read_millis allows you to control how long reading data into a TCP stream  can take before causing an error. By default, this is set to 10,000 (10 seconds).  This means that if data takes longer than 10 seconds to arrive, an error occurs  and the stream can not be used any more.<br />
+<br />
+accept_millis allows you to control how the AcceptTCPStream()  function will wait for a new connection. By default, this value is 0, so AcceptTCPStream() will return immediately  if there is no new connection available.
+</td>
+</tr>
+</table>
+<h1><a href=../2d_examples/TCPTimeouts.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+None.<br />
 
-<p><span class="Command">&nbsp;&nbsp;TCPTimeOuts&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>
-read_millis -- timeout if TCP read commands cause no response within specified time (in milliseconds)<BR>
-write_millis -- timeout if TCP write commands cause no response within specified time (in milliseconds)<BR>
-accept_millis -- timeout if TCP accept commands cause no response within specified time (in milliseconds)<BR>
 </td>
-  </tr>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>TCPTimeOuts () affects all future calls to the TCP stream functions. You specify the number of milliseconds after which the given timeout should activate; one setting for timeouts when reading from a TCP stream, one for writing to a TCP stream and one for acceptance of a TCP stream (effectively, a server's response time).
-</td>
-  </tr>
-</table>
-<p class="header"><a href="../3d_examples/TCPTimeOuts.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>
-; To cause an error if no connection is received by a server within 3 seconds:<BR>
-<BR>
-TCPTimeouts 0, 0, 5000 ; 5 second 'accept_millis' parameter<BR>
-<BR>
-AppTitle "Impatient Server (tm)"<BR>
-<BR>
-Graphics 640, 480<BR>
-SetBuffer BackBuffer ()<BR>
-Text 10, 10, "Accepting incoming data received within 5 seconds..."<BR>
-Flip<BR>
-<BR>
-server = CreateTCPServer (8080)<BR>
-<BR>
-If server<BR>
-	If AcceptTCPStream (server)<BR>
-		Text 10, 30, "Incoming data! Eek!"<BR>
-	Else<BR>
-		Text 10, 50, "Accept timeout activated -- I'm outta here..."<BR>
-	EndIf<BR>
-	CloseTCPServer server<BR>
-EndIf<BR>
-<BR>
-Flip<BR>
-<BR>
-MouseWait<BR>
-End<BR>
-</td>
-  </tr>
-</table>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=TCPTimeouts&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

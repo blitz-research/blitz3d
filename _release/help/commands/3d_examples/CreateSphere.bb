@@ -15,8 +15,8 @@ sphere=CreateSphere()
 PositionEntity sphere,0,0,5
 
 While Not KeyDown( 1 )
-	RenderWorld
-	Flip
+RenderWorld
+Flip
 Wend
 
 End

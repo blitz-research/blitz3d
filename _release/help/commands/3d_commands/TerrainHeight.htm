@@ -1,41 +1,109 @@
 <html>
 <head>
-<title>Command: TerrainHeight</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;TerrainHeight# ( terrain,grid_x,grid_z )&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>terrain - terrain handle<br>
-    grid_x - grid x coordinate of terrain<br>
-    grid_z - grid z coordinate of terrain</td>
-  </tr>
+<h1>TerrainHeight# ( terrain,grid_x,grid_z )</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+terrain - terrain handle<br />
+grid_x - grid x coordinate of terrain<br />
+grid_z - grid z coordinate of terrain
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Returns the height of the terrain at terrain grid coordinates x,z. The 
-    value returned is in the range 0 to 1.<p>See also: <a href="TerrainY.htm">
-    TerrainY</a>.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Returns the height of the terrain at terrain grid coordinates x,z. The value  returned is in the range 0 to 1.<br />
+<br />
+See also: TerrainY. 
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/TerrainHeight.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/TerrainHeight.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; TerrainHeight Example<br />
+; ---------------------<br />
+<br />
+Graphics3D 640,480<br />
+SetBuffer BackBuffer()<br />
+<br />
+terra_size=32 ; initial size of terrain, and no. of grids segments, along each  side<br />
+x_scale=10 ; x scale of terrain<br />
+y_scale=50 ; y scale of terrain<br />
+z_scale=10 ; z scale of terrain<br />
+marker_x=terra_size/2 ; initial x position of marker<br />
+marker_z=terra_size/2 ; initial z position of marker<br />
+<br />
+camera=CreateCamera()<br />
+PositionEntity camera,(terra_size*x_scale)/2,50,0 ; position wherever; just  try and get good view of terrain!<br />
+RotateEntity camera,30,0,0 ; again, try and get good view of terrain<br />
+<br />
+light=CreateLight()<br />
+RotateEntity light,90,0,0<br />
+<br />
+; Create terrain<br />
+terra=CreateTerrain(terra_size)<br />
+ScaleEntity terra,x_scale,y_scale,z_scale<br />
+<br />
+; Texture terrain<br />
+grass_tex=LoadTexture("media/mossyground.bmp")<br />
+EntityTexture terra,grass_tex<br />
+<br />
+; Create marker<br />
+marker=CreateSphere()<br />
+ScaleEntity marker,1,1,1<br />
+EntityColor marker,255,0,0<br />
+<br />
+While Not KeyDown(1)<br />
+<br />
+; Change marker position values depending on cursor key pressed<br />
+If KeyHit(205)=True Then marker_x=marker_x+1<br />
+If KeyHit(203)=True Then marker_x=marker_x-1<br />
+If KeyHit(208)=True Then marker_z=marker_z-1<br />
+If KeyHit(200)=True Then marker_z=marker_z+1<br />
+<br />
+; Get terrain height at marker position<br />
+marker_y#=TerrainHeight(terra,marker_x,marker_z)<br />
+<br />
+; If A pressed then increase marker_y value and modify terrain<br />
+If KeyDown(30)=True<br />
+If marker_y#<1 Then marker_y#=marker_y#+0.005<br />
+ModifyTerrain terra,marker_x,marker_z,marker_y#<br />
+EndIf<br />
+<br />
+; If Z pressed then decrease marker_y value and modify terrain<br />
+If KeyDown(44)=True<br />
+If marker_y#>0 Then marker_y#=marker_y#-0.005<br />
+ModifyTerrain terra,marker_x,marker_z,marker_y#<br />
+EndIf<br />
+<br />
+; Position marker, taking into account x, y and z scales of terrain<br />
+PositionEntity marker,marker_x*x_scale,marker_y#*y_scale,marker_z*z_scale<br />
+<br />
+RenderWorld<br />
+<br />
+Text 0,0,"Use cursor keys to move marker over the terrain"<br />
+Text 0,20,"Press A or Z to alter height of terrain at marker's position"<br />
+Text 0,40,"Terrain Height: "+marker_y#<br />
+<br />
+Flip<br />
+<br />
+Wend<br />
+<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=TerrainHeight&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

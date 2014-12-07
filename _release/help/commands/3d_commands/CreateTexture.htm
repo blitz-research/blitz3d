@@ -1,136 +1,148 @@
 <html>
 <head>
-<title>Command: CreateTexture</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;CreateTexture ( 
-width,height[,flags][,frames] )&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>width - width of texture<br>
-    height - height of texture<br>
-    <br>
-    flags (optional) - texture flag<br>
-    1: Color<br>
-    2: Alpha<br>
-    4: Masked<br>
-    8: Mipmapped<br>
-    16: Clamp U<br>
-    32: Clamp V<br>
-    64: Spherical reflection map<br>
-    <br>
-    frames (optional) - no of frames texture will have</td>
-  </tr>
+<h1>CreateTexture ( width,height[,flags][,frames] )</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+width - width of texture<br />
+height - height of texture<br />
+<br />
+flags (optional) - texture flag:<br />
+1: Color (default)<br />
+2: Alpha<br />
+4: Masked<br />
+8: Mipmapped<br />
+16: Clamp U<br />
+32: Clamp V<br />
+64: Spherical environment map<br />
+128: Cubic environment map<br />
+256: Store texture in vram<br />
+512: Force the use of high color textures<br />
+<br />
+frames (optional) - no of frames texture will have. Defaults to 1.
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Creates a texture and returns its handle.<p>Width and height are 
-    the size of the texture. Note that the actual texture size may be different 
-    from the width and height requested, as different types of 3D hardware 
-    support different sizes of texture.<p>The optional flags parameter allows 
-    you to apply certain effects to the texture. Flags can be added to combine 
-    two or more effects, eg. 3 (1+2) = texture with color and alpha maps.<p>Here 
-    are quick descriptions of the flags:<br>
-    1: Color - color map, what you see is what you get.<br>
-    2: Alpha - alpha map. If an image contains an alpha map, this will be used 
-    to make certain areas of the texture transparent. Otherwise, the color map 
-    will be used as an alpha map. With alpha maps, the dark areas always equal 
-    hihg-transparency, light areas equal low-transparency.<br>
-    4: Masked - all areas of a texture coloured 0,0,0 will not be drawn to the 
-    screen.<br>
-    8: Mipmapped - low detail versions of the texture will be used at high 
-    distance. Results in a smooth, blurred look.<br>
-    16: Clamp u - clamp u texture co-ordinates. Prevents texture wrapping.<br>
-    32: Clamp v - clamp v texture co-ordiantes. Prevents texture wrapping.<br>
-    64: Spherical reflection map - environment mapping, for that shiny, teapot 
-    look.<p>Once you have created a texture, use
-    <a href="../2d_commands/SetBuffer.htm">SetBuffer</a>
-    <a href="TextureBuffer.htm">TextureBuffer</a> to draw to it. However, to 
-    display 2D graphics on a texture, it is usually quicker to draw to an image and then 
-    copy it to the texturebuffer, and to display 3D graphics on a texture, your 
-    only option is to copy from the backbuffer to the texturebuffer.<p>See also:
-    <a href="LoadTexture.htm">LoadTexture</a>, <a href="LoadAnimTexture.htm">
-    LoadAnimTexture</a>.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Creates a texture and returns its handle.<br />
+<br />
+Width and height are the size  of the texture. Note that the actual texture size may be different from the  width and height requested, as different types of 3D hardware support different  sizes of texture. <br />
+<br />
+The optional flags parameter allows you to apply certain effects to the texture.  Flags can be added to combine two or more effects, e.g. 3 (1+2) = texture with  color and alpha maps. <br />
+<br />
+Here some more detailed descriptions of the flags:<br />
+<br />
+1: Color - colour map, what you see is what you get.<br />
+<br />
+2: Alpha - alpha map. If an image contains an alpha map, this will be used to  make certain areas of the texture transparent. Otherwise, the colour map will  be used as an alpha map. With alpha maps, the dark areas always equal high-transparency,  light areas equal low-transparency.<br />
+<br />
+4: Masked - all areas of a texture coloured 0,0,0 will not be drawn to the screen.<br />
+<br />
+8: Mipmapped - low detail versions of the texture will be used at high distance.  Results in a smooth, blurred look.<br />
+<br />
+16: Clamp u - Any part of a texture that lies outsides the U coordinates of 0-1 will not be drawn. Prevents texture-wrapping.<br />
+<br />
+32: Clamp v - Any part of a texture that lies outsides the v coordinates of 0-1 will not be drawn. Prevents texture-wrapping.<br />
+<br />
+64: Spherical environment map - a form of environment mapping. This works by taking a single image, and then applying it to a 3D mesh in such a way that the image appears to be reflected. When used with a texture that contains light sources, it can give some meshes such as a teapot a shiny appearance.<br />
+<br />
+128: Cubic environment map - a form of environment mapping. Cube mapping is similar to spherical mapping, except it uses six images each representing a particular 'face' of an imaginary cube, to give the appearance of an image that perfectly reflects its surroundings.<br />
+<br />
+When creating cubic environment maps with the CreateTexture command, cubemap textures *must* be square 'power of 2' sizes. See the <a class=small href=../3d_commands/SetCubeFace.htm>SetCubeFace</a> command for information on how to then draw to the cubemap.<br />
+<br />
+When loading cubic environments maps into Blitz using LoadTexture, all six images relating to the six faces of the cube must be contained within the one texture, and be laid out in a horizontal strip in the following order - left, forward, right, backward, up, down. The images comprising the cubemap must all be power of two sizes.<br />
+<br />
+Please note that not some older graphics cards do not support cubic mapping. In order to find out if a user's graphics card can support it, use <a class=small href=../3d_commands/GfxDriverCaps3D.htm>GfxDriverCaps3D</a> .<br />
+<br />
+256: Store texture in vram. In some circumstances, this makes for much faster dynamic textures - ie. when using CopyRect between two textures. When drawing to cube maps in real-time, it is preferable to use this flag.<br />
+<br />
+512: Force the use of high color textures in low bit depth graphics modes. This is useful for when you are in 16-bit color mode, and wish to create/load textures with the alpha flag - it should give better results. <br />
+<br />
+Once you have created a texture, use SetBuffer TextureBuffer to draw to it. However, to display 2D graphics on a texture, it is usually quicker to draw to an image and then copy it to the texturebuffer, and to display 3D graphics on a texture, your only option is to copy from the backbuffer to the texturebuffer.
+<br>
+<br>
+See also: <a class=small href=LoadTexture.htm>LoadTexture</a>, <a class=small href=LoadAnimTexture.htm>LoadAnimTexture</a>.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/CreateTexture.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>; CreateTexture Example<br>
-    ; ---------------------<br>
-    <br>
-    Graphics3D 640,480<br>
-    SetBuffer BackBuffer()<br>
-    <br>
-    camera=CreateCamera()<br>
-    <br>
-    light=CreateLight()<br>
-    RotateEntity light,90,0,0<br>
-    <br>
-    cube=CreateCube()<br>
-    PositionEntity cube,0,0,5<br>
-    <br>
-    ; Create texture of size 256x256<br>
-    tex=CreateTexture(256,256)<br>
-    <br>
-    ; Set buffer - texture buffer<br>
-    SetBuffer TextureBuffer(tex)<br>
-    <br>
-    ; Clear texture buffer with background white color<br>
-    ClsColor 255,255,255<br>
-    Cls<br>
-    <br>
-    ; Draw text on texture<br>
-    font=LoadFont(&quot;arial&quot;,24)<br>
-    SetFont font<br>
-    Color 0,0,0<br>
-    Text 0,0,&quot;This texture&quot;<br>
-    Text 0,40,&quot;was created using&quot; : Color 0,0,255<br>
-    Text 0,80,&quot;CreateTexture()&quot; : Color 0,0,0<br>
-    Text 0,120,&quot;and drawn to using&quot; : Color 0,0,255<br>
-    Text 0,160,&quot;SetBuffer TextureBuffer()&quot;<br>
-    <br>
-    ; Texture cube with texture<br>
-    EntityTexture cube,tex<br>
-    <br>
-    ; Set buffer - backbuffer<br>
-    SetBuffer BackBuffer()<br>
-    <br>
-    While Not KeyDown( 1 )<br>
-    <br>
-    pitch#=0<br>
-    yaw#=0<br>
-    roll#=0<br>
-    <br>
-    If KeyDown( 208 )=True Then pitch#=-1 <br>
-    If KeyDown( 200 )=True Then pitch#=1<br>
-    If KeyDown( 203 )=True Then yaw#=-1<br>
-    If KeyDown( 205 )=True Then yaw#=1<br>
-    If KeyDown( 45 )=True Then roll#=-1<br>
-    If KeyDown( 44 )=True Then roll#=1<br>
-    <br>
-    TurnEntity cube,pitch#,yaw#,roll#<br>
-    <br>
-    RenderWorld<br>
-    Flip<br>
-    <br>
-    Wend<br>
-    <br>
-    End</td>
-  </tr>
+<h1><a href=../3d_examples/CreateTexture.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; CreateTexture Example<br />
+; ---------------------<br />
+<br />
+Graphics3D 640,480<br />
+SetBuffer BackBuffer()<br />
+<br />
+camera=CreateCamera()<br />
+<br />
+light=CreateLight()<br />
+RotateEntity light,90,0,0<br />
+<br />
+cube=CreateCube()<br />
+PositionEntity cube,0,0,5<br />
+<br />
+; Create texture of size 256x256<br />
+tex=CreateTexture( 256,256 )<br />
+<br />
+; Set buffer - texture buffer<br />
+SetBuffer TextureBuffer( tex )<br />
+<br />
+; Clear texture buffer with background white color<br />
+ClsColor 255,255,255<br />
+Cls<br />
+<br />
+; Draw text on texture<br />
+font=LoadFont( "arial",24 )<br />
+SetFont font<br />
+Color 0,0,0<br />
+Text 0,0,"This texture"<br />
+Text 0,40,"was created using" : Color 0,0,255<br />
+Text 0,80,"CreateTexture()" : Color 0,0,0<br />
+Text 0,120,"and drawn to using" : Color 0,0,255<br />
+Text 0,160,"SetBuffer TextureBuffer()"<br />
+<br />
+; Texture cube with texture<br />
+EntityTexture cube,tex<br />
+<br />
+; Set buffer - backbuffer<br />
+SetBuffer BackBuffer()<br />
+<br />
+While Not KeyDown( 1 )<br />
+<br />
+pitch#=0<br />
+yaw#=0<br />
+roll#=0<br />
+<br />
+If KeyDown( 208 )=True Then pitch#=-1 <br />
+If KeyDown( 200 )=True Then pitch#=1<br />
+If KeyDown( 203 )=True Then yaw#=-1<br />
+If KeyDown( 205 )=True Then yaw#=1<br />
+If KeyDown( 45 )=True Then roll#=-1<br />
+If KeyDown( 44 )=True Then roll#=1<br />
+<br />
+TurnEntity cube,pitch#,yaw#,roll#<br />
+<br />
+RenderWorld<br />
+Flip<br />
+<br />
+Wend<br />
+<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=CreateTexture&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

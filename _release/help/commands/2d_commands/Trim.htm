@@ -1,5 +1,43 @@
-<html><head><title>Command: Trim$ </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Trim$ (string$)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Removes leading and trailing spaces from a string.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>string$ = any valid string or string variable</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Use this command to remove that nasty space at the beginning and ending of a string.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>name$="     Shane R. Monroe     "<br>
-Print "Your name before trimming is: '" + name$ "' ..."<br>
-Print "Your name trimmed is: '" + Trim$(name$) + "' ..."<br>
-<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+<html>
+<head>
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
+</head>
+<body>
+<h1>Trim$( string$ )</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+string$ - any valid string
+</td>
+</tr>
+</table>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+This function removes leading and trailing spaces from the specified string.
+</td>
+</tr>
+</table>
+<h1><a href=../2d_examples/Trim.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+Graphics 640,480,0,2<br />
+<br />
+a$ = "  Weeeeee  "<br />
+<br />
+Text 0,0,a$<br />
+Text 0,20,Trim$(a$)<br />
+<br />
+WaitKey()
+</td>
+</tr>
+</table>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=Trim&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

@@ -1,40 +1,82 @@
 <html>
 <head>
-<title>Command: PositionMesh</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;PositionMesh mesh,x#,y#,z#&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>mesh - mesh handle<br>
-    x# - x position of mesh<br>
-    y# - y position of mesh<br>
-    z# - z position of mesh</td>
-  </tr>
+<h1>PositionMesh mesh,x#,y#,z#</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+mesh - mesh handle<br />
+x# - x position of mesh<br />
+y# - y position of mesh<br />
+z# - z position of mesh
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Moves all vertices of a mesh.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Moves all vertices of a mesh.
+<br>
+<br>
+See also: <a class=small href=PositionEntity.htm>PositionEntity</a>, <a class=small href=MoveEntity.htm>MoveEntity</a>, <a class=small href=TranslateEntity.htm>TranslateEntity</a>.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/PositionMesh.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/PositionMesh.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; PositionMesh Example<br />
+; --------------------<br />
+ <br />
+; In this example we will demonstrate the use of the PositionMesh command.<br />
+<br />
+; Unlike PositionEntity, PositionMesh actually modifies the actual mesh structure.<br />
+<br />
+; So whereas using PositionEntity 0,0,1 would only move an entity by one unit the first time it was <br />
+; used, PositionMesh 0,0,1 will move the mesh by one unit every time it is used.<br />
+<br />
+; This is because PositionEntity positions an entity based on a fixed mesh structure, whereas <br />
+; PositionMesh actually modifies the mesh structure itself.<br />
+<br />
+Graphics3D 640,480<br />
+SetBuffer BackBuffer()<br />
+ <br />
+camera=CreateCamera()<br />
+ <br />
+light=CreateLight()<br />
+ <br />
+; Create cube mesh<br />
+cube=CreateCube()<br />
+<br />
+; Position cube in front of camera so we can see it <br />
+PositionEntity cube,0,0,5<br />
+ <br />
+While Not KeyDown(1)<br />
+<br />
+	; If space bar pressed then position mesh 1 unit along the z axis. Also set syntax$ text.<br />
+	If KeyHit(57)=True Then PositionMesh cube,0,0,1 : syntax$="PositionMesh 0,0,1"<br />
+<br />
+	RenderWorld<br />
+	<br />
+	Text 0,0,"Press space to position the mesh 1 unit along the z axis"<br />
+	Text 0,20,syntax$<br />
+	<br />
+	Flip<br />
+<br />
+Wend<br />
+ <br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=PositionMesh&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

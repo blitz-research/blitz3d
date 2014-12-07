@@ -1,60 +1,59 @@
 <html>
 <head>
-<title>Command: MouseZSpeed</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;MouseZSpeed&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>n/a</td>
-  </tr>
-</table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>MouseZSpeed returns -1 if the mousewheel on a suitable mouse is being rolled backwards (towards user), 0 if it is not being moved, and 1 if it is being rolled forwards.</td>
-  </tr>
-</table>
-<p class="header"><a href="../3d_examples/MouseZSpeed.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>
-Graphics 640, 480, 0, 2<br>
-SetBuffer BackBuffer ()<br>
-<br>
-Repeat<br>
-<br>
-	Cls<br>
-	<br>
-	Select MouseZSpeed ()<br>
-		Case -1<br>
-			result$ = "Backwards"<br>
-		Case 0<br>
-		;	result$ = "No movement"<br>
-		Case 1<br>
-			result$ = "Forwards"<br>
-	End Select<br>
-	<br>
-	Text 20, 10, "NOTE: MouseZSpeed () = 0 is not listed here, to avoid confusion!"<br>
-	Text 20, 40, result$<br>
-	Flip<br>
-	<br>
-Until KeyHit (1)<br>
-<br>
-End<br>
+<h1>MouseZSpeed()</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+None.
 </td>
-  </tr>
+</tr>
 </table>
-</body>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+MouseZSpeed returns -1 if the mousewheel on a suitable mouse is being rolled  backwards (towards user), 0 if it is not being moved, and 1 if it is being rolled  forwards.
+</td>
+</tr>
+</table>
+<h1><a href=../2d_examples/MouseZSpeed.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+Graphics 640, 480, 0, 2<br />
+SetBuffer BackBuffer ()<br />
+<br />
+Repeat<br />
+<br />
+Cls<br />
+<br />
+Select MouseZSpeed ()<br />
+Case -1<br />
+result$ = "Backwards"<br />
+Case 0<br />
+; result$ = "No movement"<br />
+Case 1<br />
+result$ = "Forwards"<br />
+End Select<br />
+<br />
+Text 20, 10, "NOTE: MouseZSpeed () = 0 is not listed here, to avoid confusion!"<br />
+Text 20, 40, result$<br />
+Flip<br />
+<br />
+Until KeyHit (1)<br />
+<br />
+End<br />
+
+</td>
+</tr>
+</table>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=MouseZSpeed&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

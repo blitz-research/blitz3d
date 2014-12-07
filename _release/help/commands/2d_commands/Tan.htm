@@ -1,11 +1,104 @@
-<html><head><title>Command: Tan </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Tan (number)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns the tangent of an angle.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>number=float or integer representing a value in degrees</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Tan takes an angle and returns the ratio of two sides of a right triangle. The ratio is the length of the side opposite the angle divided by the length of the side adjacent to the angle.<br>
+<html>
+<head>
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
+</head>
+<body>
+<h1>Tan# ( degrees# )</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+degrees# = angle in degrees.
+</td>
+</tr>
+</table>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Tangent of an angle. The angle is measured in degrees.<br />
+<br />
+For angles between 0 and 90 degrees this is defined by the sides of a right triangle. The tangent is the side opposite the angle divided by the side adjacent to the angle.<br />
+<br />
+In general, tangent is defined as sine divided by cosine.<br />
+<br />
+The positive y-axis corresonds to +90 degrees. This is a common source of confusion in Blitz. With screen coordinates ( pixels ) the y-axis points downward. But in the 3d world the y-axis typically points upward.<br />
+<br />
+Another possible snag is the size of the angle. In principle, the tangent function repeats every 180 degrees. So Tan(-180), Tan(0), Tan(180), Tan(360) etc. should all be exactly the same. But in practice the accuracy decreases as the angle gets farther away from zero.
+</td>
+</tr>
+</table>
+<h1><a href=../2d_examples/Tan.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; Sin / Cos / Tan example.<br />
+<br />
+; Left/Right arrow keys change angle. Escape quits.<br />
+<br />
+Const width = 640, height = 480<br />
+Const radius# = .2 * height<br />
+Const KEY_ESC = 1, KEY_LEFT = 203, KEY_RIGHT = 205 <br />
+<br />
+Graphics width, height<br />
+SetBuffer BackBuffer( )<br />
+Origin width / 3, height / 2<br />
+<br />
+angle# = 0.0<br />
+<br />
+While Not KeyDown( KEY_ESC )<br />
+<br />
+; NOTE: It is usually best to avoid very large angles.<br />
+;       The 'If angle...' lines show one way to do this.<br />
+;		Mod is another possibility. <br />
+<br />
+If KeyDown( KEY_LEFT ) Then angle = angle - .5<br />
+;	If angle < 0.0 Then angle = angle + 360<br />
+<br />
+If KeyDown( KEY_RIGHT ) Then angle = angle + .5<br />
+;	If angle >= 360.0 Then angle = angle - 360<br />
+<br />
+Cls<br />
+<br />
+Color 80, 80, 0		; pale yellow circle<br />
+Oval -radius, -radius, 2 * radius, 2 * radius, False<br />
+<br />
+For a# = 0.0 To Abs( angle Mod 360 ) Step .5<br />
+<br />
+x# = radius * Cos( a )	; (x,y) is a point on the circle<br />
+y# = radius * Sin( a )	; corresponding to angle a.<br />
+<br />
+If ( angle Mod 360 < 0 ) Then y = -y	; reverse for negative angle		<br />
+WritePixel x, y, $ffff00		; bright yellow<br />
+<br />
+Next<br />
+<br />
+Color 255, 255, 0		; yellow<br />
+Line 0, 0, radius * Cos( angle ), radius * Sin( angle ) <br />
+<br />
+Color 0, 255, 0			; green<br />
+Line 0, 0, radius * Cos( angle ), 0<br />
+Text radius * 1.5,  10, "Cos( angle ) = " + Cos( angle )<br />
+<br />
+Color 255, 0, 0			; red<br />
+Line radius * Cos( angle ), 0, radius * Cos( angle ), radius * Sin( angle ) 	<br />
+Text radius * 1.5, -10, "Sin( angle ) = " + Sin( angle )<br />
+<br />
+Color 255, 255, 255<br />
+Text radius * 1.5, -30, "     angle =   " + angle<br />
+Text radius * 1.5,  30, "Tan( angle ) = " + Tan( angle ) <br />
+<br />
+Flip<br />
+<br />
+Wend<br />
+<br />
+End
+</td>
+</tr>
+</table>
 <br>
-This is useful for artillery sort of games where your bullets will fire from a barrel at a certain angle.  You can use the Tan value in your power/angle formula to help determine the trajectory of the shot.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; tan example<br>
+<a target=_top href=../index.htm>Index</a><br>
 <br>
-angle1=25<br>
-angle2=45<br>
-<br>
-print "The ratio of angle 1 is: " + tan(angle1)<br>
-print "The ratio of angle 2 is: " + tan(angle2)<br>
-waitkey()<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=Tan&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

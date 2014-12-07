@@ -25,9 +25,9 @@ PositionEntity gargoyle,0,-45,100
 RotateEntity gargoyle,0,180,0
 
 While Not KeyDown( 1 )
-	UpdateWorld
-	RenderWorld
-	Flip
+UpdateWorld
+RenderWorld
+Flip
 Wend
 
 End

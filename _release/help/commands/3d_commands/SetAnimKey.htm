@@ -1,45 +1,93 @@
 <html>
 <head>
-<title>Command: SetAnimKey</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;SetAnimKey 
-entity,frame[,pos_key][,rot_key][,scale_key]&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>entity - entity handle<br>
-    frame - frame of animation to be used as anim key<br>
-    pos_key (optional) - true to include entity position information when 
-    setting key. Defaults to true.<br>
-    rot_key (optional) - true to include entity rotation information when 
-    setting key. Defaults to true.<br>
-    scale_key (optional) - true to include entity scale information when setting 
-    key. Defaults to true.</td>
-  </tr>
+<h1>SetAnimKey entity,frame[,pos_key][,rot_key][,scale_key]</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+entity - entity handle<br />
+frame - frame of animation to be used as anim key<br />
+pos_key (optional) - true to include entity position information when setting  key. Defaults to true.<br />
+rot_key (optional) - true to include entity rotation information when setting  key. Defaults to true.<br />
+scale_key (optional) - true to include entity scale information when setting  key. Defaults to true.
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Sets an animation key for the specified entity at the specified frame.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Sets an animation key for the specified entity at the specified frame.  The entity must have a valid animation sequence to work with.<br />
+<br />
+This is most useful when you've got a character, or a complete set of complicated moves to perform, and you want to perform them en-masse.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/SetAnimKey.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/SetAnimKey.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+;Create 3d animation example<br />
+<br />
+;Set up a simple nice looking level<br />
+Graphics3D 640,480<br />
+camera=CreateCamera()<br />
+PositionEntity camera,0,12,-12<br />
+RotateEntity camera,35,0,0<br />
+light=CreateLight(2)<br />
+PositionEntity light,1000,1000,-1000<br />
+ground=CreatePlane(2)<br />
+EntityAlpha ground,0.5<br />
+EntityColor ground,0,0,255<br />
+mirror=CreateMirror()<br />
+<br />
+;Lets make a bouncing ball that squashes on impact with the floor.<br />
+ball=CreateSphere(16)<br />
+EntityShininess ball,1<br />
+EntityColor ball,255,0,0<br />
+<br />
+; Lets animate him and "record" the 3D animation for later playback<br />
+bloat#=0 : flatten#=0 : ypos#=10<br />
+<br />
+For frame=1 To 10<br />
+;Drop the ball from height 10 to 2<br />
+ypos = ypos - spd#<br />
+spd#=spd#+.2<br />
+PositionEntity ball,0,ypos,0<br />
+ScaleEntity ball,1+bloat,1+flatten,1+bloat<br />
+<br />
+;If the ball is low enough make it look increasingly squashed<br />
+If frame>8<br />
+bloat=bloat+1.5<br />
+flatten=flatten-.25<br />
+Else<br />
+flatten=flatten+.05<br />
+EndIf<br />
+<br />
+;Record the frame!<br />
+SetAnimKey ball,frame<br />
+Next<br />
+<br />
+;Now we need to add the frames we've just made to the sequence of "film"!<br />
+seq = AddAnimSeq(ball,frame-1) ; total number of frames<br />
+<br />
+;Play it back ping-pong!<br />
+Animate ball,2,0.15<br />
+While Not KeyHit(1)<br />
+UpdateWorld<br />
+RenderWorld<br />
+Flip<br />
+Wend<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=SetAnimKey&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

@@ -1,40 +1,80 @@
 <html>
 <head>
-<title>Command: CopyEntity</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;CopyEntity ( entity[,parent] )&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>entity - entity handle<br>
-    parent (optional) - parent entity of copied entity</td>
-  </tr>
+<h1>CopyEntity ( entity[,parent] )</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+entity - Entity Handle<br />
+parent (optional) - Entity that will act as Parent to the copy.
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Creates a copy of an entity and returns the copied entity's handle.<p>If 
-    a parent entity is specified, then the copied entity will be created at the 
-    parent entity's position. Otherwise, it will be created at 0,0,0.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Creates a copy of an entity and returns the handle of the newly created copy. This is a new entity instance of an existing entity's mesh! Anything you do to the original Mesh (such as RotateMesh) will effect all the copies. Other properties (such as EntityColor, Position etc.) since they are 'Entity' properties, will be individual to the copy.<br />
+<br />
+If a parent entity is specified, the copied entity will be created at the parent entity's position. Otherwise, it will be created at 0,0,0.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/CopyEntity.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/CopyEntity.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; CopyEntity Example<br />
+; This example creates an entity and<br />
+; allows you to make copies of it.<br />
+<br />
+Graphics3D 640,480<br />
+AppTitle "CopyEntity Example"<br />
+<br />
+Cam = CreateCamera()<br />
+Lit = CreateLight()<br />
+<br />
+PositionEntity Lit,-5,-5,0  <br />
+PositionEntity Cam,0,0,-5   <br />
+<br />
+AnEntity = CreateCube()    ; This is our Test Entity<br />
+ScaleMesh anEntity,0.4,0.4,0.4<br />
+While Not KeyDown(1) ; Until we press ESC<br />
+<br />
+If KeyHit(57) Then <br />
+<br />
+; When we hit Space, a new Entity is created<br />
+; These share the same internal mesh structure though!<br />
+; Hence although we are only Rotating the original MESH<br />
+; Linked to the original Entity, since it is a Mesh command,<br />
+; all the Entity Copies are linked to it..<br />
+<br />
+NewEntity = CopyEntity(AnEntity) ; Hit Space to Copy!<br />
+<br />
+; Change the Color of the Entity. Since this is an entity<br />
+; Property, it doesn't effect the other copies.<br />
+EntityColor NewEntity,Rand(255),Rand(255),Rand(255)<br />
+PositionEntity NewEntity,Rand(4)-2,Rand(4)-2,0<br />
+EndIf<br />
+<br />
+SeedRnd MilliSecs()<br />
+<br />
+RotateMesh AnEntity,.25,.35,.45<br />
+<br />
+RenderWorld ; Draw the Scene<br />
+Flip ; Flip it into View<br />
+Wend<br />
+<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=CopyEntity&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

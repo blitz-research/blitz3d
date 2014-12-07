@@ -15,8 +15,8 @@ drum=LoadMesh("media/oil-drum/oildrum.3ds")
 PositionEntity drum,0,0,MeshDepth(drum)*2
 
 While Not KeyDown( 1 )
-	RenderWorld
-	Flip
+RenderWorld
+Flip
 Wend
 
 End

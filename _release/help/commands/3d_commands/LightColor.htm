@@ -1,46 +1,64 @@
 <html>
 <head>
-<title>Command: LightColor</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;LightColor light,red#,green#,blue#&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>light - light handle<br>
-    red# - red value of light<br>
-    green# - green value of light<br>
-    blue# - blue value of light</td>
-  </tr>
+<h1>LightColor light,red#,green#,blue#</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+light - light handle<br />
+red# - red value of light<br />
+green# - green value of light<br />
+blue# - blue value of light
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Sets the color of a light.<p>An r,g,b value of 255,255,255 will brighten 
-    anything the light shines on.<br>
-    <br>
-    An r,g,b value of 0,0,0 will have no affect on anything it shines on.<br>
-    <br>
-    An r,g,b value of -255,-255,-255 will darken anything it shines on. This is 
-    known as 'negative lighting', and is useful for shadow effects.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Sets the color of a light.<br />
+<br />
+An r,g,b value of 255,255,255 will brighten  anything the light shines on.<br />
+<br />
+An r,g,b value of 0,0,0 will have no affect on anything it shines on.<br />
+<br />
+An r,g,b value of -255,-255,-255 will darken anything it shines on. This is  known as 'negative lighting', and is useful for shadow effects.
+<br>
+<br>
+See also: <a class=small href=CreateLight.htm>CreateLight</a>, <a class=small href=LightRange.htm>LightRange</a>, <a class=small href=LightConeAngles.htm>LightConeAngles</a>.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/LightColor.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/LightColor.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+Graphics3D 640,480<br />
+<br />
+camera = CreateCamera()<br />
+MoveEntity camera,0,0,-3<br />
+<br />
+ball = CreateSphere()<br />
+<br />
+lite = CreateLight() ; try different lights 1 to 3<br />
+MoveEntity lite,5,0,-15<br />
+PointEntity lite,ball<br />
+<br />
+<br />
+While Not KeyDown(1)<br />
+RenderWorld:Flip<br />
+If KeyHit(57) Then LightColor lite,Rnd(255),Rnd(255),Rnd(255) ; press SPACEBAR to try different light colors<br />
+Wend<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=LightColor&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

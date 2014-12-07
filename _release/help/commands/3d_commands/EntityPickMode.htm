@@ -1,47 +1,43 @@
 <html>
 <head>
-<title>Command: EntityPickMode</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;EntityPickMode 
-entity,pick_geometry,obscurer&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>entity - entity handle<br>
-    <br>
-    pick_geometry - type of geometry used for picking:<br>
-    0: Unpickable (default)<br>
-    1: Sphere (<a href="EntityRadius.htm">EntityRadius</a> is used)<br>
-    2: Polygon<br>
-    3: Box (<a href="EntityBox.htm">EntityBox</a> is used)<br>
-    <br>
-    obscurer - true to determine that the entity 'obscures' other entities 
-    during an <a href="EntityVisible.htm">EntityVisible</a> call.</td>
-  </tr>
+<h1>EntityPickMode entity,pick_geometry[,obscurer]</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+entity - entity handle<br />
+<br />
+pick_geometry - type of geometry used for picking:<br />
+0: Unpickable (default)<br />
+1: Sphere (EntityRadius is used)<br />
+2: Polygon<br />
+3: Box (EntityBox is used)<br />
+<br />
+obscurer (optional) - True to determine that the entity 'obscures' other entities  during an EntityVisible call. Defaults to True.
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Sets the pick mode for an entity.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Sets the pick mode for an entity.<br />
+<br />
+The optional obscurer parameter is used  with EntityVisible to determine just what can  get in the way of the line-of-sight between 2 entities. This allows some entities  to be pickable using the other pick commands, but to be ignored (i.e. 'transparent')  when using EntityVisible. So, its very much EntityVisible specific.<br />
+<br />
+Please note that only Sphere and Box picking will work with Blitz3D sprites. For polygon picking, you will need a valid mesh.
+<br>
+<br>
+See also: <a class=small href=EntityPick.htm>EntityPick</a>, <a class=small href=LinePick.htm>LinePick</a>, <a class=small href=CameraPick.htm>CameraPick</a>, <a class=small href=EntityPickMode.htm>EntityPickMode</a>.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/EntityPickMode.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
-</table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=EntityPickMode&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

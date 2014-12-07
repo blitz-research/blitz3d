@@ -23,21 +23,21 @@ angle#=1
 
 While Not KeyDown( 1 )
 
-	; Change texture angle value depending on key pressed
-	If KeyDown( 205 )=True Then angle#=angle#-1
-	If KeyDown( 203 )=True Then angle#=angle#+1	
-	
-	; Rotate texture
-	RotateTexture tex,angle#
+; Change texture angle value depending on key pressed
+If KeyDown( 205 )=True Then angle#=angle#-1
+If KeyDown( 203 )=True Then angle#=angle#+1 
 
-	TurnEntity cube,0.1,0.1,0.1
-	
-	RenderWorld
-	
-	Text 0,0,"Use left and right cursor keys to change texture angle value"
-	Text 0,20,"angle#="+angle#
-	
-	Flip
+; Rotate texture
+RotateTexture tex,angle#
+
+TurnEntity cube,0.1,0.1,0.1
+
+RenderWorld
+
+Text 0,0,"Use left and right cursor keys to change texture angle value"
+Text 0,20,"angle#="+angle#
+
+Flip
 
 Wend
 

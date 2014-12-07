@@ -1,20 +1,15 @@
-; CreateLight Example
-; ----------------
-
 Graphics3D 640,480
-SetBuffer BackBuffer()
 
-camera=CreateCamera()
-light=CreateLight()
+camera = CreateCamera()
+MoveEntity camera,0,0,-3
 
-cone=CreateCone()
-PositionEntity cone,0,0,5
+ball = CreateSphere()
 
-While Not KeyDown( 1 )
-	
-	RenderWorld
-	Flip
+lite = CreateLight(1) ; change this to 2 or 3 to see different lights
+MoveEntity lite,5,0,0
+PointEntity lite,ball ; make sure light is pointing at ball
 
+While Not KeyDown(1)
+RenderWorld:Flip
 Wend
-
 End

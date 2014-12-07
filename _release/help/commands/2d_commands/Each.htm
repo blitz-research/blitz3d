@@ -1,9 +1,45 @@
-<html><head><title>Command: Each </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Each type_variable&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Used to iterate through a collection of TYPE objects.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>type_variable = A previously declared TYPE object</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>If you haven't read up on the <a href='TYPE.htm'>TYPE</a> 
-  command, you might want to do so before continuing.</p>
-<p>The For .. Each loop allows you to walk through each object in the Type collection. 
-  This is perfect for updating a large group of objects (such as a group of alien 
-  invaders). Do look over the Type command.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Move them all over 1 (like the description example from TYPE command)</p>
-<p>For room.chair = Each chair<br>
-  room\x = room\x + 1<br>
-  Next<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+<html>
+<head>
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
+</head>
+<body>
+<h1>Each type_variable</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+type_variable = A previously declared TYPE object
+</td>
+</tr>
+</table>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+If you haven't read up on the TYPE command, you might  want to do so before continuing.<br />
+<br />
+The For .. Each loop allows you to walk through each object in the Type collection.  This is perfect for updating a large group of objects (such as a group of alien  invaders). Do look over the Type command.
+<br>
+<br>
+See also: <a class=small href=Type.htm>Type</a>, <a class=small href=New.htm>New</a>, <a class=small href=Before.htm>Before</a>, <a class=small href=After.htm>After</a>, <a class=small href=First.htm>First</a>, <a class=small href=Last.htm>Last</a>, <a class=small href=Insert.htm>Insert</a>, <a class=small href=Delete.htm>Delete</a>.
+</td>
+</tr>
+</table>
+<h1><a href=../2d_examples/Each.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; Move them all over 1 (like the description example from TYPE command)<br />
+<br />
+For room.chair = Each chair<br />
+room\x = room\x + 1<br />
+Next
+</td>
+</tr>
+</table>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=Each&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

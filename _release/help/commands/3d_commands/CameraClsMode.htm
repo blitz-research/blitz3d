@@ -1,39 +1,89 @@
 <html>
 <head>
-<title>Command: CameraClsMode</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;CameraClsMode camera,cls_color,cls_zbuffer&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>camera - camera handle<br>
-    cls_color - true to clear the color buffer, false not to<br>
-    cls_zbuffer - true to clear the z-buffer, false not to</td>
-  </tr>
+<h1>CameraClsMode camera,cls_color,cls_zbuffer</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+camera - camera handle<br />
+cls_color - true to clear the color buffer, false not to<br />
+cls_zbuffer - true to clear the z-buffer, false not to
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Sets camera clear mode.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Sets camera clear mode.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/CameraClsMode.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/CameraClsMode.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; CameraClsMode Example<br />
+; ---------------------<br />
+<br />
+Graphics3D 640,480<br />
+SetBuffer BackBuffer()<br />
+<br />
+camera=CreateCamera()<br />
+PositionEntity camera,0,1,-10<br />
+<br />
+light=CreateLight()<br />
+RotateEntity light,90,0,0<br />
+<br />
+plane=CreatePlane()<br />
+ground_tex=LoadTexture("media/MossyGround.bmp")<br />
+EntityTexture plane,ground_tex<br />
+<br />
+cube=CreateCube()<br />
+PositionEntity cube,0,1,0<br />
+<br />
+; Load 2D background image<br />
+background=LoadImage("media/sky.bmp")<br />
+<br />
+; Use red ink color so we can see text on top of black or light blue background<br />
+Color 255,0,0<br />
+<br />
+While Not KeyDown(1)<br />
+<br />
+If KeyDown(205)=True Then TurnEntity camera,0,-1,0<br />
+If KeyDown(203)=True Then TurnEntity camera,0,1,0<br />
+If KeyDown(208)=True Then MoveEntity camera,0,0,-0.05<br />
+If KeyDown(200)=True Then MoveEntity camera,0,0,0.05<br />
+<br />
+; Toggle cls_color value between 0 and 1 when spacebar is pressed<br />
+If KeyHit(57)=True Then cls_color=1-cls_color<br />
+<br />
+; Set the camera clear mode, using the cls_color value<br />
+CameraClsMode camera,cls_color,1<br />
+<br />
+; Draw a 2D background. When cls_color is set to 0, the 2D graphics will show  behind the 3D graphics.<br />
+TileBlock background,0,0 <br />
+<br />
+RenderWorld<br />
+<br />
+Text 0,0,"Use cursor keys to move about"<br />
+Text 0,20,"Press space bar to enable/disable colour clearing"<br />
+Text 0,40,"CameraClsMode camera,"+cls_color+","+1<br />
+<br />
+Flip<br />
+<br />
+Wend<br />
+<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=CameraClsMode&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

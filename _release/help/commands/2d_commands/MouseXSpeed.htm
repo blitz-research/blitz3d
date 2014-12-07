@@ -1,31 +1,73 @@
-<html><head><title>Command: MouseXSpeed() </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;MouseXSpeed()  &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns the changes in the mouse location since the LAST call to the command</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Often you'd like to find the difference between where the mouse WAS to where it is NOW.  You can use this command and <a href='MouseYSpeed().htm'>MouseYSpeed()</a> in pairs to find out the changes in the mouse location between calls.<br>
+<html>
+<head>
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
+</head>
+<body>
+<h1>MouseXSpeed()</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+None.
+</td>
+</tr>
+</table>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Often you'd like to find the difference between where the mouse WAS to where it is NOW. You can use this command and MouseXSpeed() in pairs to find out the changes in the mouse location between calls.<br />
+<br />
+You really have to use these commands TWICE to get anything out of them. Each call you make returns the difference in location since the LAST time you called it.<br />
+<br />
+In this example it's called every loop and therefore allows you to have infinite mouse movement without the screen size restrictions.
 <br>
-You really have to use these commands TWICE to get anything out of them.  Each call you make returns the difference in location since the LAST time you called it.<br>
 <br>
-In the example, when you run it, move the mouse to a location, press left mouse button.  This makes the first call.  Then, move the mouse and press right mouse button.  The second call will return the difference since the first call and display it for you.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; MouseXSpeed()/MouseYSpeed() examples<br>
+See also: <a class=small href=MouseYSpeed.htm>MouseYSpeed</a>.
+</td>
+</tr>
+</table>
+<h1><a href=../2d_examples/MouseXSpeed.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+Graphics 640,480<br />
+<br />
+SetBuffer BackBuffer()<br />
+<br />
+x=320<br />
+y=240<br />
+<br />
+; infinite mouse movement<br />
+<br />
+Repeat<br />
+Cls<br />
+<br />
+xs=MouseXSpeed() ; see how far the mouse has been moved<br />
+ys=MouseYSpeed()<br />
+MoveMouse 320,240 ;put the mouse back in the middle of the screen<br />
+<br />
+x=x+xs ;adjust mouse co-ords<br />
+y=y+ys<br />
+<br />
+If x>GraphicsWidth()-1 Then x=x-GraphicsWidth() ;wrap screen<br />
+If x<0 Then x=x+GraphicsWidth()<br />
+If y<0 Then y=y+GraphicsHeight()<br />
+If y>GraphicsHeight()-1 Then y=y-GraphicsHeight()<br />
+<br />
+Text x,y,"X",True,True<br />
+<br />
+Flip<br />
+<br />
+Until KeyHit(1)<br />
+<br />
+End
+</td>
+</tr>
+</table>
 <br>
-; Set graphics mode and double buffering<br>
-Graphics 800,600,16<br>
-SetBuffer BackBuffer()<br>
+<a target=_top href=../index.htm>Index</a><br>
 <br>
-; repeat until right mouse button is pressed<br>
-Repeat<br>
-Cls	; Clear screen<br>
-Rect MouseX(),MouseY(),2,2,1 ; draw a small box where the mouse is<br>
-; if user hits left mouse, take note of where it is and call mousexspeed/mouseyspeed<br>
-If MouseHit(1) Then startx=MouseXSpeed():starty=MouseYSpeed()<br>
-<br>
-; When user hits right mouse button, record the difference between last call<br>
-; and this call to the mousey/xspeed commands.<br>
-If MouseHit(2) Then endx=MouseXSpeed():endy=MouseYSpeed()<br>
-Flip ; flip screen into view<br>
-Until endx ; end the loop when we have a value for endx<br>
-<br>
-; display results<br>
-Text 0,0,"Changes in mouse coordinates: " + endx + "," + endy<br>
-Flip ; flip changes into view<br>
-<br>
-; Wait for escape<br>
-While Not KeyHit(1)<br>
-Wend<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=MouseXSpeed&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

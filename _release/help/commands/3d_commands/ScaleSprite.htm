@@ -1,39 +1,54 @@
 <html>
 <head>
-<title>Command: ScaleSprite</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;ScaleSprite sprite,x_scale#,y_scale#&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>sprite - sprite handle<br>
-    x_scale# - x scale of sprite<br>
-    y scale# - y scale of sprite</td>
-  </tr>
+<h1>ScaleSprite sprite,x_scale#,y_scale#</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+sprite - sprite handle<br />
+x_scale# - x scale of sprite<br />
+y scale# - y scale of sprite
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Scales a sprite.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Scales a sprite.
+<br>
+<br>
+See also: <a class=small href=LoadSprite.htm>LoadSprite</a>, <a class=small href=CreateSprite.htm>CreateSprite</a>.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/ScaleSprite.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/ScaleSprite.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+Graphics3D 640,480<br />
+<br />
+cam = CreateCamera()<br />
+MoveEntity cam,0,0,-5<br />
+<br />
+sp = CreateSprite()<br />
+<br />
+size# = 1.0<br />
+While Not KeyDown(1)<br />
+RenderWorld:Flip<br />
+ScaleSprite sp,size,size<br />
+size = size + 0.01<br />
+Wend<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=ScaleSprite&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

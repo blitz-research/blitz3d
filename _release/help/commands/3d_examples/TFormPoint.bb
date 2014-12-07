@@ -1,52 +1,22 @@
+; TFormPoint example
 
 Graphics3D 640, 480
 
-cam = CreateCamera ()
-MoveEntity cam, 5, 0, -5
+s = CreateSphere()       ; center at (0,0,0)  north pole at (0,1,0)
 
-box = CreateCube ()
-MoveEntity box, 5, 0, 0
+MoveEntity s, 1,2,3      ; center at (1,2,3)  north pole at (1,2+1,3)  
+ScaleEntity s, 10,10,10  ; center at (1,2,3)  north pole at (1,2+10,3)
 
-Repeat
+; Now verify that the north pole is at (1,12,3) in the 3d world
 
-	If KeyDown (203) TurnEntity cam, 0, 0.5, 0
-	If KeyDown (205) TurnEntity cam, 0, -0.5, 0
-	If KeyDown (200) MoveEntity cam, 0, 0, 0.1
-	If KeyDown (208) MoveEntity cam, 0, 0, -0.1
+TFormPoint 0,1,0, s,0    ; north pole transformed from sphere to world
 
-	bx#	= EntityX (box)
-	by#	= EntityY (box)
-	bz#	= EntityZ (box)
+message$ = "North pole is at ( "
+message = message + TFormedX() + ",  " + TFormedY() + ",  " + TFormedZ() + " )"
 
-	cx#	= EntityX (cam, 1)
-	cy#	= EntityY (cam, 1)
-	cz#	= EntityZ (cam, 1)
-	
-	TFormPoint 0, 0, 0, cam, box
-	xdist# = TFormedX ()
-	ydist# = TFormedY ()
-	zdist# = TFormedZ ()
-		
-	UpdateWorld
-	RenderWorld
-	
-	Text 0, 20, "Box's global position"
-	Text 20, 40, "x: " + bx
-	Text 20, 60, "y: " + by
-	Text 20, 80, "z: " + bz
-	
-	Text 0, 120, "Camera's global position"
-	Text 20, 140, "x: " + cx
-	Text 20, 160, "y: " + cy
-	Text 20, 180, "z: " + cz
+Text 180, 200, message
 
-	Text 0, 220, "Camera position relative to box"
-	Text 20, 240, "x: " + xdist
-	Text 20, 260, "y: " + ydist
-	Text 20, 280, "z: " + zdist
-	
-	Flip
+Flip
 
-Until KeyHit (1)
-
+WaitKey()
 End

@@ -1,25 +1,20 @@
-; AddTriangle Example
-; ----------------
-
 Graphics3D 640,480
 SetBuffer BackBuffer()
 
-camera=CreateCamera() : PositionEntity camera,0,0,-5
-light=CreateLight()
+mesh = CreateMesh()
+surf = CreateSurface(mesh)
 
-mesh=CreateMesh() : DebugLog mesh
-surface=CreateSurface(mesh) : DebugLog surface
-v0=AddVertex(surface,-1,0,0) : DebugLog v0
-v1=AddVertex(surface,0,2,0) : DebugLog v1
-v2=AddVertex(surface,1,0,0) : DebugLog v2
+v0 = AddVertex (surf, -5,-5,0,  0  ,0)
+v1 = AddVertex (surf,  5,-5,0,  1  ,0)
+v2 = AddVertex (surf,  0, 5,0,  0.5,1)
 
-t0=AddTriangle(surface,v0,v1,v2) : DebugLog t0
+tri = AddTriangle (surf,v0,v2,v1)
 
-While Not KeyDown( 1 )
-	
-	RenderWorld
-	Flip
+cam = CreateCamera()
+MoveEntity cam, 0,0,-7
 
-Wend
+RenderWorld
+Flip
 
+WaitKey
 End

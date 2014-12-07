@@ -1,37 +1,68 @@
 <html>
 <head>
-<title>Command: TFormNormal</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;TFormNormal&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>&lt;param description&gt;</td>
-  </tr>
+<h1>TFormNormal x#, y#, z#, source_entity, dest_entity</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+x#, y#, z# = components of a vector in 3d space<br />
+<br />
+source_entity = handle of source entity, or 0 for 3d world<br />
+dest_entity = handle of destination entity, or 0 for 3d world
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>&lt;description&gt;</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Transforms between coordinate systems. After using TFormNormal the new<br />
+components can be read with TFormedX(), TFormedY() and TFormedZ().<br />
+<br />
+This is exactly the same as TFormVector but with one added feature.<br />
+After the transformation the new vector is 'normalized', meaning it<br />
+is scaled to have length 1.<br />
+<br />
+For example, suppose the result of TFormVector is (1,2,2).<br />
+This vector has length Sqr( 1*1 + 2*2 + 2*2 ) = Sqr( 9 ) = 3.<br />
+<br />
+This means TFormNormal would produce ( 1/3, 2/3, 2/3 ).
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/TFormNormal.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>&lt;example&gt;</td>
-  </tr>
+<h1><a href=../3d_examples/TFormNormal.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; TFormNormal example<br />
+<br />
+Graphics3D 640, 480<br />
+<br />
+; Just a quick demonstration of the 'normalization' feature.<br />
+<br />
+TFormNormal 1,2,2, 0,0    ;  transform from world to world<br />
+<br />
+; The transformation from world to world does nothing.<br />
+; But afterward the vector (1,2,2) is divided by the length 3.<br />
+<br />
+message$ = "The normalized vector is  ( "<br />
+message = message + TFormedX() + ",  " + TFormedY() + ",  " + TFormedZ() + " )"<br />
+<br />
+Text 70, 180, message<br />
+<br />
+Flip<br />
+<br />
+WaitKey()<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=TFormNormal&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

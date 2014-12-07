@@ -1,43 +1,89 @@
-<html><head><title>Command: First </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;First type_variable&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Move the Type object pointer to the first object in the collection.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>type_variable = the actual Type name, not the custom Type name</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>If you haven't read up on the <a href='TYPE.htm'>TYPE</a> 
-  command, you might want to do so before continuing.</p>
-<p>Use this to assign a custom Type object to the first object in the collection. 
-  See the example.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Define a crafts Type</p>
-<p>Type crafts<br>
-  Field x<br>
-  Field y<br>
-  Field dead<br>
-  Field graphic<br>
-  End Type</p>
-<p>; Create 100 crafts, with the unique name of alien<br>
-  For t = 1 To 100 <br>
-  alien.crafts = New crafts<br>
-  alien\x = Rnd(0,640)<br>
-  alien\y = Rnd(0,480)<br>
-  alien\dead = 0<br>
-  alien\graphic = 1<br>
-  Next</p>
-<p>; Move to the first object<br>
-  alien.crafts = First crafts</p>
-<p>Print alien\x<br>
-  Print alien\y<br>
-  Print alien\dead<br>
-  Print alien\graphic</p>
-<p>; move to the next alien object<br>
-  alien = After alien</p>
-<p>Print alien\x<br>
-  Print alien\y<br>
-  Print alien\dead<br>
-  Print alien\graphic</p>
-<p>; move to the last alien object<br>
-  alien.crafts = Last crafts</p>
-<p>Print alien\x<br>
-  Print alien\y<br>
-  Print alien\dead<br>
-  Print alien\graphic</p>
-<p>; move to the second to the last alien object<br>
-  alien = Before alien</p>
-<p>Print alien\x<br>
-  Print alien\y<br>
-  Print alien\dead<br>
-  Print alien\graphic<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+<html>
+<head>
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
+</head>
+<body>
+<h1>First type_variable</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+type_variable = the actual Type name, not the custom Type name
+</td>
+</tr>
+</table>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+If you haven't read up on the TYPE command, you might  want to do so before continuing.<br />
+<br />
+Use this to assign a custom Type object to the first object in the collection.  See the example.
+<br>
+<br>
+See also: <a class=small href=Type.htm>Type</a>, <a class=small href=New.htm>New</a>, <a class=small href=Before.htm>Before</a>, <a class=small href=After.htm>After</a>, <a class=small href=Last.htm>Last</a>, <a class=small href=Each.htm>Each</a>, <a class=small href=Insert.htm>Insert</a>, <a class=small href=Delete.htm>Delete</a>.
+</td>
+</tr>
+</table>
+<h1><a href=../2d_examples/First.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; Define a crafts Type<br />
+<br />
+Type crafts<br />
+Field x<br />
+Field y<br />
+Field dead<br />
+Field graphic<br />
+End Type <br />
+<br />
+; Create 100 crafts, with the unique name of alien<br />
+For t = 1 To 100 <br />
+alien.crafts = New crafts<br />
+alien\x = Rnd(0,640)<br />
+alien\y = Rnd(0,480)<br />
+alien\dead = 0<br />
+alien\graphic = 1<br />
+Next <br />
+<br />
+; Move to the first object<br />
+alien.crafts = First crafts <br />
+<br />
+Print alien\x<br />
+Print alien\y<br />
+Print alien\dead<br />
+Print alien\graphic <br />
+<br />
+; move to the next alien object<br />
+alien = After alien <br />
+<br />
+Print alien\x<br />
+Print alien\y<br />
+Print alien\dead<br />
+Print alien\graphic <br />
+<br />
+; move to the last alien object<br />
+alien.crafts = Last crafts <br />
+<br />
+Print alien\x<br />
+Print alien\y<br />
+Print alien\dead<br />
+Print alien\graphic <br />
+<br />
+; move to the second to the last alien object<br />
+alien = Before alien <br />
+<br />
+Print alien\x<br />
+Print alien\y<br />
+Print alien\dead<br />
+Print alien\graphic
+</td>
+</tr>
+</table>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=First&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

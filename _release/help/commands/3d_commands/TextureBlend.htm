@@ -1,44 +1,124 @@
 <html>
 <head>
-<title>Command: TextureBlend</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;TextureBlend texture,blend&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>texture - name of texture<br>
-    <br>
-    blend - blend mode of texture<br>
-    0: disable texture<br>
-    1: alpha<br>
-    2: multiply (default)<br>
-    3: add</td>
-  </tr>
+<h1>TextureBlend Texture, Blend</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+Texture - Texture handle.<br />
+Blend - Blend mode of texture.<br />
+<br />
+0: Do not blend<br />
+1: No blend, or Alpha (alpha when texture loaded with alpha flag - not recommended  for multitexturing - see below)<br />
+2: Multiply (default)<br />
+3: Add<br />
+4: Dot3<br />
+5: Multiply 2
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Set the blending mode for a texture.<p>This is used with multitexturing 
-    to control how the texture is combined with other textures.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Sets the blending mode for a texture.<br />
+<br />
+The texture blend mode determines how the texture will blend with the texture or polygon which is 'below' it. Texture 0 will blend with the polygons of the entity it is applied to. Texture 1 will blend with texture 0. Texture 2 will blend with texture 1. And so on.<br />
+<br />
+Texture blending in Blitz effectively takes the highest order texture (the one with the highest index) and it blends with the texture below it, then that result to the texture directly below again, and so on until texture 0 which is blended with the polygons of the entity it is applied to and thus the world, depending on the <a class=small href=../3d_commands/EntityBlend.htm>EntityBlend</a> of the object.<br />
+<br />
+Each of the blend modes are identical to their <a class=small href=../3d_commands/EntityBlend.htm>EntityBlend</a> counterparts.<br />
+<br />
+In the case of multitexturing (more than one texture applied to an entity), it is not recommended you blend textures that have been loaded with the alpha flag, as this can cause unpredictable results on a variety of different graphics cards. <br />
+<br />
+Use <a class=small href=../3d_commands/EntityTexture.htm>EntityTexture</a> to set the index number of a texture.
+<br>
+<br>
+See also: <a class=small href=EntityBlend.htm>EntityBlend</a>, <a class=small href=EntityTexture.htm>EntityTexture</a>.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/TextureBlend.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/TextureBlend.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; TextureBlend Example<br />
+; --------------------<br />
+<br />
+Graphics3D 640,480<br />
+SetBuffer BackBuffer()<br />
+<br />
+camera=CreateCamera()<br />
+<br />
+; Choose a background colour which isn't the same colour as anything else, to  avoid confusion<br />
+CameraClsColor camera,255,0,0<br />
+<br />
+light=CreateLight()<br />
+RotateEntity light,90,0,0<br />
+<br />
+cube=CreateCube()<br />
+PositionEntity cube,0,0,5<br />
+<br />
+; Load textures<br />
+tex0=LoadTexture( "media/b3dlogo.jpg" )<br />
+tex1=LoadTexture( "media/chorme-2.bmp" )<br />
+<br />
+; Texture cube with textures<br />
+EntityTexture cube,tex0,0,0<br />
+EntityTexture cube,tex1,0,1<br />
+<br />
+tex0_blend_info$="no texture"<br />
+tex1_blend_info$="no texture"<br />
+<br />
+While Not KeyDown( 1 )<br />
+<br />
+; Change texture 0 blending mode<br />
+If KeyHit( 11 )=True<br />
+tex0_blend=tex0_blend+1<br />
+If tex0_blend=4 Then tex0_blend=0<br />
+If tex0_blend=0 Then tex0_blend_info$="no texture"<br />
+If tex0_blend=1 Then tex0_blend_info$="no blend"<br />
+If tex0_blend=2 Then tex0_blend_info$="multiply"<br />
+If tex0_blend=3 Then tex0_blend_info$="add"<br />
+EndIf<br />
+<br />
+; Change texture 1 blending mode<br />
+If KeyHit( 2 )=True<br />
+tex1_blend=tex1_blend+1<br />
+If tex1_blend=4 Then tex1_blend=0<br />
+If tex1_blend=0 Then tex1_blend_info$="no texture"<br />
+If tex1_blend=1 Then tex1_blend_info$="no blend"<br />
+If tex1_blend=2 Then tex1_blend_info$="multiply"<br />
+If tex1_blend=3 Then tex1_blend_info$="add"<br />
+EndIf<br />
+<br />
+; Set texture blend modes<br />
+TextureBlend tex0,tex0_blend <br />
+TextureBlend tex1,tex1_blend <br />
+<br />
+TurnEntity cube,0.1,0.1,0.1<br />
+<br />
+RenderWorld<br />
+<br />
+Text 0,0,"Press 0 to change texture 0's blending mode"<br />
+Text 0,20,"Press 1 to change texture 1's blending mode"<br />
+Text 0,40,"TextureBlend tex0,"+tex0_blend+" ("+tex0_blend_info$+")"<br />
+Text 0,60,"TextureBlend tex1,"+tex1_blend+" ("+tex1_blend_info$+")"<br />
+<br />
+Flip<br />
+<br />
+Wend<br />
+<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=TextureBlend&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

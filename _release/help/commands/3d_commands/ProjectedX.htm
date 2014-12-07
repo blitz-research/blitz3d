@@ -1,38 +1,88 @@
 <html>
 <head>
-<title>Command: ProjectedX</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;ProjectedX# ( )&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>None.</td>
-  </tr>
+<h1>ProjectedX# ( )</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+None.
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Returns the viewport x coordinate of the most recently executed
-    <a href="CameraProject.htm">CameraProject</a>.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Returns the viewport x coordinate of the most recently executed CameraProject.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/ProjectedX.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/ProjectedX.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; ProjectedX Example<br />
+; ------------------<br />
+<br />
+Graphics3D 640,480<br />
+SetBuffer BackBuffer()<br />
+<br />
+camera=CreateCamera()<br />
+PositionEntity camera,0,2,-10<br />
+<br />
+light=CreateLight()<br />
+RotateEntity light,90,0,0<br />
+<br />
+plane=CreatePlane()<br />
+ground_tex=LoadTexture("media/Chorme-2.bmp")<br />
+EntityTexture plane,ground_tex<br />
+<br />
+cube=CreateCube()<br />
+cube_tex=LoadTexture("media/b3dlogo.jpg")<br />
+EntityTexture cube,cube_tex<br />
+PositionEntity cube,0,1,0<br />
+<br />
+While Not KeyDown( 1 )<br />
+<br />
+If KeyDown( 205 )=True Then TurnEntity camera,0,-1,0<br />
+If KeyDown( 203 )=True Then TurnEntity camera,0,1,0<br />
+If KeyDown( 208 )=True Then MoveEntity camera,0,0,-0.05<br />
+If KeyDown( 200 )=True Then MoveEntity camera,0,0,0.05<br />
+<br />
+; Use camera project to get 2D coordinates from 3D coordinates of cube<br />
+CameraProject(camera,EntityX(cube),EntityY(cube),EntityZ(cube))<br />
+<br />
+RenderWorld<br />
+<br />
+; If cube is in view then draw text, if not then draw nothing otherwise text  will be drawn at 0,0<br />
+If EntityInView(cube,camera)=True<br />
+<br />
+; Use ProjectedX() and ProjectedY() to get 2D coordinates from when CameraProject  was used.<br />
+; Use these coordinates to draw text at a 2D position, on top of a 3D scene.<br />
+Text ProjectedX#(),ProjectedY#(),"Cube" <br />
+<br />
+EndIf<br />
+<br />
+Text 0,0,"Use cursor keys to move about"<br />
+Text 0,20,"ProjectedX: "+ProjectedX#()<br />
+Text 0,40,"ProjectedY: "+ProjectedY#()<br />
+Text 0,60,"ProjectedZ: "+ProjectedZ#()<br />
+Text 0,80,"EntityInView: "+EntityInView(cube,camera)<br />
+<br />
+Flip<br />
+<br />
+Wend<br />
+<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=ProjectedX&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

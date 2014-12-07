@@ -1,8 +1,73 @@
-<html><head><title>Command: Log </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Log (number)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns the natural logarithm of the supplied argument.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>number=float or integer<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Log() is the logarithmic (or inverse exponential) function.  Logarithms to the base <i>e</i> are called the Natural or Napierian logarithms.  The <a href='Exp.htm'>Exp</a>() and Log() functions uses the transcendental number <i>e</i> as a base (approx 2.718).  Log() is the inverse of the Exponential <a href='Exp.htm'>Exp</a>() function.  Log(e) = 1
-See also: <a href='Exp.htm'>Exp</a> <a href='Log10.htm'>Log10</a></td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; To find the value of Log(e^5)<br>
-e# = Exp(1)<br>
-x# = 5<br>
-y# = e#^x#<br>
-Print y ; i.e. e^5 = e*e*e*e*e: returns 148.413131<br>
-Print Log(y) ; ie. Log(e^5) = Log(10000): returns 5.000000<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+<html>
+<head>
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
+</head>
+<body>
+<h1>Log# ( x# )</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+x = any positive number.
+</td>
+</tr>
+</table>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Natural logarithm of x. This is the inverse of Exp( ).<br />
+<br />
+y = Log( x ) means y satifies x = Exp( y ).<br />
+<br />
+The base of the natural logarithm is e = Exp(1) = 2.71828...<br />
+<br />
+See also Exp()
+</td>
+</tr>
+</table>
+<h1><a href=../2d_examples/Log.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; Log example<br />
+<br />
+; NaN means "Not a Number", the numerical result is invalid.<br />
+<br />
+; NOTE: All logarithm functions are related. For example, there is no<br />
+;       Log8 function in Blitz, but we can easily make one.<br />
+<br />
+HidePointer<br />
+<br />
+Print "Log8( -1 ) = " + Log8( -1 )<br />
+Print "Log8( 0  ) = " + Log8( 0 )<br />
+Print<br />
+<br />
+; ... and now some well behaved numbers...<br />
+<br />
+x# = 1.0 / 4096.0   ; small positive number<br />
+<br />
+For n = 1 To 15<br />
+<br />
+Print "Log8( " + LSet( x, 13 ) + " ) = " + Log8( x )<br />
+x = 8 * x<br />
+<br />
+Next<br />
+<br />
+WaitKey()  :  End<br />
+<br />
+<br />
+Function Log8# ( x# )<br />
+<br />
+Return Log( x ) / Log( 8 )<br />
+<br />
+End Function
+</td>
+</tr>
+</table>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=Log&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

@@ -1,63 +1,78 @@
 <html>
 <head>
-<title>Command: AddVertex</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;AddVertex ( surface,x#,y#,z#[,u#][,v#][,w#] 
-)&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>surface - surface handle<br>
-    x# - x coordinate of vertex<br>
-    y# - y coordinate of vertex<br>
-    z# - z coordinate of vertex<br>
-    u# (optional) - u texture coordinate of vertex<br>
-    v# (optional) - v texture coordinate of vertex<br>
-    w# (optional) - w texture coordinate of vertex - not used, included for 
-    future expansion</td>
-  </tr>
+<h1>AddVertex ( surface,x#,y#,z#[,u#][,v#][,w#] )</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+surface - surface handle<br />
+x# - x coordinate of vertex<br />
+y# - y coordinate of vertex<br />
+z# - z coordinate of vertex<br />
+u# (optional) - u texture coordinate of vertex<br />
+v# (optional) - v texture coordinate of vertex<br />
+w# (optional) - w texture coordinate of vertex - not used, included for future expansion
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Adds a vertex to the specified surface and returns the vertices' index 
-    number, starting from 0.<p>x,y,z are the geometric coordinates of the 
-    vertex, and u,v,w are texture mapping coordinates.</p>
-    <p>A vertex is a point in 3D space which is used to connect edges of a 
-    triangle together. Without any vertices, you can't have any triangles. At 
-    least three vertices are needed to create one triangle; one for each corner.</p>
-    <p>The optional u,v parameters allow you to specify texture coordinates for a vertex, 
-    which will determine how any triangle created using those vertices will be 
-    texture mapped.</p>
-    <p>This works on the following basis: the bottom left of an image has the uv 
-    coordinates 0,0. The bottom right has coordinates 0,1, top left 0,1 and top 
-    right 1,1. Now, depending on what uv coordinate you assign to the vertex, 
-    this will represent a point on the image. For example, a coordinate of 
-    0.5,0.5 would represent the centre of the image.</p>
-    <p>So now imagine you have a normal equilateral triangle. By assigning 
-    the bottom left vertex a uv coordinate of 0,0, then bottom right a 
-    coordinate of 1,0 and the top centre 0.5,1, this will texture map the 
-    triangle with an image that fits it.</p>
-    </td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Adds a vertex to the specified surface and returns the vertices' index number,  starting from 0.<br />
+<br />
+x,y,z are the geometric coordinates of the vertex, and u,v,w are texture mapping coordinates.<br />
+<br />
+A vertex is a point in 3D space which is used to connect edges of a triangle together. Without any vertices, you can't have any triangles. At least three  vertices are needed to create one triangle; one for each corner. <br />
+<br />
+The optional u, v and w parameters allow you to specify texture coordinates for a vertex, which will determine how any triangle created using those vertices will be texture mapped. The u, v and w parameters specified will take effect on both texture coordinate sets (0 and 1). This works on the following basis: <br />
+<br />
+The top left of an image has the uv coordinates 0,0. <br />
+The top right has coordinates 1,0<br />
+The bottom right is 1,1.<br />
+The bottom left 0,1. <br />
+<br />
+Thus, uv coordinates for a vertex correspond to a point in the image. For example, coordinates 0.9,0.1 would be near the upper right corner of the image. <br />
+<br />
+So now imagine you have a normal equilateral triangle. By assigning the bottom left vertex a uv coordinate of 0,0, the bottom right a coordinate of 1,0 and the top centre 0.5,1, this will texture map the triangle with an image that fits it.<br />
+<br />
+When adding a vertex its default color is 255,255,255,255.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/AddVertex.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/AddVertex.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+Graphics3D 640,480<br />
+SetBuffer BackBuffer()<br />
+<br />
+mesh = CreateMesh()<br />
+surf = CreateSurface(mesh)<br />
+<br />
+v0 = AddVertex (surf, -5,-5,0,  0  ,0)<br />
+v1 = AddVertex (surf,  5,-5,0,  1  ,0)<br />
+v2 = AddVertex (surf,  0, 5,0,  0.5,1)<br />
+<br />
+tri = AddTriangle (surf,v0,v2,v1)<br />
+<br />
+cam = CreateCamera()<br />
+MoveEntity cam, 0,0,-7<br />
+<br />
+RenderWorld<br />
+Flip<br />
+<br />
+WaitKey<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=AddVertex&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

@@ -1,40 +1,77 @@
 <html>
 <head>
-<title>Command: CameraClsColor</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;CameraClsColor camera,red#,green#,blue#&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>camera - camera handle<br>
-    red# - red value of camera background color<br>
-    green# - green value of camera background color<br>
-    blue# - blue value of camera background color</td>
-  </tr>
+<h1>CameraClsColor camera,red#,green#,blue#</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+camera - camera handle<br />
+red# - red value of camera background color<br />
+green# - green value of camera background color<br />
+blue# - blue value of camera background color
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Sets camera background color. Defaults to 0,0,0.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Sets camera background color. Defaults to 0,0,0.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/CameraClsColor.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/CameraClsColor.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; CameraClsColor Example<br />
+; ----------------------<br />
+<br />
+Graphics3D 640,480<br />
+SetBuffer BackBuffer()<br />
+<br />
+camera=CreateCamera()<br />
+<br />
+light=CreateLight()<br />
+RotateEntity light,90,0,0<br />
+<br />
+sphere=CreateSphere( 32 )<br />
+PositionEntity sphere,0,0,5<br />
+<br />
+While Not KeyDown(1)<br />
+<br />
+; Change red, green, blue values depending on key pressed<br />
+If KeyDown(2)=True And red#>0 Then red#=red#-1<br />
+If KeyDown(3)=True And red#<255 Then red#=red#+1<br />
+If KeyDown(4)=True And green#>0 Then green#=green#-1<br />
+If KeyDown(5)=True And green#<255 Then green#=green#+1<br />
+If KeyDown(6)=True And blue#>0 Then blue#=blue#-1<br />
+If KeyDown(7)=True And blue#<255 Then blue#=blue#+1<br />
+<br />
+; Set camera clear color using red, green, blue values<br />
+CameraClsColor camera,red#,green#,blue#<br />
+<br />
+RenderWorld<br />
+<br />
+Text 0,0,"Press keys 1-6 to change CameraClsColor red#,green#,blue# values<br />
+Text 0,20,"Red: "+red#<br />
+Text 0,40,"Green: "+green#<br />
+Text 0,60,"Blue: "+blue#<br />
+<br />
+Flip<br />
+<br />
+Wend<br />
+<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=CameraClsColor&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

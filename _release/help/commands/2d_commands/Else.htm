@@ -1,11 +1,47 @@
-<html><head><title>Command: Else </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Else  &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Begins the code to be executed in the event the IF conditional fails.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None.</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>There are times during an <a href='IF.htm'>IF</a> ... <a href='THEN.htm'>THEN</a> conditional that you will want code to execute in the event that the conditional is NOT met.  The ELSE command begins that block of code, and is terminated by the <a href='END IF.htm'>END IF</a> command.  See example.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; ELSE example<br>
+<html>
+<head>
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
+</head>
+<body>
+<h1>Else</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+None.
+</td>
+</tr>
+</table>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+There are times during an IF ...  THEN conditional that you will want code to execute in the event that the  conditional is NOT met. The ELSE command begins that block of code, and is terminated  by the END IF command. See example.
 <br>
-name$=Input$("What is your name?")<br>
 <br>
-If name$="Shane" then <br>
-Print "Hello Shane!"<br>
-Else<br>
-Print "I have NO clue who you are!"<br>
-End If<br>
-<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+See also: <a class=small href=If.htm>If</a>, <a class=small href=Then.htm>Then</a>, <a class=small href=ElseIf.htm>ElseIf</a>, <a class=small href=EndIf.htm>EndIf</a>, <a class=small href=Select.htm>Select</a>.
+</td>
+</tr>
+</table>
+<h1><a href=../2d_examples/Else.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; ELSE example <br />
+<br />
+name$=Input$("What is your name?") <br />
+<br />
+If name$="Shane" then <br />
+	Print "Hello Shane!" <br />
+Else <br />
+	Print "I have NO clue who you are!" <br />
+End If
+</td>
+</tr>
+</table>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=Else&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

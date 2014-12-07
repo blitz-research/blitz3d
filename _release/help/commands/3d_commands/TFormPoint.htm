@@ -1,97 +1,70 @@
 <html>
 <head>
-<title>Command: TFormPoint</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;TFormPoint&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>x# - x co-ordinate on which to perform transformation<BR>
-	y# - y co-ordinate on which to perform transformaion<BR>
-	z# - z co-ordinate on which to perform transformation<BR>
-	src_entity - source entity space from which to transform co-ordinates<BR>
-	dest_entity - destination entity space to transform co-ordinates<BR>
+<h1>TFormPoint x#, y#, z#, source_entity, dest_entity</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+x#, y#, z# = coordinates of a point in 3d space<br />
+<br />
+source_entity = handle of source entity, or 0 for 3d world<br />
+dest_entity = handle of destination entity, or 0 for 3d world
 </td>
-  </tr>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>TFormPoint takes the co-ordinates of the source entity and 'transforms' them into co-ordinates <I>relative</I> to the co-ordinates of the destination entity (taking x, y and z as offsets, usually all set to 0 to use the center of the given entities). The resulting co-ordinates can be retrieved by the use of the TFormedX, TFormedY and TFormedZ functions. Passing 0 as either source or destination entity means that the transformation is performed relative to the global space (ie. the 3D world).
-<P>
-In English, this means that if you supply two entities, you can find the individual x, y and z offset distances of the source entity from the destination entity (providing you pass 0, 0, 0 as the x, y and z parameters). Changing the x, y and z parameters to anything other than zero will perform the transformation with this offset taken into account. For example, you can specify a point 5 units to the left of the given entities (x = 5), and the result will be offset by that x value.
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Transforms between coordinate systems. After using TFormPoint the new<br />
+coordinates can be read with TFormedX(), TFormedY() and TFormedZ(). <br />
+<br />
+<br />
+See EntityX() for details about local coordinates. <br />
+<br />
+Consider a sphere built with CreateSphere(). The 'north pole' is at (0,1,0).<br />
+At first, local and global coordinates are the same. As the sphere is moved, <br />
+turned and scaled the global coordinates of the point change.<br />
+<br />
+But it is always at (0,1,0) in the sphere's local space.
 </td>
-  </tr>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/TFormPoint.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>
-
-Graphics3D 640, 480<BR>
-<BR>
-cam = CreateCamera ()<BR>
-MoveEntity cam, 5, 0, -5<BR>
-<BR>
-box = CreateCube ()<BR>
-MoveEntity box, 5, 0, 0<BR>
-<BR>
-Repeat<BR>
-<BR>
-	If KeyDown (203) TurnEntity cam, 0, 0.5, 0<BR>
-	If KeyDown (205) TurnEntity cam, 0, -0.5, 0<BR>
-	If KeyDown (200) MoveEntity cam, 0, 0, 0.1<BR>
-	If KeyDown (208) MoveEntity cam, 0, 0, -0.1<BR>
-<BR>
-	bx#	= EntityX (box)<BR>
-	by#	= EntityY (box)<BR>
-	bz#	= EntityZ (box)<BR>
-<BR>
-	cx#	= EntityX (cam, 1)<BR>
-	cy#	= EntityY (cam, 1)<BR>
-	cz#	= EntityZ (cam, 1)<BR>
-	<BR>
-	TFormPoint 0, 0, 0, cam, box<BR>
-	xdist# = TFormedX ()<BR>
-	ydist# = TFormedY ()<BR>
-	zdist# = TFormedZ ()<BR>
-		<BR>
-	UpdateWorld<BR>
-	RenderWorld<BR>
-	<BR>
-	Text 0, 20, "Box's global position"<BR>
-	Text 20, 40, "x: " + bx<BR>
-	Text 20, 60, "y: " + by<BR>
-	Text 20, 80, "z: " + bz<BR>
-	<BR>
-	Text 0, 120, "Camera's global position"<BR>
-	Text 20, 140, "x: " + cx<BR>
-	Text 20, 160, "y: " + cy<BR>
-	Text 20, 180, "z: " + cz<BR>
-<BR>
-	Text 0, 220, "Camera position relative to box"<BR>
-	Text 20, 240, "x: " + xdist<BR>
-	Text 20, 260, "y: " + ydist<BR>
-	Text 20, 280, "z: " + zdist<BR>
-	<BR>
-	Flip<BR>
-<BR>
-Until KeyHit (1)<BR>
-<BR>
-End<BR>
+<h1><a href=../3d_examples/TFormPoint.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; TFormPoint example<br />
+<br />
+Graphics3D 640, 480<br />
+<br />
+s = CreateSphere()       ; center at (0,0,0)  north pole at (0,1,0)<br />
+<br />
+MoveEntity s, 1,2,3      ; center at (1,2,3)  north pole at (1,2+1,3)  <br />
+ScaleEntity s, 10,10,10  ; center at (1,2,3)  north pole at (1,2+10,3)<br />
+<br />
+; Now verify that the north pole is at (1,12,3) in the 3d world<br />
+<br />
+TFormPoint 0,1,0, s,0    ; north pole transformed from sphere to world<br />
+<br />
+message$ = "North pole is at ( "<br />
+message = message + TFormedX() + ",  " + TFormedY() + ",  " + TFormedZ() + " )"<br />
+<br />
+Text 180, 200, message<br />
+<br />
+Flip<br />
+<br />
+WaitKey()<br />
+End
 </td>
-  </tr>
+</tr>
 </table>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=TFormPoint&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

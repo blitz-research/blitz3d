@@ -1,73 +1,72 @@
 <html>
 <head>
-<title>Command: MeshIntersect</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;MeshesIntersect (mesh_a,mesh_b )&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>mesh_a - mesh_a handle<br>
-    mesh_b - mesh_b handle</td>
-  </tr>
+<h1>MeshesIntersect (mesh_a,mesh_b )</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+mesh_a - mesh_a handle<br />
+mesh_b - mesh_b handle
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Returns true if the specified meshes are currently intersecting.<p>This 
-    is a fairly slow routine - use with discretion...<p>This command is 
-    currently the only 
-    polygon-&gt;polygon collision checking routine available in Blitz3D.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Returns true if the specified meshes are currently intersecting.<br />
+<br />
+This  is a fairly slow routine - use with discretion...<br />
+<br />
+This command is  currently the only  polygon->polygon collision checking routine available in Blitz3D.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/MeshesIntersect.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>; MeshesIntersect Example<br>
-    ; -----------------------<br>
-    <br>
-    Graphics3D 640,480<br>
-    SetBuffer BackBuffer()<br>
-    <br>
-    camera=CreateCamera()<br>
-    <br>
-    light=CreateLight()<br>
-    RotateEntity light,90,0,0<br>
-    <br>
-    drum=LoadMesh(&quot;media/oil-drum/oildrum.3ds&quot;)<br>
-    PositionEntity drum,-20,0,100<br>
-    <br>
-    crate=LoadMesh(&quot;media/wood-crate/wcrate1.3ds&quot;)<br>
-    PositionEntity crate,20,0,100<br>
-    <br>
-    While Not KeyDown( 1 )<br>
-    <br>
-    TurnEntity drum,1,1,1<br>
-    TurnEntity crate,-1,-1,-1<br>
-    <br>
-    RenderWorld<br>
-    <br>
-    ; Test to see if drum and crate meshes are intersecting; if so then display 
-    message to confirm this<br>
-    If MeshesIntersect(drum,crate)=True Then Text 0,0,&quot;Meshes are intersecting!&quot;<br>
-    <br>
-    Flip<br>
-    <br>
-    Wend<br>
-    <br>
-    End</td>
-  </tr>
+<h1><a href=../3d_examples/MeshesIntersect.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; MeshesIntersect Example<br />
+; -----------------------<br />
+<br />
+Graphics3D 640,480<br />
+SetBuffer BackBuffer()<br />
+<br />
+camera=CreateCamera()<br />
+<br />
+light=CreateLight()<br />
+RotateEntity light,90,0,0<br />
+<br />
+drum=LoadMesh("media/oil-drum/oildrum.3ds")<br />
+PositionEntity drum,-20,0,100<br />
+<br />
+crate=LoadMesh("media/wood-crate/wcrate1.3ds")<br />
+PositionEntity crate,20,0,100<br />
+<br />
+While Not KeyDown( 1 )<br />
+<br />
+TurnEntity drum,1,1,1<br />
+TurnEntity crate,-1,-1,-1<br />
+<br />
+RenderWorld<br />
+<br />
+; Test to see if drum and crate meshes are intersecting; if so then display  message to confirm this<br />
+If MeshesIntersect(drum,crate)=True Then Text 0,0,"Meshes are intersecting!"<br />
+<br />
+Flip<br />
+<br />
+Wend<br />
+<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=MeshesIntersect&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

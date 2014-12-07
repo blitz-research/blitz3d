@@ -1,20 +1,17 @@
-; LightColor Example
-; ----------------
-
 Graphics3D 640,480
-SetBuffer BackBuffer()
 
-camera=CreateCamera()
-light=CreateLight()
+camera = CreateCamera()
+MoveEntity camera,0,0,-3
 
-cone=CreateCone()
-PositionEntity cone,0,0,5
+ball = CreateSphere()
 
-While Not KeyDown( 1 )
-	
-	RenderWorld
-	Flip
+lite = CreateLight() ; try different lights 1 to 3
+MoveEntity lite,5,0,-15
+PointEntity lite,ball
 
+
+While Not KeyDown(1)
+RenderWorld:Flip
+If KeyHit(57) Then LightColor lite,Rnd(255),Rnd(255),Rnd(255) ; press SPACEBAR to try different light colors
 Wend
-
 End

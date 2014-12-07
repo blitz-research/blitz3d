@@ -1,65 +1,82 @@
 <html>
 <head>
-<title>Command: CreateLight</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;CreateLight ( [type][,parent] )&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>type (optional) - type of light<br>
-    1: directional<br>
-    2: point<br>
-    3: spot<br>
-    <br>
-    parent (optional) - parent entity of light</td>
-  </tr>
+<h1>CreateLight ( [type][,parent] )</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+type (optional) - type of light<br />
+1: directional (default)<br />
+2: point<br />
+3: spot<br />
+<br />
+parent (optional) - parent entity of light
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Creates a light.<p>Lights work by affecting the colour of all vertices 
-    within the light's range. You need at to create at least one light if you 
-    wish to use 3D graphics otherwise everything will appear flat.<br>
-    <br>
-    The optional type parameter allows you to specify the type of light you wish 
-    to create. A value of 1 creates a directional light. This works similar to a 
-    sun shining on a house. All walls facing a certain direction are lit the 
-    same. How much they are lit by depends on the angle of the light reaching 
-    them.<br>
-    <br>
-    A value of 2 creates a point light. This works a little bit like a light 
-    bulb in a house, starting from a central point and gradually fading 
-    outwards.<br>
-    <br>
-    A value of 3 creates a spot light. This is a cone of light. This works 
-    similar to shining a torch in a house. It starts with an inner angle of 
-    light, and then extends towards an outer angle of light.</p>
-    <font SIZE="2">
-    <p>The optional parent parameter allow you to specify a parent entity for 
-    the light so that when the parent is moved the child light will move with 
-    it. However, this relationship is one way; applying movement commands to the 
-    child will not affect the parent.</p>
-    <p>Specifying a parent entity will still result in the light being created 
-    at position 0,0,0 rather than at the parent entity's position.</font></td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Creates a light.<br />
+<br />
+Lights work by affecting the colour of all vertices within  the light's range. You need at to create at least one light if you wish to use 3D graphics otherwise everything will appear flat.<br />
+<br />
+The optional type parameter allows you to specify the type of light you wish to create. A value of 1 creates a directional light. This works similar to a  sun shining on a house. All walls facing a certain direction are lit the same.  How much they are lit by depends on the angle of the light reaching them.  Directional lights have infinite 'position' and infinite range.<br />
+<br />
+A value of 2 creates a point (or omni) light. This works a little bit like a light bulb  in a house, starting from a central point and gradually fading outwards.<br />
+<br />
+A value of 3 creates a spot light. This is a cone of light. This works similar  to shining a torch in a house. It starts with an inner angle of light, and then  extends towards an outer angle of light.  You can adjust the angles of a 'spot' light with the LightConeAngles command.<br />
+<br />
+The optional parent parameter allow you to specify a parent entity for the  light so that when the parent is moved the child light will move with it. However,  this relationship is one way; applying movement commands to the child will not affect the parent. <br />
+<br />
+Specifying a parent entity will still result in the light being created at  position 0,0,0 rather than at the parent entity's position.<br />
+<br />
+<br />
+Other notes:<br />
+There is a DirectX limit on the number of lights available per scene - this is either 8 or 16 depending on your video card, but you should always assume 8.<br />
+<br />
+Also, you should remember that each light added effects the rendering speed.<br />
+<br />
+Lights do not cast shadows, like they do in real life.<br />
+<br />
+Most games get around these issues by the use of a pre-calculated 'baked' lightmap texture for the static geometry in the scene.<br />
+<br />
+Other lighting techniques include: adjusting vertex colors, dynamic shadows, and/or dynamic lights (ie. moving the lights around in the scene as they are needed).
+<br>
+<br>
+See also: <a class=small href=LightRange.htm>LightRange</a>, <a class=small href=LightColor.htm>LightColor</a>, <a class=small href=LightConeAngles.htm>LightConeAngles</a>, <a class=small href=AmbientLight.htm>AmbientLight</a>.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/CreateLight.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/CreateLight.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+Graphics3D 640,480<br />
+<br />
+camera = CreateCamera()<br />
+MoveEntity camera,0,0,-3<br />
+<br />
+ball = CreateSphere()<br />
+<br />
+lite = CreateLight(1) ; change this to 2 or 3 to see different lights<br />
+MoveEntity lite,5,0,0<br />
+PointEntity lite,ball ; make sure light is pointing at ball<br />
+<br />
+While Not KeyDown(1)<br />
+RenderWorld:Flip<br />
+Wend<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=CreateLight&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

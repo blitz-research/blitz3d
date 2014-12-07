@@ -1,40 +1,35 @@
 <html>
 <head>
-<title>Command: EntityType</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;EntityType entity,collision_type[,recursive]&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>entity - entity handle<br>
-    collision_type - collision type of entity<br>
-    recursive (optional) - true to apply collision type to entity's children. 
-    Defaults to false.</td>
-  </tr>
+<h1>EntityType entity,collision_type[,recursive]</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+entity - entity handle<br />
+collision_type - collision type of entity. Must be in the range 0-999.<br />
+recursive (optional) - true to apply collision type to entity's children. Defaults  to false.
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Sets the collision type for an entity.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Sets the collision type for an entity.<br />
+<br />
+A collision_type value of 0 indicates that no collision checking will occur with that entity. A collision value of 1-999 will mean collision checking will occur.
+<br>
+<br>
+See also: <a class=small href=Collisions.htm>Collisions</a>, <a class=small href=GetEntityType.htm>GetEntityType</a>, <a class=small href=EntityBox.htm>EntityBox</a>, <a class=small href=EntityRadius.htm>EntityRadius</a>.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/EntityType.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
-</table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=EntityType&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

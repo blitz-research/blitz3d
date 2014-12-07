@@ -24,24 +24,24 @@ v_scale#=1
 
 While Not KeyDown( 1 )
 
-	; Change uv scale values depending on key pressed
-	If KeyDown( 208 )=True Then u_scale#=u_scale#-0.01	
-	If KeyDown( 200 )=True Then u_scale#=u_scale#+0.01	
-	If KeyDown( 203 )=True Then v_scale#=v_scale#-0.01	
-	If KeyDown( 205 )=True Then v_scale#=v_scale#+0.01	
+; Change uv scale values depending on key pressed
+If KeyDown( 208 )=True Then u_scale#=u_scale#-0.01 
+If KeyDown( 200 )=True Then u_scale#=u_scale#+0.01 
+If KeyDown( 203 )=True Then v_scale#=v_scale#-0.01 
+If KeyDown( 205 )=True Then v_scale#=v_scale#+0.01 
 
-	; Scale texture
-	ScaleTexture tex,u_scale#,v_scale# 
+; Scale texture
+ScaleTexture tex,u_scale#,v_scale# 
 
-	TurnEntity cube,0.1,0.1,0.1
-	
-	RenderWorld
-	
-	Text 0,0,"Use cursor keys to change uv scale values"
-	Text 0,20,"u_scale#="+u_scale#
-	Text 0,40,"v_scale#="+v_scale#
-	
-	Flip
+TurnEntity cube,0.1,0.1,0.1
+
+RenderWorld
+
+Text 0,0,"Use cursor keys to change uv scale values"
+Text 0,20,"u_scale#="+u_scale#
+Text 0,40,"v_scale#="+v_scale#
+
+Flip
 
 Wend
 

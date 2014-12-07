@@ -1,21 +1,56 @@
-<html><head><title>Command: JoinNetGame </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;JoinNetGame (gamename$,serverIP$)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Joins a network game in progress.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>gamename$ = valid string containing game name to join<br>
-serverIP$ = IP address of computer hosting game<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Use this command to join a network game, bypassing the dialog box normally endured with the <a href='StartNetGame.htm'>StartNetGame</a> command.<br>
-This returns 0 if the command failed, or 1 if the game was joined successfully.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; JoinNetGame example<br>
-; Note; run the HostNetGame example code on the other computer<br>
-; you wish to join with<br>
+<html>
+<head>
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
+</head>
+<body>
+<h1>JoinNetGame (gamename$,serverIP$)</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+gamename$ = valid string containing game name to join<br />
+serverIP$ = IP address of computer hosting game 
+</td>
+</tr>
+</table>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Use this command to join a network game, bypassing the dialog box normally  endured with the StartNetGame command.<br />
+This returns 0 if the command failed, or 1 if the game was joined successfully.
+</td>
+</tr>
+</table>
+<h1><a href=../2d_examples/JoinNetGame.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; JoinNetGame example<br />
+; Note; run the HostNetGame example code on the other computer<br />
+; you wish to join with<br />
+<br />
+gamename$="ShaneGame"<br />
+; Change this to match the other computer's IP!<br />
+serverIP$="0.0.0.0"<br />
+<br />
+; Make the join attempt<br />
+joinResults=JoinNetGame(gamename$,serverIP$)<br />
+<br />
+Select joinResults<br />
+Case 1<br />
+Print "Joined the game successfully!"<br />
+Default<br />
+Print "Joining the game was unsuccessful."<br />
+End Select<br />
+WaitKey()<br />
+
+</td>
+</tr>
+</table>
 <br>
-gamename$="ShaneGame"<br>
-; Change this to match the other computer's IP!<br>
-serverIP$="0.0.0.0"<br>
+<a target=_top href=../index.htm>Index</a><br>
 <br>
-; Make the join attempt<br>
-joinResults=JoinNetGame(gamename$,serverIP$)<br>
-<br>
-Select joinResults<br>
-	Case 1<br>
-		Print "Joined the game successfully!"<br>
-	Default<br>
-		Print "Joining the game was unsuccessful."<br>
-End Select<br>
-WaitKey()<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=JoinNetGame&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

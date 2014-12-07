@@ -1,45 +1,44 @@
 <html>
 <head>
-<title>Command: EntityFX</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;EntityFX entity,fx&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>entity - entity handle<br>
-    <br>
-    fx -<br>
-    1: full-bright<br>
-    2: use vertex colors instead of brush color<br>
-    4: flatshaded<br>
-    8: disable fog </td>
-  </tr>
+<h1>EntityFX entity,fx</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+entity - entity handle<br />
+<br />
+fx -<br />
+0: nothing (default)<br />
+1: full-bright<br />
+2: use vertex colors instead of brush color<br />
+4: flatshaded<br />
+8: disable fog<br />
+16: disable backface culling<br />
+32: force alpha-blending
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Sets miscellaneous effects for an entity.<p>Flags can be added to combine 
-    two or more effects. For example, specifying a flag of 3 (1+2) will result 
-    in a full-bright and vertex-coloured brush.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Sets miscellaneous effects for an entity.<br />
+<br />
+Flags can be added to combine  two or more effects. For example, specifying a flag of 3 (1+2) will result in  a full-bright and vertex-coloured brush.<br />
+<br />
+Flag 32, to force alpha-blending, must be used in order to enable vertex alpha (see VertexColor).
+<br>
+<br>
+See also: <a class=small href=VertexColor.htm>VertexColor</a>.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/EntityFX.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
-</table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=EntityFX&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

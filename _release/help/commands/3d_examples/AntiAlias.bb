@@ -14,18 +14,18 @@ PositionEntity sphere,0,0,2
 
 While Not KeyDown( 1 )
 
-	; Toggle antialias enable value between true and false when spacebar is pressed
-	If KeyHit( 57 )=True Then enable=1-enable
+; Toggle antialias enable value between true and false when spacebar is pressed
+If KeyHit( 57 )=True Then enable=1-enable
 
-	; Enable/disable antialiasing
-	AntiAlias enable
+; Enable/disable antialiasing
+AntiAlias enable
 
-	RenderWorld
+RenderWorld
 
-	Text 0,0,"Press spacebar to toggle between AntiAlias True/False"
-	If enable=False Then Text 0,20,"AntiAlias False" Else Text 0,20,"AntiAlias True"
+Text 0,0,"Press spacebar to toggle between AntiAlias True/False"
+If enable=True Then Text 0,20,"AntiAlias True" Else Text 0,20,"AntiAlias False"
 
-	Flip
+Flip
 
 Wend
 

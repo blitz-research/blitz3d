@@ -1,49 +1,57 @@
 <html>
 <head>
-<title>Command: SystemProperty</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;SystemProperty&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>property$ - system property information required (valid strings listed below)</td>
-  </tr>
-</table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>SystemProperty () returns the location of a standard system folder, which can be different on every computer. Note that it's not a good idea to play around in a user's Windows or System folder!
-<P>
-Valid parameters are:
-<P>
-"tempdir" - Temp folder<BR>
-"systemdir" - System folder<BR>
-"windowsdir" - Windows folder<BR>
-"appdir" - Program Files folder<BR>
+<h1>SystemProperty (property$)</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+property$ - system property information required (valid strings listed below)
 </td>
-  </tr>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/SystemProperty.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>
-Print "System folder location: " + SystemProperty ("systemdir")<BR>
-Print "Windows folder location: " + SystemProperty ("windowsdir")<BR>
-Print "Temp folder: " + SystemProperty ("tempdir")<BR>
-Print "Program was run from " + SystemProperty ("appdir")<BR>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+SystemProperty is used to 'find out' certain system-specific things that are external to the currently running program.<br />
+<br />
+There are broadly two different uses for SystemProperty, one for finding out the location of certain folders on the Windows OS, and one for finding out the handles/objects being used by the Win32/DX APIs to run Blitz programs. These objects and handles can then be used via third party DLLs to add extra functionality to Blitz, although this is recommended for advanced users only.<br />
+<br />
+Properties - folders: <br />
+<br />
+systemdir - System folder<br />
+windowsdir - Windows folder<br />
+tempdir - Temp folder<br />
+appdir - Program Files folder<br />
+<br />
+Properties - objects/handles:<br />
+<br />
+Direct3D7<br />
+Direct3DDevice7<br />
+DirectDraw7<br />
+DirectInput7<br />
+AppHWND<br />
+AppHINSTANCE
 </td>
-  </tr>
+</tr>
 </table>
-</body>
+<h1><a href=../2d_examples/SystemProperty.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+Print "System folder location: " + SystemProperty ("systemdir")<br />
+Print "Windows folder location: " + SystemProperty ("windowsdir")<br />
+Print "Temp folder: " + SystemProperty ("tempdir")<br />
+Print "Program was run from " + SystemProperty ("appdir")
+</td>
+</tr>
+</table>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=SystemProperty&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

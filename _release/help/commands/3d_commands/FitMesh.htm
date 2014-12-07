@@ -1,46 +1,124 @@
 <html>
 <head>
-<title>Command: FitMesh</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;FitMesh mesh,x#,y#,z#,width#,height#,depth#[,uniform]&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>mesh - mesh handle<br>
-    x# - x position of mesh<br>
-    y# - y position of mesh<br>
-    z# - z position of mesh<br>
-    width# - width of mesh <br>
-    height# - height of mesh<br>
-    depth# - depth of mesh<br>
-    uniform (optional) - if true, the mesh will be scaled&nbsp; by the same 
-    amounts in x, y and z, so will not be distorted. Defaults to false.</td>
-  </tr>
+<h1>FitMesh mesh,x#,y#,z#,width#,height#,depth#[,uniform]</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+mesh - mesh handle<br />
+x# - x position of mesh<br />
+y# - y position of mesh<br />
+z# - z position of mesh<br />
+width# - width of mesh <br />
+height# - height of mesh<br />
+depth# - depth of mesh<br />
+uniform (optional) - if true, the mesh will be scaled by the same amounts in x, y and z, so will not be distorted. Defaults to false.
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Scales and translates all vertices of a mesh so that the mesh occupies 
-    the specified box.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Scales and translates all vertices of a mesh so that the mesh occupies the specified box.<br />
+<br />
+Do not use a width#, height# or depth# value of 0, otherwise all mesh data will be destroyed and your mesh will not be displayed. Use a value of 0.001 instead for a flat mesh along one axis.
+<br>
+<br>
+See also: <a class=small href=ScaleMesh.htm>ScaleMesh</a>, <a class=small href=ScaleEntity.htm>ScaleEntity</a>.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/FitMesh.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/FitMesh.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; FitMesh Example<br />
+; ---------------<br />
+<br />
+; In this example we will demonstrate the use of the FitMesh command.<br />
+<br />
+; First we will use FitMesh on a semi-transparent blue box. This will represent the dimensions we will<br />
+; be using with FitMesh.<br />
+<br />
+; Then we will use these dimensions on a red cone, so that it appears to fit inside the box when the <br />
+; space bar is pressed.<br />
+<br />
+; The first time the space bar is pressed a uniform FitMesh will be performed, which means the cone <br />
+; will be scaled equally along all axis so that at least one axis fits the dimensions specified.<br />
+<br />
+; The second time the space bar is pressed a non-unifrom FitMesh will be performed, meaning the cone <br />
+; will be scaled non-equally along all axes so that all axes fit the dimensions specified.<br />
+<br />
+Graphics3D 640,480<br />
+SetBuffer BackBuffer()<br />
+<br />
+camera=CreateCamera()<br />
+light=CreateLight()<br />
+<br />
+; Create cube<br />
+cube=CreateCube()<br />
+<br />
+; Set cube colour to blue<br />
+EntityColor cube,0,0,255<br />
+<br />
+; Make cube semi-transparent so we will be able to see cone inside it later<br />
+EntityAlpha cube,0.5<br />
+<br />
+; Use FitMesh on cube to make it a cuboid<br />
+FitMesh cube,-1,-.5,-1,2,1,2<br />
+<br />
+; Position cube in front of camera so we can see it<br />
+PositionEntity cube,0,-1,5<br />
+<br />
+; Create cone<br />
+cone=CreateCone()<br />
+<br />
+; Set cone color to red<br />
+EntityColor cone,255,0,0<br />
+<br />
+; Position cone in front of camera so we can see it <br />
+PositionEntity cone,0,-1,5<br />
+<br />
+; Set uniform value to 1 so when space is first pressed, FitMesh will be uniform<br />
+uniform=1<br />
+<br />
+While Not KeyDown(1)<br />
+<br />
+	; If space bar pressed....<br />
+	If KeyHit(57)=True<br />
+	<br />
+		; Set syntax string to show syntax useage<br />
+		syntax$="FitMesh cone,-1,-.5,-1,2,1,2,"+uniform<br />
+		<br />
+		; Use FitMesh with cone, using same values as used with cube earlier. Cone should now fit in cube.<br />
+		FitMesh cone,-1,-.5,-1,2,1,2,uniform<br />
+		<br />
+		; Change uniform value from 1 to 0 so when space bar is pressed again FitMesh will be non-uniform <br />
+		uniform=0<br />
+<br />
+	EndIf<br />
+<br />
+	RenderWorld<br />
+<br />
+	Text 0,0,"Press space to use uniform FitMesh with cone"<br />
+	Text 0,20,"Press space again to use non-uniform FitMesh with cone"<br />
+	Text 0,40,syntax$<br />
+	<br />
+	Flip<br />
+<br />
+Wend<br />
+ <br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=FitMesh&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

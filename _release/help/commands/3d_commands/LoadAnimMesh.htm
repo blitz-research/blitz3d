@@ -1,40 +1,73 @@
 <html>
 <head>
-<title>Command: LoadAnimMesh</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;LoadAnimMesh ( file$[,parent] )&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>file$ - mesh filename<br>
-    parent - parent entity of mesh</td>
-  </tr>
+<h1>LoadAnimMesh( Filename$, [Parent] )</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+Filename$ - Name of the file containing the model to load. <br />
+Parent (optional) - Specify an entity to act as a Parent to the loaded mesh.
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Loads a mesh from a .x or .3ds file and returns a mesh handle.<p>Any 
-    hierarchy and animation information in the file is retained (if present in 
-    the file!).</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+LoadAnimMesh, similar to LoadMesh, Loads a mesh from an .X, .3DS or .B3D file and returns a mesh handle.<br />
+<br />
+The difference between LoadMesh and LoadAnimMesh is that any hierarchy and animation information present in the file is retained. You can then either activate the animation by using the Animate command or find child entities within the hierarchy by using the FindChild(), GetChild() functions.<br />
+<br />
+The optional parent parameter allows you to specify a parent entity for the mesh so that when the parent is moved the child mesh will move with it. However, this relationship is one way;  applying movement commands to the child will not affect the parent. <br />
+<br />
+Specifying a parent entity will still result in the mesh being created at position 0,0,0 rather than at the parent entity's position.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/LoadAnimMesh.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/LoadAnimMesh.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; LoadAnimMesh Example<br />
+; --------------------<br />
+<br />
+; In this example we will demonstrate the use of the LoadAnimMesh command.<br />
+<br />
+; Quite simply, we will load an anim mesh from file, animate it, and then view it.<br />
+<br />
+Graphics3D 640,480<br />
+SetBuffer BackBuffer()<br />
+<br />
+camera=CreateCamera()<br />
+PositionEntity camera,0,20,-100 ; position camera so that robot will be in view when loaded<br />
+<br />
+light=CreateLight()<br />
+RotateEntity light,90,0,0<br />
+<br />
+; Load anim mesh<br />
+robot=LoadAnimMesh("media/makbot/mak_robotic.3ds")<br />
+<br />
+; Animate mesh - this will begin an animation sequence which is updated when UpdateWorld is called<br />
+Animate robot,2<br />
+<br />
+While Not KeyDown(1)<br />
+<br />
+UpdateWorld ; Update anim - without this our anim mesh will freeze<br />
+RenderWorld ; Render everything<br />
+Flip ; Show everything<br />
+<br />
+Wend<br />
+<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=LoadAnimMesh&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

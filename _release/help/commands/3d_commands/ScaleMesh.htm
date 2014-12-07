@@ -1,40 +1,82 @@
 <html>
 <head>
-<title>Command: ScaleMesh</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;ScaleMesh mesh,x_scale#,y_scale#,z_scale#&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>mesh - mesh handle<br>
-    x_scale# - x scale of mesh<br>
-    y_scale# - y scale of mesh<br>
-    z_scale# - z scale of mesh</td>
-  </tr>
+<h1>ScaleMesh mesh,x_scale#,y_scale#,z_scale#</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+mesh - mesh handle<br />
+x_scale# - x scale of mesh<br />
+y_scale# - y scale of mesh<br />
+z_scale# - z scale of mesh
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Scales all vertices of a mesh by the specified scaling factors.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Scales all vertices of a mesh by the specified scaling factors.
+<br>
+<br>
+See also: <a class=small href=FitMesh.htm>FitMesh</a>, <a class=small href=ScaleEntity.htm>ScaleEntity</a>.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/ScaleMesh.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/ScaleMesh.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; ScaleMesh Example<br />
+; -----------------<br />
+ <br />
+; In this example we will demonstrate the use of the ScaleMesh command.<br />
+<br />
+; Unlike ScaleEntity, ScaleMesh actually modifies the actual mesh structure.<br />
+<br />
+; So whereas using ScaleEntity 2,2,2 would only double the size of an entity the first time it was <br />
+; used, ScaleMesh 2,2,2 will double the size of the mesh every time it is used.<br />
+<br />
+; This is because ScaleEntity scales an entity based on a fixed mesh structure, whereas ScaleMesh<br />
+; actually modifies the mesh structure itself.<br />
+<br />
+Graphics3D 640,480<br />
+SetBuffer BackBuffer()<br />
+ <br />
+camera=CreateCamera()<br />
+ <br />
+light=CreateLight()<br />
+ <br />
+; Create cube mesh<br />
+cube=CreateCube()<br />
+<br />
+; Position cube in front of camera so we can see it <br />
+PositionEntity cube,0,0,5<br />
+ <br />
+While Not KeyDown(1)<br />
+<br />
+	; If space bar pressed then scale cube mesh by 1%. Also set syntax$ text.<br />
+	If KeyHit(57)=True Then ScaleMesh cube,1.01,1.01,1.01 : syntax$="ScaleMesh 1.01,1.01,1.01"<br />
+<br />
+	RenderWorld<br />
+	<br />
+	Text 0,0,"Press space to scale mesh by 1%"<br />
+	Text 0,20,syntax$<br />
+	<br />
+	Flip<br />
+<br />
+Wend<br />
+ <br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=ScaleMesh&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

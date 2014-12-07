@@ -1,20 +1,16 @@
-; LightMesh Example
-; ----------------
+Graphics3D 640,480 ,16,2
+camera=CreateCamera() 
 
-Graphics3D 640,480
-SetBuffer BackBuffer()
+ent=CreateSphere()
+EntityFX ent,2 ; enable vertex colors
+Lightmesh ent,-255,-255,-255 ; reset vertex colors from 255,255,255 (default) to 0,0,0
+LightMesh ent,255,255,0,50,-20,20,-20 ; apply fake lighting
 
-camera=CreateCamera()
-light=CreateLight()
+MoveEntity camera,0,2,-10 
+PointEntity camera,ent
 
-cone=CreateCone()
-PositionEntity cone,0,0,5
-
-While Not KeyDown( 1 )
-	
-	RenderWorld
-	Flip
-
+While Not KeyDown(1) 
+RenderWorld
+Flip 
 Wend
-
 End

@@ -1,77 +1,161 @@
 <html>
 <head>
-<title>Command: EntityX</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;EntityY# ( entity[,global] )&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>entity - name of entity that will have y-coordinate returned<br>
-global (optional) - true if the y-coordinate returned should be relative to 
-0,0,0 rather than a parent entity's position. False by default.</td>
-  </tr>
+<h1>EntityY# ( entity[,global] )</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+entity = handle of Loaded or Created Entity<br />
+global = True for Global coordinates,  False for Local. Optional, defaults to False.
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Returns the y-coordinate of an entity.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+The Y-coordinate of the entity.<br />
+If the global flag is set to False then the parent's local coordinate system is used.<br />
+<br />
+See EntityX() for an overview of Local and Global coordinates.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/EntityY.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>; EntityY Example<br>
-    ; ---------------<br>
-    <br>
-    Graphics3D 640,480<br>
-    SetBuffer BackBuffer()<br>
-    <br>
-    camera=CreateCamera()<br>
-    light=CreateLight()<br>
-    <br>
-    cone=CreateCone( 32 )<br>
-    PositionEntity cone,0,0,10<br>
-    <br>
-    While Not KeyDown( 1 )<br>
-    <br>
-    x#=0<br>
-    y#=0<br>
-    z#=0<br>
-    <br>
-    If KeyDown(203)=True Then x#=-0.1<br>
-    If KeyDown(205)=True Then x#=0.1<br>
-    If KeyDown(208)=True Then y#=-0.1<br>
-    If KeyDown(200)=True Then y#=0.1<br>
-    If KeyDown(44)=True Then z#=-0.1<br>
-    If KeyDown(30)=True Then z#=0.1<br>
-    <br>
-    MoveEntity cone,x#,y#,z#<br>
-    <br>
-    RenderWorld<br>
-    <br>
-    Text 0,0,&quot;Use cursor/A/Z keys to move cone&quot;<br>
-    <br>
-    ; Return entity y position of cone<br>
-    Text 0,20,&quot;Y Position: &quot;+EntityY#( cone )<br>
-    <br>
-    Flip<br>
-    <br>
-    Wend<br>
-    <br>
-    End</td>
-  </tr>
+<h1><a href=../3d_examples/EntityY.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; EntityX / EntityY / EntityZ example.<br />
+<br />
+; Escape quits, other keys move or pause the display.<br />
+<br />
+Const width = 640, height = 480<br />
+Const KEY_ESC = 1, KEY_LEFT = 203, KEY_RIGHT = 205 <br />
+<br />
+Graphics3D 640, 480<br />
+AmbientLight 50, 50, 50<br />
+<br />
+Global isMoving = False     ; used to pause/resume movement <br />
+Global count                ; how many updates have been done<br />
+<br />
+<br />
+; Set up a camera, light and three entities...<br />
+<br />
+cam = CreateCamera()<br />
+PositionEntity cam, 0, 2, -50<br />
+CameraZoom cam, 4<br />
+<br />
+lt = CreateLight() : TurnEntity lt, 30, 40, 0<br />
+<br />
+<br />
+Global oSphere, pCone, cSphere<br />
+<br />
+oSphere = CreateSphere()<br />
+EntityColor oSphere, 250, 50, 0        ; Orange = Origin, parent of cone<br />
+<br />
+pCone = CreateCone( 8, True, oSphere)  ;  will be a parent of small sphere<br />
+ScaleEntity pCone, .8, 2.0, .8<br />
+PositionEntity pCone, 8, 0, 0<br />
+EntityColor pCone, 255, 255, 0<br />
+<br />
+cSphere = CreateSphere( 8, pCone )         ; child of the cone<br />
+EntityColor cSphere, 150, 150, 0<br />
+ScaleEntity cSphere, .4/.8, .4/2.0, .4/.8  ; try commenting out this line<br />
+PositionEntity cSphere, 0, 2, 0            ; above parent<br />
+<br />
+; ... and we are ready run.<br />
+<br />
+While Not KeyDown( KEY_ESC )<br />
+<br />
+UpdateEverything	<br />
+RenderWorld<br />
+ShowInfo<br />
+<br />
+Flip<br />
+<br />
+Wend<br />
+<br />
+End<br />
+<br />
+<br />
+<br />
+Function UpdateEverything( )<br />
+<br />
+; Nothing moves relative to its parent, so local coordinates are constant.<br />
+; Try uncommenting the PositionEntity command to change this.<br />
+<br />
+<br />
+If GetKey() Then isMoving = Not isMoving<br />
+<br />
+If isMoving<br />
+TurnEntity oSphere, 0, .5, 0<br />
+TurnEntity pCone,  .2,  0, 0		<br />
+<br />
+count = count + 1<br />
+a# = count Mod 360<br />
+;	PositionEntity cSphere, 0, 2 + Sin( a ), 0 ; experiment with this <br />
+<br />
+End If <br />
+<br />
+End Function<br />
+<br />
+Function ShowInfo( )   ; global and local coordinates for all entities<br />
+Local x$, y$, z$<br />
+<br />
+Color 255, 255, 255<br />
+Text 185, 20, "Global"<br />
+Text 495, 20, "Local"<br />
+<br />
+Color 250, 50, 0 <br />
+Text  20, 50, "oSphere: " + XYZ( oSphere, True )<br />
+Text 400, 50, XYZ( oSphere, False )<br />
+<br />
+Color 255, 255, 0 <br />
+Text  20, 75, "  pCone: " + XYZ( pCone, True )<br />
+Text 400, 75, XYZ( pCone, False )<br />
+<br />
+Color 150, 150, 0 <br />
+Text  20, 100, "cSphere: " + XYZ( cSphere, True )<br />
+Text 400, 100, XYZ( cSphere, False )<br />
+<br />
+End Function<br />
+<br />
+; ******************************************************************<br />
+<br />
+; These two functions just format the text display.<br />
+; Without them there are too many numbers crowding the screen.<br />
+<br />
+Function Round#( x#, m# )		; returns x rounded to multiple of m<br />
+If m < 0.0 Then m = -m<br />
+s# = Sgn( x )<br />
+If x < 0.0 Then x = -x<br />
+diff# = x Mod m<br />
+If diff < .5 * m <br />
+Return ( x - diff ) * s<br />
+Else<br />
+Return ( m + x - diff ) * s<br />
+End If<br />
+End Function<br />
+<br />
+<br />
+Function XYZ$( entity, globalFlag )<br />
+<br />
+ex# = Round( EntityX( entity, globalFlag ), .001 )<br />
+ey# = Round( EntityY( entity, globalFlag ), .001 )<br />
+ez# = Round( EntityZ( entity, globalFlag ), .001 )<br />
+<br />
+Return RSet( ex, 8 ) + RSet( ey, 8 ) + RSet( ez, 8 )<br />
+<br />
+End Function
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=EntityY&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

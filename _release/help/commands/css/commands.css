@@ -1,11 +1,55 @@
-.Command {  font-family: Verdana, Arial; font-size: small; font-weight: bold; color: #ffffff; background-color: #11AABB; border: solid; border-width: 0px 0px 0px 0pt; border-color: black black black #FFFFFF}
+body
+{
+	color: #ffffff;
+	font: 10pt verdana;
+	background: #003d78;
+}
 
-body {  font-family: Verdana, Arial; font-size: x-small; color: #000000; background-color: #005070}
+h1
+{
+	font: bold 10pt verdana;
+}
 
-.header {  font-family: Verdana, Arial; font-size: x-small; font-weight: bold; color: #00ff00}
+table
+{
+	font: 8pt verdana;	
+	background: #003566;
+	width: 100%;
+}
 
-td {  font-family: Verdana, Arial; font-size: x-small; color: #ffffff; background-color: #117799; border: solid; border-width: 0px 0px 0px 0pt; border-color: black black black #FFFFFF}
+a
+{
+  	color: #fff000;
+	font: 10pt verdana;
+	text-decoration: none;
+}
 
-a:link {color: #ffff00; text-decoration: none}
-a:visited {color: #ffff00; text-decoration: none}
-a:hover {color: #00ff00; text-decoration: underline}
+a:hover
+{
+	color: #fff000;
+	font: 10pt verdana;
+	background: #0088ee;
+	text-decoration: none;
+}
+
+a.small
+{
+  	color: #fff000;
+	font: 8pt verdana;
+	text-decoration: none;
+}
+
+a.small:hover
+{
+	color: #fff000;
+	font: 8pt verdana;
+	background: #0088ee;
+	text-decoration: none;
+}
+
+pre.code
+{
+	color: #44ff00;
+	background: #000000;
+	margin: 8px;
+}

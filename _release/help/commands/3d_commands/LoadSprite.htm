@@ -1,51 +1,63 @@
 <html>
 <head>
-<title>Command: LoadSprite</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;LoadSprite ( tex_file$[,tex_flag][,parent] 
-)&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>text_file$ - filename of image file to be used as sprite<br>
-    <br>
-    tex_flag (optional) - texture flag:<br>
-    1: Color<br>
-    2: Alpha<br>
-    4: Masked<br>
-    8: Mipmapped<br>
-    16: Clamp U<br>
-    32: Clamp V<br>
-    64: Spherical reflection map<br>
-    <br>
-    parent - parent of entity</td>
-  </tr>
+<h1>LoadSprite ( tex_file$[,tex_flag][,parent] )</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+text_file$ - filename of image file to be used as sprite<br />
+<br />
+tex_flag (optional) - texture flag:<br />
+1: Color<br />
+2: Alpha<br />
+4: Masked<br />
+8: Mipmapped<br />
+16: Clamp U<br />
+32: Clamp V<br />
+64: Spherical reflection map<br />
+<br />
+parent - parent of entity
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Creates a sprite entity, and assigns a texture to it.<p>See also:
-    <a href="CreateSprite.htm">CreateSprite</a>, <a href="SpriteViewMode.htm">
-    SpriteViewMode</a>.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Creates a sprite entity, and assigns a texture to it.
+<br>
+<br>
+See also: <a class=small href=LoadSprite.htm>LoadSprite</a>, <a class=small href=RotateSprite.htm>RotateSprite</a>, <a class=small href=ScaleSprite.htm>ScaleSprite</a>, <a class=small href=HandleSprite.htm>HandleSprite</a>, <a class=small href=SpriteViewMode.htm>SpriteViewMode</a>, <a class=small href=PositionEntity.htm>PositionEntity</a>, <a class=small href=MoveEntity.htm>MoveEntity</a>, <a class=small href=TranslateEntity.htm>TranslateEntity</a>, <a class=small href=EntityAlpha.htm>EntityAlpha</a>, <a class=small href=FreeEntity.htm>FreeEntity</a>.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/LoadSprite.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/LoadSprite.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+Graphics3D 640,480<br />
+<br />
+campivot = CreatePivot()<br />
+cam = CreateCamera(campivot)<br />
+MoveEntity cam,0,0,-5<br />
+<br />
+sp = LoadSprite("grass.bmp")<br />
+SpriteViewMode sp,4<br />
+<br />
+While Not KeyDown(1)<br />
+RenderWorld:Flip<br />
+TurnEntity campivot,1,1,3<br />
+Wend<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=LoadSprite&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

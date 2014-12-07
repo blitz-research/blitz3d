@@ -1,13 +1,47 @@
-<html><head><title>Command: JoyDown </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;JoyDown (button,[port])&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns TRUE if the specified joystick button is being held down.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>button = number of joystick button to check<br>
-port = number of joystick port to check (optional)<br></td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>This command (and its counterparts <a href='KeyDown.htm'>KeyDown</a> and <a href='MouseDown.htm'>MouseDown</a>) is used to detect if a joystick button is being held down.  You must check for each joystick button independantly with its corresponding number (unlike KeyDown which returns WHICH key is being held down).  Also see <a href='JoyHit.htm'>JoyHit</a>.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; JoyDown Example<br>
+<html>
+<head>
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
+</head>
+<body>
+<h1>JoyDown (button,[port])</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+button = number of joystick button to check<br />
+port = number of joystick port to check (optional) 
+</td>
+</tr>
+</table>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+This command (and its counterparts KeyDown and MouseDown) is used to detect if a joystick button  is being held down. You must check for each joystick button independantly with  its corresponding number (unlike KeyDown which returns WHICH key is being held  down). Also see JoyHit.
+</td>
+</tr>
+</table>
+<h1><a href=../2d_examples/JoyDown.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; JoyDown Example<br />
+<br />
+; Until user presses ESC, show the mouse button pressed<br />
+While Not KeyHit(1)<br />
+button$="No"<br />
+For t = 1 To 5<br />
+If JoyDown(t) Then button$=Str(t)<br />
+Print button$ + " joystick button pressed!"<br />
+Next<br />
+Wend<br />
+
+</td>
+</tr>
+</table>
 <br>
-; Until user presses ESC, show the mouse button pressed<br>
-While Not KeyHit(1)<br>
-button$="No"<br>
-For t = 1 To 5<br>
-If JoyDown(t) Then button$=Str(t)<br>
-Print button$ + " joystick button pressed!"<br>
-Next<br>
-Wend<br>
-<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=JoyDown&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

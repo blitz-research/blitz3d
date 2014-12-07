@@ -1,37 +1,79 @@
 <html>
 <head>
-<title>Command: FreeEntity</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;FreeEntity entity&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>entity - entity handle</td>
-  </tr>
+<h1>FreeEntity EntityHandle</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+EntityHandle - Handle returned by an Entity creating function such as CreateCube(), CreateLight(), LoadMesh() etc.
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Frees up an entity.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+FreeEntity will free up the internal resources associated  with a particular entity and remove it from the scene.<br />
+<br />
+This command will also free all children entities parented to the entity.<br />
+<br />
+Note that the variable holding the handle (and any variables referencing children handles) are not reset as it is up to the Blitz programmer to zero or ignore their contents following a call to FreeEntity().
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/FreeEntity.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/FreeEntity.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; FreeEntity Example<br />
+; This example creates an entity and<br />
+; allows you to move it, but shows<br />
+; that a handle is no longer valid after<br />
+; FreeEntity is used on it.<br />
+; Run in Debug Mode<br />
+<br />
+Graphics3D 640,480<br />
+AppTitle "FreeEntity Example"<br />
+<br />
+Cam = CreateCamera()<br />
+Lit = CreateLight()<br />
+<br />
+PositionEntity Lit,-5,-5,0  <br />
+PositionEntity Cam,0,0,-5   <br />
+<br />
+AnEntity = CreateCube()    ; This is our Test Entity<br />
+RotateMesh AnEntity,45,45,45<br />
+<br />
+While Not KeyDown(1) ; Until we press ESC<br />
+<br />
+; Use the Left or Right Arrows to Move the Entity<br />
+If KeyDown(203) Then MoveEntity AnEntity,-0.1,0,0 <br />
+If KeyDown(205) Then MoveEntity AnEntity,0.1,0,0<br />
+<br />
+; Use the Space Key to Free the Entity. It will disappear<br />
+; The next time you try to move it, you will get an error<br />
+; Notice that the Handle Variable doesn't change after the<br />
+; Entity is free. It simply becomes invalid.<br />
+<br />
+If KeyHit(57) Then FreeEntity AnEntity ; Hit Space to Free!<br />
+<br />
+RenderWorld ; Draw the Scene<br />
+<br />
+; What is in the AnEntity handle?<br />
+Text 10,10,"Entity Handle: "+AnEntity<br />
+Flip ; Flip it into View<br />
+Wend<br />
+<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=FreeEntity&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

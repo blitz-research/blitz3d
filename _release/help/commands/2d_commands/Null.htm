@@ -1,8 +1,51 @@
-<html><head><title>Command: Null </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Null &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Indicates a null or empty value.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>None</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Designates a null value.  Useful for erasing a variable or testing if a variable has a value at all.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Null example<br>
+<html>
+<head>
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
+</head>
+<body>
+<h1>Null</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+None
+</td>
+</tr>
+</table>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Designates a Null Type object. Useful for making a Type variable point to nothing or checking if a Type object exists.  Also, useful for checking that there are still objects left on the end of a Type list using the After command.<br />
+<br />
+<br />
+Can used for testing and setting.
 <br>
-strHello$="Hello"<br>
 <br>
-Print strHello$<br>
+See also: <a class=small href=Type.htm>Type</a>, <a class=small href=New.htm>New</a>, <a class=small href=Delete.htm>Delete</a>, <a class=small href=After.htm>After</a>, <a class=small href=Before.htm>Before</a>, <a class=small href=First.htm>First</a>, <a class=small href=Last.htm>Last</a>.
+</td>
+</tr>
+</table>
+<h1><a href=../2d_examples/Null.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; Null example<br />
+<br />
+Type Alien<br />
+Field x,y<br />
+End Type<br />
+<br />
+a.Alien = New Alien<br />
+If a <> Null Then Print "Alien exists!"<br />
+Delete a<br />
+if a = Null Then Print "Alien gone!"
+</td>
+</tr>
+</table>
 <br>
-strHello$=Null<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=Null&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

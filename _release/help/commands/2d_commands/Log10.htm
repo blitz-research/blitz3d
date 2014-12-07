@@ -1,7 +1,61 @@
-<html><head><title>Command: Log10 </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Log10 (number)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns the common logarithm of the supplied argument (base 10).</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>number=float or integer</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Log10() is the logarithm (or inverse exponential) function to base 10.  Logarithms to the base 10 are called the common logarithms.  The Log10() functions uses 10 as a base.  It follows the series 10^x.  This function is useful for finding the power of a number in base 10.
-See also: <a href='Exp.htm'>Exp</a> <a href='Log.htm'>Log</a></td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; To find the value of Log10(10^5)<br>
-x = 5<br>
-y = 10^x<br>
-Print y ; i.e. 10^5 = 10*10*10*10*10: returns 100000<br>
-Print Log10(y) ; ie. Log10(10^5) = Log10(10000): returns 5.000000<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+<html>
+<head>
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
+</head>
+<body>
+<h1>Log# ( x# )</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+x = any positive number.
+</td>
+</tr>
+</table>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Common logarithm of x. This is the inverse of raising 10 to a power.<br />
+<br />
+y = Log10( x ) means y satifies x = 10 ^ y.
+</td>
+</tr>
+</table>
+<h1><a href=../2d_examples/Log10.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; Log10 example<br />
+<br />
+; NaN means "Not a Number", the numerical result is invalid.<br />
+<br />
+HidePointer<br />
+<br />
+; First, what happens with non-positive numbers...<br />
+<br />
+Print "Log10( -1 ) = " + Log10( -1 )<br />
+Print "Log10( 0  ) = " + Log10( 0 )<br />
+Print<br />
+<br />
+; ... and now some well behaved numbers...<br />
+<br />
+x# = 1.0 / 4096.0   ; small positive number<br />
+<br />
+For n = 1 To 15<br />
+<br />
+Print "Log10( " + LSet( x, 13 ) + " ) = " + Log10( x )<br />
+x = 8 * x<br />
+<br />
+Next<br />
+<br />
+WaitKey()  :  End
+</td>
+</tr>
+</table>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=Log10&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

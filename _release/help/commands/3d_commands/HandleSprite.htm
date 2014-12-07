@@ -1,39 +1,58 @@
 <html>
 <head>
-<title>Command: HandleSprite</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;HandleSprite sprite,x_handle#,y_handle#&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>sprite - sprite handle. Not to be confused with HandleSprite - ie. the 
-    handle used to position the sprite, rather than the sprite's actual handle </td>
-  </tr>
+<h1>HandleSprite sprite,x_handle#,y_handle#</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+sprite - sprite handle. Not to be confused with HandleSprite - ie. the handle  used to position the sprite, rather than the sprite's actual handle
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Sets a sprite handle. Defaults to 0,0,0.<p>A sprite extends from 1,-1 to 
-    +1,+1.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Sets a sprite handle. Defaults to 0,0.<br />
+<br />
+A sprite extends from -1,-1 to +1,+1.
+<br>
+<br>
+See also: <a class=small href=LoadSprite.htm>LoadSprite</a>, <a class=small href=CreateSprite.htm>CreateSprite</a>.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/HandleSprite.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/HandleSprite.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+Graphics3D 640,480<br />
+<br />
+cam = CreateCamera()<br />
+MoveEntity cam,0,0,-5<br />
+<br />
+sp = CreateSprite()<br />
+<br />
+handlepos# = 0.0<br />
+While Not KeyDown(1)<br />
+RenderWorld<br />
+Color 100,100,100<br />
+Plot 320,240<br />
+Text 320,250,"Handle",True<br />
+Flip<br />
+HandleSprite sp,handlepos,handlepos<br />
+handlepos = handlepos + 0.01<br />
+Wend<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=HandleSprite&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

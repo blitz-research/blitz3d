@@ -1,20 +1,11 @@
-; CreateSprite Example
-; ----------------
-
 Graphics3D 640,480
-SetBuffer BackBuffer()
 
-camera=CreateCamera()
-light=CreateLight()
+cam = CreateCamera()
+MoveEntity cam,0,0,-5
 
-cone=CreateCone()
-PositionEntity cone,0,0,5
+sp = CreateSprite()
+RotateSprite sp,20
 
-While Not KeyDown( 1 )
-	
-	RenderWorld
-	Flip
-
-Wend
-
+RenderWorld:Flip
+WaitKey
 End

@@ -25,15 +25,15 @@ PositionEntity gargoyle,0,-45,100
 RotateEntity gargoyle,0,180,0
 
 While Not KeyDown( 1 )
-	
-	UpdateWorld
-	RenderWorld
-	
-	; Output current animation frame to screen
-	Text 0,0,"MD2AnimTime: "+MD2AnimTime( gargoyle )
-		
-	Flip
-	
+
+UpdateWorld
+RenderWorld
+
+; Output current animation frame to screen
+Text 0,0,"MD2AnimTime: "+MD2AnimTime( gargoyle )
+
+Flip
+
 Wend
 
 End

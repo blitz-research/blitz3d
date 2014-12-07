@@ -1,42 +1,65 @@
 <html>
 <head>
-<title>Command: LightRange</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;LightRange light,range#&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>light - light handle<br>
-    range - range of light</td>
-  </tr>
+<h1>LightRange light,range#</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+light - light handle<br />
+range# - range of light (default: 1000.0)
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Sets the range of a light.<p>The range of a light is how far it reaches. 
-    Everything outside the range of the light will not be affected by it.<br>
-    <br>
-    The value is very approximate, and should be experimented with for best 
-    results.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Sets the range of a light.<br />
+<br />
+The range of a light is how far it reaches.  Everything outside the range of the light will not be affected by it.<br />
+<br />
+The value is very approximate, and should be experimented with for best results.
+<br>
+<br>
+See also: <a class=small href=CreateLight.htm>CreateLight</a>, <a class=small href=LightColor.htm>LightColor</a>, <a class=small href=LightConeAngles.htm>LightConeAngles</a>.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/LightRange.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/LightRange.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+Graphics3D 640,480<br />
+<br />
+camera = CreateCamera()<br />
+MoveEntity camera,0,0,-3<br />
+<br />
+ball = CreateSphere()<br />
+<br />
+lite = CreateLight(2) ; try different lights 1 to 3<br />
+MoveEntity lite,5,0,-5<br />
+PointEntity lite,ball<br />
+<br />
+range# = 0.5<br />
+LightRange lite,range<br />
+<br />
+While Not KeyDown(1)<br />
+RenderWorld:Flip<br />
+If KeyHit(57) Then ; hit SPACEBAR to increase light range<br />
+range = range + 0.5<br />
+LightRange lite,range<br />
+EndIf<br />
+Wend<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=LightRange&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

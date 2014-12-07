@@ -1,10 +1,68 @@
-<html><head><title>Command: Float </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Float variable/value&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Convert integer value to a floating point number.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>variable/value = integer value or variable</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Use this command to transform an integer value to a floating point value (presumably to perform a floating point related math function on it).  Blitz does a good job of adding dissimilar number types, but if you want to play by the rules and/or port code to/from Blitz, remember to convert your integers to floating point before doing math upon them with dissimilar types.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Float example<br>
+<html>
+<head>
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
+</head>
+<body>
+<h1>Float#( value )</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+value = a number, or a string which represents a number
+</td>
+</tr>
+</table>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+This is the same as Blitz's automatic type conversion.<br />
+So the two commands...<br />
+<br />
+y# = value<br />
+y# = Float( value )<br />
+<br />
+... do exactly the same thing.<br />
+<br />
+If Float is applied to a string it converts as much as possible:<br />
+<br />
+Float( "10" ) ...... result is 10.0<br />
+Float( "3junk" ) .. result is 3.0<br />
+Float( "junk3" ) .. result is 0.0<br />
+<br />
+In the latter two examples Float() stops converting when it sees "j".<br />
+<br />
+The typical use is to force floating point arithmetic:<br />
+<br />
+y# = 12 / 5 .............. result is 2.0 because 12 / 5 = 2 ( integer division )<br />
+y# = float( 12 ) / 5 .... result is 2.4
+</td>
+</tr>
+</table>
+<h1><a href=../2d_examples/Float.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; Float example<br />
+; =============<br />
+<br />
+Print "Enter some text to be converted using Float()."<br />
+Print "Hit ENTER to exit."<br />
+<br />
+Repeat<br />
+s$ = Input$(">")<br />
+If s$<>"" Then<br />
+Print "Float("+Chr$(34)+s$+Chr$(34)+")=" + Float(s$)<br />
+End If<br />
+Until s$=""<br />
+<br />
+End
+</td>
+</tr>
+</table>
 <br>
-a=100<br>
-b#=2.5<br>
-c#=Float a<br>
+<a target=_top href=../index.htm>Index</a><br>
 <br>
-Print b# + c#<br>
-<br>
-</td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=Float&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

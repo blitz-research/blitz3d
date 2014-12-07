@@ -1,38 +1,53 @@
 <html>
 <head>
-<title>Command: RotateSprite</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;RotateSprite sprite,angle#&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>sprite - sprite handle<br>
-    angle# - absolute angle of sprite rotation</td>
-  </tr>
+<h1>RotateSprite sprite,angle#</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+sprite - sprite handle<br />
+angle# - absolute angle of sprite rotation
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Rotates a sprite.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Rotates a sprite.
+<br>
+<br>
+See also: <a class=small href=CreateSprite.htm>CreateSprite</a>, <a class=small href=LoadSprite.htm>LoadSprite</a>.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/RotateSprite.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/RotateSprite.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+Graphics3D 640,480<br />
+<br />
+cam = CreateCamera()<br />
+MoveEntity cam,0,0,-5<br />
+<br />
+sp = CreateSprite()<br />
+<br />
+ang# = 0<br />
+While Not KeyDown(1)<br />
+RenderWorld:Flip<br />
+RotateSprite sp,ang<br />
+ang = ang +3<br />
+Wend<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=RotateSprite&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

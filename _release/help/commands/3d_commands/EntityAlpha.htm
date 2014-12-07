@@ -1,50 +1,87 @@
 <html>
 <head>
-<title>Command: EntityAlpha</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;EntityAlpha entity,alpha#&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>entity - entity handle<br>
-    alpha# - alpha level of  entity</td>
-  </tr>
+<h1>EntityAlpha entity,alpha#</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+Entity - entity handle<br />
+Alpha# - alpha level of entity
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Sets the entity alpha level of an entity.<p>The alpha# value should be in the range 0-1.
-    The default entity alpha setting is 1.</p>
-    <p>The alpha level is how 
-    transparent an entity is. A value of 1 will mean the entity is 
-    non-transparent, i.e. opaque. A value of 0 will mean the entity is 
-    completely transparent, i.e. invisible. Values between 0 and 1 will cause 
-    varying amount of transparency accordingly, useful for imitating the look of 
-    objects such as glass and ice.</p>
-    <p>An EntityAlpha value of 0 is especially useful as Blitz3D will not render 
-    entities with such a value, but will still involve the entities in collision 
-    tests. This is unlike
-    <a href="HideEntity.htm">HideEntity</a>, which doesn't involve entities in 
-    collisions.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Sets the entity alpha level of an entity.<br />
+<br />
+The alpha# value should be in a floating point value in the range 0-1. The default entity alpha setting is 1. <br />
+<br />
+The alpha level is how transparent an entity is. A value of 1 will mean the entity is opaque. A value of 0 will mean the entity is completely transparent, i.e. invisible. Values between 0 and 1 will cause varying amount of transparency. This is useful for imitating the look of objects such as glass and other translucent materials. <br />
+<br />
+An EntityAlpha value of 0 is especially useful as Blitz3D will not render entities with such a value, but will still involve the entities in collision tests. This is unlike HideEntity, which doesn't involve entities in collisions.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/EntityAlpha.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/EntityAlpha.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; EntityAlpha Example<br />
+; -------------------<br />
+<br />
+Graphics3D 640,480<br />
+SetBuffer BackBuffer()<br />
+<br />
+camera=CreateCamera()<br />
+<br />
+light=CreateLight()<br />
+RotateEntity light,90,0,0<br />
+<br />
+cube=CreateCube()<br />
+Back=CreateCube()<br />
+<br />
+PositionEntity cube,0,0,5<br />
+PositionEntity back,0,0,15<br />
+ScaleEntity Back,10,2,1<br />
+EntityColor back,255,0,0<br />
+; Set initial entity color values<br />
+Alpha#=1<br />
+<br />
+While Not KeyDown( 1 )<br />
+<br />
+; Change alpha value depending on key pressed<br />
+If alpha#<0.01 Then alpha# = 0<br />
+If alpha#>1 Then alpha# = 1<br />
+If KeyDown( 2 )=True And Alpha#>0 Then Alpha#=Alpha#-0.01<br />
+If KeyDown( 3 )=True And alpha#<1 Then Alpha#=Alpha#+0.01<br />
+; Set entity alpha value<br />
+EntityAlpha cube,Alpha#<br />
+<br />
+<br />
+TurnEntity cube,0.1,0.1,0.1<br />
+TurnEntity back,1,0,0<br />
+<br />
+RenderWorld<br />
+<br />
+Text 0,0,"Press keys 1-2 to change EntityAlpha"<br />
+Text 0,20,"Entity Alpha: "+Alpha<br />
+<br />
+Flip<br />
+<br />
+Wend<br />
+<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=EntityAlpha&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

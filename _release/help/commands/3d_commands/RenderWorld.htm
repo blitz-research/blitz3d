@@ -1,52 +1,37 @@
 <html>
 <head>
-<title>Command: RenderWorld</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;RenderWorld [tween#]&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>tween# - defaults to 1.</td>
-  </tr>
+<h1>RenderWorld [tween#]</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+tween# (optional) - defaults to 1.
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Renders all entities in the world.<p>The optional tween parameter can be used to render 
-    entities at a point somewhere between their captured position and their 
-    current position. A tween value of 0 will render entities at their captured 
-    position, a tween value of 1 will render entities at their current position. 
-    Other values may be used for interpolation. Defaults to 1.<p>Tweening is a 
-    technique used to allow games to have their game logic updated a fixed amount 
-    of times, e.g. 30, while having Blitz3D interpolate between these game logic 
-    updates to render as many frames per second as it can, e.g. 60+, with each 
-    frame different to the last.<p>This results in a game which only has to have 
-    its game logic updated at half the rate of the renders per second, freeing 
-    up CPU time, while at the same time having the game run as smooth as 
-    possible on anybody's machine.<p>Render tweening is quite an 
-    advanced technique, and it is not necessary to use it, so don't worry if you don't quite understand it. See the 
-    castle demo included in the mak (nickname of Mark Sibly, author of Blitz3D) 
-    directory of the Blitz3D samples section for a demonstration of render 
-    tweening. </td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Renders the current scene to the BackBuffer onto the rectangle defined by each cameras CameraViewport( ). Every camera not hidden by HideEntity( ) or with a CameraProjMode( ) of 0 is rendered. Rendering to other buffers is currently not supported by Blitz3D.<br />
+<br />
+The optional tween parameter should only be specified when RenderWorld is used in conjunction with CaptureWorld. CaptureWorld is used to store the 'old' position, rotation and scale, alpha and colour of each entity in the game world, and a tween value of < 1 will interpolate between these 'old' values and the 'current' ones. A tween value of 0 will render all entities at their state when CaptureWorld was last called, and a tween value of 1 will render all entities at their current state.<br />
+<br />
+The use of tweening allows you to render more than one frame per game logic update, while still keeping the display smooth. This allows you to cut down on the CPU time that would be required to update your game logic every render. Note, however, that the bottleneck in almost all 3D applications is the graphics card and the CPU time involved in updating game logic is often very little. A good alternative to render tweening is the use of a delta time, that is, moving your entities each frame depending on the time it took for the program to process and render that frame.<br />
+<br />
+Render tweening is quite an advanced technique, and it is not necessary to  use it, so don't worry if you don't quite understand it. See the castle demo  included in the mak (nickname of Mark Sibly, author of Blitz3D) directory of  the Blitz3D samples section for a demonstration of render tweening.
+<br>
+<br>
+See also: <a class=small href=CaptureWorld.htm>CaptureWorld</a>, <a class=small href=CameraViewport.htm>CameraViewport</a>, <a class=small href=CameraProjMode.htm>CameraProjMode</a>.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/RenderWorld.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
-</table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=RenderWorld&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

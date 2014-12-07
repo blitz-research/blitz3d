@@ -1,37 +1,89 @@
 <html>
 <head>
-<title>Command: PickedSurface</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;PickedSurface&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>&lt;param description&gt;</td>
-  </tr>
+<h1>PickedSurface ( )</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+None.
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>&lt;description&gt;</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Returns the handle of the surface that was 'picked' by the most recently  executed Pick command. This might have been CameraPick, EntityPick or LinePick.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/PickedSurface.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>&lt;example&gt;</td>
-  </tr>
+<h1><a href=../3d_examples/PickedSurface.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; PickedSurface Example<br />
+; ---------------------<br />
+<br />
+Graphics3D 640,480,0,2<br />
+SetBuffer BackBuffer()<br />
+<br />
+camera=CreateCamera()<br />
+PositionEntity camera,0,2,-10<br />
+<br />
+light=CreateLight()<br />
+RotateEntity light,90,0,0<br />
+<br />
+plane=CreatePlane()<br />
+EntityPickMode plane,2 ; Make the plane entity 'pickable'. Use pick_geometry  mode no.2 for polygon collision.<br />
+ground_tex=LoadTexture("media/Chorme-2.bmp")<br />
+EntityTexture plane,ground_tex<br />
+<br />
+cube=CreateCube()<br />
+EntityPickMode cube,2 ; Make the cube entity 'pickable'. Use pick_geometry mode  no.2 for polygon collision.<br />
+cube_tex=LoadTexture("media/b3dlogo.jpg")<br />
+EntityTexture cube,cube_tex<br />
+PositionEntity cube,0,1,0<br />
+<br />
+While Not KeyDown( 1 )<br />
+<br />
+If KeyDown( 205 )=True Then TurnEntity camera,0,-1,0<br />
+If KeyDown( 203 )=True Then TurnEntity camera,0,1,0<br />
+If KeyDown( 208 )=True Then MoveEntity camera,0,0,-0.05<br />
+If KeyDown( 200 )=True Then MoveEntity camera,0,0,0.05<br />
+<br />
+; If left mouse button hit then use CameraPick with mouse coordinates<br />
+; In this example, only three things can be picked: the plane, the cube, or  nothing<br />
+If MouseHit(1)=True Then CameraPick(camera,MouseX(),MouseY())<br />
+<br />
+RenderWorld<br />
+<br />
+Text 0,0,"Use cursor keys to move about"<br />
+Text 0,20,"Press left mouse button to use CameraPick with mouse coordinates"<br />
+Text 0,40,"PickedX: "+PickedX#()<br />
+Text 0,60,"PickedY: "+PickedY#()<br />
+Text 0,80,"PickedZ: "+PickedZ#()<br />
+Text 0,100,"PickedNX: "+PickedNX#()<br />
+Text 0,120,"PickedNY: "+PickedNY#()<br />
+Text 0,140,"PickedNZ: "+PickedNZ#()<br />
+Text 0,160,"PickedTime: "+PickedTime#()<br />
+Text 0,180,"PickedEntity: "+PickedEntity()<br />
+Text 0,200,"PickedSurface: "+PickedSurface()<br />
+Text 0,220,"PickedTriangle: "+PickedTriangle()<br />
+<br />
+Flip<br />
+<br />
+Wend<br />
+<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=PickedSurface&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

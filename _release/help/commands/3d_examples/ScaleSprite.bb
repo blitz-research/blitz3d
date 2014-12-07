@@ -1,20 +1,14 @@
-; ScaleSprite Example
-; ----------------
-
 Graphics3D 640,480
-SetBuffer BackBuffer()
 
-camera=CreateCamera()
-light=CreateLight()
+cam = CreateCamera()
+MoveEntity cam,0,0,-5
 
-cone=CreateCone()
-PositionEntity cone,0,0,5
+sp = CreateSprite()
 
-While Not KeyDown( 1 )
-	
-	RenderWorld
-	Flip
-
+size# = 1.0
+While Not KeyDown(1)
+RenderWorld:Flip
+ScaleSprite sp,size,size
+size = size + 0.01
 Wend
-
 End

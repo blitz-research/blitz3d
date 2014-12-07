@@ -1,5 +1,107 @@
-<html><head><title>Command: Int </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Int (value)&nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns the integer portion of a number.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>value = any valid variable or number</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>Returns the integer value of an expression or value.  Use this to convert a floating point number to a straight integer value.  See Example.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Int Example<br>
+<html>
+<head>
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
+</head>
+<body>
+<h1>Int( value )</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+value = a number, or a string which represents a number
+</td>
+</tr>
+</table>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Converts the value to the nearest integer.<br />
+<br />
+This is the same as Blitz's automatic type conversion.<br />
+So the two commands...<br />
+<br />
+n = value<br />
+n = Int( value )<br />
+<br />
+... do exactly the same thing when n is an integer variable.<br />
+<br />
+If Int is applied to a string it converts as much as possible:<br />
+<br />
+Int( "10" ) ........ result is 10<br />
+Int( "3.7" ) ....... result is 3, stops at "." which can't be part of an integer<br />
+Int( "junk3" ) .... result is 0, stops at "j"<br />
+<br />
+Int converts floating point numbers by rounding to the nearest integer.<br />
+NOTE: This is not the traditional meaning of Int in Basic.<br />
+<br />
+What about numbers exactly halfway between integers?<br />
+The rounding is to the nearest even integer:<br />
+<br />
+Int( 2.5 ) ... produces 2<br />
+Int( 3.5 ) ... produces 4<br />
+<br />
+See also Floor and Ceil for other types of rounding.
+</td>
+</tr>
+</table>
+<h1><a href=../2d_examples/Int.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; Ceil / Floor / Int example, three kinds of rounding.<br />
+<br />
+; Move mouse. Escape quits.<br />
+<br />
+Graphics 640, 480<br />
+<br />
+Const KEY_ESC = 1<br />
+<br />
+SetBuffer BackBuffer()<br />
+Origin 320, 240<br />
+<br />
+MoveMouse 320, 240  :  HidePointer<br />
+<br />
+While Not KeyDown( KEY_ESC )<br />
+<br />
+Cls<br />
+<br />
+my = MouseY() - 240<br />
+Color 100, 100, 0<br />
+Line -320, my, 319, my<br />
+<br />
+DrawNumberLine<br />
+<br />
+y# = Float( -my ) / 32<br />
+<br />
+Text 100, 50, "          y = "  + y<br />
+Text 100, 70, "  Ceil( y ) = "  + Ceil( y )<br />
+Text 100, 90, " Floor( y ) = "  + Floor( y )<br />
+Text 100, 110, "   Int( y ) = " + Int( y )<br />
+<br />
+Flip<br />
+<br />
+Wend<br />
+End<br />
+<br />
+Function DrawNumberLine( )  ; vertical line with numeric labels<br />
+<br />
+Color 255, 255, 255<br />
+Line 0, -240, 0, 239<br />
+<br />
+For n = -7 To 7<br />
+yn = -32 * n<br />
+Line -2, yn, 2, yn<br />
+Text -30, yn - 6, RSet( n, 2 )<br />
+Next<br />
+<br />
+End Function
+</td>
+</tr>
+</table>
 <br>
-myNum#=3.14<br>
-Print "The integer value of " + mynum# + " is: " + Int(myNum#)<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=Int&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

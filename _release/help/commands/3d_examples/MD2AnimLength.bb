@@ -23,13 +23,13 @@ RotateEntity gargoyle,0,180,0
 
 While Not KeyDown( 1 )
 
-	RenderWorld
-	
-	; Output animation length to screen
-	Text 0,0,"MD2AnimLength: "+MD2AnimLength( gargoyle )
-		
-	Flip
-	
+RenderWorld
+
+; Output animation length to screen
+Text 0,0,"MD2AnimLength: "+MD2AnimLength( gargoyle )
+
+Flip
+
 Wend
 
 End

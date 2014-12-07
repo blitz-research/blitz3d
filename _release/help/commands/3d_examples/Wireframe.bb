@@ -14,18 +14,18 @@ PositionEntity sphere,0,0,2
 
 While Not KeyDown( 1 )
 
-	; Toggle wireframe enable value between true and false when spacebar is pressed
-	If KeyHit( 57 )=True Then enable=1-enable
+; Toggle wireframe enable value between true and false when spacebar is pressed
+If KeyHit( 57 )=True Then enable=1-enable
 
-	; Enable/disable wireframe rendering
-	WireFrame enable
+; Enable/disable wireframe rendering
+WireFrame enable
 
-	RenderWorld
+RenderWorld
 
-	Text 0,0,"Press spacebar to toggle between Wireframe True/False"
-	If enable=False Then Text 0,20,"Wireframe False" Else Text 0,20,"Wireframe True"
+Text 0,0,"Press spacebar to toggle between Wireframe True/False"
+If enable=True Then Text 0,20,"Wireframe True" Else Text 0,20,"Wireframe False"
 
-	Flip
+Flip
 
 Wend
 

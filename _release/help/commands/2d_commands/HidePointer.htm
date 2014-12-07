@@ -1,47 +1,59 @@
 <html>
 <head>
-<title>Command: HidePointer</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;HidePointer&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>n/a</td>
-  </tr>
-</table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>HidePointer is for use in windowed display modes, and simply hides the Windows pointer when it is moved over your game's window. You can bring it back via ShowPointer. It has no effect in full-screen modes.</td>
-  </tr>
-</table>
-<p class="header"><a href="../3d_examples/ShowPointer.bb">Example (using ShowPointer):</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>
-Graphics 640, 480, 0, 2<BR>
-<BR>
-HidePointer<BR>
-<BR>
-Print "Move pointer over window and press a key..."<BR>
-WaitKey<BR>
-<BR>
-ShowPointer<BR>
-<BR>
-Delay 1000<BR>
+<h1>HidePointer</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+None.
 </td>
-  </tr>
+</tr>
 </table>
-</body>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+HidePointer is for use in windowed display modes, and simply hides the Windows  pointer when it is moved over your game's window. You can bring it back via ShowPointer. It has no effect in full-screen modes.
+<br>
+<br>
+See also: <a class=small href=ShowPointer.htm>ShowPointer</a>.
+</td>
+</tr>
+</table>
+<h1><a href=../2d_examples/HidePointer.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; HidePointer / ShoPointer Example<br />
+<br />
+; draw a simple screen, cut in half by a white line<br />
+Graphics 800,600,0,2<br />
+Color 255,255,255<br />
+Line 400,0,400,600<br />
+Text 200,300,"ShowPointer",True,True<br />
+Text 600,300,"HidePointer",True,True<br />
+<br />
+; and a simple loop in which we hide / show the pointer dependent on <br />
+; which side of the screen the mouse is on!<br />
+Repeat<br />
+	If MouseX()<400 Then <br />
+		ShowPointer<br />
+	Else<br />
+		HidePointer<br />
+	End If<br />
+	If KeyHit(1) Then Exit ; ESCAPE to exit<br />
+Forever<br />
+<br />
+End ; bye!
+</td>
+</tr>
+</table>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=HidePointer&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

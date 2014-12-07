@@ -1,43 +1,79 @@
 <html>
 <head>
-<title>Command: EntityShininess</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;EntityShininess entity,shininess#&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>entity - entity handle<br>
-    shininess# - shininess of entity</td>
-  </tr>
+<h1>EntityShininess Entity, Shininess#</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+Entity - entity handle<br />
+Shininess# - shininess of entity
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Sets the specular shininess of an entity.<p>The shininess# value should be in the range 0-1. 
-    The default shininess setting is 0.<p>Shininess is how much brighter certain 
-    areas of an object will appear to be when a light is shone directly at them.</p>
-    <p>Setting a shininess value of 1 for a medium to high poly sphere, combined 
-    with the creation of a light shining in the direction of it, will give it 
-    the appearance of a shiny snooker ball.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Sets the specular shininess of an entity.<br />
+<br />
+The shininess# value should be a floting point number in the range 0-1. The default shininess setting is 0. <br />
+<br />
+Shininess is how much brighter certain areas of an object will appear to be when a light is shone directly at them. <br />
+<br />
+Setting a shininess value of 1 for a medium to high poly sphere, combined  with the creation of a light shining in the direction of it, will give it the  appearance of a shiny snooker ball.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/EntityShininess.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/EntityShininess.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; EntityShininess Example<br />
+; -----------------------<br />
+<br />
+Graphics3D 640,480<br />
+SetBuffer BackBuffer()<br />
+camera=CreateCamera()<br />
+; Set ambient light to a low level, to increase effect of shininess<br />
+<br />
+AmbientLight 32,32,32<br />
+light=CreateLight()<br />
+RotateEntity light,45,45,0<br />
+<br />
+sphere=CreateSphere(100)<br />
+EntityColor Sphere,255,0,0<br />
+PositionEntity sphere,0,0,4<br />
+<br />
+; Set initial shine value<br />
+<br />
+shine#=0<br />
+<br />
+While Not KeyDown(1)<br />
+; Change shine value depending on key pressed<br />
+<br />
+If KeyDown(2)=True And shine#>0 Then shine#=shine#-0.01<br />
+If KeyDown(3)=True And shine#<1 Then shine#=shine#+0.01<br />
+<br />
+; Set entity shininess using shine value<br />
+EntityShininess sphere,shine#<br />
+<br />
+RenderWorld<br />
+<br />
+Text 0,0,"Press keys 1-2 to change EntityShininess Setting"<br />
+Text 0,20,"Entity Shininess: "+shine#<br />
+<br />
+Flip<br />
+Wend<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=EntityShininess&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

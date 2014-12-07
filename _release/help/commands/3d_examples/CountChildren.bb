@@ -1,20 +1,5 @@
-; CountChildren Example
-; ----------------
-
-Graphics3D 640,480
-SetBuffer BackBuffer()
-
-camera=CreateCamera()
-light=CreateLight()
-
-cone=CreateCone()
-PositionEntity cone,0,0,5
-
-While Not KeyDown( 1 )
-	
-	RenderWorld
-	Flip
-
-Wend
-
-End
+If CountChildren(entity) > 0
+For childcount = 1 to CountChildren(entity)
+child = GetChild(entity,childcount)
+Next
+Endif

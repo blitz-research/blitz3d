@@ -1,37 +1,68 @@
 <html>
 <head>
-<title>Command: TextureWidth</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;TextureWidth (texture )&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>texture - texture handle</td>
-  </tr>
+<h1>TextureWidth (texture )</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+texture - texture handle
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Returns the width of a texture.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Returns the width of a texture.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/TextureWidth.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/TextureWidth.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; TextureWidth and TextureHeight Example.<br />
+; ---------------------------------------<br />
+<br />
+Graphics3D 640,480 <br />
+<br />
+; This bit of code creates 4 textures <br />
+; of different sizes and shapes.<br />
+<br />
+texture1=CreateTexture(256,256,59) <br />
+texture2=CreateTexture(256,128,59) <br />
+texture3=CreateTexture(128,256,59) <br />
+texture4=CreateTexture(200,200,59)<br />
+<br />
+; The following lines print the selected value<br />
+; of the texture, and reports the actual texture<br />
+; resolution.<br />
+<br />
+<br />
+Print "Texture 1 was created at 256x256"<br />
+Print "On your system the dimensions are "+TextureWidth(texture1)+"x"+TextureHeight(texture1)<br />
+Print<br />
+Print "Texture 2 was created at 256x128"<br />
+Print "On your system the dimensions are "+TextureWidth(texture2)+"x"+TextureHeight(texture2)<br />
+Print<br />
+Print "Texture 3 was created at 128x256"<br />
+Print "On your system the dimensions are "+TextureWidth(texture3)+"x"+TextureHeight(texture3)<br />
+Print<br />
+Print "Texture 4 was created at 200x200"<br />
+Print "On your system the dimensions are "+TextureWidth(texture4)+"x"+TextureHeight(texture4)<br />
+<br />
+WaitKey<br />
+<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=TextureWidth&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

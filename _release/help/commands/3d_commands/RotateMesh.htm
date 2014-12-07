@@ -1,40 +1,85 @@
 <html>
 <head>
-<title>Command: RotateMesh</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;RotateMesh mesh,pitch#,yaw#,roll#&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>mesh - mesh handle<br>
-    pitch# - pitch of mesh<br>
-    yaw# - yaw of mesh<br>
-    roll# - roll of mesh</td>
-  </tr>
+<h1>RotateMesh mesh,pitch#,yaw#,roll#</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+mesh - mesh handle<br />
+pitch# - pitch of mesh<br />
+yaw# - yaw of mesh<br />
+roll# - roll of mesh
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Rotates all vertices of a mesh by the specified rotation.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Rotates all vertices of a mesh by the specified rotation.
+<br>
+<br>
+See also: <a class=small href=RotateEntity.htm>RotateEntity</a>, <a class=small href=TurnEntity.htm>TurnEntity</a>.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/RotateMesh.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/RotateMesh.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; RotateMesh Example<br />
+; ------------------<br />
+ <br />
+; In this example we will demonstrate the use of the RotateMesh command.<br />
+<br />
+; Unlike RotateEntity, RotateMesh actually modifies the actual mesh structure.<br />
+<br />
+; So whereas using RotateEntity 0,45,0 would only rotate an entity by 45 degrees the first time it was <br />
+; used, RotateMesh 0,45,0 will rotate the mesh every time it is used.<br />
+<br />
+; This is because RotateEntity rotates an entity based on a fixed mesh structure, whereas RotateMesh<br />
+; actually modifies the mesh structure itself.<br />
+<br />
+Graphics3D 640,480<br />
+SetBuffer BackBuffer()<br />
+ <br />
+camera=CreateCamera()<br />
+ <br />
+light=CreateLight()<br />
+<br />
+; Rotate light to give better lighting of cube<br />
+RotateEntity light,60,30,0<br />
+<br />
+; Create cube mesh<br />
+cube=CreateCube()<br />
+<br />
+; Position cube in front of camera so we can see it <br />
+PositionEntity cube,0,0,5<br />
+ <br />
+While Not KeyDown(1)<br />
+<br />
+	; If space bar pressed then rotate mesh by 45 degrees on the y axis. Also set syntax$ text.<br />
+	If KeyHit(57)=True Then RotateMesh cube,0,45,0 : syntax$="RotateMesh 0,45,0"<br />
+<br />
+	RenderWorld<br />
+	<br />
+	Text 0,0,"Press space to rotate mesh by 45 degrees on the y axis"<br />
+	Text 0,20,syntax$<br />
+	<br />
+	Flip<br />
+<br />
+Wend<br />
+ <br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=RotateMesh&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

@@ -1,37 +1,87 @@
 <html>
 <head>
-<title>Command: ClearTextureFilters</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;ClearTextureFilters&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>None.</td>
-  </tr>
+<h1>ClearTextureFilters</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+None.
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Clears the current texture filter list.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Clears the current texture filter list.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/ClearTextureFilters.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
+<h1><a href=../3d_examples/ClearTextureFilters.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; ClearTextureFilters and TextureFilter Example.<br />
+; ----------------------------------------------<br />
+<br />
+Const tex_color 	= 1		; Color texture<br />
+Const tex_alpha 	= 2		; Alpha texture (Include alpha channel data)<br />
+Const tex_mask 		= 4		; Masked texture (black is transparent)<br />
+Const tex_mipmap 	= 8		; Create texture mipmaps<br />
+Const tex_clampu 	= 16	; Restrict U texture coords from "bleeding over"<br />
+Const tex_clampv	= 32	; Restrict V texture coords from "bleeding over"<br />
+Const tex_envshpere	= 64	; Load texture as a spherical environment map<br />
+Const tex_vram 		= 256	; Force texture graphics to vram<br />
+Const tex_highcolor	= 512	; Forces texture graphics to be 32-bits per pixel<br />
+<br />
+Graphics3D 640,480 <br />
+<br />
+; Removes any texture filters that might apply.<br />
+<br />
+ClearTextureFilters<br />
+<br />
+; Add an alpha texture to the list of <br />
+; texture filters to apply to files<br />
+; that have "_alpha" in their filenames.<br />
+<br />
+TextureFilter "_alpha",tex_color + tex_alpha + tex_mipmap<br />
+<br />
+; Set appropriate texture flags for loading<br />
+; suitable skybox textures from files named<br />
+; something with "_skybox".<br />
+<br />
+TextureFilter "_skybox", tex_color + tex_mipmap + tex_clampu + tex_clampv<br />
+<br />
+; Set the flags for loading a spherical refletction<br />
+; map to apply to all "_refmap" files.<br />
+<br />
+TextureFilter "_refmap", tex_color + tex_mipmap + tex_envshpere<br />
+<br />
+; Setup a texture filter to allow faster<br />
+; (and easier) pixel manipulation on all<br />
+; loaded "_fastblit" files.<br />
+<br />
+TextureFilter "_fastblit", tex_color + tex_vram + tex_highcolor<br />
+<br />
+; This is where you would normally load your special<br />
+; textures.<br />
+<br />
+; The next bit resets the texture filters to their<br />
+; standard settings.<br />
+<br />
+ClearTextureFilters<br />
+TextureFilter "", tex_color + tex_mipmap<br />
+<br />
+End
+</td>
+</tr>
 </table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=ClearTextureFilters&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

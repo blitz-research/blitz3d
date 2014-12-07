@@ -1,45 +1,35 @@
 <html>
 <head>
-<title>Command: EntityOrder</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;EntityOrder entity,order&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>entity - entity handle<br>
-    order - order that entity will be drawn in</td>
-  </tr>
+<h1>EntityOrder entity,order</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+entity - entity handle<br />
+order - order that entity will be drawn in
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Sets the drawing order for an entity.<p>An order value of 0 will mean 
-    the entity is drawn normally. A value greater than 0 will mean that entity 
-    is drawn first, behind everything else. A value less than 0 will mean the 
-    entity is drawn last, in front of everything else.</p>
-    <p>Setting an entity's order to 
-    non-0 also disables z-buffering for the entity, so should be only used for 
-    simple, convex entities like skyboxes, sprites etc.<p>EntityOrder affects 
-    the specified entity but none of its child entities, if any exist.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Sets the drawing order for an entity.<br />
+<br />
+An order value of 0 will mean the  entity is drawn normally. A value greater than 0 will mean that entity is drawn  first, behind everything else. A value less than 0 will mean the entity is drawn  last, in front of everything else. <br />
+<br />
+Setting an entity's order to non-0 also disables z-buffering for the entity,  so should be only used for simple, convex entities like skyboxes, sprites etc. <br />
+<br />
+EntityOrder affects the specified entity but none of its child entities,  if any exist. 
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/EntityOrder.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
-</table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=EntityOrder&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

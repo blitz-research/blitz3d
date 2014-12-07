@@ -13,17 +13,17 @@ cube=CreateCube()
 PositionEntity cube,0,0,5
 
 ; Create texture of size 256x256
-tex=CreateTexture(256,256)
+tex=CreateTexture( 256,256 )
 
 ; Set buffer - texture buffer
-SetBuffer TextureBuffer(tex)
+SetBuffer TextureBuffer( tex )
 
 ; Clear texture buffer with background white color
 ClsColor 255,255,255
 Cls
 
 ; Draw text on texture
-font=LoadFont("arial",24)
+font=LoadFont( "arial",24 )
 SetFont font
 Color 0,0,0
 Text 0,0,"This texture"
@@ -40,21 +40,21 @@ SetBuffer BackBuffer()
 
 While Not KeyDown( 1 )
 
-	pitch#=0
-	yaw#=0
-	roll#=0
+pitch#=0
+yaw#=0
+roll#=0
 
-	If KeyDown( 208 )=True Then pitch#=-1	
-	If KeyDown( 200 )=True Then pitch#=1
-	If KeyDown( 203 )=True Then yaw#=-1
-	If KeyDown( 205 )=True Then yaw#=1
-	If KeyDown( 45 )=True Then roll#=-1
-	If KeyDown( 44 )=True Then roll#=1
+If KeyDown( 208 )=True Then pitch#=-1 
+If KeyDown( 200 )=True Then pitch#=1
+If KeyDown( 203 )=True Then yaw#=-1
+If KeyDown( 205 )=True Then yaw#=1
+If KeyDown( 45 )=True Then roll#=-1
+If KeyDown( 44 )=True Then roll#=1
 
-	TurnEntity cube,pitch#,yaw#,roll#
-	
-	RenderWorld
-	Flip
+TurnEntity cube,pitch#,yaw#,roll#
+
+RenderWorld
+Flip
 
 Wend
 

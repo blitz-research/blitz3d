@@ -1,50 +1,41 @@
 <html>
 <head>
-<title>Command: LoadBrush</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/commands.css">
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
 </head>
-
 <body>
-
-<p><span class="Command">&nbsp;&nbsp;LoadBrush ( file$[,flags][,u_scale][,v_scale]&nbsp;&nbsp;</span></p>
-
-<p>
-<span class="header">Parameters:</span><br>
-</p>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>file$ - filename<br>
-    flags - brush flags<br>
-    <br>
-    flags (optional) - flags can be added to combine effects:<br>
-    1: Color<br>
-    2: Alpha<br>
-    4: Masked<br>
-    8: Mipmapped<br>
-    16: Clamp U<br>
-    32: Clamp V<br>
-    64: Spherical reflection map<br>
-    <br>
-    u_scale - brush u_scale<br>
-    v_scale - brush v_scale</td>
-  </tr>
+<h1>LoadBrush ( texture_file$[,flags][,u_scale][,v_scale]</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+texture_file$ - filename of texture<br />
+flags - brush flags<br />
+<br />
+flags (optional) - flags can be added to combine effects:<br />
+1: Color<br />
+2: Alpha<br />
+4: Masked<br />
+8: Mipmapped<br />
+16: Clamp U<br />
+32: Clamp V<br />
+64: Spherical reflection map<br />
+<br />
+u_scale - brush u_scale<br />
+v_scale - brush v_scale
+</td>
+</tr>
 </table>
-<p class="header">Description:<br>
-  <br>
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr>
-    <td>Creates a brush, assigns a texture to it, and returns a brush handle.</td>
-  </tr>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Creates a brush, loads and assigns a texture to it, and returns a brush handle.
+</td>
+</tr>
 </table>
-<p class="header"><a href="../3d_examples/LoadBrush.bb">Example:</a><br>
-  <br>
-  
-<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
-  <tr> 
-    <td>None.</td>
-  </tr>
-</table>
-<p><b><a target="_top" href="../index.htm">Index</a></b></p>
-</body>
+<br>
+<a target=_top href=../index.htm>Index</a><br>
+<br>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=LoadBrush&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

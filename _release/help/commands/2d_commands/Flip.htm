@@ -1,21 +1,66 @@
-<html><head><title>Command: Flip </title><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><link rel='stylesheet' href='../css/commands.css' type='text/css'></head><body><span class='Command'>&nbsp;&nbsp;Flip [vwait] &nbsp;&nbsp;</span></p><span class='header'>Definition:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>In a double buffering environment, flips the BackBuffer into view.</td></tr></table><span class='header'><br>Parameter Description:</span> <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>vwait = set to TRUE to wait for vertical blank to finish</td></tr></table><p class='header'>Command Description: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>When you are double buffering (or doing all drawing operations to the <a href='BackBuffer().htm'>BackBuffer()</a>, at some point, after you've drawn all your elements - you will need to 'flip' that Backbuffer into the visible <a href='FrontBuffer().htm'>FrontBuffer()</a> so it can be seen.  This command will perform this function.  This allows you to draw massive amounts of information quickly, then flip it into view.  See BackBuffer() for more info.</td></tr></table><p class='header'>Example: <br><br><table width='100%' border='0' cellspacing='2' cellpadding='2' align='center'><tr><td>; Flip/Backbuffer()/Rect Example<br>
+<html>
+<head>
+<title>Blitz3D Docs</title>
+<link rel=stylesheet href=../css/commands.css type=text/css>
+</head>
+<body>
+<h1>Flip [vwait]</h1>
+<h1>Parameters</h1>
+<table>
+<tr>
+<td>
+vwait = set to FALSE to disable frame syncing, defaults to TRUE which waits for vertical blank to finish
+</td>
+</tr>
+</table>
+<h1>Description</h1>
+<table>
+<tr>
+<td>
+Flip will switch the FrontBuffer() and BackBuffer().<br />
+<br />
+<br />
+This command should be used when you are using Double Buffering.  Double Buffering is a technique used to ensure that screen updates are not visible to the user.  If you draw directly to the FrontBuffer, the display may appear flickery as the updates are drawn directly to the screen.  If you draw to the BackBuffer, the updates are drawn in memory.  Flip is then used to make the BackBuffer the FrontBuffer, and hence show the updates on screen in one go.  At the same time, the FrontBuffer becomes the BackBuffer, allowing you to draw the next screen update on the BackBuffer before Flipping again.<br />
+<br />
+<br />
+The vwait parameter defines whether or not the graphics card will wait for the vertical blank before flipping the screen.  The vertical blank is an event that occurs at the frequency of the monitors refresh rate, and corresponds to the point in time when the last line on the screen has been drawn, and the top line is about to be drawn by the monitor.  By waiting until the vertical blank, you ensure smooth updates to the screen as the image being drawn by the monitor will change only once the entire screen has been drawn by the monitor, and the screen is just about to start being refreshed.<br />
+<br />
+<br />
+However, it is worth noting that this setting applies to the graphics card only, and some graphics cards allow the user to disable the vertical blank event.  Therefore, if you rely on Flip alone, the display may be corrupted on certain setups.  The VWait command may be useful to you in  this respect, as it forces the CPU to wait for the vertical blank (as opposed to the graphics card), and this cannot be disabled.  Hence true silky smooth updates are best achieved using "VWait : Flip False".
 <br>
-; Set Graphics Mode<br>
-Graphics 640,480<br>
 <br>
-; Go double buffering<br>
-SetBuffer BackBuffer()<br>
+See also: <a class=small href=FrontBuffer.htm>FrontBuffer</a>, <a class=small href=BackBuffer.htm>BackBuffer</a>, <a class=small href=VWait.htm>VWait</a>, <a class=small href=ScanLine.htm>ScanLine</a>.
+</td>
+</tr>
+</table>
+<h1><a href=../2d_examples/Flip.bb>Example</a></h1>
+<table>
+<tr>
+<td>
+; Flip/Backbuffer()/Rect Example<br />
+<br />
+; Set Graphics Mode<br />
+Graphics 640,480<br />
+<br />
+; Go double buffering<br />
+SetBuffer BackBuffer()<br />
+<br />
+; Setup initial locations for the box<br />
+box_x = -20 ; negative so it will start OFF screen<br />
+box_y = 100<br />
+<br />
+While Not KeyHit(1)<br />
+Cls ; Always clear screen first<br />
+Rect box_x,box_y,20,20,1 ; Draw the box in the current x,y location<br />
+Flip ; Flip it into view<br />
+box_x = box_x + 1 ; Move the box over one pixel<br />
+If box_x = 640 Then box_x=-20 ; If it leaves the Right edge, reset its x location<br />
+Wend
+</td>
+</tr>
+</table>
 <br>
-; Setup initial locations for the box<br>
-box_x = -20 ; negative so it will start OFF screen<br>
-box_y = 100<br>
+<a target=_top href=../index.htm>Index</a><br>
 <br>
-While Not KeyHit(1)<br>
-Cls ; Always clear screen first<br>
-Rect box_x,box_y,20,20,1 ; Draw the box in the current x,y location<br>
-Flip ; Flip it into view<br>
-box_x = box_x + 1 ; Move the box over one pixel<br>
-If box_x = 640 Then box_x=-20 ; If it leaves the Right edge, reset its x location<br>
-Wend<br>
-<br></td></tr></table><p><b><a target="_top" href="../index.htm">Index</a></b></p></body>
+Click <a href=http://www.blitzbasic.co.nz/b3ddocs/command.php?name=Flip&ref=comments target=_blank>here</a> to view the latest version of this page online</body>
 </html>

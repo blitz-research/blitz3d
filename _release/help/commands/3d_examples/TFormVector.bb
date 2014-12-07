@@ -1,52 +1,35 @@
+; TFormVector example
 
 Graphics3D 640, 480
 
-cam = CreateCamera ()
-MoveEntity cam, 5, 0, -5
+p = CreatePivot()
 
-box = CreateCube ()
-MoveEntity box, 5, 0, 0
+PositionEntity p, 10, 20, 30   ; easy to visualize
+TurnEntity p, -5, -15, 25      ; hard to visualize
 
-Repeat
+; Question: what would happen if we took one step 'forward'?
+; The local vector corresponding to one step forward is (0,0,1)
+; in the pivot's local space. We need the global version.
 
-	If KeyDown (203) TurnEntity cam, 0, 0.5, 0
-	If KeyDown (205) TurnEntity cam, 0, -0.5, 0
-	If KeyDown (200) MoveEntity cam, 0, 0, 0.1
-	If KeyDown (208) MoveEntity cam, 0, 0, -0.1
+TFormVector 0,0,1, p,0    ;  transform from pivot to world
 
-	bx#	= EntityX (box)
-	by#	= EntityY (box)
-	bz#	= EntityZ (box)
+message$ = "'One step forward' vector is  ( "
+message = message + TFormedX() + ",  " + TFormedY() + ",  " + TFormedZ() + " )"
 
-	cx#	= EntityX (cam, 1)
-	cy#	= EntityY (cam, 1)
-	cz#	= EntityZ (cam, 1)
-	
-	TFormVector EntityPitch (cam), EntityYaw (cam), EntityRoll (cam), cam, box
-	xang# = TFormedX ()
-	yang# = TFormedY ()
-	zang# = TFormedZ ()
-		
-	UpdateWorld
-	RenderWorld
-	
-	Text 0, 20, "Box's global position"
-	Text 20, 40, "x: " + bx
-	Text 20, 60, "y: " + by
-	Text 20, 80, "z: " + bz
-	
-	Text 0, 120, "Camera's global position"
-	Text 20, 140, "x: " + cx
-	Text 20, 160, "y: " + cy
-	Text 20, 180, "z: " + cz
+Text 70, 180, message
 
-	Text 0, 220, "Camera angle relative to box"
-	Text 20, 240, "x: " + xang
-	Text 20, 260, "y: " + yang
-	Text 20, 280, "z: " + zang
-	
-	Flip
+; Now actually take the step. The new location should be
+; (10,20,30) plus the vector we just computed.
 
-Until KeyHit (1)
+MoveEntity p, 0,0,1
 
+message$ = "New location of pivot is  ( "
+message = message + EntityX(p) + ",  "
+message = message + EntityY(p) + ",  " + EntityZ(p) + " )"
+
+Text 100, 210, message
+
+Flip
+
+WaitKey()
 End

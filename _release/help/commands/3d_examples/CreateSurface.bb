@@ -1,40 +1,20 @@
-; CreateSurface Example
-; ---------------------
-
 Graphics3D 640,480
 SetBuffer BackBuffer()
 
-camera=CreateCamera()
-PositionEntity camera,0,0,-5
+mesh = CreateMesh()
+surf = CreateSurface(mesh)
 
-light=CreateLight()
-RotateEntity light,90,0,0
+v0 = AddVertex (surf, -5,-5,0,  0  ,0)
+v1 = AddVertex (surf,  5,-5,0,  1  ,0)
+v2 = AddVertex (surf,  0, 5,0,  0.5,1)
 
-mesh=CreateMesh()
-surf=CreateSurface( mesh )
+tri = AddTriangle (surf,v0,v2,v1)
 
-Const segs=128,width#=4,depth#=.125
+cam = CreateCamera()
+MoveEntity cam, 0,0,-7
 
-For k=0 To segs
-	x#=Float(k)*width/segs-width/2
-	u#=Float(k)/segs
-	AddVertex surf,x,1,0,u,0
-	AddVertex surf,x,-1,0,u,1
-Next
+RenderWorld
+Flip
 
-For k=0 To segs-1
-	AddTriangle surf,k*2,k*2+2,k*2+3
-	AddTriangle surf,k*2,k*2+3,k*2+1
-Next
-
-b=LoadBrush( "../media/b3dlogo.jpg" )
-PaintSurface surf,b
-
-While Not KeyDown( 1 )
-	
-	RenderWorld
-	Flip
-
-Wend
-
+WaitKey
 End
