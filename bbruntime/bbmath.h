@@ -18,6 +18,8 @@ float	 bbCeil( float n );
 float	 bbExp( float n );
 float	 bbLog( float n );
 float	 bbLog10( float n );
+float	 bbMin( float n,float m );
+float	 bbMax( float n,float m );
 float	 bbRnd( float from,float to );
 void	 bbSeedRnd( int seed );
 

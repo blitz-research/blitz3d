@@ -24,6 +24,7 @@ public:
 	void setProjMode( int mode );
 	void setFogColor( const Vector &v );
 	void setFogRange( float nr,float fr );
+	void setFogDensity(float den);
 	void setFogMode( int mode );
 
 	//called by world
@@ -45,7 +46,7 @@ private:
 	bool cls_argb,cls_z;
 	int proj_mode;
 	Vector fog_color;
-	float fog_nr,fog_fr;
+	float fog_nr,fog_fr,fog_den;
 	int fog_mode;
 	float frustum_nr,frustum_fr;
 	mutable float frustum_w,frustum_h;

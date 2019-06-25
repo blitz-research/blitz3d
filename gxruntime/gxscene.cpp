@@ -110,6 +110,7 @@ n_texs(0),tris_drawn(0){
 	ambient2=~0;setAmbient2( BLACK );
 	fogcolor=~0;setFogColor( BLACK );
 	fogrange_nr=fogrange_fr=0;setFogRange( 1,1000 );
+	fog_density = 0.0; setFogDensity(1.0);
 	fogmode=FOG_LINEAR;setFogMode( FOG_NONE );
 	zmode=-1;setZMode( ZMODE_NORMAL );
 	memset(&projmatrix,0,sizeof(projmatrix));
@@ -141,6 +142,12 @@ void gxScene::setTexState( int n,const TexState &state,bool tex_blend ){
 	//set addressing modes
 	setTSS( n,D3DTSS_ADDRESSU,(flags & gxCanvas::CANVAS_TEX_CLAMPU) ? D3DTADDRESS_CLAMP : D3DTADDRESS_WRAP );
 	setTSS( n,D3DTSS_ADDRESSV,(flags & gxCanvas::CANVAS_TEX_CLAMPV) ? D3DTADDRESS_CLAMP : D3DTADDRESS_WRAP );
+	setTSS( n,D3DTSS_MINFILTER, (flags & gxCanvas::CANVAS_TEX_POINT) ? D3DTFN_POINT : D3DTFN_LINEAR);
+	setTSS( n,D3DTSS_MAGFILTER, (flags & gxCanvas::CANVAS_TEX_POINT) ? D3DTFG_POINT : D3DTFG_LINEAR);
+	setTSS( n,D3DTSS_MIPFILTER, (flags & gxCanvas::CANVAS_TEX_POINT) ? D3DTFP_POINT : D3DTFP_LINEAR);
+	setTSS( n, D3DTSS_MINFILTER, (flags & gxCanvas::CANVAS_TEX_NOBILINEAR) ? D3DTFN_POINT : D3DTFN_LINEAR);
+	setTSS( n, D3DTSS_MAGFILTER, (flags & gxCanvas::CANVAS_TEX_NOBILINEAR) ? D3DTFG_POINT : D3DTFG_LINEAR);
+	setTSS( n, D3DTSS_MIPFILTER, (flags & gxCanvas::CANVAS_TEX_NOBILINEAR) ? D3DTFP_NONE : D3DTFP_LINEAR);
 
 	//texgen
 	switch( flags&(
@@ -200,7 +207,17 @@ void gxScene::setTexState( int n,const TexState &state,bool tex_blend ){
 	case BLEND_MULTIPLY2:
 		setTSS( n,D3DTSS_COLOROP,D3DTOP_MODULATE2X );
 		break;
+	case BLEND_BUMPENVMAP:
+		setTSS( n,D3DTSS_COLOROP,D3DTOP_BUMPENVMAP );
+		break;
 	}
+
+	setTSS( n,D3DTSS_BUMPENVMAT00,state.bumpEnvMat[0][0] );
+	setTSS( n,D3DTSS_BUMPENVMAT01,state.bumpEnvMat[0][1] );
+	setTSS( n,D3DTSS_BUMPENVMAT10,state.bumpEnvMat[1][0] );
+	setTSS( n,D3DTSS_BUMPENVMAT11,state.bumpEnvMat[1][1] );
+	setTSS( n,D3DTSS_BUMPENVLSCALE,state.bumpEnvScale );
+	setTSS( n,D3DTSS_BUMPENVLOFFSET,state.bumpEnvOffset );
 	setTSS( n,D3DTSS_ALPHAOP,(flags & gxCanvas::CANVAS_TEX_ALPHA) ? D3DTOP_MODULATE : D3DTOP_SELECTARG2 );
 }
 
@@ -251,9 +268,32 @@ void gxScene::setAmbient(){
 	setRS( D3DRENDERSTATE_AMBIENT,n );
 }
 
-void gxScene::setFogMode(){
+/*void gxScene::setFogMode(){
 	bool fog= fogmode==FOG_LINEAR && !(fx&FX_NOFOG);
 	setRS( D3DRENDERSTATE_FOGENABLE,fog );
+}*/
+void gxScene::setFogMode() {
+	if (!!(fx&FX_NOFOG)) {
+		setRS(D3DRENDERSTATE_FOGENABLE, false);
+		return;
+	}
+	switch (fogmode) {
+	case FOG_NONE:
+		setRS(D3DRENDERSTATE_FOGENABLE, false);
+		break;
+	case FOG_EXP:
+		setRS(D3DRENDERSTATE_FOGENABLE, true);
+		setRS(D3DRENDERSTATE_FOGTABLEMODE, D3DFOG_EXP);
+		break;
+	case FOG_EXP2:
+		setRS(D3DRENDERSTATE_FOGENABLE, true);
+		setRS(D3DRENDERSTATE_FOGTABLEMODE, D3DFOG_EXP2);
+		break;
+	case FOG_LINEAR:
+		setRS(D3DRENDERSTATE_FOGENABLE, true);
+		setRS(D3DRENDERSTATE_FOGTABLEMODE, D3DFOG_LINEAR);
+		break;
+	}
 }
 
 void gxScene::setTriCull(){
@@ -296,7 +336,7 @@ void gxScene::setAntialias( bool n ){
 
 void gxScene::setWireframe( bool n ){
 	if( n==wireframe ) return;
-	wireframe=n;setRS( D3DRENDERSTATE_FILLMODE,wireframe ? D3DFILL_WIREFRAME : D3DFILL_SOLID );
+	wireframe=n;//setRS( D3DRENDERSTATE_FILLMODE,wireframe ? D3DFILL_WIREFRAME : D3DFILL_SOLID );
 }
 
 void gxScene::setFlippedTris( bool n ){
@@ -361,6 +401,12 @@ void gxScene::setFogRange( float nr,float fr ){
 	fogrange_nr=nr;fogrange_fr=fr;
 	setRS( D3DRENDERSTATE_FOGSTART,*(DWORD*)&fogrange_nr );
 	setRS( D3DRENDERSTATE_FOGEND,*(DWORD*)&fogrange_fr );
+}
+
+void gxScene::setFogDensity(float den) {
+	if (den == fog_density) return;
+	fog_density=den;
+	setRS(D3DRENDERSTATE_FOGDENSITY, *(DWORD*)&fog_density);
 }
 
 void gxScene::setFogMode( int n ){
@@ -464,6 +510,9 @@ void gxScene::setRenderState( const RenderState &rs ){
 		if( t&FX_DOUBLESIDED ){
 			setTriCull();
 		}
+		if (!wireframe && t&FX_WIREFRAME) {
+			setRS(D3DRENDERSTATE_FILLMODE, fx&FX_WIREFRAME ? D3DFILL_WIREFRAME : D3DFILL_SOLID);
+		}
 		if( t&FX_EMISSIVE ){
 			//Q3 Hack!
 			int n=fx & FX_EMISSIVE;
@@ -494,6 +543,12 @@ void gxScene::setRenderState( const RenderState &rs ){
 		if( ts.canvas!=hw->canvas ){ hw->canvas=ts.canvas;settex=true; }
 		if( ts.blend!=hw->blend ){ hw->blend=ts.blend;settex=true; }
 		if( ts.flags!=hw->flags ){ hw->flags=ts.flags;settex=true; }
+		if( ts.bumpEnvMat[0][0]!=hw->bumpEnvMat[0][0] ) { hw->bumpEnvMat[0][0]=ts.bumpEnvMat[0][0];settex=true; }
+		if( ts.bumpEnvMat[1][0]!=hw->bumpEnvMat[1][0] ) { hw->bumpEnvMat[1][0]=ts.bumpEnvMat[1][0];settex=true; }
+		if( ts.bumpEnvMat[0][1]!=hw->bumpEnvMat[0][1] ) { hw->bumpEnvMat[0][1]=ts.bumpEnvMat[0][1];settex=true; }
+		if( ts.bumpEnvMat[1][1]!=hw->bumpEnvMat[1][1] ) { hw->bumpEnvMat[1][1]=ts.bumpEnvMat[1][1];settex=true; }
+		if( ts.bumpEnvScale!=hw->bumpEnvScale ) { hw->bumpEnvScale=ts.bumpEnvScale;settex=true; }
+		if( ts.bumpEnvOffset!=hw->bumpEnvOffset ) { hw->bumpEnvOffset=ts.bumpEnvOffset;settex=true; }
 		if( ts.matrix || hw->mat_valid ){
 			if( ts.matrix ){
 				memcpy( &hw->matrix._11,ts.matrix->elements[0],12 );
@@ -530,6 +585,7 @@ bool gxScene::begin( const vector<gxLight*> &lights ){
 		setTSS( n,D3DTSS_COLOROP,D3DTOP_DISABLE );
 		setTSS( n,D3DTSS_ALPHAOP,D3DTOP_DISABLE );
 		dir3dDev->SetTexture( n,0 );
+		setTSS( n,D3DTSS_MIPMAPLODBIAS,textureLodBias );
 	}
 
 	//set light states
@@ -543,6 +599,8 @@ bool gxScene::begin( const vector<gxLight*> &lights ){
 		}
 	}
 	setLights();
+
+	setRS(D3DRENDERSTATE_FILLMODE, wireframe ? D3DFILL_WIREFRAME : D3DFILL_SOLID);
 
 	return true;
 }

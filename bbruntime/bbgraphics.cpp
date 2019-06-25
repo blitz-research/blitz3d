@@ -390,6 +390,7 @@ void bbGraphics( int w,int h,int d,int mode ){
 	case 1:break;
 	case 2:flags|=gxGraphics::GRAPHICS_WINDOWED;break;
 	case 3:flags|=gxGraphics::GRAPHICS_WINDOWED|gxGraphics::GRAPHICS_SCALED;break;
+	case 4:flags|=gxGraphics::GRAPHICS_WINDOWED|gxGraphics::GRAPHICS_BORDERLESS; break;
 	case 6:flags|=gxGraphics::GRAPHICS_WINDOWED|gxGraphics::GRAPHICS_AUTOSUSPEND;break;
 	case 7:flags|=gxGraphics::GRAPHICS_WINDOWED|gxGraphics::GRAPHICS_SCALED|gxGraphics::GRAPHICS_AUTOSUSPEND;break;
 	default:RTEX( "Illegal Graphics mode" );
@@ -405,6 +406,7 @@ void bbGraphics3D( int w,int h,int d,int mode ){
 	case 1:break;
 	case 2:flags|=gxGraphics::GRAPHICS_WINDOWED;break;
 	case 3:flags|=gxGraphics::GRAPHICS_WINDOWED|gxGraphics::GRAPHICS_SCALED;break;
+	case 4:flags|=gxGraphics::GRAPHICS_WINDOWED|gxGraphics::GRAPHICS_BORDERLESS; break;
 	case 6:flags|=gxGraphics::GRAPHICS_WINDOWED|gxGraphics::GRAPHICS_AUTOSUSPEND;break;
 	case 7:flags|=gxGraphics::GRAPHICS_WINDOWED|gxGraphics::GRAPHICS_SCALED|gxGraphics::GRAPHICS_AUTOSUSPEND;break;
 	default:RTEX( "Illegal Graphics3D mode" );
@@ -432,6 +434,18 @@ void bbEndGraphics(){
 
 int bbGraphicsLost(){
 	return gx_runtime->graphicsLost();
+}
+
+int bbInFocus(){
+	return gx_runtime->focus();
+}
+
+int bbDesktopWidth() {
+	return gx_runtime->desktopWidth();
+}
+
+int bbDesktopHeight() {
+	return gx_runtime->desktopHeight();
 }
 
 void  bbSetGamma( int r,int g,int b,float dr,float dg,float db ){
@@ -1237,6 +1251,7 @@ void graphics_link( void (*rtSym)( const char *sym,void *pc ) ){
 #endif
 	rtSym( "EndGraphics",bbEndGraphics );
 	rtSym( "%GraphicsLost",bbGraphicsLost );
+	rtSym( "%InFocus",bbInFocus);
 
 	rtSym( "SetGamma%src_red%src_green%src_blue#dest_red#dest_green#dest_blue",bbSetGamma );
 	rtSym( "UpdateGamma%calibrate=0",bbUpdateGamma );
@@ -1347,4 +1362,7 @@ void graphics_link( void (*rtSym)( const char *sym,void *pc ) ){
 
 	rtSym( "ShowPointer",bbShowPointer );
 	rtSym( "HidePointer",bbHidePointer );
+
+	rtSym( "%DesktopWidth",bbDesktopWidth);
+	rtSym( "%DesktopHeight",bbDesktopHeight);
 }

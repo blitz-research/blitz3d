@@ -250,7 +250,7 @@ void gxAudio::set3dListener( const float pos[3],const float vel[3],const float f
 	FSOUND_Update();
 }
 
-gxChannel *gxAudio::playFile( const string &t,bool use_3d ){
+gxChannel *gxAudio::playFile( const string &t,bool use_3d, int mode ){
 	string f=tolower( t );
 	StaticChannel *chan=0;
 	map<string,StaticChannel*>::iterator it=songs.find(f);
@@ -258,21 +258,21 @@ gxChannel *gxAudio::playFile( const string &t,bool use_3d ){
 		chan=it->second;
 		chan->play();
 		return chan;
-	}else if( 
+	/*}else if( 
 		f.find( ".raw" )!=string::npos ||
 		f.find( ".wav" )!=string::npos ||
 		f.find( ".mp2" )!=string::npos ||
 		f.find( ".mp3" )!=string::npos ||
 		f.find( ".ogg" )!=string::npos ||
 		f.find( ".wma" )!=string::npos ||
-		f.find( ".asf" )!=string::npos ){
-		FSOUND_STREAM *stream=FSOUND_Stream_Open( f.c_str(),use_3d,0,0 );
+		f.find( ".asf" )!=string::npos ){*/ }else{
+		FSOUND_STREAM *stream=FSOUND_Stream_Open( f.c_str(),mode,0,0 );
 		if( !stream ) return 0;
 		chan=d_new StreamChannel( stream );
-	}else{
+/*	}else{
 		FMUSIC_MODULE *module=FMUSIC_LoadSong( f.c_str() );
 		if( !module ) return 0;
-		chan=d_new MusicChannel( module );
+		chan=d_new MusicChannel( module );*/
 	}
 	channels.push_back( chan );
 	songs[f]=chan;

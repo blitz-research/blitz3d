@@ -51,6 +51,10 @@ void Camera::setFogRange( float nr,float fr ){
 	fog_nr=nr;fog_fr=fr;
 }
 
+void Camera::setFogDensity(float den) {
+	fog_den=den;
+}
+
 void Camera::setFogMode( int mode ){
 	fog_mode=mode;
 }
@@ -97,6 +101,7 @@ bool Camera::beginRenderFrame(){
 		gx_scene->setPerspProj( frustum_nr,frustum_fr,frustum_w,frustum_h );
 	}
 	gx_scene->setFogRange( fog_nr,fog_fr );
+	gx_scene->setFogDensity(fog_den);
 	gx_scene->setFogColor( (float*)&fog_color.x );
 	gx_scene->setFogMode( fog_mode );
 	return true;

@@ -2,12 +2,12 @@
 #include <string>
 #include <windows.h>
 
-#include "checkdx.h"
-#include "checkie.h"
+//#include "checkdx.h"
+//#include "checkie.h"
 
 using namespace std;
 
-static const char *dx_err=
+/*static const char *dx_err=
 "You must have DirectX version 7 installed to run Blitz Basic.\n\n"
 "DirectX 7 is provided on the Blitz Basic CD in the DirectX7 folder.\n\n"
 "The latest version of DirectX is available from www.microsoft.com";
@@ -15,7 +15,7 @@ static const char *dx_err=
 static const char *ie_err=
 "You must have Internet Explorer version 4 installed to run Blitz Basic.\n\n"
 "Internet Explorer 5 is provided on the Blitz Basic CD in the IExplorer5 folder.\n\n"
-"The latest version of Internet Explorer is available from www.microsoft.com";
+"The latest version of Internet Explorer is available from www.microsoft.com";*/
 
 static const char *bb_err=
 "Unable to run Blitz Basic";
@@ -49,11 +49,11 @@ int _stdcall WinMain( HINSTANCE inst,HINSTANCE prev,char *cmd,int show ){
 
 	if( desktopDepth()<16 ) fail( md_err );
 
-#ifndef PLUS
+/*#ifndef PLUS
 	if( getDXVersion()<7 ) fail( dx_err );
 #endif
 
-	if( getIEVersion()<4 ) fail( ie_err );
+	if( getIEVersion()<4 ) fail( ie_err );*/
 
 	//Ugly hack to get application dir...
 	string t=getAppDir();

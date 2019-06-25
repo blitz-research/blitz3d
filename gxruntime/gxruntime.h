@@ -127,6 +127,9 @@ public:
 	gxGraphics *openGraphics( int w,int h,int d,int driver,int flags );
 	void closeGraphics( gxGraphics *graphics );
 	bool graphicsLost();
+	bool focus();
+	int desktopWidth();
+	int desktopHeight();
 
 	gxFileSystem *openFileSystem( int flags );
 	void closeFileSystem( gxFileSystem *filesys );
@@ -140,6 +143,14 @@ public:
 	int callDll( const std::string &dll,const std::string &func,const void *in,int in_sz,void *out,int out_sz );
 
 	OSVERSIONINFO osinfo;
+	SYSTEM_INFO sysinfo;
+	MEMORYSTATUS statex;
+
+	int getMemoryLoad();
+	int getTotalPhys();
+	int getAvailPhys();
+	int getTotalVirtual();
+	int getAvailVirtual();
 };
 
 #endif

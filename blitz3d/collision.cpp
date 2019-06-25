@@ -226,8 +226,8 @@ bool Collision::sphereCollide( const Line &line,float radius,const Vector &dest,
 	float d=b*b-4*a*c;
 	if( d<0 ) return false;
 
-	float t1=(-b+sqrt(d))/(2*a);
-	float t2=(-b-sqrt(d))/(2*a);
+	float t1=(-b+sqrtf(d))/(2*a);
+	float t2=(-b-sqrtf(d))/(2*a);
 
 	float t=t1<t2 ? t1 : t2;
 
@@ -252,8 +252,8 @@ static bool edgeTest( const Vector &v0,const Vector &v1,const Vector &pn,const V
 	c=(l.o.x*l.o.x+l.o.z*l.o.z)-radius*radius;
 	d=b*b-4*a*c;
 	if( d<0 ) return false;					//ray misses cylinder
-	t1=(-b+sqrt(d))/(2*a);
-	t2=(-b-sqrt(d))/(2*a);
+	t1=(-b+sqrtf(d))/(2*a);
+	t2=(-b-sqrtf(d))/(2*a);
 	t=t1<t2 ? t1 : t2;
 	if( t>curr_coll->time ) return false;	//intersects too far away
 	Vector i=l*t,p;
@@ -268,8 +268,8 @@ static bool edgeTest( const Vector &v0,const Vector &v1,const Vector &pn,const V
 		c=l.o.dot(l.o)-radius*radius;
 		d=b*b-4*a*c;
 		if( d<0 ) return false;				//ray misses sphere
-		t1=(-b+sqrt(d))/(2*a);
-		t2=(-b-sqrt(d))/(2*a);
+		t1=(-b+sqrtf(d))/(2*a);
+		t2=(-b-sqrtf(d))/(2*a);
 		t=t1<t2 ? t1 : t2;
 		if( t>curr_coll->time ) return false;
 		i=l*t;

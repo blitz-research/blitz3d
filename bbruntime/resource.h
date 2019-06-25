@@ -2,12 +2,6 @@
 // Microsoft Developer Studio generated include file.
 // Used by runtime.rc
 //
-#define IDD_MULTIPLAYER                 101
-#define IDC_CANCEL                      1011
-#define IDC_HOSTGAME                    1012
-#define IDC_GAMENAME                    1013
-#define IDC_GAMELIST                    1014
-#define IDC_CONNECTIONS                 1015
 
 // Next default values for new objects
 // 

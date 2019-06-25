@@ -33,6 +33,7 @@ gxCanvas * bbFrontBuffer();
 gxCanvas * bbBackBuffer();
 void	 bbEndGraphics();
 int		 bbGraphicsLost();
+int      bbInFocus();
 int		 bbScanLine();
 void	 bbVWait( int n );
 void	 bbFlip( int vwait );

@@ -42,7 +42,7 @@ public:
 	void set3dListener( const float pos[3],const float vel[3],const float forward[3],const float up[3] );
 
 	gxChannel *playCDTrack( int track,int mode );
-	gxChannel *playFile( const std::string &filename,bool use_3d );
+	gxChannel *playFile( const std::string &filename,bool use_3d, int mode);
 };
 
 #endif

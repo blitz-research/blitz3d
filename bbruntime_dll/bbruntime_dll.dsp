@@ -181,11 +181,11 @@ SOURCE=.\bbexe.ico
 # End Group
 # Begin Source File
 
-SOURCE=..\..\FreeImage241\Source\FreeImageLib\Release\FreeImage.lib
+SOURCE=..\FreeImage241\Source\FreeImageLib\Release\FreeImage.lib
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\fmodapi375win\api\lib\fmodvc.lib
+SOURCE=..\fmodapi375win\api\lib\fmodvc.lib
 # End Source File
 # End Target
 # End Project

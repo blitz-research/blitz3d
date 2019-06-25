@@ -18,7 +18,7 @@ static bool isTerm( int c ){ return c==':' || c=='\n'; }
 Parser::Parser( Toker &t ):toker(&t),main_toker(&t){
 }
 
-ProgNode *Parser::parse( const string &main ){
+ProgNode *Parser::parse( const string &main , bool debug){
 
 	incfile=main;
 
@@ -29,7 +29,7 @@ ProgNode *Parser::parse( const string &main ){
 	StmtSeqNode *stmts=0;
 
 	try{
-		stmts=parseStmtSeq( STMTS_PROG );
+		stmts=parseStmtSeq( STMTS_PROG, debug);
 		if( toker->curr()!=EOF ) exp( "end-of-file" );
 	}catch( Ex ){
 		delete stmts;delete datas;delete funcs;delete structs;delete consts;
@@ -70,13 +70,13 @@ void Parser::parseChar( int c ){
 	toker->next();
 }
 
-StmtSeqNode *Parser::parseStmtSeq( int scope ){
+StmtSeqNode *Parser::parseStmtSeq( int scope , bool debug){
 	a_ptr<StmtSeqNode> stmts( d_new StmtSeqNode( incfile ) );
-	parseStmtSeq( stmts,scope );
+	parseStmtSeq( stmts,scope, debug);
 	return stmts.release();
 }
 
-void Parser::parseStmtSeq( StmtSeqNode *stmts,int scope ){
+void Parser::parseStmtSeq( StmtSeqNode *stmts,int scope, bool debug){
 
 	for(;;){
 		while( toker->curr()==':' || (scope!=STMTS_LINE && toker->curr()=='\n') ) toker->next();
@@ -113,7 +113,7 @@ void Parser::parseStmtSeq( StmtSeqNode *stmts,int scope ){
 
 				included.insert( incfile );
 
-				a_ptr<StmtSeqNode> ss( parseStmtSeq( scope ) );
+				a_ptr<StmtSeqNode> ss( parseStmtSeq( scope, debug) );
 				if( toker->curr()!=EOF ) exp( "end-of-file" );
 
 				result=d_new IncludeNode( incfile,ss.release() );
@@ -146,8 +146,10 @@ void Parser::parseStmtSeq( StmtSeqNode *stmts,int scope ){
 							toker->next();
 						}else exprs=parseExprSeq();
 					}else exprs=parseExprSeq();
-					CallNode *call=d_new CallNode( ident,tag,exprs );
-					result=d_new ExprStmtNode( call );
+					if ((ident != "debuglog" && ident != "stop") || debug) {
+						CallNode *call = d_new CallNode(ident, tag, exprs);
+						result = d_new ExprStmtNode(call);
+					}else { result = 0; }
 				}else{
 					//must be a var
 					a_ptr<VarNode> var( parseVar( ident,tag ) );
@@ -159,7 +161,7 @@ void Parser::parseStmtSeq( StmtSeqNode *stmts,int scope ){
 			break;
 		case IF:
 			{
-				toker->next();result=parseIf();
+				toker->next();result=parseIf(debug);
 				if( toker->curr()==ENDIF ) toker->next();
 			}
 			break;
@@ -167,7 +169,7 @@ void Parser::parseStmtSeq( StmtSeqNode *stmts,int scope ){
 			{
 				toker->next();
 				a_ptr<ExprNode> expr( parseExpr( false ) );
-				a_ptr<StmtSeqNode> stmts( parseStmtSeq( STMTS_BLOCK ) );
+				a_ptr<StmtSeqNode> stmts( parseStmtSeq( STMTS_BLOCK, debug) );
 				int pos=toker->pos();
 				if( toker->curr()!=WEND ) exp( "'Wend'" );
 				toker->next();
@@ -177,7 +179,7 @@ void Parser::parseStmtSeq( StmtSeqNode *stmts,int scope ){
 		case REPEAT:
 			{
 				toker->next();ExprNode *expr=0;
-				a_ptr<StmtSeqNode> stmts( parseStmtSeq( STMTS_BLOCK ) );
+				a_ptr<StmtSeqNode> stmts( parseStmtSeq( STMTS_BLOCK, debug) );
 				int curr=toker->curr();
 				int pos=toker->pos();
 				if( curr!=UNTIL && curr!=FOREVER ) exp( "'Until' or 'Forever'" );
@@ -195,12 +197,12 @@ void Parser::parseStmtSeq( StmtSeqNode *stmts,int scope ){
 						toker->next();
 						a_ptr<ExprSeqNode> exprs( parseExprSeq() );
 						if( !exprs->size() ) exp( "expression sequence" );
-						a_ptr<StmtSeqNode> stmts( parseStmtSeq( STMTS_BLOCK ) );
+						a_ptr<StmtSeqNode> stmts( parseStmtSeq( STMTS_BLOCK, debug) );
 						selNode->push_back( d_new CaseNode( exprs.release(),stmts.release() ) );
 						continue;
 					}else if( toker->curr()==DEFAULT ){
 						toker->next();
-						a_ptr<StmtSeqNode> stmts( parseStmtSeq( STMTS_BLOCK ) );
+						a_ptr<StmtSeqNode> stmts( parseStmtSeq( STMTS_BLOCK, debug) );
 						if( toker->curr()!=ENDSELECT ) exp( "'End Select'" );
 						selNode->defStmts=stmts.release();
 						break;
@@ -222,7 +224,7 @@ void Parser::parseStmtSeq( StmtSeqNode *stmts,int scope ){
 				if( toker->next()==EACH ){
 					toker->next();
 					string ident=parseIdent();
-					stmts=parseStmtSeq( STMTS_BLOCK );
+					stmts=parseStmtSeq( STMTS_BLOCK, debug);
 					int pos=toker->pos();
 					if( toker->curr()!=NEXT ) exp( "'Next'" );
 					toker->next();
@@ -236,7 +238,7 @@ void Parser::parseStmtSeq( StmtSeqNode *stmts,int scope ){
 					if( toker->curr()==STEP ){
 						toker->next();step=parseExpr( false );
 					}else step=d_new IntConstNode( 1 );
-					stmts=parseStmtSeq( STMTS_BLOCK );
+					stmts=parseStmtSeq( STMTS_BLOCK, debug);
 					int pos=toker->pos();
 					if( toker->curr()!=NEXT ) exp( "'Next'" );
 					toker->next();
@@ -318,7 +320,7 @@ void Parser::parseStmtSeq( StmtSeqNode *stmts,int scope ){
 			break;
 		case FUNCTION:
 			if( scope!=STMTS_PROG ) ex( "'Function' can only appear in main program" );
-			toker->next();funcs->push_back( parseFuncDecl() );
+			toker->next();funcs->push_back( parseFuncDecl(debug) );
 			break;
 		case DIM:
 			do{
@@ -449,7 +451,7 @@ DimNode *Parser::parseArrayDecl(){
 	return d;
 }
 
-DeclNode *Parser::parseFuncDecl(){
+DeclNode *Parser::parseFuncDecl(bool debug){
 	int pos=toker->pos();
 	string ident=parseIdent();
 	string tag=parseTypeTag();
@@ -464,7 +466,7 @@ DeclNode *Parser::parseFuncDecl(){
 		if( toker->curr()!=')' ) exp( "')'" );
 	}
 	toker->next();
-	a_ptr<StmtSeqNode> stmts( parseStmtSeq( STMTS_BLOCK ) );
+	a_ptr<StmtSeqNode> stmts( parseStmtSeq( STMTS_BLOCK, debug) );
 	if( toker->curr()!=ENDFUNCTION ) exp( "'End Function'" );
 	StmtNode *ret=d_new ReturnNode(0);ret->pos=toker->pos();
 	stmts->push_back( ret );toker->next();
@@ -492,7 +494,7 @@ DeclNode *Parser::parseStructDecl(){
 	return d;
 }
 
-IfNode *Parser::parseIf(){
+IfNode *Parser::parseIf(bool debug){
 	a_ptr<ExprNode> expr;
 	a_ptr<StmtSeqNode> stmts,elseOpt;
 
@@ -500,18 +502,18 @@ IfNode *Parser::parseIf(){
 	if( toker->curr()==THEN ) toker->next();
 
 	bool blkif=isTerm( toker->curr() );
-	stmts=parseStmtSeq( blkif ? STMTS_BLOCK : STMTS_LINE );
+	stmts=parseStmtSeq( blkif ? STMTS_BLOCK : STMTS_LINE, debug);
 
 	if( toker->curr()==ELSEIF ){
 		int pos=toker->pos();
 		toker->next();
-		IfNode *ifnode=parseIf();
+		IfNode *ifnode=parseIf(debug);
 		ifnode->pos=pos;
 		elseOpt=d_new StmtSeqNode( incfile );
 		elseOpt->push_back( ifnode );
 	}else if( toker->curr()==ELSE ){
 		toker->next();
-		elseOpt=parseStmtSeq( blkif ? STMTS_BLOCK : STMTS_LINE );
+		elseOpt=parseStmtSeq( blkif ? STMTS_BLOCK : STMTS_LINE, debug);
 	}
 	if( blkif ){
 		if( toker->curr()!=ENDIF ) exp( "'EndIf'" );

@@ -59,11 +59,12 @@ private:
 
 	/***** GX INTERFACE *****/
 public:
-	enum{
-		GRAPHICS_WINDOWED=1,	//windowed mode
-		GRAPHICS_SCALED=2,		//scaled window
-		GRAPHICS_3D=4,			//3d mode! Hurrah!
-		GRAPHICS_AUTOSUSPEND=8	//suspend graphics when app suspended
+	enum {
+		GRAPHICS_WINDOWED = 1,	//windowed mode
+		GRAPHICS_SCALED = 2,		//scaled window
+		GRAPHICS_3D = 4,			//3d mode! Hurrah!
+		GRAPHICS_AUTOSUSPEND = 8,	//suspend graphics when app suspended
+		GRAPHICS_BORDERLESS = 16
 	};
 
 	//MANIPULATORS

@@ -18,17 +18,22 @@ float bbASin( float n ){ return (float)asin(n)*rtod; }
 float bbACos( float n ){ return (float)acos(n)*rtod; }
 float bbATan( float n ){ return (float)atan(n)*rtod; }
 float bbATan2( float n,float t ){ return (float)atan2(n,t)*rtod; }
-float bbSqr( float n ){ return (float)sqrt(n); }
+float bbSqr( float n ){ return (float)sqrtf(n); }
 float bbFloor( float n ){ return (float)floor(n); }
 float bbCeil( float n ){ return (float)ceil(n); }
 float bbExp( float n ){ return (float)exp(n); }
 float bbLog( float n ){ return (float)log(n); }
 float bbLog10( float n ){ return (float)log10(n); }
+float bbMin( float n, float m){ return (float)min(n,m); }
+float bbMax( float n, float m){ return (float)max(n,m); }
 
 //return rand float from 0...1
 static inline float rnd(){
 	rnd_state=RND_A*(rnd_state%RND_Q)-RND_R*(rnd_state/RND_Q);
 	if( rnd_state<0 ) rnd_state+=RND_M;
+	if (rnd_state == 0) {
+		rnd_state = RND_R;
+	}
 	return (rnd_state&65535)/65536.0f+(.5f/65536.0f);
 }
 
@@ -73,6 +78,8 @@ void math_link( void (*rtSym)( const char *sym,void *pc ) ){
 	rtSym( "#Exp#float",bbExp );
 	rtSym( "#Log#float",bbLog );
 	rtSym( "#Log10#float",bbLog10 );
+	rtSym( "#Min#n#m",bbMin );
+	rtSym( "#Max#n#m",bbMax );
 	rtSym( "#Rnd#from#to=0",bbRnd );
 	rtSym( "%Rand%from%to=1",bbRand );
 	rtSym( "SeedRnd%seed",bbSeedRnd );

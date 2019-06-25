@@ -226,7 +226,7 @@ int _cdecl main( int argc,char *argv[] ){
 		if( !veryquiet ) cout<<"Parsing..."<<endl;
 		Toker toker( in );
 		Parser parser( toker );
-		prog=parser.parse( in_file );
+		prog=parser.parse( in_file, debug);
 
 		//semant
 		if( !veryquiet ) cout<<"Generating..."<<endl;

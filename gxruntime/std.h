@@ -2,7 +2,7 @@
 #ifndef STD_H
 #define STD_H
 
-#include "../../fmodapi375win/api/inc/fmod.h"
+#include "../fmodapi375win/api/inc/fmod.h"
 
 #include "../config/config.h"
 #include "../stdutil/stdutil.h"

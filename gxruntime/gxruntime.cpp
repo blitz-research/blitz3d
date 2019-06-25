@@ -46,6 +46,7 @@ static LRESULT CALLBACK windowProc( HWND hwnd,UINT msg,WPARAM wparam,LPARAM lpar
 //3=EXCLUSIVE
 //
 static int gfx_mode;
+static int border_mode;
 static bool gfx_lost;
 static bool auto_suspend;
 
@@ -131,6 +132,14 @@ pointer_visible(true),audio(0),input(0),graphics(0),fileSystem(0),use_di(false){
 	memset( &osinfo,0,sizeof(osinfo) );
 	osinfo.dwOSVersionInfoSize=sizeof(osinfo);
 	GetVersionEx( &osinfo );
+
+	memset(&sysinfo, 0, sizeof(sysinfo));
+	sysinfo.dwPageSize = sizeof(sysinfo);
+	GetSystemInfo(&sysinfo);
+
+	memset(&statex, 0, sizeof(statex));
+	statex.dwLength = sizeof(statex);
+	GlobalMemoryStatus(&statex);
 
 	HMODULE ddraw=LoadLibraryA( "ddraw.dll" );
 	if( ddraw ){
@@ -649,6 +658,29 @@ int gxRuntime::getMilliSecs(){
 	return timeGetTime();
 }
 
+////////////////
+// MEMORYINFO //
+////////////////
+int gxRuntime::getMemoryLoad(){
+	return statex.dwMemoryLoad;
+}
+
+int gxRuntime::getTotalPhys(){
+	return statex.dwTotalPhys/1024;
+}
+
+int gxRuntime::getAvailPhys() {
+	return statex.dwAvailPhys/1024;
+}
+
+int gxRuntime::getTotalVirtual() {
+	return statex.dwTotalVirtual / 1024;
+}
+
+int gxRuntime::getAvailVirtual() {
+	return statex.dwAvailVirtual / 1024;
+}
+
 /////////////////////
 // POINTER VISIBLE //
 /////////////////////
@@ -878,6 +910,7 @@ gxGraphics *gxRuntime::openGraphics( int w,int h,int d,int driver,int flags ){
 			gfx_mode=(flags & gxGraphics::GRAPHICS_SCALED) ? 1 : 2;
 			auto_suspend=(flags & gxGraphics::GRAPHICS_AUTOSUSPEND) ? true : false;
 			int ws,ww,hh;
+			border_mode = (flags & gxGraphics::GRAPHICS_BORDERLESS) ? 1 : 0;
 			if( gfx_mode==1 ){
 				ws=scaled_ws;
 				RECT c_r;
@@ -890,8 +923,14 @@ gxGraphics *gxRuntime::openGraphics( int w,int h,int d,int driver,int flags ){
 				hh=h;
 			}
 
-			SetWindowLong( hwnd,GWL_STYLE,ws );
-			SetWindowPos( hwnd,0,0,0,0,0,SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_FRAMECHANGED );
+			if (border_mode == 1) {
+				SetWindowLong(hwnd, GWL_STYLE, WS_POPUP);
+				SetWindowPos(hwnd, HWND_TOP, 0, 0, 0, 0, SWP_SHOWWINDOW);
+			}
+			else {
+				SetWindowLong(hwnd, GWL_STYLE, ws);
+				SetWindowPos(hwnd, 0, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED);
+			}
 
 			RECT w_r,c_r;
 			GetWindowRect( hwnd,&w_r );
@@ -959,6 +998,19 @@ void gxRuntime::closeGraphics( gxGraphics *g ){
 
 bool gxRuntime::graphicsLost(){
 	return gfx_lost;
+}
+
+bool gxRuntime::focus() {
+	//return suspended;
+	return GetFocus();
+}
+
+int gxRuntime::desktopWidth() {
+	return GetSystemMetrics(SM_CXSCREEN);
+}
+
+int gxRuntime::desktopHeight() {
+	return GetSystemMetrics(SM_CYSCREEN);
 }
 
 gxFileSystem *gxRuntime::openFileSystem( int flags ){
@@ -1157,6 +1209,7 @@ string gxRuntime::systemProperty( const std::string &p ){
 			switch( osinfo.dwMinorVersion ){
 			case 0:return "Windows Vista";
 			case 1:return "Windows 7";
+			case 2:return "Windows 8, 8.1, 10";
 			}
 			break;
 		}

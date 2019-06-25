@@ -16,7 +16,7 @@ public:
 
 	Parser( Toker &t );
 
-	ProgNode *parse( const string &main );
+	ProgNode *parse( const string &main , bool debug);
 
 private:
 	string incfile;
@@ -29,8 +29,8 @@ private:
 	DeclSeqNode *funcs;
 	DeclSeqNode *datas;
 
-	StmtSeqNode *parseStmtSeq( int scope );
-	void parseStmtSeq( StmtSeqNode *stmts,int scope );
+	StmtSeqNode *parseStmtSeq( int scope , bool debug);
+	void parseStmtSeq( StmtSeqNode *stmts,int scope, bool debug);
 
 	void ex( const string &s );
 	void exp( const string &s );
@@ -42,11 +42,11 @@ private:
 	VarNode *parseVar();
 	VarNode *parseVar( const string &ident,const string &tag );
 	CallNode *parseCall( const string &ident,const string &tag );
-	IfNode *parseIf();
+	IfNode *parseIf(bool debug);
 
 	DeclNode *parseVarDecl( int kind,bool constant );
 	DimNode  *parseArrayDecl();
-	DeclNode *parseFuncDecl();
+	DeclNode *parseFuncDecl(bool debug);
 	DeclNode *parseStructDecl();
 
 	ExprSeqNode *parseExprSeq();

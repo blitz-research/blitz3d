@@ -15,9 +15,9 @@ static gxSound *loadSound( BBStr *f,bool use_3d ){
 	return gx_audio ? gx_audio->loadSound( t,use_3d ) : 0;
 }
 
-static gxChannel *playMusic( BBStr *f,bool use_3d ){
+static gxChannel *playMusic( BBStr *f,bool use_3d, int mode){
 	string t=*f;delete f;
-	return gx_audio ? gx_audio->playFile( t,use_3d ) : 0;
+	return gx_audio ? gx_audio->playFile( t,use_3d, mode ) : 0;
 }
 
 gxSound *bbLoadSound( BBStr *f ){
@@ -60,8 +60,8 @@ gxChannel *bbPlaySound( gxSound *sound ){
 	return sound->play();
 }
 
-gxChannel *bbPlayMusic( BBStr *f ){
-	return playMusic( f,false );
+gxChannel *bbPlayMusic( BBStr *f,int mode){
+	return playMusic( f,false,mode );
 }
 
 gxChannel *bbPlayCDTrack( int track,int mode ){
@@ -127,7 +127,7 @@ void audio_link( void(*rtSym)(const char*,void*) ){
 	rtSym( "SoundVolume%sound#volume",bbSoundVolume );
 	rtSym( "SoundPan%sound#pan",bbSoundPan );
 	rtSym( "%PlaySound%sound",bbPlaySound );
-	rtSym( "%PlayMusic$midifile",bbPlayMusic );
+	rtSym( "%PlayMusic$midifile%mode=0",bbPlayMusic );
 	rtSym( "%PlayCDTrack%track%mode=1",bbPlayCDTrack );
 	rtSym( "StopChannel%channel",bbStopChannel );
 	rtSym( "PauseChannel%channel",bbPauseChannel );

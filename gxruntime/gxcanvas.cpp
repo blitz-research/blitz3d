@@ -402,7 +402,7 @@ void gxCanvas::oval( int x1,int y1,int w,int h,bool solid ){
 	if( solid ){
 		y=dest.top-cy;
 		for( int t=dest.top;t<dest.bottom;++y,++t ){
-			float x=sqrt( rsq-y*y )*ar;
+			float x=sqrtf( rsq-y*y )*ar;
 			int xa=floor( cx-x ),xb=floor( cx+x );
 			if( xb<=xa || xa>=viewport.right || xb<=viewport.left ) continue;
 			Rect dr;dr.top=t;dr.bottom=t+1;
@@ -420,7 +420,7 @@ void gxCanvas::oval( int x1,int y1,int w,int h,bool solid ){
 	t=dest.top;y=t-cy;
 	if( dest.top>y1 ){ --t;--y; }
 	for( ;t<=hh;++y,++t ){
-		float x=sqrt( rsq-y*y )*ar;
+		float x=sqrtf( rsq-y*y )*ar;
 		int xa=floor( cx-x ),xb=floor( cx+x );
 		Rect r1( xa,t,p_xa-xa,1 );if( r1.right<=r1.left ) r1.right=r1.left+1;
 		if( clip( &r1 ) ) surf->Blt( &r1,0,0,DDBLT_WAIT|DDBLT_COLORFILL,&bltfx );
@@ -433,7 +433,7 @@ void gxCanvas::oval( int x1,int y1,int w,int h,bool solid ){
 	t=dest.bottom-1;y=t-cy;
 	if( dest.bottom<y1+h ){ ++t;++y; }
 	for( ;t>hh;--y,--t ){
-		float x=sqrt( rsq-y*y )*ar;
+		float x=sqrtf( rsq-y*y )*ar;
 		int xa=floor( cx-x ),xb=floor( cx+x );
 		Rect r1( xa,t,p_xa-xa,1 );if( r1.right<=r1.left ) r1.right=r1.left+1;
 		if( clip( &r1 ) ) surf->Blt( &r1,0,0,DDBLT_WAIT|DDBLT_COLORFILL,&bltfx );

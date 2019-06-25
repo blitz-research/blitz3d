@@ -99,11 +99,18 @@ public:
 	float distance( const Vector &q )const{
 		float dx=x-q.x,dy=y-q.y,dz=z-q.z;return sqrtf(dx*dx+dy*dy+dz*dz);
 	}
+	float distanceSqr(const Vector &q)const {
+		float dx=x-q.x,dy=y-q.y,dz=z-q.z;return (dx*dx+dy*dy+dz*dz);
+	}
 	Vector normalized()const{
-		float l=length();return Vector( x/l,y/l,z/l );
+		float l=length();
+	//	if (abs(l)<EPSILON) return Vector( x,y,z );
+		return Vector( x/l,y/l,z/l );
 	}
 	void normalize(){
-		float l=length();x/=l;y/=l;z/=l;
+		float l=length();
+		//if (abs(l)<EPSILON) return;
+		x/=l;y/=l;z/=l;
 	}
 	float yaw()const{
 		return -atan2f( x,z );
@@ -213,10 +220,14 @@ struct Quat{
 		return sqrtf( w*w+v.x*v.x+v.y*v.y+v.z*v.z );
 	}
 	void normalize(){
-		*this=*this/length();
+		float l=length();
+		//if (l<EPSILON) return;
+		*this=*this/l;
 	}
 	Quat normalized()const{
-		return *this/length();
+		float l=length();
+		//if (l<EPSILON) return *this;
+		return *this/l;
 	}
 	Quat slerpTo( const Quat &q,float a )const{
 		Quat t=q;
