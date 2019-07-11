@@ -159,21 +159,5 @@ SOURCE=.\bblaunch.ico
 
 SOURCE=.\bblaunch.rc
 # End Source File
-# Begin Source File
-
-SOURCE=.\checkdx.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\checkdx.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\checkie.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\checkie.h
-# End Source File
 # End Target
 # End Project

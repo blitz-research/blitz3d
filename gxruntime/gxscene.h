@@ -120,6 +120,7 @@ public:
 	int getTrianglesDrawn()const;
 
 	DWORD textureLodBias;
+	int textureAnisotropic;
 
 private:
 	gxCanvas *target;

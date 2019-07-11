@@ -459,6 +459,10 @@ void  bbTextureLodBias( float bias ){
 	gx_scene->textureLodBias = *((DWORD*)&bias);
 }
 
+void  bbTextureAnisotropic( int level ){
+	gx_scene->textureAnisotropic = level;
+}
+
 int  bbTextureWidth( Texture *t ){
 	debugTexture(t);
 	return t->getCanvas(0)->getWidth();
@@ -2052,6 +2056,7 @@ void blitz3d_link( void (*rtSym)( const char *sym,void *pc ) ){
 	rtSym( "RotateTexture%texture#angle",bbRotateTexture );
 	rtSym( "PositionTexture%texture#u_offset#v_offset",bbPositionTexture );
 	rtSym( "TextureLodBias#bias",bbTextureLodBias );
+	rtSym( "TextureAnisotropic%level",bbTextureAnisotropic );
 
 	rtSym( "%TextureWidth%texture",bbTextureWidth );
 	rtSym( "%TextureHeight%texture",bbTextureHeight );

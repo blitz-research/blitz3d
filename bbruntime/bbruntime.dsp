@@ -217,18 +217,6 @@ SOURCE=.\bbsys.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\multiplay.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\multiplay_setup.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\multiplay_setup.rc
-# End Source File
-# Begin Source File
-
 SOURCE=.\std.cpp
 # ADD CPP /Yc"std.h"
 # End Source File
@@ -291,14 +279,6 @@ SOURCE=.\bbstring.h
 # Begin Source File
 
 SOURCE=.\bbsys.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\multiplay.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\multiplay_setup.h
 # End Source File
 # Begin Source File
 

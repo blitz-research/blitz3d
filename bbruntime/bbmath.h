@@ -20,6 +20,7 @@ float	 bbLog( float n );
 float	 bbLog10( float n );
 float	 bbMin( float n,float m );
 float	 bbMax( float n,float m );
+float	 bbClamp( float v,float lo,float hi);
 float	 bbRnd( float from,float to );
 void	 bbSeedRnd( int seed );
 
