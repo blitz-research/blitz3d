@@ -143,7 +143,6 @@ public:
 	int callDll( const std::string &dll,const std::string &func,const void *in,int in_sz,void *out,int out_sz );
 
 	OSVERSIONINFO osinfo;
-	SYSTEM_INFO sysinfo;
 	MEMORYSTATUS statex;
 
 	int getMemoryLoad();

@@ -133,10 +133,6 @@ pointer_visible(true),audio(0),input(0),graphics(0),fileSystem(0),use_di(false){
 	osinfo.dwOSVersionInfoSize=sizeof(osinfo);
 	GetVersionEx( &osinfo );
 
-	memset(&sysinfo, 0, sizeof(sysinfo));
-	sysinfo.dwPageSize = sizeof(sysinfo);
-	GetSystemInfo(&sysinfo);
-
 	memset(&statex, 0, sizeof(statex));
 	statex.dwLength = sizeof(statex);
 	GlobalMemoryStatus(&statex);

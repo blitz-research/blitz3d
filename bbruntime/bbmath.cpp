@@ -29,9 +29,7 @@ float bbMax( float n, float m){ return (float)max(n,m); }
 
 float bbClamp( float v, float lo, float hi){ 
 	if (lo > hi){
-		float swap = lo;
-		lo = hi;
-		hi = swap;
+		std::swap(lo,hi);
 	}
 	return (float)max(lo, min(v, hi)); 
 }

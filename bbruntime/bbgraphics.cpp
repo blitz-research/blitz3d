@@ -1366,3 +1366,8 @@ void graphics_link( void (*rtSym)( const char *sym,void *pc ) ){
 	rtSym( "%DesktopWidth",bbDesktopWidth);
 	rtSym( "%DesktopHeight",bbDesktopHeight);
 }
+
+extern "C" {
+	_declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
+    _declspec(dllexport) DWORD AmdPowerXpressRequestHighPerformance = 0x00000001;
+}
