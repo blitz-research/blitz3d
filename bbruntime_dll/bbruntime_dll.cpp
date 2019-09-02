@@ -50,7 +50,8 @@ static void _cdecl seTranslator( unsigned int u,EXCEPTION_POINTERS* pExp ){
 	case EXCEPTION_INT_DIVIDE_BY_ZERO:
 		bbruntime_panic( "Integer divide by zero" );
 	case EXCEPTION_ACCESS_VIOLATION:
-		bbruntime_panic( "Memory access violation" );
+		//bbruntime_panic( "Memory access violation" );
+		bbruntime_panic( ErrorMessagePool::memoryAccessViolation.c_str() );
 	case EXCEPTION_ILLEGAL_INSTRUCTION:
 		bbruntime_panic( "Illegal instruction" );
 	case EXCEPTION_STACK_OVERFLOW:

@@ -145,13 +145,13 @@ int gxGraphics::getScanLine()const{
 int gxGraphics::getTotalVidmem()const{
 	DDCAPS caps={sizeof(caps)};
 	dirDraw->GetCaps( &caps,0 );
-	return caps.dwVidMemTotal;
+	return caps.dwVidMemTotal/1024;
 }
 
 int gxGraphics::getAvailVidmem()const{
 	DDCAPS caps={sizeof(caps)};
 	dirDraw->GetCaps( &caps,0 );
-	return caps.dwVidMemFree;
+	return caps.dwVidMemFree/1024;
 }
 
 gxMovie *gxGraphics::openMovie( const string &file,int flags ){
@@ -436,7 +436,7 @@ static string itobin( int n ){
 	}
 	return t;
 }
-
+#ifdef BETA
 static void debugPF( const DDPIXELFORMAT &pf ){
 	string t;
 	t="Bits:"+itoa( pf.dwRGBBitCount );
@@ -450,7 +450,7 @@ static void debugPF( const DDPIXELFORMAT &pf ){
 	t="A Mask:"+itobin( pf.dwRGBAlphaBitMask );
 	gx_runtime->debugLog( t.c_str() );
 }
-
+#endif
 static void pickTexFmts( gxGraphics *g,int hi ){
 	//texRGBFmt.
 	{

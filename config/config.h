@@ -2,7 +2,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define BASE_VER	1113
+#define BASE_VER	1114
 
 #ifdef	PRO
 #define	PRO_F	0x010000

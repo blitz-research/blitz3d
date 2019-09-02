@@ -134,7 +134,7 @@ pointer_visible(true),audio(0),input(0),graphics(0),fileSystem(0),use_di(false){
 	GetVersionEx( &osinfo );
 
 	memset(&statex, 0, sizeof(statex));
-	statex.dwLength = sizeof(statex);
+//	statex.dwLength = sizeof(statex);
 	GlobalMemoryStatus(&statex);
 
 	HMODULE ddraw=LoadLibraryA( "ddraw.dll" );
