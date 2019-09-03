@@ -997,8 +997,11 @@ bool gxRuntime::graphicsLost(){
 }
 
 bool gxRuntime::focus() {
-	//return suspended;
-	return GetFocus();
+	//return GetFocus();
+	if (GetFocus())
+        return true;
+    else
+        return false;
 }
 
 int gxRuntime::desktopWidth() {
