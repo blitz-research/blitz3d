@@ -651,7 +651,7 @@ void gxRuntime::setTitle( const string &t,const string &e ){
 // GETMILLISECS //
 //////////////////
 int gxRuntime::getMilliSecs(){
-	return timeGetTime();
+	return timeGetTime() & 0x7FFFFFFF;
 }
 
 ////////////////
