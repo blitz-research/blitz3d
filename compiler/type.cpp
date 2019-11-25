@@ -15,6 +15,7 @@ static struct i_type : public Type{
 	bool canCastTo( Type *t ){
 		return t==Type::int_type || t==Type::float_type || t==Type::string_type;
 	}
+	string name(){return "Int";}
 }i;
 
 static struct f_type : public Type{
@@ -24,6 +25,7 @@ static struct f_type : public Type{
 	bool canCastTo( Type *t ){
 		return t==Type::int_type || t==Type::float_type || t==Type::string_type;
 	}
+	string name(){return "Float";}
 }f;
 
 static struct s_type : public Type{
@@ -33,6 +35,7 @@ static struct s_type : public Type{
 	bool canCastTo( Type *t ){
 		return t==Type::int_type || t==Type::float_type || t==Type::string_type;
 	}
+	string name(){return "String";}
 }s;
 
 bool StructType::canCastTo( Type *t ){

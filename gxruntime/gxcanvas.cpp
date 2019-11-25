@@ -461,6 +461,23 @@ void gxCanvas::blit( int x,int y,gxCanvas *src,int src_x,int src_y,int src_w,int
 	damage( dest_r );
 }
 
+void gxCanvas::blitstretch( int x,int y,int w,int h,gxCanvas *src,int src_x,int src_y,int src_w,int src_h,bool solid ){
+	x+=origin_x-src->handle_x;
+	y+=origin_y-src->handle_y;
+	Rect dest_r( x,y,w,h ),src_r( src_x,src_y,src_w,src_h );
+	if( !clip( &dest_r,&src_r ) ) return;
+	if( !::clip( src->clip_rect,&src_r,&dest_r ) ) return;
+
+//	if( solid ){
+		surf->Blt( &dest_r,src->surf,&src_r,DDBLT_WAIT,0 );
+/*	}else{
+		bltfx.ddckSrcColorkey.dwColorSpaceLowValue=
+		bltfx.ddckSrcColorkey.dwColorSpaceHighValue=src->mask_surf;
+		surf->Blt( &dest_r,src->surf,&src_r,DDBLT_WAIT|DDBLT_KEYSRCOVERRIDE,&bltfx );
+	}*/
+	damage( dest_r );
+}
+
 void gxCanvas::text( int x,int y,const string &t ){
 
 	int ty=y+origin_y;
@@ -669,17 +686,17 @@ void gxCanvas::unlock()const{
 void gxCanvas::setPixel( int x,int y,unsigned argb ){
 	x+=origin_x;if( x<viewport.left || x>=viewport.right ) return;
 	y+=origin_y;if( y<viewport.top || y>=viewport.bottom ) return;
-	//lock();
+	lock();
 	setPixelFast( x,y,argb );
-	//unlock();
+	unlock();
 }
 
 unsigned gxCanvas::getPixel( int x,int y )const{
 	x+=origin_x;if( x<viewport.left || x>=viewport.right ) return format.toARGB( mask_surf );
 	y+=origin_y;if( y<viewport.top || y>=viewport.bottom ) return format.toARGB( mask_surf );
-	//lock();
+	lock();
 	unsigned p=getPixelFast( x,y );
-	//unlock();
+	unlock();
 	return p;
 }
 
@@ -706,11 +723,11 @@ void gxCanvas::copyPixel( int x,int y,gxCanvas *src,int src_x,int src_y ){
 	y+=origin_y;if( y<viewport.top || y>=viewport.bottom ) return;
 	src_x+=src->origin_x;if( src_x<src->viewport.left || src_x>=src->viewport.right ) return;
 	src_y+=src->origin_y;if( src_y<src->viewport.top || src_y>=src->viewport.bottom ) return;
-	//lock();
-	//src->lock();
+	lock();
+	src->lock();
 	copyPixelFast( x,y,src,src_x,src_y );
-	//src->unlock();
-	//unlock();
+	src->unlock();
+	unlock();
 }
 
 void gxCanvas::setCubeMode( int mode ){

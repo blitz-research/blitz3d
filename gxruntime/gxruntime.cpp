@@ -3,7 +3,7 @@
 #include "gxruntime.h"
 #include "zmouse.h"
 
-#define SPI_SETMOUSESPEED	113
+//#define SPI_SETMOUSESPEED	113
 
 struct gxRuntime::GfxMode{
 	DDSURFACEDESC2 desc;
@@ -117,6 +117,7 @@ void gxRuntime::closeRuntime( gxRuntime *r ){
 // RUNTIME CONSTRUCTION //
 //////////////////////////
 typedef int (_stdcall *SetAppCompatDataFunc)( int x,int y );
+typedef void (WINAPI * RtlGetVersionFunc) (OSVERSIONINFO *);
 
 gxRuntime::gxRuntime( HINSTANCE hi,const string &cl,HWND hw ):
 hinst(hi),cmd_line(cl),hwnd(hw),curr_driver(0),enum_all(false),
@@ -131,7 +132,14 @@ pointer_visible(true),audio(0),input(0),graphics(0),fileSystem(0),use_di(false){
 
 	memset( &osinfo,0,sizeof(osinfo) );
 	osinfo.dwOSVersionInfoSize=sizeof(osinfo);
-	GetVersionEx( &osinfo );
+//	GetVersionEx( &osinfo );
+
+	HMODULE osinfodll=LoadLibraryA( "ntdll.dll" );
+	if( osinfodll ){
+		RtlGetVersionFunc RtlGetVersion=(RtlGetVersionFunc)GetProcAddress( osinfodll,"RtlGetVersion" );
+		if( RtlGetVersion ) RtlGetVersion(&osinfo);
+		FreeLibrary( osinfodll );
+	}
 
 	memset(&statex, 0, sizeof(statex));
 //	statex.dwLength = sizeof(statex);
@@ -1181,9 +1189,9 @@ static string toDir( string t ){
 string gxRuntime::systemProperty( const std::string &p ){
 	char buff[MAX_PATH+1];
 	string t=tolower(p);
-	if( t=="cpu" ){
-		return "Intel";
-	}else if( t=="os" ){
+//	if( t=="cpu" ){
+//		return "Intel";
+/*	}else*/ if( t=="os" ){
 		switch( osinfo.dwMajorVersion ){
 		case 3:
 			switch( osinfo.dwMinorVersion ){
@@ -1208,10 +1216,18 @@ string gxRuntime::systemProperty( const std::string &p ){
 			switch( osinfo.dwMinorVersion ){
 			case 0:return "Windows Vista";
 			case 1:return "Windows 7";
-			case 2:return "Windows 8, 8.1, 10";
+			case 2:return "Windows 8";
+			case 3:return "Windows 8.1";
 			}
 			break;
+		case 10:
+			return "Windows 10";
+			break;
 		}
+	}else if( t=="osbuild" ){
+		return itoa((int)osinfo.dwBuildNumber);
+//	}else if( t=="ospack" ){
+//		return osinfo.szCSDVersion;
 	}else if( t=="appdir" ){
 		if( GetModuleFileName( 0,buff,MAX_PATH ) ){
 			string t=buff;

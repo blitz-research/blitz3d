@@ -279,10 +279,11 @@ void  bbUpdateWorld( float elapsed ){
 	world->update( elapsed );
 	return;
 #endif
-
+#ifdef BETA
 	update_ms=gx_runtime->getMilliSecs();
 	world->update( elapsed );
 	update_ms=gx_runtime->getMilliSecs()-update_ms;
+#endif
 }
 
 void  bbCaptureWorld(){
@@ -299,7 +300,7 @@ void  bbRenderWorld( float tween ){
 	tri_count=gx_scene->getTrianglesDrawn()-tri_count;
 	return;
 #endif
-
+#ifdef BETA
 	int tris=gx_scene->getTrianglesDrawn();
 	int render_ms=gx_runtime->getMilliSecs();
 	world->render( tween );
@@ -337,6 +338,7 @@ void  bbRenderWorld( float tween ){
 	string t="FPS:"+t_fps+" UPS:"+t_ups+" RPS:"+t_rps+" TRIS:"+t_tris;
 
 	bbText( 0,bbGraphicsHeight()-bbFontHeight(),d_new BBStr(t),0,0 );
+#endif
 }
 
 int  bbTrisRendered(){

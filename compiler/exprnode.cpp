@@ -10,7 +10,7 @@
 //////////////////////////////////
 ExprNode *ExprNode::castTo( Type *ty,Environ *e ){
 	if( !sem_type->canCastTo( ty ) ){
-		ex( "Illegal type conversion" );
+		ex( "Illegal type conversion ("+sem_type->name()+" -> "+ty->name()+")" );
 	}
 
 	ExprNode *cast=d_new CastNode( this,ty );
@@ -120,7 +120,7 @@ void ExprSeqNode::castTo( DeclSeq *decls,Environ *e,bool cfunc ){
 				}else if( exprs[k]->sem_type->intType() ){
 					exprs[k]->sem_type=Type::void_type;
 				}else{
-					ex( "Illegal type conversion" );
+					ex( "Illegal type conversion ("+exprs[k]->sem_type->name()+" -> "+d->type->name()+")" );
 				}
 				continue;
 			}

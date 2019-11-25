@@ -16,6 +16,8 @@ struct Type{
 	virtual bool intType(){ return 0;}
 	virtual bool floatType(){ return 0; }
 	virtual bool stringType(){ return 0; }
+	
+	virtual string name(){ return "N/A"; }
 
 	//casts to inherited types
 	virtual FuncType *funcType(){ return 0; }
@@ -38,12 +40,14 @@ struct FuncType : public Type{
 	FuncType( Type *t,DeclSeq *p,bool ulib,bool cfn ):returnType(t),params(p),userlib(ulib),cfunc(cfn){}
 	~FuncType(){ delete params; }
 	FuncType *funcType(){ return this; }
+	string name(){ return returnType->name()+" function"; }
 };
 
 struct ArrayType : public Type{
 	Type *elementType;int dims;
 	ArrayType( Type *t,int n ):elementType(t),dims(n){}
 	ArrayType *arrayType(){ return this; }
+	string name(){ return elementType->name()+" array"; }
 };
 
 struct StructType : public Type{
@@ -54,6 +58,7 @@ struct StructType : public Type{
 	~StructType(){ delete fields; }
 	StructType *structType(){ return this; }
 	virtual bool canCastTo( Type *t );
+	string name(){ return "Custom type \""+ident+"\""; }
 };
 
 struct ConstType : public Type{
@@ -65,6 +70,7 @@ struct ConstType : public Type{
 	ConstType( float n ):floatValue(n),valueType(Type::float_type){}
 	ConstType( const string &n ):stringValue(n),valueType(Type::string_type){}
 	ConstType *constType(){ return this; }
+	string name(){ return valueType->name()+" constant"; }
 };
 
 struct VectorType : public Type{
@@ -74,6 +80,7 @@ struct VectorType : public Type{
 	VectorType( const string &l,Type *t,const vector<int> &szs ):label(l),elementType(t),sizes(szs){}
 	VectorType *vectorType(){ return this; }
 	virtual bool canCastTo( Type *t );
+	string name(){ return elementType->name()+" vector"; }
 };
 
 #endif

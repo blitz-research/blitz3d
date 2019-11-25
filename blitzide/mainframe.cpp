@@ -699,7 +699,7 @@ void MainFrame::build( bool exec,bool publish ){
 	string src=src_file;
 
 	if( !src.size() ){
-		src=prefs.homeDir+"\\tmp\\tmp.bb";
+		src=prefs.homeDir+"\\Games\\tmp.bb";
 		int om=ios_base::binary|ios_base::out|ios_base::trunc;
 		ofstream out( src.c_str(),om );
 		if( !out.good() ){

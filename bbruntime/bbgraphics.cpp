@@ -622,6 +622,14 @@ void bbCopyRect( int sx,int sy,int w,int h,int dx,int dy,gxCanvas *src,gxCanvas 
 	dest->blit( dx,dy,src,sx,sy,w,h,true );
 }
 
+void bbCopyRectStretch( int sx,int sy,int w,int h,int dx,int dy,int dw,int dh,gxCanvas *src,gxCanvas *dest ){
+	if( src ) debugCanvas( src );
+	else src=gx_canvas;
+	if( dest ) debugCanvas( dest );
+	else dest=gx_canvas;
+	dest->blitstretch( dx,dy,dw,dh,src,sx,sy,w,h,true );
+}
+
 gxFont *bbLoadFont( BBStr *name,int height,int bold,int italic,int underline ){
 	int flags=
 		(bold ? gxFont::FONT_BOLD : 0 ) |
@@ -1302,6 +1310,7 @@ void graphics_link( void (*rtSym)( const char *sym,void *pc ) ){
 	rtSym( "Line%x1%y1%x2%y2",bbLine );
 	rtSym( "Text%x%y$text%centre_x=0%centre_y=0",bbText );
 	rtSym( "CopyRect%source_x%source_y%width%height%dest_x%dest_y%src_buffer=0%dest_buffer=0",bbCopyRect );
+	rtSym( "CopyRectStretch%source_x%source_y%width%height%dest_x%dest_y%dest_w%dest_h%src_buffer=0%dest_buffer=0",bbCopyRectStretch );
 
 	//fonts
 	rtSym( "%LoadFont$fontname%height=12%bold=0%italic=0%underline=0",bbLoadFont );

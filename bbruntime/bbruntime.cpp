@@ -253,6 +253,10 @@ const char *bbruntime_run( gxRuntime *rt,void (*pc)(),bool dbg ){
 		gx_runtime->debugInfo( "Program has ended" );
 	}catch( bbEx x ){
 		t=x.err;
+	}catch (exception e){
+		t=e.what();
+	}catch (...) {
+		t="Unknown/non-standard exception thrown";
 	}
 	bbruntime_destroy();
 	return t;
