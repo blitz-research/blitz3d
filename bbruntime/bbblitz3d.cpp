@@ -1863,6 +1863,13 @@ float  bbEntityDistanceSquared(Entity *src, Entity *dest) {
 	return src->getWorldPosition().distanceSqr(dest->getWorldPosition());
 }
 
+float  bbDistance(float x1,float x2,float y1,float y2,float z1,float z2) {
+	float dx=x2-x1,dy=y2-y1,dz=z2-z1;return sqrtf(dx*dx+dy*dy+dz*dz);
+}
+float  bbDistanceSquared(float x1,float x2,float y1,float y2,float z1,float z2) {
+	float dx=x2-x1,dy=y2-y1,dz=z2-z1;return dx*dx+dy*dy+dz*dz;
+}
+
 ////////////////////////////////////
 // ENTITY TRANSFORMATION COMMANDS //
 ////////////////////////////////////
@@ -2254,6 +2261,9 @@ void blitz3d_link( void (*rtSym)( const char *sym,void *pc ) ){
 	rtSym( "%CollisionEntity%entity%collision_index",bbCollisionEntity );
 	rtSym( "%CollisionSurface%entity%collision_index",bbCollisionSurface );
 	rtSym( "%CollisionTriangle%entity%collision_index",bbCollisionTriangle );
+
+	rtSym( "#Distance#x1#x2#y1#y2#z1=0#z2=0",bbDistance );
+	rtSym( "#DistanceSquared#x1#x2#y1#y2#z1=0#z2=0",bbDistanceSquared );
 
 	rtSym( "MoveEntity%entity#x#y#z",bbMoveEntity );
 	rtSym( "TurnEntity%entity#pitch#yaw#roll%global=0",bbTurnEntity );
