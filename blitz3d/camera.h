@@ -38,6 +38,9 @@ public:
 	const Frustum &getFrustum()const;
 	void  getViewport( int *x,int *y,int *w,int *h )const;
 	int   getProjMode()const{ return proj_mode; }
+	float getFogNear()const;
+	float getFogFar()const;
+
 
 private:
 	float zoom;

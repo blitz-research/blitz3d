@@ -86,6 +86,14 @@ float Camera::getFrustumHeight()const{
 	getFrustum();return frustum_h;
 }
 
+float Camera::getFogNear()const{
+	return fog_nr;
+}
+
+float Camera::getFogFar()const{
+	return fog_fr;
+}
+
 void Camera::getViewport( int *x,int *y,int *w,int *h )const{
 	*x=vp_x;*y=vp_y;*w=vp_w;*h=vp_h;
 }

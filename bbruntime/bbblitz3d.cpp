@@ -924,6 +924,16 @@ void  bbCameraRange( Camera *c,float nr,float fr ){
 	c->setRange( nr,fr );
 }
 
+float bbGetCameraRangeNear(Camera *c){
+	debugCamera(c);
+	return c->getFrustumNear();
+}
+
+float bbGetCameraRangeFar(Camera *c){
+	debugCamera(c);
+	return c->getFrustumFar();
+}
+
 void  bbCameraClsColor( Camera *c,float r,float g,float b ){
 	debugCamera(c);
 	c->setClsColor( Vector( r*ctof,g*ctof,b*ctof ) );
@@ -947,6 +957,16 @@ void  bbCameraViewport( Camera *c,int x,int y,int w,int h ){
 void  bbCameraFogRange( Camera *c,float nr,float fr ){
 	debugCamera(c);
 	c->setFogRange( nr,fr );
+}
+
+float bbGetCameraFogRangeNear(Camera *c){
+	debugCamera(c);
+	return c->getFogNear();
+}
+
+float bbGetCameraFogRangeFar(Camera *c){
+	debugCamera(c);
+	return c->getFogFar();
 }
 
 void  bbCameraFogDensity(Camera *c, float den) {
@@ -2146,12 +2166,16 @@ void blitz3d_link( void (*rtSym)( const char *sym,void *pc ) ){
 	rtSym( "%CreateCamera%parent=0",bbCreateCamera );
 	rtSym( "CameraZoom%camera#zoom",bbCameraZoom );
 	rtSym( "CameraRange%camera#near#far",bbCameraRange );
+	rtSym( "#GetCameraRangeNear%camera",bbGetCameraRangeNear );
+	rtSym( "#GetCameraRangeFar%camera",bbGetCameraRangeFar );
 	rtSym( "CameraClsColor%camera#red#green#blue",bbCameraClsColor );
 	rtSym( "CameraClsMode%camera%cls_color%cls_zbuffer",bbCameraClsMode );
 	rtSym( "CameraProjMode%camera%mode",bbCameraProjMode );
 	rtSym( "CameraViewport%camera%x%y%width%height",bbCameraViewport );
 	rtSym( "CameraFogColor%camera#red#green#blue",bbCameraFogColor );
 	rtSym( "CameraFogRange%camera#near#far",bbCameraFogRange );
+	rtSym( "#GetCameraFogRangeNear%camera",bbGetCameraFogRangeNear );
+	rtSym( "#GetCameraFogRangeFar%camera", bbGetCameraFogRangeFar );
 	rtSym( "CameraFogDensity%camera#density",bbCameraFogDensity );
 	rtSym( "CameraFogMode%camera%mode",bbCameraFogMode );
 	rtSym( "CameraProject%camera#x#y#z",bbCameraProject );
