@@ -26,12 +26,13 @@ static const char *md_err=
 
 static string getAppDir(){
 	char buff[MAX_PATH];
-	if( GetModuleFileName( 0,buff,MAX_PATH ) ){
+/*	if( GetModuleFileName( 0,buff,MAX_PATH ) ){
 		string t=buff;
 		int n=t.find_last_of( '\\' );
 		if( n!=string::npos ) t=t.substr( 0,n );
 		return t;
 	}
+*/	if( GetCurrentDirectory(MAX_PATH,buff)){ return buff;}
 	return "";
 }
 
@@ -65,8 +66,9 @@ int _stdcall WinMain( HINSTANCE inst,HINSTANCE prev,char *cmd,int show ){
     PROCESS_INFORMATION pi;
     ZeroMemory(&si,sizeof(si));si.cb=sizeof(si);
 	if( !CreateProcess( 0,(char*)t.c_str(),0,0,0,0,0,0,&si,&pi ) ){
-		::MessageBox( 0,bb_err,"Blitz Basic Error",MB_SETFOREGROUND|MB_TOPMOST|MB_ICONERROR );
-		ExitProcess(-1);
+//		::MessageBox( 0,bb_err,"Blitz Basic Error",MB_SETFOREGROUND|MB_TOPMOST|MB_ICONERROR );
+//		ExitProcess(-1);
+		fail( bb_err );
 	}
 
 	//wait for BB to start
