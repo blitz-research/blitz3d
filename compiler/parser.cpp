@@ -698,8 +698,8 @@ ExprNode *Parser::parsePrimary( bool opt ){
 		toker->next();t=parseIdent();
 		result=d_new LastNode( t );
 		break;
-	case BBNULL:
-		result=d_new NullNode();
+	case NULLCONST:
+		result=d_new NullConstNode();
 		toker->next();
 		break;
 	case INTCONST:

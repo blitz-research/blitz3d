@@ -414,7 +414,7 @@ void ReturnNode::semant( Environ *e ){
 			}else if( e->returnType==Type::string_type ){
 				expr=d_new StringConstNode( "" );
 			}else if( e->returnType->structType() ){
-				expr=d_new NullNode();
+				expr=d_new NullConstNode();
 			}else{
 				expr=d_new IntConstNode( 0 );
 			}

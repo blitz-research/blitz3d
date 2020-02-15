@@ -66,6 +66,7 @@ void VarDeclNode::proto( DeclSeq *d,Environ *e ){
 			if( !c ) ex( "Expression must be constant" );
 			if( ty==Type::int_type ) ty=d_new ConstType( c->intValue() );
 			else if( ty==Type::float_type ) ty=d_new ConstType( c->floatValue() );
+			else if( ty->structType() ) ty=d_new ConstType( );
 			else ty=d_new ConstType( c->stringValue() );
 			e->types.push_back( ty );
 			delete expr;expr=0;

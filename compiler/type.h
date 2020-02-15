@@ -69,6 +69,7 @@ struct ConstType : public Type{
 	ConstType( int n ):intValue(n),valueType(Type::int_type){}
 	ConstType( float n ):floatValue(n),valueType(Type::float_type){}
 	ConstType( const string &n ):stringValue(n),valueType(Type::string_type){}
+	ConstType( ):valueType(Type::null_type){}
 	ConstType *constType(){ return this; }
 	string name(){ return valueType->name()+" constant"; }
 };

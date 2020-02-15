@@ -94,6 +94,14 @@ struct StringConstNode : public ConstNode{
 	string stringValue();
 };
 
+struct NullConstNode : public ConstNode{
+	NullConstNode();
+	TNode *translate( Codegen *g );
+	int intValue();
+	float floatValue();
+	string stringValue();
+};
+
 struct UniExprNode : public ExprNode{
 	int op;ExprNode *expr;
 	UniExprNode( int op,ExprNode *expr ):op( op ),expr( expr ){}
@@ -167,12 +175,12 @@ struct BeforeNode : public ExprNode{
 	ExprNode *semant( Environ *e );
 	TNode *translate( Codegen *g );
 };
-
+/*
 struct NullNode : public ExprNode{
 	ExprNode *semant( Environ *e );
 	TNode *translate( Codegen *g );
 };
-
+*/
 struct ObjectCastNode : public ExprNode{
 	ExprNode *expr;
 	string type_ident;

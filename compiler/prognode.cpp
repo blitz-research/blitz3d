@@ -13,9 +13,9 @@ Environ *ProgNode::semant( Environ *e ){
 
 	a_ptr<Environ> env( d_new Environ( genLabel(),Type::int_type,0,e ) );
 
-	consts->proto( env->decls,env );
 	structs->proto( env->typeDecls,env );
 	structs->semant( env );
+	consts->proto( env->decls,env );
 	funcs->proto( env->funcDecls,env );
 	stmts->semant( env );
 	funcs->semant( env );

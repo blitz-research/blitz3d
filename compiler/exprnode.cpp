@@ -26,6 +26,7 @@ ExprNode *CastNode::semant( Environ *e ){
 		ExprNode *e;
 		if( type==Type::int_type ) e=d_new IntConstNode( c->intValue() );
 		else if( type==Type::float_type ) e=d_new FloatConstNode( c->floatValue() );
+		else if( type->structType() ) e=d_new NullConstNode();
 		else e=d_new StringConstNode( c->stringValue() );
 		delete this;
 		return e;
@@ -277,6 +278,32 @@ float StringConstNode::floatValue(){
 
 string StringConstNode::stringValue(){
 	return value;
+}
+
+///////////////////
+// Null constant //
+///////////////////
+NullConstNode::NullConstNode(){
+	sem_type=Type::null_type;
+}
+
+TNode *NullConstNode::translate( Codegen *g ){
+	return d_new TNode( IR_CONST,0,0,0 );
+}
+
+int NullConstNode::intValue(){
+	ex( "Can't convert null to int" );
+	return 0;
+}
+
+float NullConstNode::floatValue(){
+	ex( "Can't convert null to float" );
+	return 0.f;
+}
+
+string NullConstNode::stringValue(){
+	ex( "Can't convert null to string" );
+	return string("");
 }
 
 ////////////////////
@@ -579,18 +606,6 @@ TNode *BeforeNode::translate( Codegen *g ){
 	TNode *t=expr->translate( g );
 	if( g->debug ) t=jumpf( t,"__bbNullObjEx" );
 	return call( "__bbObjPrev",t );
-}
-
-/////////////////
-// Null object //
-/////////////////
-ExprNode *NullNode::semant( Environ *e ){
-	sem_type=Type::null_type;
-	return this;
-}
-
-TNode *NullNode::translate( Codegen *g ){
-	return d_new TNode( IR_CONST,0,0,0 );
 }
 
 /////////////////

@@ -41,6 +41,7 @@ ConstNode *Node::constValue( Type *ty ){
 	ty=c->valueType;
 	if( ty==Type::int_type ) return d_new IntConstNode( c->intValue );
 	if( ty==Type::float_type ) return d_new FloatConstNode( c->floatValue );
+	if( ty==Type::null_type ) return d_new NullConstNode();
 	return d_new StringConstNode( c->stringValue );
 }
 
