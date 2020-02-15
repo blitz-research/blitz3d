@@ -1994,21 +1994,20 @@ BBStr *  bbEntityName( Entity *e ){
 }
 
 BBStr *bbEntityClass( Entity *e ){
-	debugEntity(e);
-	const char *p="Pivot";
-	if( e->getLight() ) p="Light";
-	else if( e->getCamera() ) p="Camera";
-	else if( e->getMirror() ) p="Mirror";
-	else if( e->getListener() ) p="Listener";
-	else if( Model *t=e->getModel() ){
-		if( t->getSprite() ) p="Sprite";
-		else if( t->getTerrain() ) p="Terrain";
-		else if( t->getPlaneModel() ) p="Plane";
-		else if( t->getMeshModel() ) p="Mesh";
-		else if( t->getMD2Model() ) p="MD2";
-		else if( t->getBSPModel() ) p="BSP";
-	}
-	return new BBStr(p);
+    debugEntity(e);
+    if( e->getLight() ) return new BBStr("Light");
+    else if( e->getCamera() ) return new BBStr("Camera");
+    else if( e->getMirror() ) return new BBStr("Mirror");
+    else if( e->getListener() ) return new BBStr("Listener");
+    else if( Model *t=e->getModel() ){
+        if( t->getSprite() ) return new BBStr("Sprite");
+        else if( t->getTerrain() ) return new BBStr("Terrain");
+        else if( t->getPlaneModel() ) return new BBStr("Plane");
+        else if( t->getMeshModel() ) return new BBStr("Mesh");
+        else if( t->getMD2Model() ) return new BBStr("MD2");
+        else if( t->getBSPModel() ) return new BBStr("BSP");
+    }
+    return new BBStr("Pivot");
 }
 
 void  bbClearWorld( int e,int b,int t ){
