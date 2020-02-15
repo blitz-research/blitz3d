@@ -1229,13 +1229,14 @@ string gxRuntime::systemProperty( const std::string &p ){
 //	}else if( t=="ospack" ){
 //		return osinfo.szCSDVersion;
 	}else if( t=="appdir" ){
-/*		if( GetModuleFileName( 0,buff,MAX_PATH ) ){
+		if( GetModuleFileName( 0,buff,MAX_PATH ) ){
 			string t=buff;
 			int n=t.find_last_of( '\\' );
 			if( n!=string::npos ) t=t.substr( 0,n );
 			return toDir( t );
-		}*/
-		if( GetCurrentDirectory(MAX_PATH,buff)){ return toDir( buff );}
+		}
+	}else if( t=="appfile" ){
+		if( GetModuleFileName( 0,buff,MAX_PATH ) ) return buff; //without toDir, so we don't have the slash at the end
 	}else if( t=="apphwnd" ){
 		return itoa( (int)hwnd );
 	}else if( t=="apphinstance" ){

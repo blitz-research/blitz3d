@@ -26,13 +26,12 @@ static const char *md_err=
 
 static string getAppDir(){
 	char buff[MAX_PATH];
-/*	if( GetModuleFileName( 0,buff,MAX_PATH ) ){
+	if( GetModuleFileName( 0,buff,MAX_PATH ) ){
 		string t=buff;
 		int n=t.find_last_of( '\\' );
 		if( n!=string::npos ) t=t.substr( 0,n );
 		return t;
 	}
-*/	if( GetCurrentDirectory(MAX_PATH,buff)){ return buff;}
 	return "";
 }
 

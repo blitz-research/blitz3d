@@ -189,7 +189,7 @@ static bool saveCanvas( gxCanvas *c,const string &f ){
 
 	BITMAPFILEHEADER bf;
 	memset( &bf,0,sizeof(bf) );
-	bf.bfType='MB';
+	bf.bfType='BM';
 	bf.bfSize=sizeof(BITMAPFILEHEADER)+sizeof(BITMAPINFOHEADER)+tempsize*c->getHeight();
 	bf.bfOffBits=sizeof(BITMAPFILEHEADER)+sizeof(BITMAPINFOHEADER);
 	BITMAPINFOHEADER bi;memset( &bi,0,sizeof(bi) );

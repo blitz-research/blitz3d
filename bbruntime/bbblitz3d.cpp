@@ -1674,6 +1674,21 @@ float  bbEntityRoll( Entity *e,int global ){
 	return quatRoll( global ? e->getWorldRotation() : e->getLocalRotation() ) * rtod;
 }
 
+float  bbEntityScaleX( Entity *e,int global ){
+	debugEntity(e);
+	return global ? e->getWorldScale().x : e->getLocalScale().x;
+}
+
+float  bbEntityScaleY( Entity *e,int global ){
+	debugEntity(e);
+	return global ? e->getWorldScale().y : e->getLocalScale().y;
+}
+
+float  bbEntityScaleZ( Entity *e,int global ){
+	debugEntity(e);
+	return global ? e->getWorldScale().z : e->getLocalScale().z;
+}
+
 float  bbGetMatElement( Entity *e,int row,int col ){
 	debugEntity(e);
 	return row<3 ? e->getWorldTform().m[row][col] : e->getWorldTform().v[col];
@@ -2251,6 +2266,9 @@ void blitz3d_link( void (*rtSym)( const char *sym,void *pc ) ){
 	rtSym( "#EntityPitch%entity%global=0",bbEntityPitch );
 	rtSym( "#EntityYaw%entity%global=0",bbEntityYaw );
 	rtSym( "#EntityRoll%entity%global=0",bbEntityRoll );
+	rtSym( "#EntityScaleX%entity%global=0",bbEntityScaleX );
+	rtSym( "#EntityScaleY%entity%global=0",bbEntityScaleY );
+	rtSym( "#EntityScaleZ%entity%global=0",bbEntityScaleZ );
 	rtSym( "#GetMatElement%entity%row%column",bbGetMatElement );
 	rtSym( "TFormPoint#x#y#z%source_entity%dest_entity",bbTFormPoint );
 	rtSym( "TFormVector#x#y#z%source_entity%dest_entity",bbTFormVector );
