@@ -444,12 +444,13 @@ ExprNode *BinExprNode::semant( Environ *e ){
 TNode *BinExprNode::translate( Codegen *g ){
 	TNode *l=lhs->translate( g );
 	TNode *r=rhs->translate( g );
-	int n=0;
+	int n = 0; std::string label;
 	switch( op ){
-	case AND:n=IR_AND;break;case OR:n=IR_OR;break;case XOR:n=IR_XOR;break;
+	case AND:n = IR_AND; label = genLabel(); break;
+	case OR:n=IR_OR;break;case XOR:n=IR_XOR;break;
 	case SHL:n=IR_SHL;break;case SHR:n=IR_SHR;break;case SAR:n=IR_SAR;break;
 	}
-	return d_new TNode( n,l,r );
+	return d_new TNode( n,l,r,label );
 }
 
 ///////////////////////////

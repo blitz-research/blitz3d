@@ -123,9 +123,14 @@ Tile *Codegen_x86::munchUnary( TNode *t ){
 }
 
 Tile *Codegen_x86::munchLogical( TNode *t ){
-	string s;
+	string s, s1, s2; Tile* tile;
 	switch( t->op ){
-	case IR_AND:s="\tand\t%l,%r\n";break;
+	case IR_AND:
+		s1 = "\tand\t%l,%l\n\tjz\t" + t->sconst + "\n";
+		s2 = "\tand\t%l,%r\n"+t->sconst;
+
+		return d_new Tile(s2, d_new Tile(s1, munchReg(t->l)), munchReg(t->r));
+		break;
 	case IR_OR:s="\tor\t%l,%r\n";break;
 	case IR_XOR:s="\txor\t%l,%r\n";break;
 	default:return 0;
