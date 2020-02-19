@@ -71,7 +71,8 @@ static void makeKeywords(){
 	alphaTokes["Handle"]=BBHANDLE;
 
 	alphaTokes["And"]=AND;
-	alphaTokes["Or"]=OR;
+	alphaTokes["Or"] = OR;
+	alphaTokes["Lor"] = LOR;
 	alphaTokes["Xor"]=XOR;
 	alphaTokes["Not"]=NOT;
 	alphaTokes["Shl"]=SHL;

@@ -384,6 +384,23 @@ ExprNode* BinExprNode::semant(Environ* e) {
 				return expr;
 			}
 			break;
+		case LOR:
+			if (lc->intValue()) { //Only evaluate right expression, if left expression is false
+				rc = rhs->constNode();
+				if (rc) {
+					ExprNode* expr;
+					expr = d_new IntConstNode(lc->intValue() || rc->intValue());
+					delete this;
+					return expr;
+				}
+			}
+			else { //If left expression is true, the whole expression must be true
+				ExprNode* expr;
+				expr = d_new IntConstNode(1);
+				delete this;
+				return expr;
+			}
+			break;
 		case OR:
 			//Short-circuit evaluation cannot be applied to bitwise OR;
 			//implement logical OR with another keyword
@@ -443,6 +460,11 @@ TNode *BinExprNode::translate( Codegen *g ){
 	int n = 0; std::string label;
 	switch( op ){
 	case AND:n = IR_AND; label = genLabel(); break;
+	case LOR:
+		n = IR_LOR;
+		label = genLabel();
+		return call("__bbMakeBool", d_new TNode(n, l, r, label));
+		break;
 	case OR:n=IR_OR;break;case XOR:n=IR_XOR;break;
 	case SHL:n=IR_SHL;break;case SHR:n=IR_SHR;break;case SAR:n=IR_SAR;break;
 	}

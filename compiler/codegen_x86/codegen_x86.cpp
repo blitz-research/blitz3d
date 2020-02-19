@@ -131,6 +131,11 @@ Tile *Codegen_x86::munchLogical( TNode *t ){
 
 		return d_new Tile(s2, d_new Tile(s1, munchReg(t->l)), munchReg(t->r));
 		break;
+	case IR_LOR:
+		s1 = "\tor\t%l,%l\n\tjnz\t" + t->sconst + "\n";
+		s2 = "\tor\t%l,%r\n" + t->sconst;
+		return d_new Tile(s2, d_new Tile(s1, munchReg(t->l)), munchReg(t->r));
+		break;
 	case IR_OR:s="\tor\t%l,%r\n";break;
 	case IR_XOR:s="\txor\t%l,%r\n";break;
 	default:return 0;
@@ -406,7 +411,7 @@ Tile *Codegen_x86::munchReg( TNode *t ){
 	case IR_NEG:
 		q=munchUnary( t );
 		break;
-	case IR_AND:case IR_OR:case IR_XOR:
+	case IR_AND:case IR_LOR:case IR_OR:case IR_XOR:
 		q=munchLogical( t );
 		break;
 	case IR_ADD:case IR_SUB:case IR_MUL:case IR_DIV:
