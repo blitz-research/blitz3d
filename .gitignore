@@ -8,3 +8,5 @@ Release
 _release
 *__Win32_*
 /innosetup/installs
+fmodapi375win/*
+freeimage241/*
