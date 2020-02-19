@@ -544,11 +544,23 @@ ExprNode *Parser::parseExpr( bool opt ){
 
 ExprNode *Parser::parseExpr1( bool opt ){
 
+	a_ptr<ExprNode> lhs( parseExpr1AND( opt ) );
+	if( !lhs ) return 0;
+	for(;;){
+		int c=toker->curr();
+		if( c!=OR && c!=XOR ) return lhs.release();
+		toker->next();ExprNode *rhs=parseExpr1AND( false );
+		lhs=d_new BinExprNode( c,lhs.release(),rhs );
+	}
+}
+
+ExprNode *Parser::parseExpr1AND( bool opt ){
+
 	a_ptr<ExprNode> lhs( parseExpr2( opt ) );
 	if( !lhs ) return 0;
 	for(;;){
 		int c=toker->curr();
-		if( c!=AND && c!=OR && c!=XOR ) return lhs.release();
+		if( c!=AND ) return lhs.release();
 		toker->next();ExprNode *rhs=parseExpr2( false );
 		lhs=d_new BinExprNode( c,lhs.release(),rhs );
 	}

@@ -52,7 +52,8 @@ private:
 	ExprSeqNode *parseExprSeq();
 
 	ExprNode *parseExpr( bool opt );
-	ExprNode *parseExpr1( bool opt );	//And, Or, Eor
+	ExprNode *parseExpr1( bool opt );	//Or, Xor
+	ExprNode *parseExpr1AND( bool opt );//And
 	ExprNode *parseExpr2( bool opt );	//<,=,>,<=,<>,>=
 	ExprNode *parseExpr3( bool opt );	//+,-
 	ExprNode *parseExpr4( bool opt );	//Lsr,Lsr,Asr
