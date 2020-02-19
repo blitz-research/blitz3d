@@ -13,14 +13,14 @@ Environ *ProgNode::semant( Environ *e ){
 
 	a_ptr<Environ> env( d_new Environ( genLabel(),Type::int_type,0,e ) );
 
-	structs->proto( env->typeDecls,env );
-	structs->semant( env );
-	consts->proto( env->decls,env );
-	funcs->proto( env->funcDecls,env );
-	stmts->semant( env );
-	funcs->semant( env );
-	datas->proto( env->decls,env );
-	datas->semant( env );
+    structs->proto(env->typeDecls, env);
+    consts->proto(env->decls, env);
+    structs->semant( env );
+    funcs->proto( env->funcDecls,env );
+    stmts->semant( env );
+    funcs->semant( env );
+    datas->proto( env->decls,env );
+    datas->semant( env );
 
 	sem_env=env.release();
 	return sem_env;
