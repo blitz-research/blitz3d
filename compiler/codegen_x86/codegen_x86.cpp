@@ -123,7 +123,7 @@ Tile *Codegen_x86::munchUnary( TNode *t ){
 }
 
 Tile *Codegen_x86::munchLogical( TNode *t ){
-	string s, s1, s2; Tile* tile;
+	string s, s1, s2;
 	switch( t->op ){
 	case IR_AND:
 		s1 = "\tand\t%l,%l\n\tjz\t" + t->sconst + "\n";

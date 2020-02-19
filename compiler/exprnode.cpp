@@ -360,14 +360,15 @@ TNode *UniExprNode::translate( Codegen *g ){
 /////////////////////////////////////////////////////
 // boolean expression - accepts ints, returns ints //
 /////////////////////////////////////////////////////
-ExprNode *BinExprNode::semant( Environ *e ){
+ExprNode* BinExprNode::semant(Environ* e) {
 	lhs = lhs->semant(e); lhs = lhs->castTo(Type::int_type, e);
+	rhs = rhs->semant(e); rhs = rhs->castTo(Type::int_type, e);
 	ConstNode* lc = lhs->constNode(), * rc;
-	switch (op) {
-	case AND:
-		if (lc) { //Check if the left expression is a constant
+	if (lc)
+	{
+		switch (op) {
+		case AND:
 			if (lc->intValue()) { //Only evaluate right expression, if left expression is not false
-				rhs = rhs->semant(e); rhs = rhs->castTo(Type::int_type, e);
 				rc = rhs->constNode();
 				if (rc) {
 					ExprNode* expr;
@@ -382,60 +383,55 @@ ExprNode *BinExprNode::semant( Environ *e ){
 				delete this;
 				return expr;
 			}
+			break;
+		case OR:
+			//Short-circuit evaluation cannot be applied to bitwise OR;
+			//implement logical OR with another keyword
+			rc = rhs->constNode();
+			if (rc) {
+				ExprNode* expr;
+				expr = d_new IntConstNode(lc->intValue() | rc->intValue());
+				delete this;
+				return expr;
+			}
+			break;
+		case XOR:
+			rc = rhs->constNode();
+			if (rc) {
+				ExprNode* expr;
+				expr = d_new IntConstNode(lc->intValue() ^ rc->intValue());
+				delete this;
+				return expr;
+			}
+			break;
+		case SHL:
+			rc = rhs->constNode();
+			if (rc) {
+				ExprNode* expr;
+				expr = d_new IntConstNode(lc->intValue() << rc->intValue());
+				delete this;
+				return expr;
+			}
+			break;
+		case SHR:
+			rc = rhs->constNode();
+			if (rc) {
+				ExprNode* expr;
+				expr = d_new IntConstNode((unsigned)lc->intValue() >> rc->intValue());
+				delete this;
+				return expr;
+			}
+			break;
+		case SAR:
+			rc = rhs->constNode();
+			if (rc) {
+				ExprNode* expr;
+				expr = d_new IntConstNode(lc->intValue() >> rc->intValue());
+				delete this;
+				return expr;
+			}
+			break;
 		}
-		break;
-	case OR:
-		//Short-circuit evaluation cannot be applied to bitwise OR;
-		//implement logical OR with another keyword
-		rhs = rhs->semant(e); rhs = rhs->castTo(Type::int_type, e);
-		rc = rhs->constNode();
-		if (rc) {
-			ExprNode* expr;
-			expr = d_new IntConstNode(lc->intValue() | rc->intValue());
-			delete this;
-			return expr;
-		}
-		break;
-	case XOR:
-		rhs = rhs->semant(e); rhs = rhs->castTo(Type::int_type, e);
-		rc = rhs->constNode();
-		if (rc) {
-			ExprNode* expr;
-			expr = d_new IntConstNode(lc->intValue() ^ rc->intValue());
-			delete this;
-			return expr;
-		}
-		break;
-	case SHL:
-		rhs = rhs->semant(e); rhs = rhs->castTo(Type::int_type, e);
-		rc = rhs->constNode();
-		if (rc) {
-			ExprNode* expr;
-			expr = d_new IntConstNode(lc->intValue() << rc->intValue());
-			delete this;
-			return expr;
-		}
-		break;
-	case SHR:
-		rhs = rhs->semant(e); rhs = rhs->castTo(Type::int_type, e);
-		rc = rhs->constNode();
-		if (rc) {
-			ExprNode* expr;
-			expr = d_new IntConstNode((unsigned)lc->intValue() >> rc->intValue());
-			delete this;
-			return expr;
-		}
-		break;
-	case SAR:
-		rhs = rhs->semant(e); rhs = rhs->castTo(Type::int_type, e);
-		rc = rhs->constNode();
-		if (rc) {
-			ExprNode* expr;
-			expr = d_new IntConstNode(lc->intValue() >> rc->intValue());
-			delete this;
-			return expr;
-		}
-		break;
 	}
 	sem_type = Type::int_type;
 	return this;
