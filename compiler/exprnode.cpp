@@ -361,35 +361,96 @@ TNode *UniExprNode::translate( Codegen *g ){
 // boolean expression - accepts ints, returns ints //
 /////////////////////////////////////////////////////
 ExprNode *BinExprNode::semant( Environ *e ){
-	lhs=lhs->semant(e);lhs=lhs->castTo( Type::int_type,e );
-	rhs=rhs->semant(e);rhs=rhs->castTo( Type::int_type,e );
-	ConstNode *lc=lhs->constNode(),*rc=rhs->constNode();
-	if( lc && rc ){
-		ExprNode *expr;
-		switch( op ){
-		case AND:expr=d_new IntConstNode( lc->intValue() & rc->intValue() );break;
-		case OR: expr=d_new IntConstNode( lc->intValue() | rc->intValue() );break;
-		case XOR:expr=d_new IntConstNode( lc->intValue() ^ rc->intValue() );break;
-		case SHL:expr=d_new IntConstNode( lc->intValue()<< rc->intValue() );break;
-		case SHR:expr=d_new IntConstNode( (unsigned)lc->intValue()>>rc->intValue() );break;
-		case SAR:expr=d_new IntConstNode( lc->intValue()>> rc->intValue() );break;
+	lhs = lhs->semant(e); lhs = lhs->castTo(Type::int_type, e);
+	ConstNode* lc = lhs->constNode(), * rc;
+	switch (op) {
+	case AND:
+		if (lc) { //Check if the left expression is a constant
+			if (lc->intValue()) { //Only evaluate right expression, if left expression is not false
+				rhs = rhs->semant(e); rhs = rhs->castTo(Type::int_type, e);
+				rc = rhs->constNode();
+				if (rc) {
+					ExprNode* expr;
+					expr = d_new IntConstNode(lc->intValue() & rc->intValue());
+					delete this;
+					return expr;
+				}
+			}
+			else { //If left expression is false, the whole expression must be false
+				ExprNode* expr;
+				expr = d_new IntConstNode(lc->intValue());
+				delete this;
+				return expr;
+			}
 		}
-		delete this;
-		return expr;
+		break;
+	case OR:
+		//Short-circuit evaluation cannot be applied to bitwise OR;
+		//implement logical OR with another keyword
+		rhs = rhs->semant(e); rhs = rhs->castTo(Type::int_type, e);
+		rc = rhs->constNode();
+		if (rc) {
+			ExprNode* expr;
+			expr = d_new IntConstNode(lc->intValue() | rc->intValue());
+			delete this;
+			return expr;
+		}
+		break;
+	case XOR:
+		rhs = rhs->semant(e); rhs = rhs->castTo(Type::int_type, e);
+		rc = rhs->constNode();
+		if (rc) {
+			ExprNode* expr;
+			expr = d_new IntConstNode(lc->intValue() ^ rc->intValue());
+			delete this;
+			return expr;
+		}
+		break;
+	case SHL:
+		rhs = rhs->semant(e); rhs = rhs->castTo(Type::int_type, e);
+		rc = rhs->constNode();
+		if (rc) {
+			ExprNode* expr;
+			expr = d_new IntConstNode(lc->intValue() << rc->intValue());
+			delete this;
+			return expr;
+		}
+		break;
+	case SHR:
+		rhs = rhs->semant(e); rhs = rhs->castTo(Type::int_type, e);
+		rc = rhs->constNode();
+		if (rc) {
+			ExprNode* expr;
+			expr = d_new IntConstNode((unsigned)lc->intValue() >> rc->intValue());
+			delete this;
+			return expr;
+		}
+		break;
+	case SAR:
+		rhs = rhs->semant(e); rhs = rhs->castTo(Type::int_type, e);
+		rc = rhs->constNode();
+		if (rc) {
+			ExprNode* expr;
+			expr = d_new IntConstNode(lc->intValue() >> rc->intValue());
+			delete this;
+			return expr;
+		}
+		break;
 	}
-	sem_type=Type::int_type;
+	sem_type = Type::int_type;
 	return this;
 }
 
 TNode *BinExprNode::translate( Codegen *g ){
 	TNode *l=lhs->translate( g );
 	TNode *r=rhs->translate( g );
-	int n=0;
+	int n = 0; std::string label;
 	switch( op ){
-	case AND:n=IR_AND;break;case OR:n=IR_OR;break;case XOR:n=IR_XOR;break;
+	case AND:n = IR_AND; label = genLabel(); break;
+	case OR:n=IR_OR;break;case XOR:n=IR_XOR;break;
 	case SHL:n=IR_SHL;break;case SHR:n=IR_SHR;break;case SAR:n=IR_SAR;break;
 	}
-	return d_new TNode( n,l,r );
+	return d_new TNode( n,l,r,label );
 }
 
 ///////////////////////////
