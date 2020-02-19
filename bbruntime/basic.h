@@ -143,6 +143,7 @@ float	 _bbFAbs( float n );
 float	 _bbFSgn( float n );
 float	 _bbFMod( float x,float y );
 float	 _bbFPow( float x,float y );
+int		 _bbMakeBool( int n );
 
 void	 bbRuntimeStats();
 

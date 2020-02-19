@@ -548,7 +548,7 @@ ExprNode *Parser::parseExpr1( bool opt ){
 	if( !lhs ) return 0;
 	for(;;){
 		int c=toker->curr();
-		if( c!=OR && c!=XOR ) return lhs.release();
+		if( c!=OR && c!=LOR && c!=XOR ) return lhs.release();
 		toker->next();ExprNode *rhs=parseExpr1AND( false );
 		lhs=d_new BinExprNode( c,lhs.release(),rhs );
 	}
