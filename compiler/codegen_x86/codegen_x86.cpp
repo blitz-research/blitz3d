@@ -132,8 +132,6 @@ Tile *Codegen_x86::munchLogical( TNode *t ){
 
 		l = munchReg(t->l); r = munchReg(t->r);
 		q = d_new Tile(s2, d_new Tile(s1, l), r);
-		q->want_l = ECX; q->want_r = EDX;
-		q->hits = 1 << ECX | 1 << EDX;
 		q->forceOrder = true;
 		return q;
 		break;
@@ -143,8 +141,6 @@ Tile *Codegen_x86::munchLogical( TNode *t ){
 		
 		l = munchReg(t->l); r = munchReg(t->r);
 		q = d_new Tile(s2, d_new Tile(s1, l), r);
-		q->want_l = ECX; q->want_r = EDX;
-		q->hits = 1 << ECX | 1 << EDX;
 		q->forceOrder = true;
 		return q;
 		break;
