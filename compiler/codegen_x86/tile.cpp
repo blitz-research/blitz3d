@@ -64,11 +64,11 @@ static void swapRegs( int d,int s ){
 }
 
 Tile::Tile( const string &a,Tile *l,Tile *r )
-:assem(a),l(l),r(r),want_l(0),want_r(0),hits(0),need(0),argFrame(0){
+:assem(a),l(l),r(r),want_l(0),want_r(0),hits(0),need(0),argFrame(0),forceOrder(false){
 }
 
 Tile::Tile( const string &a,const string &a2,Tile *l,Tile *r )
-:assem(a),assem2(a2),l(l),r(r),want_l(0),want_r(0),hits(0),need(0),argFrame(0){
+:assem(a),assem2(a2),l(l),r(r),want_l(0),want_r(0),hits(0),need(0),argFrame(0),forceOrder(false){
 }
 
 Tile::~Tile(){
@@ -118,7 +118,10 @@ int Tile::eval( int want ){
 	}else if( !r ){
 		got_l=l->eval( want );
 	}else{
-		if( l->need>=NUM_REGS && r->need>=NUM_REGS ){
+		if (forceOrder) {
+			got_l = l->eval(want);
+			got_r = r->eval(want_r);
+		}else if( l->need>=NUM_REGS && r->need>=NUM_REGS ){
 			got_r=r->eval( 0 );
 			pushReg( got_r );freeReg( got_r );
 			got_l=l->eval( want );

@@ -1,0 +1,98 @@
+diff --git a/compiler/codegen_x86/codegen_x86.cpp b/compiler/codegen_x86/codegen_x86.cpp
+index 01d4f75..6d3bdb1 100644
+--- a/compiler/codegen_x86/codegen_x86.cpp
++++ b/compiler/codegen_x86/codegen_x86.cpp
+@@ -124,17 +124,29 @@ Tile *Codegen_x86::munchUnary( TNode *t ){
+ 
+ Tile *Codegen_x86::munchLogical( TNode *t ){
+ 	string s, s1, s2;
++	Tile *l, *r, *q;
+ 	switch( t->op ){
+ 	case IR_AND:
+ 		s1 = "\tand\t%l,%l\n\tjz\t" + t->sconst + "\n";
+ 		s2 = "\tand\t%l,%r\n"+t->sconst;
+ 
+-		return d_new Tile(s2, d_new Tile(s1, munchReg(t->l)), munchReg(t->r));
++		l = munchReg(t->l); r = munchReg(t->r);
++		q = d_new Tile(s2, d_new Tile(s1, l), r);
++		q->want_l = ECX; q->want_r = EDX;
++		q->hits = 1 << ECX | 1 << EDX;
++		q->forceOrder = true;
++		return q;
+ 		break;
+ 	case IR_LOR:
+ 		s1 = "\tor\t%l,%l\n\tjnz\t" + t->sconst + "\n";
+ 		s2 = "\tor\t%l,%r\n" + t->sconst;
+-		return d_new Tile(s2, d_new Tile(s1, munchReg(t->l)), munchReg(t->r));
++		
++		l = munchReg(t->l); r = munchReg(t->r);
++		q = d_new Tile(s2, d_new Tile(s1, l), r);
++		q->want_l = ECX; q->want_r = EDX;
++		q->hits = 1 << ECX | 1 << EDX;
++		q->forceOrder = true;
++		return q;
+ 		break;
+ 	case IR_OR:s="\tor\t%l,%r\n";break;
+ 	case IR_XOR:s="\txor\t%l,%r\n";break;
+@@ -360,6 +372,8 @@ Tile *Codegen_x86::munchReg( TNode *t ){
+ 	string s;
+ 	Tile *q=0;
+ 
++	Tile *l, *r;
++
+ 	switch( t->op ){
+ 	case IR_JUMPT:
+ 		q=d_new Tile( "\tand\t%l,%l\n\tjnz\t"+t->sconst+'\n',munchReg( t->l ) );
+@@ -389,7 +403,9 @@ Tile *Codegen_x86::munchReg( TNode *t ){
+ 		}
+ 		break;
+ 	case IR_SEQ:
+-		q=d_new Tile( "",munch(t->l),munch(t->r) );
++		l = munch(t->l);
++		r = munch(t->r);
++		q=d_new Tile( "",l,r );
+ 		break;
+ 	case IR_ARG:
+ 		q=d_new Tile( "\tlea\t%l,[esp"+itoa_sgn(t->iconst)+"]\n" );
+diff --git a/compiler/codegen_x86/tile.cpp b/compiler/codegen_x86/tile.cpp
+index 38b6694..9ddd07b 100644
+--- a/compiler/codegen_x86/tile.cpp
++++ b/compiler/codegen_x86/tile.cpp
+@@ -64,11 +64,11 @@ static void swapRegs( int d,int s ){
+ }
+ 
+ Tile::Tile( const string &a,Tile *l,Tile *r )
+-:assem(a),l(l),r(r),want_l(0),want_r(0),hits(0),need(0),argFrame(0){
++:assem(a),l(l),r(r),want_l(0),want_r(0),hits(0),need(0),argFrame(0),forceOrder(false){
+ }
+ 
+ Tile::Tile( const string &a,const string &a2,Tile *l,Tile *r )
+-:assem(a),assem2(a2),l(l),r(r),want_l(0),want_r(0),hits(0),need(0),argFrame(0){
++:assem(a),assem2(a2),l(l),r(r),want_l(0),want_r(0),hits(0),need(0),argFrame(0),forceOrder(false){
+ }
+ 
+ Tile::~Tile(){
+@@ -118,7 +118,10 @@ int Tile::eval( int want ){
+ 	}else if( !r ){
+ 		got_l=l->eval( want );
+ 	}else{
+-		if( l->need>=NUM_REGS && r->need>=NUM_REGS ){
++		if (forceOrder) {
++			got_l = l->eval(want);
++			got_r = r->eval(want_r);
++		}else if( l->need>=NUM_REGS && r->need>=NUM_REGS ){
+ 			got_r=r->eval( 0 );
+ 			pushReg( got_r );freeReg( got_r );
+ 			got_l=l->eval( want );
+diff --git a/compiler/codegen_x86/tile.h b/compiler/codegen_x86/tile.h
+index c26264d..37fe86c 100644
+--- a/compiler/codegen_x86/tile.h
++++ b/compiler/codegen_x86/tile.h
+@@ -7,6 +7,7 @@ enum{ EAX=1,ECX,EDX,EDI,ESI,EBX };
+ struct Tile{
+ 
+ 	int want_l,want_r,hits,argFrame;
++	bool forceOrder;
+ 
+ 	Tile( const string &a,Tile *l=0,Tile *r=0 );
+ 	Tile( const string &a,const string &a2,Tile *l=0,Tile *r=0 );
