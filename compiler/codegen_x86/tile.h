@@ -7,7 +7,6 @@ enum{ EAX=1,ECX,EDX,EDI,ESI,EBX };
 struct Tile{
 
 	int want_l,want_r,hits,argFrame;
-	bool forceOrder;
 
 	Tile( const string &a,Tile *l=0,Tile *r=0 );
 	Tile( const string &a,const string &a2,Tile *l=0,Tile *r=0 );
