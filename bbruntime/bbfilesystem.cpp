@@ -123,6 +123,13 @@ int	bbFileSize( BBStr *f ){
 	return gx_filesys->getFileSize( t );
 }
 
+BBStr *bbFileExtension( BBStr *f){
+	string t=*f;delete f;
+	if(t.find_last_of(".") != string::npos) 
+		return d_new BBStr(t.substr(t.find_last_of(".")+1));
+	return d_new BBStr("");
+}
+
 void bbCopyFile( BBStr *f,BBStr *to ){
 	string src=*f,dest=*to;
 	delete f;delete to;
@@ -165,6 +172,7 @@ void filesystem_link( void(*rtSym)(const char*,void*) ){
 
 	rtSym( "%FileSize$file",bbFileSize );
 	rtSym( "%FileType$file",bbFileType );
+	rtSym( "$FileExtension$file",bbFileExtension );
 	rtSym( "CopyFile$file$to",bbCopyFile );
 	rtSym( "DeleteFile$file",bbDeleteFile );
 }

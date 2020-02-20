@@ -26,9 +26,13 @@ using namespace std;
 #include "../compiler/codegen_x86/codegen_x86.h"
 #include "../bbruntime_dll/bbruntime_dll.h"
 
+static string verstr( int ver ){
+	return itoa((ver&65535)/1000)+"."+itoa((ver&65535)%1000);
+}
+
 static void showInfo(){
-	const int major=(VERSION&0xffff)/100,minor=(VERSION&0xffff)%100;
-	cout<<"BlitzCC V"<<major<<"."<<minor<<endl;
+//	const int major=(VERSION&0xffff)/1000,minor=(VERSION&0xffff)%1000;
+	cout<<"BlitzCC V"<<verstr(VERSION)<<endl;
 	cout<<"(C)opyright 2000-2003 Blitz Research Ltd"<<endl;
 }
 
@@ -117,10 +121,6 @@ static void dumpKeys( bool lang,bool mod,bool help ){
 		if( help ) t=quickHelp(t);
 		cout<<t<<endl;
 	}
-}
-
-static string verstr( int ver ){
-	return itoa((ver&65535)/100)+"."+itoa((ver&65535)%100);
 }
 
 static void versInfo(){

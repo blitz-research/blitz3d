@@ -1189,9 +1189,7 @@ static string toDir( string t ){
 string gxRuntime::systemProperty( const std::string &p ){
 	char buff[MAX_PATH+1];
 	string t=tolower(p);
-//	if( t=="cpu" ){
-//		return "Intel";
-/*	}else*/ if( t=="os" ){
+	if( t=="os" ){
 		switch( osinfo.dwMajorVersion ){
 		case 3:
 			switch( osinfo.dwMinorVersion ){
@@ -1226,8 +1224,6 @@ string gxRuntime::systemProperty( const std::string &p ){
 		}
 	}else if( t=="osbuild" ){
 		return itoa((int)osinfo.dwBuildNumber);
-//	}else if( t=="ospack" ){
-//		return osinfo.szCSDVersion;
 	}else if( t=="appdir" ){
 		if( GetModuleFileName( 0,buff,MAX_PATH ) ){
 			string t=buff;
@@ -1255,6 +1251,8 @@ string gxRuntime::systemProperty( const std::string &p ){
 		if( graphics ) return itoa( (int)graphics->dirDraw );
 	}else if( t=="directinput7" ){
 		if( input ) return itoa( (int)input->dirInput );
+	}else if( t=="blitzversion" ){
+		return itoa((VERSION&0xffff)/1000)+"."+itoa((VERSION&0xffff)%1000);
 	}
 	return "";
 }

@@ -79,10 +79,10 @@ void aboutBlitz( bool delay ){
 
 	about.GetDlgItem( IDC_CREDITS )->SetWindowText( credits.c_str() );
 
-	int ide_ver=VERSION&0xffff;
+//	int ide_ver=VERSION&0xffff;
 //	int lnk_ver=linker_ver&0xffff;
 //	int run_ver=runtime_ver&0xffff;
-	string ide_v=itoa(ide_ver/1000)+"."+itoa(ide_ver%1000);
+//	string ide_v=itoa(ide_ver/1000)+"."+itoa(ide_ver%1000);
 //	string lnk_v=itoa(lnk_ver/1000)+"."+itoa(lnk_ver%1000);
 //	string run_v=itoa(run_ver/1000)+"."+itoa(run_ver%1000);
 
@@ -114,7 +114,7 @@ void aboutBlitz( bool delay ){
 	about.GetDlgItem( IDC_PRODUCT )->SetWindowText( t.c_str() );
 
 //	t="IDE V"+ide_v+"  Linker V"+lnk_v+"  Runtime V"+run_v;
-	t="Runtime V"+ide_v;
+	t="Runtime V"+itoa((VERSION&0xffff)/1000)+"."+itoa((VERSION&0xffff)%1000);
 	about.GetDlgItem( IDC_VERSION )->SetWindowText( t.c_str() );
 
 #ifdef DEMO
