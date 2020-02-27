@@ -1517,7 +1517,7 @@ void  bbSetAnimTime( Object *o,float time,int seq ){
 	if( Animator *anim=o->getAnimator() ){
 		anim->setAnimTime( time,seq );
 	}else{
-		RTEX( "Entity has not animation" );
+		RTEX( "Entity has no animations" );
 	}
 }
 
