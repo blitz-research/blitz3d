@@ -4,7 +4,7 @@ Workspace and project files are in MSVC 6.0 format.
 
 Ide and Debugger require MFC which is included with MSVC 6.0, but not with later free/express versions of MSVC.
 
-You can grab the prebuilt free version of blitz3d from www.blitzbasic.com.
+You can grab the prebuilt free version of blitz3d from https://blitzresearch.itch.io/blitz3d.
 
 Steps to build:
 
